@@ -1,0 +1,146 @@
+
+stages:
+  - test
+  - build
+  - deliver
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - ./node_modules/
+    - ./android/.gradle/
+
+lint:critical:
+  stage: test
+  image: node:8
+  before_script:
+    - yarn
+  script:
+    - yarn lint:critical
+
+lint:
+  stage: test
+  image: node:8
+  before_script:
+    - yarn
+  script:
+    - yarn lint
+  allow_failure: true
+
+test:
+  stage: test
+  image: node:8
+  before_script:
+    - yarn
+  script:
+    - yarn test
+
+build:android:debug:
+  stage: build
+  tags:
+    - android
+    - node
+    - react-native
+  before_script:
+    - yarn
+  script:
+    - ./scripts/build-android-debug.sh
+  artifacts:
+    paths:
+      - ./build/app-debug.apk
+
+appetize:android:debug:
+  stage: deliver
+  dependencies:
+    - build:android:debug
+  when: always
+  cache: {}
+  # only:
+  #   - develop
+  image: tutum/curl
+  script:
+    - ./scripts/appetize.sh ./build/app-debug.apk android
+
+deliver:android:debug:
+  stage: deliver
+  dependencies:
+    - build:android:debug
+  when: always
+  cache: {}
+  # only:
+  #   - develop
+  image: tutum/curl
+  script:
+    - ./scripts/deliver.sh ./build/app-debug.apk
+
+# android:release:build:
+#   stage: build
+#   tags:
+#     - android
+#     - node
+#     - react-native
+#   only:
+#     - master
+#   before_script:
+#     - yarn
+#   script:
+#     - ./scripts/build-android-release.sh
+#     - ./scripts/deliver.sh ./build/app-release.apk
+#   artifacts:
+#     paths:
+#       - ./build/app-release.apk
+
+build:ios:debug:
+  stage: build
+  tags:
+    - ios
+    - node
+    - react-native
+  before_script:
+    - yarn
+  script:
+    - ./scripts/build-ios-debug.sh
+  artifacts:
+    paths:
+      - ./build/app-debug.zip
+
+appetize:ios:debug:
+  stage: deliver
+  dependencies:
+    - build:ios:debug
+  when: always
+  cache: {}
+  # only:
+  #   - develop
+  image: tutum/curl
+  script:
+    - ./scripts/appetize.sh ./build/app-debug.zip ios
+
+deliver:ios:debug:
+  stage: deliver
+  dependencies:
+    - build:ios:debug
+  when: always
+  cache: {}
+  # only:
+  #   - develop
+  image: tutum/curl
+  script:
+    - ./scripts/deliver.sh ./build/app-debug.zip
+
+# build:ios:release:
+#   stage: build
+#   tags:
+#     - ios
+#     - node
+#     - react-native
+#   only:
+#     - master
+#   before_script:
+#     - yarn
+#   script:
+#     - ./scripts/build-ios-release.sh
+#     - ./scripts/deliver.sh ./build/app-release.zip
+#   artifacts:
+#     paths:
+#       - ./build/app-release.zip

@@ -1,0 +1,55 @@
+{
+  "name": "alvb-starter-react-native",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "ios": "react-native run-ios",
+    "android": "react-native run-android",
+    "test": "jest",
+    "lint": "eslint --ext .js ./",
+    "lint:critical": "eslint --no-eslintrc --config .eslintrc.critical.json ./",
+    "format": "npm run format:all ; npm run format:js",
+    "format:all": "prettier ./**/*.{md,json,js,css,scss} --write",
+    "format:js": "eslint --ext .js --fix ./",
+    "postinstall": "./scripts/postinstall.sh"
+  },
+  "dependencies": {
+    "debug": "~3.1.0",
+    "lodash.debounce": "~4.0.8",
+    "native-base": "~2.4.3",
+    "promise.prototype.finally": "~3.1.0",
+    "prop-types": "~15.6.1",
+    "react": "~16.3.2",
+    "react-native": "~0.55.3",
+    "react-native-keychain": "~2.0.0",
+    "react-native-splash-screen": "~3.0.6",
+    "react-navigation": "~1.5.12",
+    "react-redux": "~5.0.7",
+    "redux": "~4.0.0",
+    "redux-localstorage": "~1.0.0-rc5",
+    "redux-logger": "~3.0.6",
+    "redux-thunk": "~2.2.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "~8.2.3",
+    "babel-jest": "~22.4.3",
+    "babel-preset-react-native": "~4.0.0",
+    "eslint": "~4.19.1",
+    "eslint-config-airbnb": "~16.1.0",
+    "eslint-plugin-import": "~2.11.0",
+    "eslint-plugin-jsx-a11y": "~6.0.3",
+    "eslint-plugin-react": "~7.7.0",
+    "jest": "~22.4.3",
+    "jest-react-native": "~18.0.0",
+    "prettier": "~1.12.1",
+    "react-test-renderer": "~16.3.2"
+  },
+  "jest": {
+    "preset": "react-native",
+    "transformIgnorePatterns": ["node_modules/?!(react-native|native-base)"]
+  },
+  "rnpm": {
+    "assets": ["assets/fonts"]
+  }
+}
