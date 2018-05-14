@@ -75,7 +75,7 @@ Assuming target application with following properties:
 1.  Initialize your application `react-native init`
 
     ```sh
-    react-native init MyApp --skip-jest --template 'https://github.com/astalavistababy/alvb-starter-react-native.git'
+    react-native init MyApp --skip-jest --template 'https://github.com/astalavistababy/alvb-starter-react-native'
     ```
 
 1.  Run post-init routine
