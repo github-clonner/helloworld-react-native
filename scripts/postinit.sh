@@ -47,11 +47,3 @@ chmod u+x ./scripts/*.sh
 # install dependencies
 
 yarn
-
-#
-
-echo 'Done'
-
-echo ''
-
-echo 'Make sure to replace placeholders (look for "@@") with appropriate values'
