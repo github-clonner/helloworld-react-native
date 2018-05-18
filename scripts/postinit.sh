@@ -35,6 +35,7 @@ rm ./CLONE.md
 
 rm ./src/App.js
 
+rm ./scripts/dev*.sh
 rm ./scripts/postinit*.sh
 
 chmod u+x ./scripts/*.sh
