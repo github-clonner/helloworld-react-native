@@ -6,7 +6,7 @@ if [ -z "$1" ] || [ -z "$2" ] ; then
 fi
 
 APP_NAME=$1
-APP_CODE_NAME="${APP_NAME,,}"
+APP_CODE_NAME=$(echo $APP_NAME | sed 's/.*/\L&/')
 APP_DISPLAY_NAME=$2
 
 
