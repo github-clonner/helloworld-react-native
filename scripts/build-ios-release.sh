@@ -1,4 +1,4 @@
-#!/bin/bash -xe
+#!/usr/bin/env bash -xeo pipefail
 
 source $(dirname $0)/config.sh
 
@@ -6,9 +6,17 @@ $(dirname $0)/update-release.sh
 
 cd ./ios
 
+if [ -f ./Podfile ]; then
+  pod install
+fi
+
 export FORCE_BUNDLING=true
 
-xcodebuild build -project $APP_NAME.xcodeproj -scheme $APP_NAME -configuration Release -sdk iphoneos -derivedDataPath ./build
+if [ -d $APP_NAME.xcworkspace ]; then
+    xcodebuild build -workspace $APP_NAME.xcworkspace -scheme $APP_NAME -configuration Release -sdk iphoneos -derivedDataPath ./build | xcpretty
+else
+    xcodebuild build -project $APP_NAME.xcodeproj -scheme $APP_NAME -configuration Release -sdk iphoneos -derivedDataPath ./build | xcpretty
+fi
 
 cd ..
 

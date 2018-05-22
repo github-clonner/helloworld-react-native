@@ -1,4 +1,4 @@
-#!/bin/bash -xe
+#!/usr/bin/env bash -xeo pipefail
 
 cp package.json package.json.template
 cp yarn.lock yarn.lock.template

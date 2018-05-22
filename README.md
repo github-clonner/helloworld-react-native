@@ -7,16 +7,23 @@ A boilerplate and reference implementation for mobile applications built with Re
 * [Android](https://appetize.io/app/3xvgukkq4gqjyjn1ztrzq6czwr?device=nexus5&scale=75&orientation=portrait&osVersion=7.1)
 * [iOS](https://appetize.io/app/nkn34mhpchnx172e67ptmjypdm?device=iphone6s&scale=75&orientation=portrait&osVersion=11.1)
 
+## References
+
+* [`Guidelines`](https://github.com/astalavistababy/alvb-docs/).
+* [API Specifications/Documentation](https://starterspecapi.docs.apiary.io/)
+
 ## Technology
 
 * [React](https://reactjs.org/) + [Redux](https://redux.js.org/) + [React Native](https://facebook.github.io/react-native/)
 * [NativeBase](https://nativebase.io/)
 * [React Navigation](https://reactnavigation.org/)
 
-## References
+## Requirements
 
-* [`Guidelines`](https://github.com/astalavistababy/alvb-docs/).
-* [API Specifications/Documentation](https://starterspecapi.docs.apiary.io/)
+* [Node.js v8+](https://nodejs.org/) + [Yarn](https://yarnpkg.com/)
+* [React Native CLI](https://www.npmjs.com/package/react-native-cli) (`npm -g install react-native-cli`)
+* [CocoaPods](https://cocoapods.org/) (`gem install cocoapods`)
+* [xcpretty](https://github.com/supermarin/xcpretty) (`gem install xcpretty`)
 
 ## Usage
 

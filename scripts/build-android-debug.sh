@@ -1,4 +1,4 @@
-#!/bin/bash -xe
+#!/usr/bin/env bash -xeo pipefail
 
 source $(dirname $0)/config.sh
 

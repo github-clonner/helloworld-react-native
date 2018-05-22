@@ -9,6 +9,7 @@ cache:
   paths:
     - ./node_modules/
     - ./android/.gradle/
+    - ./ios/Pods/
 
 lint:critical:
   stage: test
