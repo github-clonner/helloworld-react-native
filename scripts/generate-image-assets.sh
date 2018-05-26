@@ -2,7 +2,16 @@
 set -xeo pipefail
 
 if [[ $# -lt 1 ]] ; then
-	echo "usage: $0 <input> [<size@1x>] [<output>]"
+	echo "usage: $0 <input> [<size@1x>] [<output>]"+
+  echp "  Generates native image assets."
+	echo "    <input>    path for input file, could be:"
+	echo "                 - SVG file"
+	echo "                 - PNG file with 4x size"
+	echo "    <size@1x>  optionnal target size"
+	echo "                 - <width> => <width>x<width>"
+	echo "                 - <width>x => <width>x<calculated_height>"
+	echo "                 - x<height> => <calculated_width>x<height>"
+	echo "    <output>   optional target name"
 fi
 
 if [ ! -f $1 ] ; then

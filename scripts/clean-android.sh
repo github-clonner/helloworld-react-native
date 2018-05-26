@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
 set -xeo pipefail
 
-# @TODO
+cd ./android
+
+./gradlew clean
