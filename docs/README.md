@@ -13,4 +13,3 @@ The scripts depends on [Inkscape](https://inkscape.org) and [ImageMagick](https:
 `build-android-debug.sh` builds debug .apk.
 
 `build-ios-debug.sh` builds debug .app.
-
