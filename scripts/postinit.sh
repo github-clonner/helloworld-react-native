@@ -1,16 +1,17 @@
-#!/usr/bin/env bash -xeo pipefail
+#!/usr/bin/env bash
+set -xeo pipefail
 
 source $(dirname $0)/config.sh
 
 if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ] ; then
-  echo "usage: $(basename $0) <APP_NAME> <APP_DISPLAY_NAME> <APP_STORE_ID>" >&2
+  echo "usage: $(basename $0) <APP_NAME> <APP_DISPLAY_NAME> <APP_PACKAGE_ID>" >&2
   exit 1
 fi
 
 APP_NAME=$1
-APP_CODE_NAME=$(echo $APP_NAME | sed 's/.*/\L&/')
+APP_CODE_NAME=${APP_NAME,,}
 APP_DISPLAY_NAME=$2
-APP_STORE_ID=$3
+APP_PACKAGE_ID=$3
 
 # replace default values
 
@@ -19,7 +20,7 @@ for f in $(find ./ -type f ! -path '*/node_modules/*' ! -path '*/.git/*') ; do
   sed -i'' "s/helloworld/$APP_CODE_NAME/" $f
   sed -i'' "s/Hello\ World/$APP_DISPLAY_NAME/" $f
   sed -i'' "s/Hello\ App\ Display\ Name/$APP_DISPLAY_NAME/" $f
-  sed -i'' "s/com\.$APP_CODE_NAME\.app/$APP_STORE_ID/" $f
+  sed -i'' "s/com\.$APP_CODE_NAME\.app/$APP_PACKAGE_ID/" $f
 done
 
 #

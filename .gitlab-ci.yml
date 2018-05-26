@@ -13,6 +13,8 @@ cache:
 
 lint:critical:
   stage: test
+  tags:
+    - docker
   image: node:8
   before_script:
     - yarn
@@ -21,6 +23,8 @@ lint:critical:
 
 lint:
   stage: test
+  tags:
+    - docker
   image: node:8
   before_script:
     - yarn
@@ -30,6 +34,8 @@ lint:
 
 test:
   stage: test
+  tags:
+    - docker
   image: node:8
   before_script:
     - yarn
@@ -58,7 +64,9 @@ appetize:android:debug:
   cache: {}
   # only:
   #   - develop
-  image: tutum/curl
+  tags:
+    - docker
+  image: spotify/alpine
   script:
     - ./scripts/appetize.sh ./build/app-debug.apk android
 
@@ -70,7 +78,9 @@ deliver:android:debug:
   cache: {}
   # only:
   #   - develop
-  image: tutum/curl
+  tags:
+    - docker
+  image: spotify/alpine
   script:
     - ./scripts/deliver.sh ./build/app-debug.apk
 
@@ -113,7 +123,9 @@ appetize:ios:debug:
   cache: {}
   # only:
   #   - develop
-  image: tutum/curl
+  tags:
+    - docker
+  image: spotify/alpine
   script:
     - ./scripts/appetize.sh ./build/app-debug.zip ios
 
@@ -125,7 +137,9 @@ deliver:ios:debug:
   cache: {}
   # only:
   #   - develop
-  image: tutum/curl
+  tags:
+    - docker
+  image: spotify/alpine
   script:
     - ./scripts/deliver.sh ./build/app-debug.zip
 

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash -xeo pipefail
+#!/bin/bash -x
 
 # keep only used fonts from native-base
 find ./node_modules/native-base/Fonts/*.ttf  \

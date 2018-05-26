@@ -1,4 +1,5 @@
-#!/usr/bin/env bash -xeo pipefail
+#!/usr/bin/env bash
+set -xeo pipefail
 
 source $(dirname $0)/config.sh
 

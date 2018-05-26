@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Content, Spinner } from 'native-base';
+import { Container, Header, Content, Spinner } from 'native-base';
 
 import { View } from 'react-native';
 
@@ -9,6 +9,7 @@ import { LogoHeader } from './LogoHeader';
 
 const LandingView = () => (
   <Container>
+    <Header noShadow style={{ height: 0 }} />
     <Content scrollEnabled={false} contentContainerStyle={{ flex: 1, backgroundColor: COLOR.primary }}>
       <LogoHeader style={{ flex: 1 }} />
 

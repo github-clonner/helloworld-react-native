@@ -38,6 +38,7 @@ yarn start
 yarn android
 
 # run on iOS device/simulator
+(cd ios ; pod install)
 yarn ios
 
 # run tests

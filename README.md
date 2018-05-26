@@ -38,6 +38,7 @@ yarn start
 yarn android
 
 # run on iOS device/simulator
+(cd ios ; pod install)
 yarn ios
 
 # run tests
@@ -77,7 +78,7 @@ Assuming target application with following properties:
 
 * code name is `MyApp`
 * display name is `My App`
-* id in stores is `com.myapp.client`
+* pacakge id is `com.myapp.client`
 
 1.  Initialize your application `react-native init`
 

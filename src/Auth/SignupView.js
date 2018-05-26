@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, KeyboardAvoidingView } from 'react-native';
-import { Container, Content, Button, Spinner, Input, Item, Text, Form } from 'native-base';
+import { Container, Header, Content, Button, Spinner, Input, Item, Text, Form } from 'native-base';
 
 import * as CustomPropTypes from '../common/proptypes';
 
@@ -51,6 +51,7 @@ class SignupView extends Component {
   render() {
     return (
       <Container>
+        <Header noShadow style={{ height: 0 }} />
         <Content scrollEnabled={false} contentContainerStyle={{ flex: 1, backgroundColor: COLOR.primary }}>
           <LogoHeader style={{ flex: 1, minHeight: 'auto' }} />
 

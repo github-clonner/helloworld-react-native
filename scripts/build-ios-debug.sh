@@ -1,4 +1,5 @@
-#!/usr/bin/env bash -xeo pipefail
+#!/usr/bin/env bash
+set -xeo pipefail
 
 source $(dirname $0)/config.sh
 
@@ -13,9 +14,9 @@ fi
 export FORCE_BUNDLING=true
 
 if [ -d $APP_NAME.xcworkspace ]; then
-    xcodebuild build -workspace $APP_NAME.xcworkspace -scheme $APP_NAME -configuration Debug -sdk iphonesimulator -derivedDataPath ./build | xcpretty
+  xcodebuild build -workspace $APP_NAME.xcworkspace -scheme $APP_NAME -configuration Debug -sdk iphonesimulator -derivedDataPath ./build | xcpretty
 else
-    xcodebuild build -project $APP_NAME.xcodeproj -scheme $APP_NAME -configuration Debug -sdk iphonesimulator -derivedDataPath ./build | xcpretty
+  xcodebuild build -project $APP_NAME.xcodeproj -scheme $APP_NAME -configuration Debug -sdk iphonesimulator -derivedDataPath ./build | xcpretty
 fi
 
 cd ..

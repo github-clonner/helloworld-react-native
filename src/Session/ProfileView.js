@@ -52,7 +52,7 @@ class ProfileView extends Component {
       <Container>
         <Header style={{ height: 200 }}>
           <Left style={{ flex: 0, alignSelf: 'flex-start' }}>
-            <Button transparent onPress={() => this.props.navigation.navigate('DrawerOpen')}>
+            <Button transparent onPress={() => this.props.navigation.openDrawer()}>
               <Icon name="menu" />
             </Button>
           </Left>
