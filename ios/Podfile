@@ -27,6 +27,8 @@ target 'HelloWorld' do
 
   ### END - React Native
 
+  # Add new pods below this line
+
   target 'HelloWorldTests' do
     inherit! :search_paths
   end
