@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
-import { ViewPropTypes } from 'react-native';
+import { ViewStylePropTypes } from 'react-native';
 
 /**
  * General Purpose
  */
 
-export const { style } = ViewPropTypes;
+export const style = ViewStylePropTypes;
 
 export const navigation = PropTypes.shape({
   navigate: PropTypes.func,
