@@ -28,7 +28,7 @@ Run `./scripts/build-ios-debug.sh` to build debug .app
 1. Make sure there is a keystore under `./android/app/`
 
    ```sh
-   keytool -genkey -v -keystore ./android/app/helloworld.keystore -alias helloworld -keyalg RSA -keysize 2048 -validity 10000
+   keytool -genkey -v -keystore ./android/app/release.keystore -alias release -keyalg RSA -keysize 2048 -validity 10000
    ```
 
 1. Define keystore parameters as environment variables
@@ -40,10 +40,10 @@ Run `./scripts/build-ios-debug.sh` to build debug .app
 
     ```sh
     export \
-      RELEASE_KEYSTORE_FILE=helloworld.keystore \
-      RELEASE_KEYSTORE_PASSWORD=helloworldpass \
-      RELEASE_KEYSTORE_KEY_ALIAS=helloworld \
-      RELEASE_KEYSTORE_KEY_PASSWORD=helloworldpass \
+      RELEASE_KEYSTORE_FILE=release.keystore \
+      RELEASE_KEYSTORE_PASSWORD=releasepass \
+      RELEASE_KEYSTORE_KEY_ALIAS=release \
+      RELEASE_KEYSTORE_KEY_PASSWORD=releasepass \
     ;
     ```
 
