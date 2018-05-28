@@ -7,11 +7,11 @@ $(dirname $0)/update-release.sh
 
 cd ./ios
 
+export FORCE_BUNDLING=true
+
 if [ -f ./Podfile ]; then
   pod install
 fi
-
-export FORCE_BUNDLING=true
 
 if [ -d $APP_NAME.xcworkspace ]; then
   xcodebuild build -workspace $APP_NAME.xcworkspace -scheme $APP_NAME -configuration Debug -sdk iphonesimulator -derivedDataPath ./build | xcpretty

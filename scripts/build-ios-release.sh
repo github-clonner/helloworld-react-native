@@ -11,8 +11,6 @@ if [ -f ./Podfile ]; then
   pod install
 fi
 
-export FORCE_BUNDLING=true
-
 if [ -d $APP_NAME.xcworkspace ]; then
   xcodebuild build -workspace $APP_NAME.xcworkspace -scheme $APP_NAME -configuration Release -sdk iphoneos -derivedDataPath ./build | xcpretty
 else

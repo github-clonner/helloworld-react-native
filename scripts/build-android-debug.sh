@@ -7,7 +7,7 @@ $(dirname $0)/update-release.sh
 
 cd ./android
 
-sed -i 's/bundleInDebug: false/bundleInDebug: true/g' ./app/build.gradle
+export FORCE_BUNDLING=true
 
 ./gradlew assembleDebug
 
