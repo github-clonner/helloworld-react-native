@@ -4,8 +4,8 @@ A boilerplate and reference implementation for mobile applications built with Re
 
 ## Preview
 
-- [Android](https://appetize.io/app/3xvgukkq4gqjyjn1ztrzq6czwr?device=nexus5&scale=75&orientation=portrait&osVersion=7.1)
-- [iOS](https://appetize.io/app/nkn34mhpchnx172e67ptmjypdm?device=iphone6s&scale=75&orientation=portrait&osVersion=11.1)
+- [Android](https://appetize.io/app/@@APPETIZE_ANDROID_ID@@?device=nexus5&scale=75&orientation=portrait&osVersion=7.1)
+- [iOS](https://appetize.io/app/@@APPETIZE_IOS_ID@@?device=iphone6s&scale=75&orientation=portrait&osVersion=11.1)
 
 ## References
 
@@ -72,26 +72,3 @@ $store.getState().MyModule.myField;
 // dispatch action from Redux store
 $store.dispatch($state.MyModule.$myAction(/* args */));
 ```
-
-## Using the Template
-
-Assuming target application with following properties:
-
-- code name is `MyApp`
-- display name is `My App`
-- pacakge id is `com.myapp.client`
-
-1.  Initialize your application `react-native init`
-
-    ```sh
-    react-native init MyApp --skip-jest --template 'https://github.com/astalavistababy/alvb-starter-react-native'
-    ```
-
-1.  Run post-init routine
-
-    ```sh
-    cd ./MyApp
-    ./scripts/postinit.sh 'MyApp' 'My App' 'com.myapp.client'
-    ```
-
-1.  Make sure to replace placeholders (look for `@@`) with appropriate values

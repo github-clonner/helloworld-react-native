@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -xeo pipefail
 
-cp package.json package.json.template
-cp yarn.lock yarn.lock.template
+cp package.json package.template.json
+cp yarn.lock yarn.template.lock
 
 cat <<EOS > package.json
 {

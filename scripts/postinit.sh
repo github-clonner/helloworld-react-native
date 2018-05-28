@@ -26,13 +26,13 @@ done
 #
 
 rm ./README.md
-mv ./README.md.template ./README.md
+mv ./README.template.md ./README.md
 
 rm ./package.json
-mv ./package.json.template ./package.json
+mv ./package.template.json ./package.json
 
 rm ./scripts/config.sh
-mv ./scripts/config.sh.template ./scripts/config.sh
+mv ./scripts/config.template.sh ./scripts/config.sh
 
 # cleanup
 

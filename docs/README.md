@@ -8,8 +8,8 @@ Customize it according to your needs then run it.
 
 **Requirements**
 
-* [Inkscape](https://inkscape.org)
-* [ImageMagick](https://www.imagemagick.org/)
+- [Inkscape](https://inkscape.org)
+- [ImageMagick](https://www.imagemagick.org/)
 
 ## Debug Build
 
@@ -25,18 +25,18 @@ Run `./scripts/build-ios-debug.sh` to build debug .app
 
 ### Android
 
-1. Make sure there is a keystore under `./android/app/`
+1.  Make sure there is a keystore under `./android/app/`
 
-   ```sh
-   keytool -genkey -v -keystore ./android/app/release.keystore -alias release -keyalg RSA -keysize 2048 -validity 10000
-   ```
+    ```sh
+    keytool -genkey -v -keystore ./android/app/release.keystore -alias release -keyalg RSA -keysize 2048 -validity 10000
+    ```
 
-1. Define keystore parameters as environment variables
+1.  Define keystore parameters as environment variables
 
-    * `RELEASE_KEYSTORE_FILE`: keystore file name
-    * `RELEASE_KEYSTORE_PASSWORD`: keystore password
-    * `RELEASE_KEYSTORE_KEY_ALIAS`: keystore alias
-    * `RELEASE_KEYSTORE_KEY_PASSWORD`: keystore alias password
+    - `RELEASE_KEYSTORE_FILE`: keystore file name
+    - `RELEASE_KEYSTORE_PASSWORD`: keystore password
+    - `RELEASE_KEYSTORE_KEY_ALIAS`: keystore alias
+    - `RELEASE_KEYSTORE_KEY_PASSWORD`: keystore alias password
 
     ```sh
     export \
@@ -47,10 +47,10 @@ Run `./scripts/build-ios-debug.sh` to build debug .app
     ;
     ```
 
-1. Run `./scripts/build-android-release.sh` to build release .apk
+1.  Run `./scripts/build-android-release.sh` to build release .apk
 
 ### iOS
 
-1. Make sure signing credentials are provided
-1. Run Xcode and configure signing
-1. Run `./scripts/build-ios-release.sh` to build release .app
+1.  Make sure signing credentials are provided
+1.  Run Xcode and configure signing
+1.  Run `./scripts/build-ios-release.sh` to build release .app

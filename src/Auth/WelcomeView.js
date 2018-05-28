@@ -11,7 +11,10 @@ import styles from './styles';
 
 import * as Activity from '../common/Activity.state';
 
-const withStore = connect((state) => ({}), (dispatch) => ({}));
+const withStore = connect(
+  (state) => ({}),
+  (dispatch) => ({}),
+);
 
 // provides shared state and actions as props
 const Wrapper = (C) => withStore(C);
