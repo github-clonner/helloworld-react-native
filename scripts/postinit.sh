@@ -44,7 +44,8 @@ mv ./.gitlab-ci.template.yml ./.gitlab-ci.yml
 
 [ -d ./.git ] && rm -fr ./.git
 
-[ -f ./App.js ] && rm ./App.js
+rm ./App.js
+
 find ./ios -iname '*tvos*' -exec rm -fr {} \;
 
 rm ./scripts/dev*.sh

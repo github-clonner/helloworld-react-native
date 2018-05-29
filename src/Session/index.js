@@ -1,14 +1,14 @@
-import { DrawerNavigator } from 'react-navigation';
+import { createDrawerNavigator } from 'react-navigation';
 
 import NavigationMenu from './NavigationMenu';
 
-import HomeView from '../Home/HomeView';
+import HomeRouter from '../Home';
 import ProfileView from './ProfileView';
 import AboutView from './AboutView';
 
-const SessionRouter = DrawerNavigator(
+const SessionRouter = createDrawerNavigator(
   {
-    '/home': { screen: HomeView },
+    '/home': { screen: HomeRouter },
     '/profile': { screen: ProfileView },
     '/about': { screen: AboutView },
   },

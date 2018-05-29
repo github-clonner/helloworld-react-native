@@ -7,7 +7,6 @@ exports[`renders correctly 1`] = `
       "flex": 1,
     }
   }
-  virtual={undefined}
 >
   <View
     style={
@@ -16,8 +15,38 @@ exports[`renders correctly 1`] = `
         "height": 1334,
       }
     }
-    virtual={undefined}
   >
+    <View>
+      <View
+        noShadow={true}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#607D8B",
+              "borderBottomColor": "#a7a6ab",
+              "borderBottomWidth": 0.5,
+              "elevation": 0,
+              "flexDirection": "row",
+              "height": 64,
+              "justifyContent": "center",
+              "left": 0,
+              "paddingLeft": 6,
+              "paddingRight": 10,
+              "paddingTop": 18,
+              "right": 0,
+              "shadowColor": null,
+              "shadowOffset": null,
+              "shadowOpacity": null,
+              "shadowRadius": null,
+              "top": 0,
+            },
+            Object {
+              "height": 0,
+            },
+          ]
+        }
+      />
+    </View>
     <RCTScrollView
       automaticallyAdjustContentInsets={false}
       contentContainerStyle={
@@ -68,7 +97,6 @@ exports[`renders correctly 1`] = `
         }
       }
       viewIsInsideTabBar={false}
-      virtual={undefined}
     >
       <View>
         <View
@@ -138,7 +166,6 @@ exports[`renders correctly 1`] = `
                 },
               ]
             }
-            virtual={undefined}
           />
         </View>
       </View>
@@ -152,16 +179,8 @@ exports[`renders correctly 1`] = `
     visible={false}
   >
     <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={undefined}
       accessible={true}
-      collapsable={undefined}
-      hasTVPreferredFocus={undefined}
-      hitSlop={undefined}
       isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
       onResponderRelease={[Function]}
@@ -176,20 +195,10 @@ exports[`renders correctly 1`] = `
           "opacity": 1,
         }
       }
-      testID={undefined}
-      tvParallaxProperties={undefined}
     >
       <View
-        accessibilityComponentType={undefined}
-        accessibilityLabel={undefined}
-        accessibilityTraits={undefined}
         accessible={true}
-        collapsable={undefined}
-        hasTVPreferredFocus={undefined}
-        hitSlop={undefined}
         isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
         onResponderRelease={[Function]}
@@ -206,8 +215,6 @@ exports[`renders correctly 1`] = `
             "padding": 15,
           }
         }
-        testID={undefined}
-        tvParallaxProperties={undefined}
       >
         <Text
           accessible={true}
@@ -226,7 +233,6 @@ exports[`renders correctly 1`] = `
             ]
           }
           uppercase={false}
-          virtual={undefined}
         />
         <RCTScrollView
           data={Array []}
@@ -235,7 +241,6 @@ exports[`renders correctly 1`] = `
           getItemCount={[Function]}
           horizontal={false}
           initialNumToRender={10}
-          invertStickyHeaders={undefined}
           keyExtractor={[Function]}
           maxToRenderPerBatch={10}
           numColumns={1}
