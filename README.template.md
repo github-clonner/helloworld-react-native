@@ -9,7 +9,7 @@ A boilerplate and reference implementation for mobile applications built with Re
 
 ## References
 
-- [`Guidelines`](https://github.com/astalavistababy/alvb-docs/).
+- [Guidelines](https://github.com/astalavistababy/alvb-docs/)
 - [API Specifications/Documentation](https://starterspecapi.docs.apiary.io/)
 - [Documentation](./docs)
 

@@ -18,7 +18,7 @@ const AppContainer = () => (
   <Provider store={store}>
     <NativeBaseRoot>
       <StyleProvider style={getTheme(THEME)}>
-        <SafeAreaView>
+        <SafeAreaView style={{ flex: 1 }}>
           <App />
         </SafeAreaView>
       </StyleProvider>
