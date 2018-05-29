@@ -25,7 +25,7 @@ Run `./scripts/build-ios-debug.sh` to build debug .app
 
 ### Android
 
-1.  Make sure there is a keystore under `./android/app/`
+1.  Provide or generate a keystore
 
     ```sh
     keytool -genkey -v -keystore ./android/app/release.keystore -alias release -keyalg RSA -keysize 2048 -validity 10000
@@ -35,15 +35,15 @@ Run `./scripts/build-ios-debug.sh` to build debug .app
 
     - `RELEASE_KEYSTORE_FILE`: keystore file name
     - `RELEASE_KEYSTORE_PASSWORD`: keystore password
-    - `RELEASE_KEYSTORE_KEY_ALIAS`: keystore alias
-    - `RELEASE_KEYSTORE_KEY_PASSWORD`: keystore alias password
+    - `RELEASE_KEYSTORE_ALIAS`: keystore alias
+    - `RELEASE_KEYSTORE_ALIAS_PASSWORD`: keystore alias password
 
     ```sh
-    export \
-      RELEASE_KEYSTORE_FILE=release.keystore \
+     export \
+      RELEASE_KEYSTORE_FILE=$PWD/android/app/release.keystore \
       RELEASE_KEYSTORE_PASSWORD=releasepass \
-      RELEASE_KEYSTORE_KEY_ALIAS=release \
-      RELEASE_KEYSTORE_KEY_PASSWORD=releasepass \
+      RELEASE_KEYSTORE_ALIAS=release \
+      RELEASE_KEYSTORE_ALIAS_PASSWORD=releasepass \
     ;
     ```
 
@@ -51,6 +51,6 @@ Run `./scripts/build-ios-debug.sh` to build debug .app
 
 ### iOS
 
-1.  Make sure signing credentials are provided
+1.  Provide signing credentials
 1.  Run Xcode and configure signing
 1.  Run `./scripts/build-ios-release.sh` to build release .app

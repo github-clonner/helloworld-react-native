@@ -113,8 +113,8 @@ android {
             if (System.env.RELEASE_KEYSTORE_FILE) {
                 storeFile file(System.env.RELEASE_KEYSTORE_FILE)
                 storePassword System.env.RELEASE_KEYSTORE_PASSWORD
-                keyAlias System.env.RELEASE_KEYSTORE_KEY_ALIAS
-                keyPassword System.env.RELEASE_KEYSTORE_KEY_PASSWORD
+                keyAlias System.env.RELEASE_KEYSTORE_ALIAS
+                keyPassword System.env.RELEASE_KEYSTORE_ALIAS_PASSWORD
             }
         }
     }

@@ -2,7 +2,7 @@ import { createStackNavigator } from 'react-navigation';
 
 import HomeView from '../Home/HomeView';
 
-const SessionRouter = createStackNavigator(
+const HomeRouter = createStackNavigator(
   {
     '/': { screen: HomeView },
   },
@@ -12,4 +12,4 @@ const SessionRouter = createStackNavigator(
   },
 );
 
-export default SessionRouter;
+export default HomeRouter;
