@@ -8,169 +8,171 @@ exports[`renders correctly 1`] = `
     }
   }
 >
-  <View
-    style={
-      Object {
-        "flex": 1,
-        "height": 1334,
-      }
-    }
-  >
-    <View>
-      <View
-        noShadow={true}
-        style={
-          Array [
-            Object {
-              "backgroundColor": "#607D8B",
-              "borderBottomColor": "#a7a6ab",
-              "borderBottomWidth": 0.5,
-              "elevation": 0,
-              "flexDirection": "row",
-              "height": 64,
-              "justifyContent": "center",
-              "left": 0,
-              "paddingLeft": 6,
-              "paddingRight": 10,
-              "paddingTop": 18,
-              "right": 0,
-              "shadowColor": null,
-              "shadowOffset": null,
-              "shadowOpacity": null,
-              "shadowRadius": null,
-              "top": 0,
-            },
-            Object {
-              "height": 0,
-            },
-          ]
-        }
-      />
-    </View>
-    <RCTScrollView
-      automaticallyAdjustContentInsets={false}
-      contentContainerStyle={
-        Array [
-          Object {
-            "padding": undefined,
-          },
-          Object {
-            "backgroundColor": "#607D8B",
-            "flex": 1,
-          },
-        ]
-      }
-      contentInset={
-        Object {
-          "bottom": 0,
-        }
-      }
-      enableAutomaticScroll={true}
-      enableResetScrollToCoords={true}
-      extraHeight={75}
-      extraScrollHeight={0}
-      getScrollResponder={[Function]}
-      handleOnScroll={[Function]}
-      keyboardDismissMode="interactive"
-      keyboardOpeningTime={250}
-      keyboardShouldPersistTaps="handled"
-      keyboardSpace={0}
-      onScroll={[Function]}
-      resetKeyboardSpace={[Function]}
-      resetScrollToCoords={
-        Object {
-          "x": 0,
-          "y": 0,
-        }
-      }
-      scrollEnabled={false}
-      scrollEventThrottle={1}
-      scrollForExtraHeightOnAndroid={[Function]}
-      scrollToEnd={[Function]}
-      scrollToFocusedInput={[Function]}
-      scrollToPosition={[Function]}
-      showsVerticalScrollIndicator={true}
+  <RCTSafeAreaView>
+    <View
       style={
         Object {
-          "backgroundColor": "transparent",
           "flex": 1,
+          "height": 1334,
         }
       }
-      viewIsInsideTabBar={false}
     >
       <View>
         <View
+          noShadow={true}
           style={
-            Object {
-              "flex": 1,
-            }
+            Array [
+              Object {
+                "backgroundColor": "#607D8B",
+                "borderBottomColor": "#a7a6ab",
+                "borderBottomWidth": 0.5,
+                "elevation": 0,
+                "flexDirection": "row",
+                "height": 64,
+                "justifyContent": "center",
+                "left": 0,
+                "paddingLeft": 6,
+                "paddingRight": 10,
+                "paddingTop": 18,
+                "right": 0,
+                "shadowColor": null,
+                "shadowOffset": null,
+                "shadowOpacity": null,
+                "shadowRadius": null,
+                "top": 0,
+              },
+              Object {
+                "height": 0,
+              },
+            ]
           }
-        >
+        />
+      </View>
+      <RCTScrollView
+        automaticallyAdjustContentInsets={false}
+        contentContainerStyle={
+          Array [
+            Object {
+              "padding": undefined,
+            },
+            Object {
+              "backgroundColor": "#607D8B",
+              "flex": 1,
+            },
+          ]
+        }
+        contentInset={
+          Object {
+            "bottom": 0,
+          }
+        }
+        enableAutomaticScroll={true}
+        enableResetScrollToCoords={true}
+        extraHeight={75}
+        extraScrollHeight={0}
+        getScrollResponder={[Function]}
+        handleOnScroll={[Function]}
+        keyboardDismissMode="interactive"
+        keyboardOpeningTime={250}
+        keyboardShouldPersistTaps="handled"
+        keyboardSpace={0}
+        onScroll={[Function]}
+        resetKeyboardSpace={[Function]}
+        resetScrollToCoords={
+          Object {
+            "x": 0,
+            "y": 0,
+          }
+        }
+        scrollEnabled={false}
+        scrollEventThrottle={1}
+        scrollForExtraHeightOnAndroid={[Function]}
+        scrollToEnd={[Function]}
+        scrollToFocusedInput={[Function]}
+        scrollToPosition={[Function]}
+        showsVerticalScrollIndicator={true}
+        style={
+          Object {
+            "backgroundColor": "transparent",
+            "flex": 1,
+          }
+        }
+        viewIsInsideTabBar={false}
+      >
+        <View>
           <View
             style={
-              Array [
-                Object {
-                  "bottom": 0,
-                  "left": 0,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 0,
-                },
-                Object {
-                  "alignItems": "center",
-                  "justifyContent": "center",
-                },
-              ]
+              Object {
+                "flex": 1,
+              }
             }
           >
-            <Image
-              resizeMode="contain"
-              source={
-                Object {
-                  "testUri": "../../../src/assets/logo-transparent.png",
-                }
-              }
+            <View
               style={
-                Object {
-                  "flex": 1,
-                  "marginBottom": 24,
-                  "marginLeft": 100,
-                  "marginRight": 100,
-                  "marginTop": 24,
+                Array [
+                  Object {
+                    "bottom": 0,
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  },
+                  Object {
+                    "alignItems": "center",
+                    "justifyContent": "center",
+                  },
+                ]
+              }
+            >
+              <Image
+                resizeMode="contain"
+                source={
+                  Object {
+                    "testUri": "../../../src/assets/logo-transparent.png",
+                  }
                 }
+                style={
+                  Object {
+                    "flex": 1,
+                    "marginBottom": 24,
+                    "marginLeft": 100,
+                    "marginRight": 100,
+                    "marginTop": 24,
+                  }
+                }
+              />
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "alignContent": "center",
+                "flex": 1,
+                "justifyContent": "center",
+              }
+            }
+          >
+            <ActivityIndicator
+              animating={true}
+              color="#FFC107"
+              hidesWhenStopped={true}
+              size="large"
+              style={
+                Array [
+                  Object {
+                    "height": 80,
+                  },
+                  Object {
+                    "margin": 16,
+                  },
+                ]
               }
             />
           </View>
         </View>
-        <View
-          style={
-            Object {
-              "alignContent": "center",
-              "flex": 1,
-              "justifyContent": "center",
-            }
-          }
-        >
-          <ActivityIndicator
-            animating={true}
-            color="#FFC107"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Array [
-                Object {
-                  "height": 80,
-                },
-                Object {
-                  "margin": 16,
-                },
-              ]
-            }
-          />
-        </View>
-      </View>
-    </RCTScrollView>
-  </View>
+      </RCTScrollView>
+    </View>
+  </RCTSafeAreaView>
   <Modal
     animationType="fade"
     hardwareAccelerated={false}

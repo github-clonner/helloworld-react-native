@@ -57,11 +57,13 @@ buck-out/
 
 # Custom
 
-build/
-
 android/app/.settings/org.eclipse.buildship.core.prefs
 android/.project
 android/.settings/org.eclipse.buildship.core.prefs
 android/app/.classpath
 android/app/.project
 android/app/BUCK
+
+ios/Pods/*
+
+build/*
