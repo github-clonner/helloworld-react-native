@@ -4,8 +4,10 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "ios": "react-native run-ios",
     "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "android-release": "react-native run-android --variant=release",
+    "ios-release": "react-native run-ios --configuration Release",
     "test": "jest",
     "lint": "eslint --ext .js ./",
     "lint:critical": "eslint --no-eslintrc --config .eslintrc.critical.json ./",
