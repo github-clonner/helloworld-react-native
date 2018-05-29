@@ -17,8 +17,7 @@ lint:critical:
     - docker
   image: node:8
   before_script:
-    - cp ./package.template.json ./package.json
-    - yarn
+    - ./scripts/dev-start.sh
   script:
     - yarn lint:critical
 
@@ -28,8 +27,7 @@ lint:
     - docker
   image: node:8
   before_script:
-    - cp ./package.template.json ./package.json
-    - yarn
+    - ./scripts/dev-start.sh
   script:
     - yarn lint
   allow_failure: true
@@ -40,8 +38,7 @@ test:
     - docker
   image: node:8
   before_script:
-    - cp ./package.template.json ./package.json
-    - yarn
+    - ./scripts/dev-start.sh
   script:
     - yarn test
 
@@ -52,8 +49,7 @@ build:android:debug:
     - node
     - react-native
   before_script:
-    - cp ./package.template.json ./package.json
-    - yarn
+    - ./scripts/dev-start.sh
   script:
     - ./scripts/build-android-debug.sh
   artifacts:
@@ -112,8 +108,7 @@ build:ios:debug:
     - node
     - react-native
   before_script:
-    - cp ./package.template.json ./package.json
-    - yarn
+    - ./scripts/dev-start.sh
   script:
     - ./scripts/build-ios-debug.sh
   artifacts:
