@@ -2,8 +2,6 @@
 set -xeo pipefail
 
 cp package.json package.template.json
-cp yarn.lock yarn.template.lock
-
 cat <<EOS > package.json
 {
   "name": "alvb-starter-react-native",
@@ -12,4 +10,5 @@ cat <<EOS > package.json
 }
 EOS
 
+cp yarn.lock yarn.template.lock
 rm yarn.lock

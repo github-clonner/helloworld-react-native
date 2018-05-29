@@ -23,7 +23,7 @@ for f in $(find ./ -type f ! -path '*/node_modules/*' ! -path '*/.git/*') ; do
   sed -i'' "s/com\.$APP_CODE_NAME\.app/$APP_PACKAGE_ID/" $f
 done
 
-#
+# template
 
 rm ./README.md
 mv ./README.template.md ./README.md
@@ -31,14 +31,21 @@ mv ./README.template.md ./README.md
 rm ./package.json
 mv ./package.template.json ./package.json
 
+rm yarn.lock
+cp yarn.template.lock yarn.lock
+
 rm ./scripts/config.sh
 mv ./scripts/config.template.sh ./scripts/config.sh
+
+rm ./.gitlab-ci.yml
+mv ./.gitlab-ci.template.yml ./.gitlab-ci.yml
 
 # cleanup
 
 [ -d ./.git ] && rm -fr ./.git
 
-rm ./App.js
+[ -f ./App.js ] && rm ./App.js
+find ./ios -iname '*tvos*' -exec rm -fr {} \;
 
 rm ./scripts/dev*.sh
 rm ./scripts/postinit.sh
