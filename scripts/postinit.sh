@@ -46,7 +46,7 @@ rm -fr ./.git || true
 
 rm ./App.js || true
 
-find ./ios -iname '*tvos*' -exec rm -fr {} \ || true
+find ./ios -iname '*tvos*' -exec rm -fr {} \; || true
 
 rm ./scripts/dev*.sh
 rm ./scripts/postinit.sh
