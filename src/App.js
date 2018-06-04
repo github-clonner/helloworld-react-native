@@ -4,28 +4,16 @@ import { connect } from 'react-redux';
 import SplashScreen from 'react-native-splash-screen';
 
 import * as Logger from './common/logger';
-import * as Activity from './common/Activity.state';
-
-import { $logout } from './Auth/state';
 
 import LandingView from './Auth/LandingView';
 import AuthRouter from './Auth';
 import SessionRouter from './Session';
 
-const withStore = connect(
-  (state) => ({
-    ready: state.Shared.ready,
-    authenticated: state.Auth.authenticated,
-    initialized: state.Shared.initialized,
-  }),
-  (dispatch) => ({
-    logout() {
-      dispatch($logout())
-        .then(() => dispatch(Activity.$status('success', 'Goodbye!')))
-        .catch((error) => dispatch(Activity.$toast('failure', error.message)));
-    },
-  }),
-);
+const withStore = connect((state) => ({
+  ready: state.Shared.ready,
+  authenticated: state.Auth.authenticated,
+  initialized: state.Shared.initialized,
+}));
 
 // provides shared state and actions as props;
 const Wrapper = (C) => withStore(C);
