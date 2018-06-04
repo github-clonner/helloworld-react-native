@@ -13,7 +13,7 @@
     "lint:critical": "eslint --no-eslintrc --config .eslintrc.critical.json ./",
     "format": "npm run format:all ; npm run format:js",
     "format:all": "prettier ./**/*.{md,json,js,css,scss} --write",
-    "format:js": "eslint --ext .js --fix ./",
+    "format:js": "eslint --ext .js --fix ./ ; exit 0",
     "postinstall": "./scripts/postinstall.sh"
   },
   "dependencies": {
