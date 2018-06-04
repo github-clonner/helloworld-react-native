@@ -1,7 +1,6 @@
-import { AUTH_LOGOUT } from '../Auth/state';
 import * as Logger from '../common/logger';
 
-import * as Activity from '../common/Activity.state';
+import { AUTH_LOGOUT } from '../Auth/state';
 
 export const NAME = 'Shared';
 

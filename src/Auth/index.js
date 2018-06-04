@@ -5,7 +5,7 @@ import LoginView from './LoginView';
 import SignupView from './SignupView';
 import RecoveryView from './RecoveryView';
 
-const AuthRouter = createSwitchNavigator(
+export default createSwitchNavigator(
   {
     '/welcome': { screen: WelcomeView },
     '/login': { screen: LoginView },
@@ -17,5 +17,3 @@ const AuthRouter = createSwitchNavigator(
     backBehavior: 'initialRoute',
   },
 );
-
-export default AuthRouter;

@@ -2,7 +2,7 @@ import { createStackNavigator } from 'react-navigation';
 
 import HomeView from '../Home/HomeView';
 
-const HomeRouter = createStackNavigator(
+export default createStackNavigator(
   {
     '/': { screen: HomeView },
   },
@@ -11,5 +11,3 @@ const HomeRouter = createStackNavigator(
     headerMode: 'none',
   },
 );
-
-export default HomeRouter;

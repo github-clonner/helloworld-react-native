@@ -6,7 +6,7 @@ import HomeRouter from '../Home';
 import ProfileView from './ProfileView';
 import AboutView from './AboutView';
 
-const SessionRouter = createDrawerNavigator(
+export default createDrawerNavigator(
   {
     '/home': { screen: HomeRouter },
     '/profile': { screen: ProfileView },
@@ -17,5 +17,3 @@ const SessionRouter = createDrawerNavigator(
     initialRouteName: '/home',
   },
 );
-
-export default SessionRouter;
