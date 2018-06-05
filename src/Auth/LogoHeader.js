@@ -6,7 +6,7 @@ import { STYLE } from '../common/styles';
 
 import * as CustomPropTypes from '../common/proptypes';
 
-import logoImage from '../assets/logo-transparent.png';
+import logoImage from '../assets/logo.png';
 
 const LogoHeader = ({ style }) => (
   <View style={style}>

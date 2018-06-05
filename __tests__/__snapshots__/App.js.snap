@@ -134,7 +134,7 @@ exports[`renders correctly 1`] = `
                 resizeMode="contain"
                 source={
                   Object {
-                    "testUri": "../../../src/assets/logo-transparent.png",
+                    "testUri": "../../../src/assets/logo.png",
                   }
                 }
                 style={

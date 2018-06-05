@@ -5,7 +5,7 @@ import NativeBaseTheme from 'native-base/src/theme/variables/platform';
 
 // import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 
-// import CustomIconsIcoMoonConfig from '../assets/ALVBIcons.json';
+// import CustomIconsIcoMoonConfig from '../assets/HelloWorldIcons.json';
 
 /**
  * Colors
