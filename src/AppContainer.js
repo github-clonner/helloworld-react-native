@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { SafeAreaView } from 'react-native';
-
 import { Provider } from 'react-redux';
 
 import { Root as NativeBaseRoot, StyleProvider, getTheme } from 'native-base';
@@ -18,9 +16,7 @@ const AppContainer = () => (
   <Provider store={store}>
     <NativeBaseRoot>
       <StyleProvider style={getTheme(THEME)}>
-        <SafeAreaView style={{ flex: 1 }}>
-          <App />
-        </SafeAreaView>
+        <App />
       </StyleProvider>
     </NativeBaseRoot>
   </Provider>

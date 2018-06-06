@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { SafeAreaView } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import SplashScreen from 'react-native-splash-screen';
@@ -31,13 +32,13 @@ class App extends Component<{}> {
 
   render() {
     return (
-      <Fragment>
+      <SafeAreaView style={{ flex: 1 }}>
         {(!this.props.ready || (this.props.authenticated && !this.props.initialized)) && <LandingView />}
 
         {this.props.ready && !this.props.authenticated && <AuthRouter />}
 
         {this.props.ready && this.props.authenticated && this.props.initialized && <SessionRouter />}
-      </Fragment>
+      </SafeAreaView>
     );
   }
 }
