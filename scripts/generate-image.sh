@@ -30,6 +30,18 @@ if [ ! -f $1 ] ; then
 	exit 1
 fi
 
-$(dirname $0)/generate-image-assets-for-android.sh $@
+## include common processing
 
-$(dirname $0)/generate-image-assets-for-ios.sh $@
+source $(dirname $0)/generate-image-assets.include.sh
+
+## generate assets
+
+# if [ "$FORMAT" != 'SVG' ]; then
+
+# inkscape -z -e "$PWD/assets/$output.png" -w  "$(echo $width*1 | bc)" -h "$(echo $height*1 | bc)" "$input"
+
+# else
+
+mogrify -write "$PWD/assets/$output.png" -format png -background none -density "$(echo $density | bc)" -resize "$(echo $width*1 | bc)x$(echo $height*1 | bc)" "$input"
+
+# fi
