@@ -2,7 +2,7 @@
 set -xeo pipefail
 
 ./scripts/generate-image-assets-for-android.sh assets/icon.svg 48 ic_launcher
-./scripts/generate-icon-assets-for-ios.sh assets/icon.svg AppIcon
+./scripts/generate-icon-assets-for-ios.sh assets/icon.svg x AppIcon
 
 ./scripts/generate-image-assets.sh assets/logo.svg 140x
 

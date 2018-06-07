@@ -8,8 +8,8 @@ Customize it according to your needs then run it.
 
 **Requirements**
 
-<!-- - [Inkscape](https://inkscape.org) -->
 - [ImageMagick](https://www.imagemagick.org/)
+<!-- - [Inkscape](https://inkscape.org) -->
 
 ## Debug Build
 
