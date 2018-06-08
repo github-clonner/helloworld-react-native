@@ -1,5 +1,8 @@
 import PropTypes from 'prop-types';
+
 import { ViewPropTypes } from 'react-native';
+
+export * from 'prop-types';
 
 /**
  * General Purpose

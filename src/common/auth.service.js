@@ -1,5 +1,8 @@
 import * as Keychain from 'react-native-keychain';
 import { AsyncStorage } from 'react-native';
+
+import { EventEmitter } from '../lib/events';
+
 import { API_ENDPOINT } from '../common/config';
 import * as FetchHelper from '../common/fetch.helper';
 
@@ -8,6 +11,8 @@ export class AuthService {
 
   static username = '';
   static password = '';
+
+  static events = new EventEmitter();
 
   static async _loadSession() {
     this.token = await AsyncStorage.getItem('auth.token');
@@ -71,6 +76,7 @@ export class AuthService {
       .then(({ token, ...result }) => {
         this._saveSession(token);
         this._saveCredentials(username, password);
+        this.events.emit('login');
         return result;
       });
   }
@@ -80,6 +86,7 @@ export class AuthService {
   }
 
   static async logout() {
+    this.events.emit('logout');
     await this._clearSession();
     await this._clearCredentials();
   }

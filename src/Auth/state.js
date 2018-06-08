@@ -228,7 +228,7 @@ export function persister({ authenticated, user }) {
 }
 
 export async function initializer({ dispatch, getState }) {
-  FetchHelper.registerFailureListener((error, response) => {
+  FetchHelper.events.on('failure', (error, response) => {
     if (AuthService.isAuthenticated() && response.status === 401) {
       dispatch($login(AuthService.username, AuthService.password)).catch((error) => {
         dispatch(Activity.$toast('failure', error.message));

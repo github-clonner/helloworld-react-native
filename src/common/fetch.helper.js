@@ -1,3 +1,5 @@
+import { EventEmitter } from '../lib/events';
+
 import { FetchError } from './error';
 
 import { createLogger } from './logger';
@@ -57,39 +59,7 @@ export function toFormData(data) {
  * Response Listeners
  */
 
-const SUCCESS_LISTENERS = [];
-
-export function registerSuccessListener(listener) {
-  SUCCESS_LISTENERS.push(listener);
-}
-
-export function unregisterSuccessListener(listener) {
-  const index = SUCCESS_LISTENERS.indexOf(listener);
-  if (index !== -1) {
-    SUCCESS_LISTENERS.splice(index, 1);
-  }
-}
-
-export function clearSuccessListeners() {
-  SUCCESS_LISTENERS.length = 0;
-}
-
-const FAILURE_LISTENERS = [];
-
-export function registerFailureListener(listener) {
-  FAILURE_LISTENERS.push(listener);
-}
-
-export function unregisterFailureListener(listener) {
-  const index = FAILURE_LISTENERS.indexOf(listener);
-  if (index !== -1) {
-    FAILURE_LISTENERS.splice(index, 1);
-  }
-}
-
-export function clearFailureListeners() {
-  FAILURE_LISTENERS.length = 0;
-}
+export const events = new EventEmitter();
 
 /**
  * Response Handler
@@ -116,7 +86,7 @@ export function processResponse(
   if (response.ok || response.status === 304) {
     return content.then((payload) => {
       payload = successModifier(payload, response);
-      SUCCESS_LISTENERS.forEach((listener) => listener(payload, response));
+      events.emit('success', payload, response);
       return payload;
     });
   }
@@ -147,7 +117,7 @@ export function processResponse(
 
       error = failureModifier(error, response);
 
-      FAILURE_LISTENERS.forEach((listener) => listener(error, response));
+      events.emit('failure', error, response);
 
       throw error;
     },
@@ -167,9 +137,11 @@ export function processError(_error, failureModifier = (error, response) => erro
 
   let error = new FetchError(code, message, _error);
 
-  error = failureModifier(error, {});
+  const response = {};
 
-  FAILURE_LISTENERS.forEach((listener) => listener(error, {}));
+  error = failureModifier(error, response);
+
+  events.emit('failure', error, response);
 
   return error;
 }
