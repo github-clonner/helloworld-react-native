@@ -15,6 +15,7 @@ export const COLOR = {
   background: '#F0F1F6',
 
   primary: '#607D8B',
+  primaryDark: '#455A64',
   accent: '#FFC107',
   inverse: '#FAFAFA',
 
