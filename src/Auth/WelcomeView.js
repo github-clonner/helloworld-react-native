@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { View } from 'react-native';
 import { Container, Content, Button, Text } from 'native-base';
 
-import * as CustomPropTypes from '../common/proptypes';
+import * as PropTypes from '../common/proptypes';
 
 import { COLOR } from '../common/styles';
 
@@ -11,12 +11,12 @@ import styles from './styles';
 
 import * as Activity from '../common/Activity.state';
 
-const withStore = connect(
-  (state) => ({}),
-  (dispatch) => ({}),
-);
+const withStore = connect((state) => ({}));
 
-// provides shared state and actions as props
+const propTypes = {
+  dispatch: PropTypes.dispatch.isRequired,
+};
+
 const Wrapper = (C) => withStore(C);
 
 class WelcomeView extends Component {
@@ -36,12 +36,12 @@ class WelcomeView extends Component {
 const WrappedWelcomeView = Wrapper(WelcomeView);
 
 WrappedWelcomeView.propTypes = {
-  navigation: CustomPropTypes.navigation.isRequired,
+  navigation: PropTypes.navigation.isRequired,
 };
 
 WelcomeView.propTypes = {
   ...WrappedWelcomeView.propTypes,
+  ...propTypes,
 };
 
-export { WelcomeView };
-export default WrappedWelcomeView;
+export default Wrapper(WrappedWelcomeView);

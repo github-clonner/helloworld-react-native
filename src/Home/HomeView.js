@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-
 import { Container, Header, Left, Body, Title, Right, Spinner, Content, Text, Icon, Button } from 'native-base';
+
+import * as PropTypes from '../common/proptypes';
 
 import { COLOR } from '../common/styles';
 
@@ -10,15 +10,17 @@ import * as Activity from '../common/Activity.state';
 
 import { $fetchData } from './state';
 
-const withStore = connect(
-  (state) => ({
-    processing: state.Activity.processing,
-    data: state.Home.data,
-  }),
-  (dispatch) => ({ dispatch }),
-);
+const withStore = connect((state) => ({
+  processing: state.Activity.processing,
+  data: state.Home.data,
+}));
 
-// provides shared state and actions as props
+const propTypes = {
+  dispatch: PropTypes.dispatch.isRequired,
+  processing: PropTypes.bool.isRequired,
+  data: PropTypes.object.isRequired,
+};
+
 const Wrapper = (C) => withStore(C);
 
 class HomeView extends Component {
@@ -57,16 +59,13 @@ class HomeView extends Component {
 
 const WrappedHomeView = Wrapper(HomeView);
 
+WrappedHomeView.propTypes = {
+  navigation: PropTypes.navigation.isRequired,
+};
+
 HomeView.propTypes = {
-  processing: PropTypes.bool,
-  data: PropTypes.object,
-  dispatch: PropTypes.func,
+  ...WrappedHomeView.propTypes,
+  ...propTypes,
 };
 
-HomeView.defaultProps = {
-  processing: true,
-  data: {},
-  dispatch: () => {},
-};
-
-export default WrappedHomeView;
+export default Wrapper(WrappedHomeView);

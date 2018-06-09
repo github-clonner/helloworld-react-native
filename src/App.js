@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { SafeAreaView } from 'react-native';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import SplashScreen from 'react-native-splash-screen';
+
+import * as PropTypes from './common/proptypes';
 
 import * as Logger from './common/logger';
 
@@ -16,7 +17,13 @@ const withStore = connect((state) => ({
   initialized: state.Shared.initialized,
 }));
 
-// provides shared state and actions as props;
+const propTypes = {
+  dispatch: PropTypes.dispatch.isRequired,
+  ready: PropTypes.bool.isRequired,
+  authenticated: PropTypes.bool.isRequired,
+  initialized: PropTypes.bool.isRequired,
+};
+
 const Wrapper = (C) => withStore(C);
 
 class App extends Component<{}> {
@@ -49,9 +56,7 @@ WrappedApp.propTypes = {};
 
 App.propTypes = {
   ...WrappedApp.propTypes,
-  ready: PropTypes.bool.isRequired,
-  authenticated: PropTypes.bool.isRequired,
-  initialized: PropTypes.bool.isRequired,
+  ...propTypes,
 };
 
-export default WrappedApp;
+export default Wrapper(WrappedApp);

@@ -3,27 +3,24 @@ import { connect } from 'react-redux';
 import { View, KeyboardAvoidingView } from 'react-native';
 import { Container, Header, Content, Button, Spinner, Input, Item, Text, Form } from 'native-base';
 
-import * as CustomPropTypes from '../common/proptypes';
+import * as PropTypes from '../common/proptypes';
 
 import { COLOR } from '../common/styles';
 
 import { LogoHeader } from './LogoHeader';
 
 import * as Activity from '../common/Activity.state';
-import { $signup } from './state';
+import { $signup, $login } from './state';
 
-const withStore = connect(
-  (state) => ({
-    processing: state.Activity.processing,
-  }),
-  (dispatch) => ({
-    signup(user) {
-      dispatch($signup(user)).catch((error) => dispatch(Activity.$toast('failure', error.message)));
-    },
-  }),
-);
+const withStore = connect((state) => ({
+  processing: state.Activity.processing,
+}));
 
-// provides shared state and actions as props
+const propTypes = {
+  dispatch: PropTypes.dispatch.isRequired,
+  processing: PropTypes.bool.isRequired,
+};
+
 const Wrapper = (C) => withStore(C);
 
 class SignupView extends Component {
@@ -41,11 +38,15 @@ class SignupView extends Component {
     if (!this.hasValidInput()) {
       return null;
     }
-    return this.props.signup({
-      name: this.state.name,
-      email: this.state.email,
-      password: this.state.password,
-    });
+
+    return this.props
+      .dispatch($signup({
+        name: this.state.name,
+        email: this.state.email,
+        password: this.state.password,
+      }))
+      .then(() => this.props.dispatch($login(this.state.email, this.state.password)))
+      .catch((error) => this.props.dispatch(Activity.$toast('failure', error.message)));
   }
 
   render() {
@@ -148,15 +149,15 @@ class SignupView extends Component {
   }
 }
 
-const SignupViewView = Wrapper(SignupView);
+const WrappedSignupView = Wrapper(SignupView);
 
-SignupViewView.propTypes = {
-  navigation: CustomPropTypes.navigation.isRequired,
+WrappedSignupView.propTypes = {
+  navigation: PropTypes.navigation.isRequired,
 };
 
 SignupView.propTypes = {
-  ...SignupViewView.propTypes,
+  ...WrappedSignupView.propTypes,
+  ...propTypes,
 };
 
-export { SignupView };
-export default SignupViewView;
+export default Wrapper(WrappedSignupView);

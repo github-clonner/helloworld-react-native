@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-
 import { View } from 'react-native';
 import { Container, Header, Left, Body, Title, Right, Content, Text, Icon, Button } from 'native-base';
 
-import * as CustomPropTypes from '../common/proptypes';
+import * as PropTypes from '../common/proptypes';
 
 import { STYLE } from '../common/styles';
 
@@ -13,7 +11,10 @@ import { RELEASE_VERSION, RELEASE_DATE } from '../common/config';
 
 const withStore = connect((state) => ({}));
 
-// provides shared state and actions as props
+const propTypes = {
+  dispatch: PropTypes.dispatch.isRequired,
+};
+
 const Wrapper = (C) => withStore(C);
 
 // eslint-disable-next-line react/prefer-stateless-function
@@ -42,16 +43,15 @@ class AboutView extends Component {
     );
   }
 }
-
 const WrappedAboutView = Wrapper(AboutView);
 
 WrappedAboutView.propTypes = {
-  navigation: CustomPropTypes.navigation.isRequired,
+  navigation: PropTypes.navigation.isRequired,
 };
 
 AboutView.propTypes = {
   ...WrappedAboutView.propTypes,
+  ...propTypes,
 };
 
-export { AboutView };
-export default WrappedAboutView;
+export default Wrapper(WrappedAboutView);

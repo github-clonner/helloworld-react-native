@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-
+import { View } from 'react-native';
 import {
   Container,
   Header,
   Left,
   Body,
-  Title,
   Right,
   Spinner,
   Text,
@@ -19,7 +17,7 @@ import {
   Thumbnail,
 } from 'native-base';
 
-import { View } from 'react-native';
+import * as PropTypes from '../common/proptypes';
 
 import { COLOR } from '../common/styles';
 
@@ -27,15 +25,17 @@ import * as Activity from '../common/Activity.state';
 
 // import { $fetchProfile } from '../Auth/state';
 
-const withStore = connect(
-  (state) => ({
-    processing: state.Activity.processing,
-    user: state.Auth.user,
-  }),
-  (dispatch) => ({ dispatch }),
-);
+const withStore = connect((state) => ({
+  processing: state.Activity.processing,
+  user: state.Auth.user,
+}));
 
-// provides shared state and actions as props
+const propTypes = {
+  dispatch: PropTypes.dispatch.isRequired,
+  processing: PropTypes.bool.isRequired,
+  user: PropTypes.object.isRequired,
+};
+
 const Wrapper = (C) => withStore(C);
 
 class ProfileView extends Component {
@@ -114,16 +114,13 @@ class ProfileView extends Component {
 
 const WrappedProfileView = Wrapper(ProfileView);
 
-ProfileView.propTypes = {
-  processing: PropTypes.bool,
-  user: PropTypes.object,
-  dispatch: PropTypes.func,
+WrappedProfileView.propTypes = {
+  navigation: PropTypes.navigation.isRequired,
 };
 
-ProfileView.defaultProps = {
-  processing: true,
-  user: {},
-  dispatch: () => {},
+ProfileView.propTypes = {
+  ...WrappedProfileView.propTypes,
+  ...propTypes,
 };
 
 export default Wrapper(WrappedProfileView);

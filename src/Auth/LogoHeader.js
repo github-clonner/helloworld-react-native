@@ -4,7 +4,7 @@ import { View, Image } from 'react-native';
 
 import { STYLE } from '../common/styles';
 
-import * as CustomPropTypes from '../common/proptypes';
+import * as PropTypes from '../common/proptypes';
 
 import logoImage from '../assets/logo.png';
 
@@ -31,7 +31,7 @@ const LogoHeader = ({ style }) => (
 );
 
 LogoHeader.propTypes = {
-  style: CustomPropTypes.style,
+  style: PropTypes.style,
 };
 
 LogoHeader.defaultProps = {

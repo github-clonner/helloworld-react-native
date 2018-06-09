@@ -121,7 +121,6 @@ export function $signup(payload) {
     dispatch(signupRequest());
 
     return AuthService.signup(payload)
-      .then(FetchHelper.processResponse, FetchHelper.processError)
       .then((result) => dispatch(signupSuccess(result)))
       .catch((error) => dispatch(signupFailure(error)))
       .finally(() => dispatch(Activity.$done($signup.name)));
@@ -142,15 +141,14 @@ function initiateAccountRecoveryRequest() {
 
 const AUTH_RECOVERY_SUCCESS = 'AUTH_RECOVERY_SUCCESS';
 
-function initiateAccountRecoverySuccess({ user, ...rest }) {
+function initiateAccountRecoverySuccess({ ...rest }) {
   return (dispatch) => {
     dispatch({
       type: AUTH_RECOVERY_SUCCESS,
-      user,
       ...rest,
     });
 
-    return { user };
+    return { ...rest };
   };
 }
 

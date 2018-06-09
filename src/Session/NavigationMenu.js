@@ -1,27 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+
 import { Container, Content, Text, List, ListItem, Icon, Thumbnail, Left, Body } from 'native-base';
 
-import * as CustomPropTypes from '../common/proptypes';
+import * as PropTypes from '../common/proptypes';
 
 import { $logout } from '../Auth/state';
 
 import { COLOR } from '../common/styles';
 import * as Activity from '../common/Activity.state';
 
-const withStore = connect(
-  (state) => ({
-    user: state.Auth.user,
-  }),
-  (dispatch) => ({ dispatch }),
-);
+const withStore = connect((state) => ({
+  user: state.Auth.user,
+}));
+
+const propTypes = {
+  dispatch: PropTypes.dispatch.isRequired,
+  user: PropTypes.User.isRequired,
+};
+
 const Wrapper = (C) => withStore(C);
 
 /* eslint-disable react/prefer-stateless-function */
 class NavigationMenu extends Component {
   render() {
-    const { user } = this.props;
+    const user = this.props.user || {};
     return (
       <Container>
         <Content>
@@ -79,13 +82,12 @@ class NavigationMenu extends Component {
 const WrappedNavigationMenu = Wrapper(NavigationMenu);
 
 WrappedNavigationMenu.propTypes = {
-  navigation: CustomPropTypes.navigation.isRequired,
+  navigation: PropTypes.navigation.isRequired,
 };
 
 NavigationMenu.propTypes = {
   ...WrappedNavigationMenu.propTypes,
-  dispatch: CustomPropTypes.dispatch.isRequired,
-  user: CustomPropTypes.User.isRequired,
+  ...propTypes,
 };
 
-export default WrappedNavigationMenu;
+export default Wrapper(WrappedNavigationMenu);

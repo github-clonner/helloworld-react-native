@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { View, KeyboardAvoidingView } from 'react-native';
 import { Container, Header, Content, Button, Spinner, Input, Item, Text, Form } from 'native-base';
 
-import * as CustomPropTypes from '../common/proptypes';
+import * as PropTypes from '../common/proptypes';
 
 import { COLOR } from '../common/styles';
 
@@ -12,21 +12,18 @@ import { LogoHeader } from './LogoHeader';
 import * as Activity from '../common/Activity.state';
 import { $initiateAccountRecovery } from './state';
 
-const withStore = connect(
-  (state) => ({
-    processing: state.Activity.processing,
-  }),
-  (dispatch) => ({
-    initiateAccountRecovery(email) {
-      dispatch($initiateAccountRecovery(email)).catch((error) => dispatch(Activity.$toast('failure', error.message)));
-    },
-  }),
-);
+const withStore = connect((state) => ({
+  processing: state.Activity.processing,
+}));
 
-// provides shared state and actions as props
+const propTypes = {
+  dispatch: PropTypes.dispatch.isRequired,
+  processing: PropTypes.bool.isRequired,
+};
+
 const Wrapper = (C) => withStore(C);
 
-class RecoveryViewView extends Component {
+class RecoveryView extends Component {
   state = {
     email: '',
   };
@@ -39,7 +36,10 @@ class RecoveryViewView extends Component {
     if (!this.hasValidInput()) {
       return null;
     }
-    return this.props.initiateAccountRecovery(this.state.email);
+
+    return this.props
+      .dispatch($initiateAccountRecovery(this.state.email))
+      .catch((error) => this.props.dispatch(Activity.$toast('failure', error.message)));
   }
 
   render() {
@@ -107,15 +107,15 @@ class RecoveryViewView extends Component {
   }
 }
 
-const WrappedRecoveryViewView = Wrapper(RecoveryViewView);
+const WrappedRecoveryView = Wrapper(RecoveryView);
 
-WrappedRecoveryViewView.propTypes = {
-  navigation: CustomPropTypes.navigation.isRequired,
+WrappedRecoveryView.propTypes = {
+  navigation: PropTypes.navigation.isRequired,
 };
 
-RecoveryViewView.propTypes = {
-  ...WrappedRecoveryViewView.propTypes,
+RecoveryView.propTypes = {
+  ...WrappedRecoveryView.propTypes,
+  ...propTypes,
 };
 
-export { RecoveryViewView };
-export default WrappedRecoveryViewView;
+export default Wrapper(WrappedRecoveryView);

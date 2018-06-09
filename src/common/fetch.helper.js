@@ -92,7 +92,8 @@ export function processResponse(
   }
 
   return content.then(
-    (payload = {}) => {
+    (payload) => {
+      payload = payload || {};
       let code = payload.code;
       let message = payload.message || payload.error;
 
@@ -144,4 +145,8 @@ export function processError(_error, failureModifier = (error, response) => erro
   events.emit('failure', error, response);
 
   return error;
+}
+
+if (process.env.NODE_ENV === 'development') {
+  global.FetchHelper = module.exports;
 }

@@ -10,6 +10,10 @@ export * from 'prop-types';
 
 export const { style } = ViewPropTypes;
 
+/**
+ * react-navigation
+ */
+
 export const navigation = PropTypes.shape({
   navigate: PropTypes.func,
   goBack: PropTypes.func,
@@ -30,15 +34,11 @@ export const navigation = PropTypes.shape({
   replace: PropTypes.func,
 });
 
+/**
+ * react-redux
+ */
+
 export const dispatch = PropTypes.func;
-
-export const View = {
-  navigation: navigation.isRequired,
-};
-
-export const ConnectedView = {
-  dispatch: dispatch.isRequired,
-};
 
 /**
  * Domain Entities

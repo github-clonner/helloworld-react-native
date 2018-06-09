@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { View, KeyboardAvoidingView } from 'react-native';
 import { Container, Header, Content, Button, Spinner, Input, Item, Text, Form } from 'native-base';
 
-import * as CustomPropTypes from '../common/proptypes';
+import * as PropTypes from '../common/proptypes';
 
 import { COLOR } from '../common/styles';
 
@@ -12,18 +12,15 @@ import { LogoHeader } from './LogoHeader';
 import * as Activity from '../common/Activity.state';
 import { $login } from './state';
 
-const withStore = connect(
-  (state) => ({
-    processing: state.Activity.processing,
-  }),
-  (dispatch) => ({
-    login(username, password) {
-      dispatch($login(username, password)).catch((error) => dispatch(Activity.$toast('failure', error.message)));
-    },
-  }),
-);
+const withStore = connect((state) => ({
+  processing: state.Activity.processing,
+}));
 
-// provides shared state and actions as props
+const propTypes = {
+  dispatch: PropTypes.dispatch.isRequired,
+  processing: PropTypes.bool.isRequired,
+};
+
 const Wrapper = (C) => withStore(C);
 
 class LoginView extends Component {
@@ -40,7 +37,9 @@ class LoginView extends Component {
     if (!this.hasValidInput()) {
       return null;
     }
-    return this.props.login(this.state.username, this.state.password);
+    return this.props
+      .dispatch($login(this.state.username, this.state.password))
+      .catch((error) => this.props.dispatch(Activity.$toast('failure', error.message)));
   }
 
   render() {
@@ -136,12 +135,12 @@ class LoginView extends Component {
 const WrappedLoginView = Wrapper(LoginView);
 
 WrappedLoginView.propTypes = {
-  navigation: CustomPropTypes.navigation.isRequired,
+  navigation: PropTypes.navigation.isRequired,
 };
 
 LoginView.propTypes = {
   ...WrappedLoginView.propTypes,
+  ...propTypes,
 };
 
-export { LoginView };
-export default WrappedLoginView;
+export default Wrapper(WrappedLoginView);
