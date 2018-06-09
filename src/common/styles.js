@@ -63,6 +63,8 @@ Object.assign(NativeBaseTheme, {
   inverseSpinnerColor: COLOR.inverse,
 
   iosStatusbar: 'light-content',
+
+  listItemSelected: COLOR.primaryDark,
 });
 
 export const THEME = {

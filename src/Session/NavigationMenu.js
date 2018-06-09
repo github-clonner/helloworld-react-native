@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 
 import { Container, Content, Text, List, ListItem, Icon, Thumbnail, Left, Body } from 'native-base';
@@ -9,6 +10,13 @@ import { $logout } from '../Auth/state';
 
 import { COLOR } from '../common/styles';
 import * as Activity from '../common/Activity.state';
+
+const styles = StyleSheet.create({
+  itemIcon: {
+    fontSize: 24,
+    marginLeft: 10,
+  },
+});
 
 const withStore = connect((state) => ({
   user: state.Auth.user,
@@ -25,11 +33,12 @@ const Wrapper = (C) => withStore(C);
 class NavigationMenu extends Component {
   render() {
     const user = this.props.user || {};
+    const path = this.props.navigation.state.routes[this.props.navigation.state.index].routeName;
     return (
       <Container>
         <Content>
           <List>
-            <ListItem avatar onPress={() => this.props.navigation.navigate('/profile')}>
+            <ListItem avatar selected={path === '/profile'} onPress={() => this.props.navigation.navigate('/profile')}>
               <Left>
                 <Thumbnail circle small source={{ uri: user.picture }} />
               </Left>
@@ -40,17 +49,17 @@ class NavigationMenu extends Component {
                 </Text>
               </Body>
             </ListItem>
-            <ListItem icon onPress={() => this.props.navigation.navigate('/home')}>
+            <ListItem icon selected={path === '/home'} onPress={() => this.props.navigation.navigate('/home')}>
               <Left>
-                <Icon name="home" style={{ fontSize: 24, marginLeft: 10 }} />
+                <Icon name="home" style={styles.itemIcon} />
               </Left>
               <Body>
                 <Text>Home</Text>
               </Body>
             </ListItem>
-            <ListItem icon onPress={() => this.props.navigation.navigate('/about')}>
+            <ListItem icon selected={path === '/about'} onPress={() => this.props.navigation.navigate('/about')}>
               <Left>
-                <Icon name="information-circle" style={{ fontSize: 24, marginLeft: 10 }} />
+                <Icon name="information-circle" style={styles.itemIcon} />
               </Left>
               <Body>
                 <Text>About</Text>
@@ -66,7 +75,7 @@ class NavigationMenu extends Component {
               }
             >
               <Left>
-                <Icon name="log-out" style={{ fontSize: 24, marginLeft: 10 }} />
+                <Icon name="log-out" style={styles.itemIcon} />
               </Left>
               <Body>
                 <Text>Logout</Text>
