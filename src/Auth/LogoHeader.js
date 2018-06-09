@@ -20,10 +20,8 @@ const LogoHeader = ({ style }) => (
         resizeMode="contain"
         style={{
           flex: 1,
-          marginTop: 24,
-          marginBottom: 24,
-          marginLeft: 100,
-          marginRight: 100,
+          margin: 24,
+          maxWidth: 140,
         }}
       />
     </View>
