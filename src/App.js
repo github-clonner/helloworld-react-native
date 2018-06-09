@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import { SafeAreaView } from 'react-native';
+import { View, SafeAreaView } from 'react-native';
 import { connect } from 'react-redux';
 import SplashScreen from 'react-native-splash-screen';
 
 import * as PropTypes from './common/proptypes';
 
 import * as Logger from './common/logger';
+
+import { COLOR } from './common/styles';
 
 import LandingView from './Auth/LandingView';
 import AuthRouter from './Auth';
@@ -39,13 +41,15 @@ class App extends Component<{}> {
 
   render() {
     return (
-      <SafeAreaView style={{ flex: 1 }}>
-        {(!this.props.ready || (this.props.authenticated && !this.props.initialized)) && <LandingView />}
+      <View style={{ flex: 1, backgroundColor: COLOR.background }}>
+        <SafeAreaView style={{ flex: 1 }}>
+          {(!this.props.ready || (this.props.authenticated && !this.props.initialized)) && <LandingView />}
 
-        {this.props.ready && !this.props.authenticated && <AuthRouter />}
+          {this.props.ready && !this.props.authenticated && <AuthRouter />}
 
-        {this.props.ready && this.props.authenticated && this.props.initialized && <SessionRouter />}
-      </SafeAreaView>
+          {this.props.ready && this.props.authenticated && this.props.initialized && <SessionRouter />}
+        </SafeAreaView>
+      </View>
     );
   }
 }

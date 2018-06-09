@@ -23,6 +23,7 @@ export const COLOR = {
   error: '#E74C3C',
   info: '#3498DB',
   warning: '#F1C40F',
+  off: '#999999',
 
   text: '#040404',
   textSecondary: '#333333',

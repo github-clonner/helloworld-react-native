@@ -43,6 +43,7 @@ class AboutView extends Component {
     );
   }
 }
+
 const WrappedAboutView = Wrapper(AboutView);
 
 WrappedAboutView.propTypes = {

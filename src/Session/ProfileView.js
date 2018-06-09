@@ -7,6 +7,7 @@ import {
   Left,
   Body,
   Right,
+  Content,
   Spinner,
   Text,
   Icon,
@@ -21,7 +22,7 @@ import * as PropTypes from '../common/proptypes';
 
 import { COLOR } from '../common/styles';
 
-import * as Activity from '../common/Activity.state';
+// import * as Activity from '../common/Activity.state';
 
 // import { $fetchProfile } from '../Auth/state';
 
@@ -74,39 +75,40 @@ class ProfileView extends Component {
           </Right>
         </Header>
 
-        <View
-          style={{
-            flex: 1,
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
-            backgroundColor: COLOR.white,
-          }}
-        >
-          <Card
-            transparent
+        <Content>
+          <View
             style={{
-              marginLeft: 36,
-              marginRight: 36,
-              borderBottomWidth: 0,
-              borderTopWidth: 0,
-              borderRightWidth: 0,
-              borderLeftWidth: 0,
+              flex: 1,
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
             }}
           >
-            <CardItem>
-              <Body>
-                <Label style={{ fontSize: 16 }}>Email</Label>
-                <Text style={{ fontSize: 16 }}>{user.email}</Text>
-              </Body>
-              {/* {user.emailVerified ? (
-                <Icon name="ios-checkmark-circle-outline" style={{ color: 'green' }} />
+            <Card
+              transparent
+              style={{
+                marginLeft: 36,
+                marginRight: 36,
+                borderBottomWidth: 0,
+                borderTopWidth: 0,
+                borderRightWidth: 0,
+                borderLeftWidth: 0,
+              }}
+            >
+              <CardItem>
+                <Body>
+                  <Label style={{ fontSize: 16 }}>Email</Label>
+                  <Text style={{ fontSize: 16 }}>{user.email}</Text>
+                </Body>
+                {/* {user.emailVerified ? (
+                <Icon name="ios-checkmark-circle-outline" style={{ color: COLOR.success }} />
               ) : (
                 <Icon name="ios-checkmark-circle-outline" style={{ color: 'gray' }} />
               )} */}
-            </CardItem>
-          </Card>
-        </View>
+              </CardItem>
+            </Card>
+          </View>
+        </Content>
       </Container>
     );
   }

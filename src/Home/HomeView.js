@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Container, Header, Left, Body, Title, Right, Spinner, Content, Text, Icon, Button } from 'native-base';
+import { Container, Header, Left, Body, Title, Right, Content, Spinner, Text, Icon, Button } from 'native-base';
 
 import * as PropTypes from '../common/proptypes';
 
