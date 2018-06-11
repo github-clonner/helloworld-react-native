@@ -1,6 +1,6 @@
 import { Toast } from 'native-base';
 
-import * as Logger from './logger';
+import * as Logger from '../common/logger';
 
 export const NAME = 'Activity';
 

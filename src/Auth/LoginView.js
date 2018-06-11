@@ -9,7 +9,7 @@ import { COLOR } from '../common/styles';
 
 import { LogoHeader } from './LogoHeader';
 
-import * as Activity from '../common/Activity.state';
+import * as Activity from '../Shared/Activity.state';
 import { $login } from './state';
 
 const withStore = connect((state) => ({

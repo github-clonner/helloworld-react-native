@@ -22,7 +22,7 @@ import * as PropTypes from '../common/proptypes';
 
 import { COLOR } from '../common/styles';
 
-// import * as Activity from '../common/Activity.state';
+// import * as Activity from '../Shared/Activity.state';
 
 // import { $fetchProfile } from '../Auth/state';
 

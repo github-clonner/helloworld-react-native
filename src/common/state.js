@@ -80,8 +80,10 @@ const enhancer = composeEnhancers(applyMiddleware(...enhancerMiddleware), persis
  * define store creation an initialization
  */
 
+let $store;
+
 export function setupStore() {
-  const $store = createStore(reducer, enhancer);
+  $store = createStore(reducer, enhancer);
 
   Object.values($state).forEach(async (state) => {
     if (state.initializer) {
@@ -96,6 +98,18 @@ export function setupStore() {
 
   return $store;
 }
+
+/**
+ * define enhancers
+ */
+
+export function getStore() {
+  return $store;
+}
+
+/**
+ * Check state definition in development mode
+ */
 
 if (process.env.NODE_ENV === 'development') {
   Object.entries($state).forEach(([name, state]) => {

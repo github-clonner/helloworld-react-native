@@ -1,4 +1,4 @@
-import * as Activity from './Activity.state';
+import * as Activity from '../Shared/Activity.state';
 import * as Auth from '../Auth/state';
 import * as Session from '../Session/state';
 import * as Shared from '../Shared/state';

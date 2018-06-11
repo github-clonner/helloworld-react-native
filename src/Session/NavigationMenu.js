@@ -9,7 +9,7 @@ import * as PropTypes from '../common/proptypes';
 import { $logout } from '../Auth/state';
 
 import { COLOR } from '../common/styles';
-import * as Activity from '../common/Activity.state';
+import * as Activity from '../Shared/Activity.state';
 
 const styles = StyleSheet.create({
   itemIcon: {

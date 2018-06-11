@@ -9,7 +9,7 @@ import { COLOR } from '../common/styles';
 
 import styles from './styles';
 
-import * as Activity from '../common/Activity.state';
+import * as Activity from '../Shared/Activity.state';
 
 const withStore = connect((state) => ({}));
 

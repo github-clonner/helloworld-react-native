@@ -2,7 +2,7 @@
 
 import * as FetchHelper from '../common/fetch.helper';
 import * as StateHelper from '../common/state.helper';
-import * as Activity from '../common/Activity.state';
+import * as Activity from '../Shared/Activity.state';
 
 export const NAME = 'Home';
 
