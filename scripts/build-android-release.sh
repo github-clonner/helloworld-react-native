@@ -11,6 +11,6 @@ cd ./android
 
 cd ..
 
-cp ./android/app/build/outputs/apk/app-release.apk ./build/app-release.apk
+cp ./android/app/build/outputs/apk/release/app-release.apk ./build/app-release.apk
 
 echo -e '\n ==> ./build/app-release.apk'

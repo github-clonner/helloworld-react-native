@@ -13,6 +13,6 @@ export FORCE_BUNDLING=true
 
 cd ..
 
-cp ./android/app/build/outputs/apk/app-debug.apk ./build/app-debug.apk
+cp ./android/app/build/outputs/apk/debug/app-debug.apk ./build/app-debug.apk
 
 echo -e '\n ==> ./build/app-debug.apk'
