@@ -1,34 +1,36 @@
 import * as Keychain from 'react-native-keychain';
 import { AsyncStorage } from 'react-native';
 
-import { EventEmitter } from '../lib/events';
+import { AsyncEventEmitter } from '../lib/events';
+
+import * as Logger from '../common/logger';
 
 import { API_ENDPOINT } from '../common/config';
 import * as FetchHelper from '../common/fetch.helper';
 
-export class AuthService {
-  static token = null;
+export const AuthServiceImplementation = class AuthService {
+  events = new AsyncEventEmitter();
 
-  static username = '';
-  static password = '';
+  username = '';
+  password = '';
 
-  static events = new EventEmitter();
+  token = null;
 
-  static async _loadSession() {
-    this.token = await AsyncStorage.getItem('auth.token');
+  async _loadSession() {
+    this.token = (await AsyncStorage.getItem('auth.token')) || null;
   }
 
-  static async _saveSession(token) {
-    this.token = token;
-    await AsyncStorage.setItem('auth.token', token);
+  async _saveSession(token) {
+    this.token = token || null;
+    await AsyncStorage.setItem('auth.token', this.token);
   }
 
-  static async _clearSession() {
+  async _clearSession() {
     this.token = null;
     await AsyncStorage.removeItem('auth.token');
   }
 
-  static async _loadCredentials() {
+  async _loadCredentials() {
     const credentials = await Keychain.getGenericPassword();
 
     if (credentials) {
@@ -37,31 +39,31 @@ export class AuthService {
     }
   }
 
-  static async _saveCredentials(username, password) {
+  async _saveCredentials(username, password) {
     await Keychain.setGenericPassword(username, password);
   }
 
-  static async _clearCredentials() {
+  async _clearCredentials() {
     this.username = '';
     this.password = '';
 
     await Keychain.resetGenericPassword();
   }
 
-  static async initialize() {
+  async initialize() {
     await this._loadSession();
     await this._loadCredentials();
   }
 
-  static hasCredentials() {
+  hasCredentials() {
     return !!this.username && !!this.password;
   }
 
-  static isAuthenticated() {
+  isAuthenticated() {
     return !!this.token;
   }
 
-  static login(username, password) {
+  login(username, password) {
     return fetch(`${API_ENDPOINT}/auth/login`, {
       method: 'POST',
       headers: {
@@ -73,25 +75,21 @@ export class AuthService {
       }),
     })
       .then(FetchHelper.processResponse, FetchHelper.processError)
-      .then(({ token, ...result }) => {
-        this._saveSession(token);
-        this._saveCredentials(username, password);
-        this.events.emit('login');
+      .then(async ({ token, ...result }) => {
+        await this._saveSession(token);
+        await this._saveCredentials(username, password);
+        await this.events.emit('login');
         return result;
       });
   }
 
-  static loginWithCredentials() {
-    return this.login(this.username, this.password);
-  }
-
-  static async logout() {
-    this.events.emit('logout');
+  async logout() {
+    await this.events.emit('logout');
     await this._clearSession();
     await this._clearCredentials();
   }
 
-  static signup(payload) {
+  signup(payload) {
     const { name, email, password } = payload;
 
     const user = { name, email, password };
@@ -113,7 +111,7 @@ export class AuthService {
       });
   }
 
-  static initiateAccountRecovery(email) {
+  initiateAccountRecovery(email) {
     return fetch(`${API_ENDPOINT}/auth/recovery/initiate`, {
       method: 'POST',
       headers: {
@@ -125,6 +123,8 @@ export class AuthService {
     }).then(FetchHelper.processResponse, FetchHelper.processError);
   }
 }
+
+export const AuthService = new AuthServiceImplementation();
 
 if (process.env.NODE_ENV === 'development') {
   global.AuthService = AuthService;

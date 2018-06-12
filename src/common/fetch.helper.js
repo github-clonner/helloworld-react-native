@@ -149,4 +149,12 @@ export function processError(_error, failureModifier = (error, response) => erro
 
 if (process.env.NODE_ENV === 'development') {
   global.FetchHelper = module.exports;
+
+  events.on('success', (payload, response) => {
+    Logger.debug('@success', response.url, response.status, payload);
+  });
+
+  events.on('failure', (error, response) => {
+    Logger.debug('@failure', response.url, response.status, error);
+  });
 }

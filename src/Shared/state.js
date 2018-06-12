@@ -59,3 +59,7 @@ export function reducer(
       return state;
   }
 }
+
+export async function initializer() {
+  // ...
+}

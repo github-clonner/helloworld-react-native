@@ -82,28 +82,26 @@ const enhancer = composeEnhancers(applyMiddleware(...enhancerMiddleware), persis
 
 let $store;
 
+export function getStore() {
+  return $store;
+}
+
 export function setupStore() {
   $store = createStore(reducer, enhancer);
 
-  Object.values($state).forEach(async (state) => {
-    if (state.initializer) {
-      await state.initializer($store);
-    }
-  });
+  Object.values($state)
+    .reduce((prev, state) => {
+      return prev.then(() => (state.initializer ? state.initializer($store) : Promise.resolve(null)));
+    }, Promise.resolve(null))
+    .catch((error) => {
+      throw error;
+    });
 
   if (process.env.NODE_ENV === 'development') {
     global.$store = $store;
     global.$state = $state;
   }
 
-  return $store;
-}
-
-/**
- * define enhancers
- */
-
-export function getStore() {
   return $store;
 }
 

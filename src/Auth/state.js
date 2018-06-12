@@ -235,24 +235,20 @@ export async function initializer({ dispatch, getState }) {
     }
   });
 
-  try {
-    await AuthService.initialize();
+  await AuthService.initialize();
 
-    if (AuthService.isAuthenticated()) {
-      dispatch($initialize()).catch((error) => dispatch(Activity.$toast('failure', error.message)));
-    } else if (AuthService.hasCredentials()) {
-      dispatch($login(AuthService.username, AuthService.password)).catch((error) => {
-        dispatch(Activity.$toast('failure', error.message));
-        dispatch($logout());
-      });
-    } else if (getState().Auth.authenticated) {
-      dispatch({
-        type: AUTH_LOGOUT,
-      });
-    }
-
-    dispatch($ready());
-  } catch (error) {
-    Logger.error(error);
+  if (AuthService.isAuthenticated()) {
+    dispatch($initialize()).catch((error) => dispatch(Activity.$toast('failure', error.message)));
+  } else if (AuthService.hasCredentials()) {
+    dispatch($login(AuthService.username, AuthService.password)).catch((error) => {
+      dispatch(Activity.$toast('failure', error.message));
+      dispatch($logout());
+    });
+  } else if (getState().Auth.authenticated) {
+    dispatch({
+      type: AUTH_LOGOUT,
+    });
   }
+
+  dispatch($ready());
 }
