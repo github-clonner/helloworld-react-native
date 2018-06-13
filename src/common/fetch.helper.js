@@ -4,7 +4,7 @@ import { FetchError } from './error';
 
 import { createLogger } from './logger';
 
-const Logger = createLogger('fetch');
+const Logger = createLogger('FetchHelper');
 
 /**
  * Query String and FormData

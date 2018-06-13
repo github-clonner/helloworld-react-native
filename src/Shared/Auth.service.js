@@ -3,10 +3,12 @@ import { AsyncStorage } from 'react-native';
 
 import { AsyncEventEmitter } from '../lib/events';
 
-import * as Logger from '../common/logger';
-
 import { API_ENDPOINT } from '../common/config';
 import * as FetchHelper from '../common/fetch.helper';
+
+import { createLogger } from '../common/logger';
+
+const Logger = createLogger('AuthService');
 
 export const AuthServiceImplementation = class AuthService {
   events = new AsyncEventEmitter();
