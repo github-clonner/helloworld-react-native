@@ -118,4 +118,4 @@ RecoveryView.propTypes = {
   ...propTypes,
 };
 
-export default Wrapper(WrappedRecoveryView);
+export default WrappedRecoveryView;

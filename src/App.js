@@ -63,4 +63,4 @@ App.propTypes = {
   ...propTypes,
 };
 
-export default Wrapper(WrappedApp);
+export default WrappedApp;

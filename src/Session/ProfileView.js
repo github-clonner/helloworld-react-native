@@ -125,4 +125,4 @@ ProfileView.propTypes = {
   ...propTypes,
 };
 
-export default Wrapper(WrappedProfileView);
+export default WrappedProfileView;

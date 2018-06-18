@@ -44,4 +44,4 @@ WelcomeView.propTypes = {
   ...propTypes,
 };
 
-export default Wrapper(WrappedWelcomeView);
+export default WrappedWelcomeView;

@@ -160,4 +160,4 @@ SignupView.propTypes = {
   ...propTypes,
 };
 
-export default Wrapper(WrappedSignupView);
+export default WrappedSignupView;

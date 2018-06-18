@@ -68,4 +68,4 @@ HomeView.propTypes = {
   ...propTypes,
 };
 
-export default Wrapper(WrappedHomeView);
+export default WrappedHomeView;

@@ -99,4 +99,4 @@ NavigationMenu.propTypes = {
   ...propTypes,
 };
 
-export default Wrapper(WrappedNavigationMenu);
+export default WrappedNavigationMenu;

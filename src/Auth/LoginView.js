@@ -143,4 +143,4 @@ LoginView.propTypes = {
   ...propTypes,
 };
 
-export default Wrapper(WrappedLoginView);
+export default WrappedLoginView;

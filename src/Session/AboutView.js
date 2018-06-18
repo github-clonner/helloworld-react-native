@@ -55,4 +55,4 @@ AboutView.propTypes = {
   ...propTypes,
 };
 
-export default Wrapper(WrappedAboutView);
+export default WrappedAboutView;
