@@ -8,7 +8,7 @@ PODS:
   - glog (0.3.4)
   - React (0.55.4):
     - React/Core (= 0.55.4)
-  - react-native-splash-screen (3.0.7):
+  - react-native-splash-screen (3.0.9):
     - React
   - React/Core (0.55.4):
     - yoga (= 0.55.4.React)
@@ -95,6 +95,6 @@ SPEC CHECKSUMS:
   RNKeychain: 627c6095cef215dd3d9804a9a9cf45ab96aa3997
   yoga: a23273df0088bf7f2bb7e5d7b00044ea57a2a54a
 
-PODFILE CHECKSUM: 247bced06ff7b714d21f020d2ed87d5f19c984e5
+PODFILE CHECKSUM: 2d969db457d9db914a2bb7d847b6b7ca8285d756
 
 COCOAPODS: 1.5.2
