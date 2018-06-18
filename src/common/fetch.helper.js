@@ -1,4 +1,4 @@
-import { EventEmitter } from '../lib/events';
+import { EventEmitter } from './events';
 
 import { FetchError } from './error';
 

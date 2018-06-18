@@ -1,7 +1,7 @@
 import * as Keychain from 'react-native-keychain';
 import { AsyncStorage } from 'react-native';
 
-import { AsyncEventEmitter } from '../lib/events';
+import { EventEmitter } from '../common/events';
 
 import { API_ENDPOINT } from '../common/config';
 import * as FetchHelper from '../common/fetch.helper';
@@ -11,7 +11,7 @@ import { createLogger } from '../common/logger';
 const Logger = createLogger('AuthService');
 
 export const AuthServiceImplementation = class AuthService {
-  events = new AsyncEventEmitter();
+  events = new EventEmitter();
 
   username = '';
   password = '';
@@ -80,13 +80,13 @@ export const AuthServiceImplementation = class AuthService {
       .then(async ({ token, ...result }) => {
         await this._saveSession(token);
         await this._saveCredentials(username, password);
-        await this.events.emit('login');
+        await this.events.emitAsync('login');
         return result;
       });
   }
 
   async logout() {
-    await this.events.emit('logout');
+    await this.events.emitAsync('logout');
     await this._clearSession();
     await this._clearCredentials();
   }
@@ -124,7 +124,7 @@ export const AuthServiceImplementation = class AuthService {
       }),
     }).then(FetchHelper.processResponse, FetchHelper.processError);
   }
-}
+};
 
 export const AuthService = new AuthServiceImplementation();
 
