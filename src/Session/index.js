@@ -1,14 +1,16 @@
-import { createDrawerNavigator } from 'react-navigation';
+import React from 'react';
+
+import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
 
 import NavigationMenu from './NavigationMenu';
 
-import HomeRouter from '../Home';
+import HomeNavigator from '../Home';
 import ProfileView from './ProfileView';
 import AboutView from './AboutView';
 
-export default createDrawerNavigator(
+const MainStack = createDrawerNavigator(
   {
-    '/home': { screen: HomeRouter },
+    '/home': { screen: HomeNavigator },
     '/profile': { screen: ProfileView },
     '/about': { screen: AboutView },
   },
@@ -17,3 +19,21 @@ export default createDrawerNavigator(
     initialRouteName: '/home',
   },
 );
+
+const RootStack = createStackNavigator(
+  {
+    '/main': { screen: MainStack },
+    '/modal': {
+      screen: (props) => {
+        return props.navigation.state.params.render ? props.navigation.state.params.render(props) : null;
+      },
+    },
+  },
+  {
+    mode: 'modal',
+    headerMode: 'none',
+    initialRouteName: '/main',
+  },
+);
+
+export default RootStack;

@@ -10,8 +10,8 @@ import * as Logger from './common/logger';
 import { COLOR } from './common/styles';
 
 import LandingView from './Auth/LandingView';
-import AuthRouter from './Auth';
-import SessionRouter from './Session';
+import AuthNavigator from './Auth';
+import SessionNavigator from './Session';
 
 const withStore = connect((state) => ({
   ready: state.Shared.ready,
@@ -45,9 +45,9 @@ class App extends Component<{}> {
         <SafeAreaView style={{ flex: 1 }}>
           {(!this.props.ready || (this.props.authenticated && !this.props.initialized)) && <LandingView />}
 
-          {this.props.ready && !this.props.authenticated && <AuthRouter />}
+          {this.props.ready && !this.props.authenticated && <AuthNavigator />}
 
-          {this.props.ready && this.props.authenticated && this.props.initialized && <SessionRouter />}
+          {this.props.ready && this.props.authenticated && this.props.initialized && <SessionNavigator />}
         </SafeAreaView>
       </View>
     );

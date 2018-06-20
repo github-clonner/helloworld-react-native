@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-
+import { StyleSheet } from 'react-native';
 import { Container, Content, Text, List, ListItem, Icon, Thumbnail, Left, Body } from 'native-base';
 
 import * as PropTypes from '../common/proptypes';

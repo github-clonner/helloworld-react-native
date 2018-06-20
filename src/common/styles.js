@@ -86,6 +86,7 @@ export const THEME = {
  */
 
 export const STYLE = StyleSheet.create({
+  // General-purpose styles
   fit: {
     position: 'absolute',
     top: 0,
@@ -97,9 +98,6 @@ export const STYLE = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  // container: {
-  //   backgroundColor: COLOR.background,
-  // },
   text: {
     color: COLOR.text,
   },
@@ -109,4 +107,6 @@ export const STYLE = StyleSheet.create({
   textInverse: {
     color: COLOR.textInverse,
   },
+  // Shared styles
+  // ...
 });
