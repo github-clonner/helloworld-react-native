@@ -19,9 +19,11 @@ source $(dirname $0)/generate-image-assets.include.sh
 
 APP_NAME=$(find $PWD/ios -name '*.xcodeproj' -exec basename {} .xcodeproj \;)
 
-mkdir -p "$PWD/ios/$APP_NAME/Images.xcassets/$output.imageset"
+TARGET_DIR="${PWD}/ios/${APP_NAME}/Images.xcassets/${output}.imageset"
 
-cat > "$PWD/ios/$APP_NAME/Images.xcassets/$output.imageset/Contents.json" <<EOL
+mkdir -p $TARGET_DIR
+
+cat > "${TARGET_DIR}/Contents.json" <<EOL
 {
   "images": [
     {
@@ -49,18 +51,20 @@ EOL
 
 # if [ "$FORMAT" != 'SVG' ]; then
 
-# inkscape -z -e "$PWD/ios/$APP_NAME/Images.xcassets/$output.imageset/$output.png" -w  "$(echo $width*1 | bc)" -h "$(echo $height*1 | bc)" "$input"
-
-# inkscape -z -e "$PWD/ios/$APP_NAME/Images.xcassets/$output.imageset/$output@2x.png" -w "$(echo $width*2 | bc)" -h "$(echo $height*2 | bc)" "$input"
-
-# inkscape -z -e "$PWD/ios/$APP_NAME/Images.xcassets/$output.imageset/$output@3x.png" -w "$(echo $width*3 | bc)" -h "$(echo $height*3 | bc)" "$input"
+#   function generate_image () {
+#     inkscape -z -e "${TARGET_DIR}/${filename}.png" -w "$(echo $width*$scale | bc)" -h "$(echo $height*$scale | bc)" "$input"
+#   }
 
 # else
 
-mogrify -write "$PWD/ios/$APP_NAME/Images.xcassets/$output.imageset/$output.png" -format png -background none -density "$(echo $DENSITY*1 | bc)" -resize "$(echo $width*1 | bc)x$(echo $height*1 | bc)" "$input"
-
-mogrify -write "$PWD/ios/$APP_NAME/Images.xcassets/$output.imageset/$output@2x.png" -format png -background none -density "$(echo $DENSITY*2 | bc)" -resize "$(echo $width*2 | bc)x$(echo $height*2 | bc)" "$input"
-
-mogrify -write "$PWD/ios/$APP_NAME/Images.xcassets/$output.imageset/$output@3x.png" -format png -background none -density "$(echo $DENSITY*3 | bc)" -resize "$(echo $width*3 | bc)x$(echo $height*3 | bc)" "$input"
+  function generate_image () {
+    mogrify -write "${TARGET_DIR}/${filename}.png" -format png -background none -density "$(echo $DENSITY*$scale*$height/$HEIGHT | bc)" -resize "$(echo $width*$scale | bc)x$(echo $height*$scale | bc)" "$input"
+  }
 
 # fi
+
+scale=1 filename="${output}" generate_image
+
+scale=2 filename="${output}@2x" generate_image
+
+scale=3 filename="${output}@3x" generate_image

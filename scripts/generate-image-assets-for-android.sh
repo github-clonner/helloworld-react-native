@@ -16,29 +16,29 @@ source $(dirname $0)/generate-image-assets.include.sh
 
 ## generate assets
 
+TARGET_DIR="${PWD}/android/app/src/main/res/mipmap"
 
 # if [ "$FORMAT" != 'SVG' ]; then
 
-# inkscape -z -e $PWD/android/app/src/main/res/mipmap-mdpi/$output.png -w "$(echo $width*1 | bc)" -h "$(echo $height*1 | bc)" "$input"
-
-# inkscape -z -e $PWD/android/app/src/main/res/mipmap-hdpi/$output.png -w "$(echo $width*1.5 | bc)" -h "$(echo $height*1.5 | bc)" "$input"
-
-# inkscape -z -e $PWD/android/app/src/main/res/mipmap-xhdpi/$output.png -w "$(echo $width*2 | bc)" -h "$(echo $height*2| bc)" "$input"
-
-# inkscape -z -e $PWD/android/app/src/main/res/mipmap-xxhdpi/$output.png -w "$(echo $width*3 | bc)" -h "$(echo $height*3 | bc)" "$input"
-
-# inkscape -z -e $PWD/android/app/src/main/res/mipmap-xxxhdpi/$output.png -w "$(echo $width*4 | bc)" -h "$(echo $height*4 | bc)" "$input"
+#   function generate_image () {
+#     inkscape -z -e "${TARGET_DIR}-${resolution}/${output}.png" -w "$(echo $width*$scale | bc)" -h "$(echo $height*$scale | bc)" "$input"
+#   }
 
 # else
 
-mogrify -write $PWD/android/app/src/main/res/mipmap-mdpi/$output.png -format png -background none -density "$(echo $DENSITY*1 | bc)" -resize "$(echo $width*1 | bc)x$(echo $height*1 | bc)" "$input"
-
-mogrify -write $PWD/android/app/src/main/res/mipmap-hdpi/$output.png -format png -background none -density "$(echo $DENSITY*1.5 | bc)" -resize "$(echo $width*1.5 | bc)x$(echo $height*1.5 | bc)" "$input"
-
-mogrify -write $PWD/android/app/src/main/res/mipmap-xhdpi/$output.png -format png -background none -density "$(echo $DENSITY*2 | bc)" -resize "$(echo $width*2 | bc)x$(echo $height*2| bc)" "$input"
-
-mogrify -write $PWD/android/app/src/main/res/mipmap-xxhdpi/$output.png -format png -background none -density "$(echo $DENSITY*3 | bc)" -resize "$(echo $width*3 | bc)x$(echo $height*3 | bc)" "$input"
-
-mogrify -write $PWD/android/app/src/main/res/mipmap-xxxhdpi/$output.png -format png -background none -density "$(echo $DENSITY*4 | bc)" -resize "$(echo $width*4 | bc)x$(echo $height*4 | bc)" "$input"
+  function generate_image () {
+    mogrify -write "${TARGET_DIR}-${resolution}/${output}.png" -format png -background none -density "$(echo $DENSITY*$scale*$height/$HEIGHT | bc)" -resize "$(echo $width*$scale | bc)x$(echo $height*$scale | bc)" "$input"
+  }
 
 # fi
+
+scale=1 resolution=mdpi generate_image
+
+scale=1.5 resolution=hdpi generate_image
+
+scale=2 resolution=xhdpi generate_image
+
+scale=3 resolution=xxhdpi generate_image
+
+scale=4 resolution=xxxhdpi generate_image
+

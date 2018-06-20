@@ -22,48 +22,38 @@ height=48
 
 APP_NAME=$(find $PWD/ios -name '*.xcodeproj' -exec basename {} .xcodeproj \;)
 
-mkdir -p "$PWD/ios/$APP_NAME/Images.xcassets/$output.appiconset"
+TARGET_DIR="${PWD}/ios/${APP_NAME}/Images.xcassets/AppIcon.appiconset"
 
-cat > "$PWD/ios/$APP_NAME/Images.xcassets/$output.appiconset/Contents.json" <<EOL
-{
-  "images": [
-    {
-      "idiom": "universal",
-      "filename": "$output.png",
-      "scale": "1x"
-    },
-    {
-      "idiom": "universal",
-      "filename": "$output@2x.png",
-      "scale": "2x"
-    },
-    {
-      "idiom": "universal",
-      "filename": "$output@3x.png",
-      "scale": "3x"
-    }
-  ],
-  "info": {
-    "version": 1,
-    "author": "xcode"
-  }
-}
-EOL
+mkdir -p $TARGET_DIR
 
 # if [ "$FORMAT" != 'SVG' ]; then
 
-# inkscape -z -e "$PWD/ios/$APP_NAME/Images.xcassets/$output.appiconset/$output.png" -w  "$(echo $width*1 | bc)" -h "$(echo $height*1 | bc)" "$input"
-
-# inkscape -z -e "$PWD/ios/$APP_NAME/Images.xcassets/$output.appiconset/$output@2x.png" -w "$(echo $width*2 | bc)" -h "$(echo $height*2 | bc)" "$input"
-
-# inkscape -z -e "$PWD/ios/$APP_NAME/Images.xcassets/$output.appiconset/$output@3x.png" -w "$(echo $width*3 | bc)" -h "$(echo $height*3 | bc)" "$input"
+#   function generate_image () {
+#     inkscape -z -e "${TARGET_DIR}/${filename}.png" -w "$(echo $width*$scale | bc)" -h "$(echo $height*$scale | bc)" "$input"
+#   }
 
 # else
 
-mogrify -write "$PWD/ios/$APP_NAME/Images.xcassets/$output.appiconset/$output.png" -format png -background none -density "$(echo $DENSITY*1 | bc)" -resize "$(echo $width*1 | bc)x$(echo $height*1 | bc)" "$input"
-
-mogrify -write "$PWD/ios/$APP_NAME/Images.xcassets/$output.appiconset/$output@2x.png" -format png -background none -density "$(echo $DENSITY*2 | bc)" -resize "$(echo $width*2 | bc)x$(echo $height*2 | bc)" "$input"
-
-mogrify -write "$PWD/ios/$APP_NAME/Images.xcassets/$output.appiconset/$output@3x.png" -format png -background none -density "$(echo $DENSITY*3 | bc)" -resize "$(echo $width*3 | bc)x$(echo $height*3 | bc)" "$input"
+  function generate_image () {
+    mogrify -write "${TARGET_DIR}/${filename}.png" -format png -background none -density "$(echo $DENSITY*$scale*$height/$HEIGHT | bc)" -resize "$(echo $width*$scale | bc)x$(echo $height*$scale | bc)" "$input"
+  }
 
 # fi
+
+width=20 height=20 scale=2 filename="iphone-${width}x${height}@${scale}x" generate_image
+
+width=20 height=20 scale=3 filename="iphone-${width}x${height}@${scale}x" generate_image
+
+width=29 height=29 scale=2 filename="iphone-${width}x${height}@${scale}x" generate_image
+
+width=29 height=29 scale=3 filename="iphone-${width}x${height}@${scale}x" generate_image
+
+width=40 height=40 scale=2 filename="iphone-${width}x${height}@${scale}x" generate_image
+
+width=40 height=40 scale=3 filename="iphone-${width}x${height}@${scale}x" generate_image
+
+width=60 height=60 scale=2 filename="iphone-${width}x${height}@${scale}x" generate_image
+
+width=60 height=60 scale=3 filename="iphone-${width}x${height}@${scale}x" generate_image
+
+width=1024 height=1024 scale=1 filename="ios-marketing-${width}x${height}@${scale}x" generate_image

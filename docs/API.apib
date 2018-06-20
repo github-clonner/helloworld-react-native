@@ -88,7 +88,7 @@ HOST: http://polls.apiblueprint.org/
 
     + Headers
 
-            Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9"
+            Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
 
 + Response 200 (application/json)
 
@@ -101,6 +101,40 @@ HOST: http://polls.apiblueprint.org/
                     "email": "test@example.com",
                     "picture": "https://randomuser.me/api/portraits/lego/7.jpg"
                 }
+            }
+
++ Response 401 (application/json)
+
+        {
+            "code": "Unauthenticated",
+            "message": "Not authenticated"
+        }
+
+## To Do [/todo]
+
+
+### Get all todos [GET /todo]
+
++ Request
+
+    + Headers
+
+            Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "todo": [{
+                    "id": "1",
+                    "label": "do something...",
+                    "done": true
+                }, {
+                    "id": "2",
+                    "label": "do something else ...",
+                    "done": false
+                }]
             }
 
 + Response 401 (application/json)
