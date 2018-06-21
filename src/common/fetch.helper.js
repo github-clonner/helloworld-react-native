@@ -122,9 +122,8 @@ export function processResponse(
 
       throw error;
     },
-    (err) => {
-      Logger.error(err);
-      throw new FetchError('Unknown error');
+    (error) => {
+      throw FetchError.from(error);
     },
   );
 }
