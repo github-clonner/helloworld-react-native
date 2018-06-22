@@ -154,7 +154,7 @@ export function processError(_error, failureModifier = (error, response) => erro
 
   events.emit('failure', error, response);
 
-  return error;
+  throw error;
 }
 
 if (process.env.NODE_ENV === 'development') {

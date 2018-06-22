@@ -12,8 +12,8 @@ if (process.env.NODE_ENV === 'development') {
 /**
  * Setup Logger
  */
-Logger.setup('helloworld');
+Logger.setup('HelloWorld');
 
 if (process.env.NODE_ENV === 'development') {
-  Logger.enable('helloworld*');
+  Logger.enable('HelloWorld*');
 }
