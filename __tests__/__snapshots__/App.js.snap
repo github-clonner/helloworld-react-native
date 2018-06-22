@@ -227,7 +227,8 @@ exports[`renders correctly 1`] = `
             "backgroundColor": "#fff",
             "elevation": 4,
             "height": NaN,
-            "maxHeight": "100%",
+            "maxHeight": 667,
+            "minHeight": 56,
             "opacity": 1,
             "padding": 15,
           }
