@@ -8,5 +8,3 @@ xcodebuild -alltargets clean
 rm -fr ios/build/*
 
 rm -fr ./Pods/*
-
-pod install
