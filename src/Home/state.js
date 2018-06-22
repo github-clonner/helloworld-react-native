@@ -80,8 +80,10 @@ function $fetchDataAsyncAwait() {
 
       return dispatch(fetchDataSuccess({ data: result }));
     } catch (error) {
-      dispatch(fetchDataFailure(error));
-      FetchHelper.processError(error);
+      await FetchHelper.processError(error).catch((error) => {
+        dispatch(fetchDataFailure(error));
+        throw error;
+      });
     } finally {
       dispatch(Activity.$done());
     }
