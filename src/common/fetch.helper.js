@@ -83,49 +83,60 @@ export function processResponse(
     content = response.text().then((text) => ({ text }));
   }
 
-  if (response.ok || response.status === 304) {
-    return content.then((payload) => {
-      payload = successModifier(payload, response);
-      events.emit('success', payload, response);
-      return payload;
-    });
-  }
-
-  return content.then(
-    (payload) => {
+  return content
+    .then((payload) => {
       payload = payload || {};
-      let code = payload.code;
-      let message = payload.message || payload.error;
 
-      if (response.status === 400) {
-        code = code || 'Invalid';
-        message = message || 'Invalid Request';
-      } else if (response.status === 401) {
-        code = code || 'Unauthenticated';
-        message = message || 'Unauthenticated';
-      } else if (response.status === 403) {
-        code = code || 'Unauthorized';
-        message = message || 'Unauthorized';
-      } else if (response.status === 404) {
-        code = code || 'NotFound';
-        message = message || 'Not Found';
-      } else {
-        code = code || 'Unknown';
-        message = message || 'Unknown error';
+      let error = null;
+
+      if (payload.error && typeof payload.error === 'object') {
+        error = payload.error;
       }
 
-      let error = new FetchError(code, message, payload);
+      if (error || !response.ok) {
+        error = error || payload;
 
-      error = failureModifier(error, response);
+        let { code, message, ...extra } = error;
 
+        if (typeof payload.error === 'string') {
+          message = message || payload.error;
+        }
+
+        if (response.status === 400) {
+          code = code || 'Invalid';
+          message = message || 'Invalid Request';
+        } else if (response.status === 401) {
+          code = code || 'Unauthenticated';
+          message = message || 'Unauthenticated';
+        } else if (response.status === 403) {
+          code = code || 'Unauthorized';
+          message = message || 'Unauthorized';
+        } else if (response.status === 404) {
+          code = code || 'NotFound';
+          message = message || 'Not Found';
+        } else {
+          code = code || 'Unknown';
+          message = message || 'Unknown error';
+        }
+
+        error = new FetchError(code, message, extra);
+
+        error = failureModifier(error, response);
+
+        throw error;
+      }
+
+      payload = successModifier(payload, response);
+
+      events.emit('success', payload, response);
+
+      return payload;
+    })
+    .catch((error) => {
       events.emit('failure', error, response);
 
-      throw error;
-    },
-    (error) => {
       throw FetchError.from(error);
-    },
-  );
+    });
 }
 
 export function processError(_error, failureModifier = (error, response) => error) {
@@ -154,6 +165,6 @@ if (process.env.NODE_ENV === 'development') {
   });
 
   events.on('failure', (error, response) => {
-    Logger.debug('@failure', response.url, response.status, error);
+    Logger.debug('@failure', response.url, response.status, error.code, error, error.extra);
   });
 }

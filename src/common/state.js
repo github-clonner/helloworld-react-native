@@ -1,4 +1,6 @@
-import { combineReducers, createStore, applyMiddleware, compose } from 'redux';
+import {
+  combineReducers, createStore, applyMiddleware, compose,
+} from 'redux';
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import persistState, { mergePersistedState } from 'redux-localstorage';
@@ -17,14 +19,16 @@ import $state from './state.definition';
 //   // ...
 // });
 
-let reducer = combineReducers(Object.entries($state).reduce((result, [name, substate]) => {
-  return substate.reducer
-    ? {
-      ...result,
-      [name]: substate.reducer,
-    }
-    : result;
-}, {}));
+let reducer = combineReducers(
+  Object.entries($state).reduce((result, [name, substate]) => {
+    return substate.reducer
+      ? {
+        ...result,
+        [name]: substate.reducer,
+      }
+      : result;
+  }, {}),
+);
 
 /**
  * support loading persisted partial initial state
@@ -41,15 +45,14 @@ reducer = compose(mergePersistedState())(reducer);
 //   // ...
 // });
 
-const persistSelector = (state) =>
-  Object.entries($state).reduce((result, [name, substate]) => {
-    return substate.persister
-      ? {
-        ...result,
-        [name]: substate.persister(state[name]),
-      }
-      : result;
-  }, {});
+const persistSelector = (state) => Object.entries($state).reduce((result, [name, substate]) => {
+  return substate.persister
+    ? {
+      ...result,
+      [name]: substate.persister(state[name]),
+    }
+    : result;
+}, {});
 
 const persistStorage = compose((storage) => {
   storage._put = storage.put;
@@ -71,8 +74,7 @@ if (process.env.NODE_ENV !== 'production') {
   enhancerMiddleware.push(createLogger());
 }
 
-const composeEnhancers =
-  global && global.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? global.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}) : compose;
+const composeEnhancers = global && global.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? global.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}) : compose;
 
 const enhancer = composeEnhancers(applyMiddleware(...enhancerMiddleware), persistEnhancer);
 

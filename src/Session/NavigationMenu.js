@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet } from 'react-native';
-import { Container, Content, Text, List, ListItem, Icon, Thumbnail, Left, Body } from 'native-base';
+import {
+  Container, Content, Text, List, ListItem, Icon, Thumbnail, Left, Body,
+} from 'native-base';
 
 import * as PropTypes from '../common/proptypes';
 
@@ -42,7 +44,9 @@ class NavigationMenu extends Component {
                 <Thumbnail circle small source={{ uri: user.picture }} />
               </Left>
               <Body>
-                <Text>{user.name}</Text>
+                <Text>
+                  {user.name}
+                </Text>
                 <Text note style={{ fontSize: 15, color: COLOR.textSecondary }}>
                   {user.email}
                 </Text>
@@ -53,7 +57,9 @@ class NavigationMenu extends Component {
                 <Icon name="home" style={styles.itemIcon} />
               </Left>
               <Body>
-                <Text>Home</Text>
+                <Text>
+Home
+                </Text>
               </Body>
             </ListItem>
             <ListItem icon selected={path === '/about'} onPress={() => this.props.navigation.navigate('/about')}>
@@ -61,23 +67,26 @@ class NavigationMenu extends Component {
                 <Icon name="information-circle" style={styles.itemIcon} />
               </Left>
               <Body>
-                <Text>About</Text>
+                <Text>
+About
+                </Text>
               </Body>
             </ListItem>
             <ListItem
               icon
-              onPress={() =>
-                this.props
-                  .dispatch($logout())
-                  .then(() => this.props.dispatch(Activity.$status('success', 'Goodbye!')))
-                  .catch((error) => this.props.dispatch(Activity.$toast('failure', error.message)))
+              onPress={() => this.props
+                .dispatch($logout())
+                .then(() => this.props.dispatch(Activity.$status('success', 'Goodbye!')))
+                .catch((error) => this.props.dispatch(Activity.$toast('failure', error.message)))
               }
             >
               <Left>
                 <Icon name="log-out" style={styles.itemIcon} />
               </Left>
               <Body>
-                <Text>Logout</Text>
+                <Text>
+Logout
+                </Text>
               </Body>
             </ListItem>
           </List>

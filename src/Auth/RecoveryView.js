@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, KeyboardAvoidingView } from 'react-native';
-import { Container, Header, Content, Button, Spinner, Input, Item, Text, Form } from 'native-base';
+import {
+  Container, Header, Content, Button, Spinner, Input, Item, Text, Form,
+} from 'native-base';
 
 import * as PropTypes from '../common/proptypes';
 
@@ -78,7 +80,9 @@ class RecoveryView extends Component {
                 disabled={!this.hasValidInput() || this.props.processing}
                 onPress={() => this.initiateAccountRecovery()}
               >
-                <Text>Recover my Account</Text>
+                <Text>
+Recover my Account
+                </Text>
                 {this.props.processing && <Spinner size={22} inverse />}
               </Button>
             </Form>
@@ -86,7 +90,9 @@ class RecoveryView extends Component {
 
           <View style={{ flexDirection: 'row' }}>
             <Button transparent light full onPress={() => this.props.navigation.navigate('/login')} style={{ flex: 1 }}>
-              <Text>Log in</Text>
+              <Text>
+Log in
+              </Text>
             </Button>
 
             <Button
@@ -96,7 +102,9 @@ class RecoveryView extends Component {
               onPress={() => this.props.navigation.navigate('/signup')}
               style={{ flex: 1 }}
             >
-              <Text>Sign up</Text>
+              <Text>
+Sign up
+              </Text>
             </Button>
           </View>
 

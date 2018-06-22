@@ -1,6 +1,6 @@
 import { createStackNavigator } from 'react-navigation';
 
-import HomeView from '../Home/HomeView';
+import HomeView from './HomeView';
 
 export default createStackNavigator(
   {

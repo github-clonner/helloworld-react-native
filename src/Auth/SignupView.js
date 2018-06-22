@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, KeyboardAvoidingView } from 'react-native';
-import { Container, Header, Content, Button, Spinner, Input, Item, Text, Form } from 'native-base';
+import {
+  Container, Header, Content, Button, Spinner, Input, Item, Text, Form,
+} from 'native-base';
 
 import * as PropTypes from '../common/proptypes';
 
@@ -40,11 +42,13 @@ class SignupView extends Component {
     }
 
     return this.props
-      .dispatch($signup({
-        name: this.state.name,
-        email: this.state.email,
-        password: this.state.password,
-      }))
+      .dispatch(
+        $signup({
+          name: this.state.name,
+          email: this.state.email,
+          password: this.state.password,
+        }),
+      )
       .then(() => this.props.dispatch($login(this.state.email, this.state.password)))
       .catch((error) => this.props.dispatch(Activity.$toast('failure', error.message)));
   }
@@ -120,7 +124,9 @@ class SignupView extends Component {
                 disabled={!this.hasValidInput() || this.props.processing}
                 onPress={() => this.signup()}
               >
-                <Text>Sign up</Text>
+                <Text>
+Sign up
+                </Text>
                 {this.props.processing && <Spinner size={22} inverse />}
               </Button>
             </Form>
@@ -128,7 +134,9 @@ class SignupView extends Component {
 
           <View style={{ flexDirection: 'row' }}>
             <Button transparent light full onPress={() => this.props.navigation.navigate('/login')} style={{ flex: 1 }}>
-              <Text>Log in</Text>
+              <Text>
+Log in
+              </Text>
             </Button>
 
             <Button
@@ -138,7 +146,9 @@ class SignupView extends Component {
               onPress={() => this.props.navigation.navigate('/recovery')}
               style={{ flex: 1 }}
             >
-              <Text>Recover</Text>
+              <Text>
+Recover
+              </Text>
             </Button>
           </View>
 

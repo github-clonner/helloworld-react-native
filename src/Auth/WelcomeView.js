@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View } from 'react-native';
-import { Container, Content, Button, Text } from 'native-base';
+import {
+  Container, Content, Button, Text,
+} from 'native-base';
 
 import * as PropTypes from '../common/proptypes';
 
@@ -26,7 +28,9 @@ class WelcomeView extends Component {
     return (
       <Container>
         <Content scrollEnabled={false} contentContainerStyle={{ flex: 1 }}>
-          <Text>WIP</Text>
+          <Text>
+WIP
+          </Text>
         </Content>
       </Container>
     );

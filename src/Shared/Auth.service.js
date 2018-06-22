@@ -14,6 +14,7 @@ export const AuthServiceImplementation = class AuthService {
   events = new EventEmitter();
 
   username = '';
+
   password = '';
 
   token = null;

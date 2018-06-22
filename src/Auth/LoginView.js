@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, KeyboardAvoidingView } from 'react-native';
-import { Container, Header, Content, Button, Spinner, Input, Item, Text, Form } from 'native-base';
+import {
+  Container, Header, Content, Button, Spinner, Input, Item, Text, Form,
+} from 'native-base';
 
 import * as PropTypes from '../common/proptypes';
 
@@ -97,7 +99,9 @@ class LoginView extends Component {
                 disabled={!this.hasValidInput() || this.props.processing}
                 onPress={() => this.login()}
               >
-                <Text>Log in</Text>
+                <Text>
+Log in
+                </Text>
                 {this.props.processing && <Spinner size={22} inverse />}
               </Button>
             </Form>
@@ -111,7 +115,9 @@ class LoginView extends Component {
               onPress={() => this.props.navigation.navigate('/signup')}
               style={{ flex: 1 }}
             >
-              <Text>Sign up</Text>
+              <Text>
+Sign up
+              </Text>
             </Button>
 
             <Button
@@ -121,7 +127,9 @@ class LoginView extends Component {
               onPress={() => this.props.navigation.navigate('/recovery')}
               style={{ flex: 1 }}
             >
-              <Text>Recover</Text>
+              <Text>
+Recover
+              </Text>
             </Button>
           </View>
 

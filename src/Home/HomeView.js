@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Container, Header, Left, Body, Title, Right, Content, Spinner, Text, Icon, Button } from 'native-base';
+import {
+  Container, Header, Left, Body, Title, Right, Content, Spinner, Text, Icon, Button,
+} from 'native-base';
 
 import * as PropTypes from '../common/proptypes';
 
@@ -43,14 +45,18 @@ class HomeView extends Component {
             </Button>
           </Left>
           <Body>
-            <Title>Home</Title>
+            <Title>
+Home
+            </Title>
           </Body>
           <Right>
             <Spinner size={22} inverse hidesWhenStopped animating={processing} />
           </Right>
         </Header>
         <Content padder>
-          <Text>{JSON.stringify(data, null, 2)}</Text>
+          <Text>
+            {JSON.stringify(data, null, 2)}
+          </Text>
         </Content>
       </Container>
     );

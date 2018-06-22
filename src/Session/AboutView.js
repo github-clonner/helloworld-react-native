@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View } from 'react-native';
-import { Container, Header, Left, Body, Title, Right, Content, Text, Icon, Button } from 'native-base';
+import {
+  Container, Header, Left, Body, Title, Right, Content, Text, Icon, Button,
+} from 'native-base';
 
 import * as PropTypes from '../common/proptypes';
 
@@ -29,14 +31,22 @@ class AboutView extends Component {
             </Button>
           </Left>
           <Body>
-            <Title>About</Title>
+            <Title>
+About
+            </Title>
           </Body>
           <Right />
         </Header>
         <Content padder>
           <View>
-            <Text>Release Version: {RELEASE_VERSION}</Text>
-            <Text>Release Date: {RELEASE_DATE}</Text>
+            <Text>
+              Release Version:
+              {RELEASE_VERSION}
+            </Text>
+            <Text>
+              Release Date:
+              {RELEASE_DATE}
+            </Text>
           </View>
         </Content>
       </Container>
