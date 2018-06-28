@@ -25,6 +25,7 @@ A boilerplate and reference implementation for mobile applications built with Re
 - [React Native CLI](https://www.npmjs.com/package/react-native-cli) (`npm -g install react-native-cli`)
 - [CocoaPods](https://cocoapods.org/) (`gem install cocoapods`)
 - [xcpretty](https://github.com/supermarin/xcpretty) (`gem install xcpretty`)
+- [Bash v4](http://tldp.org/LDP/abs/html/bashver4.html) (default on GNU/Linux, `brew install bash` on macOS)
 
 ## Usage
 
