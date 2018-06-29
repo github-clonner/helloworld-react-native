@@ -5,7 +5,7 @@ import * as Activity from '../Shared/Activity.state';
 import { AuthService } from '../Shared/Auth.service';
 import { $ready, $initialize } from '../Shared/state';
 
-export const NAME = 'Auth';
+export const MODULE = 'Auth';
 
 /**
  * Log in
@@ -49,14 +49,14 @@ function loginFailure(error) {
 
 export function $login(username, password) {
   return (dispatch) => {
-    dispatch(Activity.$processing($login.name, { message: 'Logging in ...' }));
+    dispatch(Activity.$processing(MODULE, $login.name, { message: 'Logging in ...' }));
     dispatch(loginRequest());
 
     return AuthService.login(username, password)
       .then((result) => dispatch(loginSuccess(result)))
       .then((result) => dispatch($initialize()).then(() => result))
       .catch((error) => dispatch(loginFailure(error)))
-      .finally(() => dispatch(Activity.$done($login.name)));
+      .finally(() => dispatch(Activity.$done(MODULE, $login.name)));
   };
 }
 
@@ -116,13 +116,13 @@ function signupFailure(error) {
 
 export function $signup(payload) {
   return (dispatch) => {
-    dispatch(Activity.$processing($signup.name, { message: 'Singing up ...' }));
+    dispatch(Activity.$processing(MODULE, $signup.name, { message: 'Singing up ...' }));
     dispatch(signupRequest());
 
     return AuthService.signup(payload)
       .then((result) => dispatch(signupSuccess(result)))
       .catch((error) => dispatch(signupFailure(error)))
-      .finally(() => dispatch(Activity.$done($signup.name)));
+      .finally(() => dispatch(Activity.$done(MODULE, $signup.name)));
   };
 }
 
@@ -167,13 +167,13 @@ function initiateAccountRecoveryFailure(error) {
 
 export function $initiateAccountRecovery(email) {
   return (dispatch) => {
-    dispatch(Activity.$processing($initiateAccountRecovery.name, { message: 'Singing up ...' }));
+    dispatch(Activity.$processing(MODULE, $initiateAccountRecovery.name, { message: 'Singing up ...' }));
     dispatch(initiateAccountRecoveryRequest());
 
     return AuthService.initiateAccountRecovery(email)
       .then((result) => dispatch(initiateAccountRecoverySuccess(result)))
       .catch((error) => dispatch(initiateAccountRecoveryFailure(error)))
-      .finally(() => dispatch(Activity.$done($initiateAccountRecovery.name)));
+      .finally(() => dispatch(Activity.$done(MODULE, $initiateAccountRecovery.name)));
   };
 }
 

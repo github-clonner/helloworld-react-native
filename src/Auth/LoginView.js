@@ -15,7 +15,7 @@ import * as Activity from '../Shared/Activity.state';
 import { $login } from './state';
 
 const withStore = connect((state) => ({
-  processing: state.Activity.processing,
+  processing: state.Activity.processingByTopic['Auth.$login'] || false,
 }));
 
 const propTypes = {

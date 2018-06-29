@@ -13,7 +13,7 @@ import * as Activity from '../Shared/Activity.state';
 import { $fetchData } from './state';
 
 const withStore = connect((state) => ({
-  processing: state.Activity.processing,
+  processing: state.Activity.processingByTopic['Home.$fetchData'] || false,
   data: state.Home.data,
 }));
 

@@ -1,4 +1,4 @@
-export const NAME = 'Session';
+export const MODULE = 'Session';
 
 export function reducer(state = {}, action) {
   switch (action.type) {

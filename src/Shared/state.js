@@ -2,7 +2,7 @@ import * as Logger from '../common/logger';
 
 import { AUTH_LOGOUT } from '../Auth/state';
 
-export const NAME = 'Shared';
+export const MODULE = 'Shared';
 
 const SHARED_READY = 'SHARED_READY';
 
@@ -40,15 +40,15 @@ export function reducer(
   action,
 ) {
   switch (action.type) {
-    case SHARED_READY:
-      return {
-        ...state,
-        ready: true,
-      };
     case AUTH_LOGOUT:
       return {
         ...state,
         initialized: false,
+      };
+    case SHARED_READY:
+      return {
+        ...state,
+        ready: true,
       };
     case SHARED_INITIALIZED:
       return {

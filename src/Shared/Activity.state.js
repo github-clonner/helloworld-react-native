@@ -2,7 +2,31 @@ import { Toast } from 'native-base';
 
 import * as Logger from '../common/logger';
 
-export const NAME = 'Activity';
+export const MODULE = 'Activity';
+
+/**
+ * Initial State
+ */
+
+const INITIAL_STATE = {
+  processingByTopic: {
+    default: false,
+  },
+  processing: false,
+  message: null,
+};
+
+/**
+ * Reset
+ */
+
+const ACTIVITY_RESET = 'ACTIVITY_RESET';
+
+export function $reset() {
+  return {
+    type: ACTIVITY_RESET,
+  };
+}
 
 /**
  * Activity Indicator
@@ -10,7 +34,9 @@ export const NAME = 'Activity';
 
 const ACTIVITY_PROCESSING = 'ACTIVITY_PROCESSING';
 
-export function $processing(topic = 'default', { message = 'Loading ...' } = {}) {
+export function $processing(module = 'App', operation = 'default', { message = 'Loading ...' } = {}) {
+  const topic = `${module}.${operation}`;
+
   Logger.debug('$processing', topic, message);
 
   return {
@@ -21,7 +47,9 @@ export function $processing(topic = 'default', { message = 'Loading ...' } = {})
 
 const ACTIVITY_DONE = 'ACTIVITY_DONE';
 
-export function $done(topic = 'default') {
+export function $done(module = 'App', operation = 'default') {
+  const topic = `${module}.${operation}`;
+
   Logger.debug('$done', topic);
 
   return {
@@ -188,36 +216,32 @@ export function $confirm(title, content, options = {}) {
  * Reducer
  */
 
-export function reducer(
-  state = {
-    processing: false,
-    processingByTopic: {
-      default: false,
-    },
-    message: null,
-  },
-  action,
-) {
+export function reducer(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case ACTIVITY_PROCESSING:
+    case ACTIVITY_RESET:
+      return INITIAL_STATE;
+    case ACTIVITY_PROCESSING: {
+      const processingByTopic = {
+        ...state.processingByTopic,
+        [action.topic]: true,
+      };
       return {
         ...state,
-        processing: true,
-        processingByTopic: {
-          ...state.processingByTopic,
-          [action.topic]: true,
-        },
+        processingByTopic,
+        processing: Object.values(processingByTopic).reduce((acc, v) => acc || v, false),
       };
-    case ACTIVITY_DONE:
+    }
+    case ACTIVITY_DONE: {
+      const processingByTopic = {
+        ...state.processingByTopic,
+        [action.topic]: false,
+      };
       return {
         ...state,
-        processing: false,
-        // processing: Object.values(state.processingByTopic).reduce((acc, v) => acc && v, false),
-        processingByTopic: {
-          ...state.processingByTopic,
-          [action.topic]: false,
-        },
+        processingByTopic,
+        processing: Object.values(processingByTopic).reduce((acc, v) => acc || v, false),
       };
+    }
     case ACTIVITY_MESSAGE:
       return {
         ...state,

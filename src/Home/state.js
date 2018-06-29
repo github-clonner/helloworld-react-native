@@ -1,10 +1,35 @@
-// import { CORE_AUTH_ENDPOINT } from '../common/config';
+import { API_ENDPOINT } from '../common/config';
 
 import * as FetchHelper from '../common/fetch.helper';
 import * as StateHelper from '../common/state.helper';
+
+import { AuthService } from '../Shared/Auth.service';
+
+import { AUTH_LOGOUT } from '../Auth/state';
+
 import * as Activity from '../Shared/Activity.state';
 
-export const NAME = 'Home';
+export const MODULE = 'Home';
+
+/**
+ * Initial State
+ */
+
+const INITIAL_STATE = {
+  data: null,
+};
+
+/**
+ * Reset
+ */
+
+const HOME_RESET = 'HOME_RESET';
+
+export function $reset() {
+  return {
+    type: HOME_RESET,
+  };
+}
 
 /**
  * Fetch Data
@@ -55,51 +80,57 @@ const fetchDataFailure = StateHelper.createFailureAction(HOME_DATA_FAILURE);
 /* Fetch Data - Exposed action creators, must return a promise */
 
 // Promise implementation
-function $fetchDataPromise() {
+export function $fetchDataPromise() {
   return (dispatch) => {
-    dispatch(Activity.$processing());
+    dispatch(Activity.$processing(MODULE, $fetchDataPromise.name));
     dispatch(fetchDataRequest());
 
-    return fetch('https://httpbin.org/ip')
+    // return fetch('https://httpbin.org/ip')
+    return fetch(`${API_ENDPOINT}/todo`, {
+      headers: {
+        Authorization: `Bearer ${AuthService.token}`,
+      },
+    })
       .then(FetchHelper.processResponse, FetchHelper.processError)
       .then((result) => dispatch(fetchDataSuccess({ data: result })))
       .catch((error) => dispatch(fetchDataFailure(error)))
-      .finally(() => dispatch(Activity.$done()));
+      .finally(() => dispatch(Activity.$done(MODULE, $fetchDataPromise.name)));
   };
 }
 
 // async/await implementation
-function $fetchDataAsyncAwait() {
+export function $fetchData() {
   return async (dispatch) => {
-    dispatch(Activity.$processing());
+    dispatch(Activity.$processing(MODULE, $fetchData.name));
     dispatch(fetchDataRequest());
 
     try {
-      const response = await fetch('https://httpbin.org/ip');
+      // const response = await fetch('https://httpbin.org/ip');
+      const response = await fetch(`${API_ENDPOINT}/todo`, {
+        headers: {
+          Authorization: `Bearer ${AuthService.token}`,
+        },
+      });
       const result = await FetchHelper.processResponse(response);
 
       return dispatch(fetchDataSuccess({ data: result }));
     } catch (error) {
       await FetchHelper.processError(error).catch((error) => dispatch(fetchDataFailure(error)));
     } finally {
-      dispatch(Activity.$done());
+      dispatch(Activity.$done(MODULE, $fetchData.name));
     }
   };
 }
-
-export const $fetchData = $fetchDataAsyncAwait;
 
 /**
  * Reducer
  */
 
-export function reducer(
-  state = {
-    data: null,
-  },
-  action,
-) {
+export function reducer(state = INITIAL_STATE, action) {
   switch (action.type) {
+    case HOME_RESET:
+    case AUTH_LOGOUT:
+      return INITIAL_STATE;
     case HOME_DATA_REQUEST:
       return {
         ...state,

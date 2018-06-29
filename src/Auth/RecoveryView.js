@@ -15,7 +15,7 @@ import * as Activity from '../Shared/Activity.state';
 import { $initiateAccountRecovery } from './state';
 
 const withStore = connect((state) => ({
-  processing: state.Activity.processing,
+  processing: state.Activity.processingByTopic['Auth.$initiateAccountRecovery'] || false,
 }));
 
 const propTypes = {

@@ -112,21 +112,31 @@ export function setupStore() {
  */
 
 if (process.env.NODE_ENV === 'development') {
-  Object.entries($state).forEach(([name, state]) => {
+  const SKIP = ['MODULE', 'reducer', 'persister', 'initializer'];
+
+  Object.entries($state).forEach(([module, state]) => {
     if (!state) {
-      console.warn(`$state.${name}: invalid descriptor`);
+      console.warn(`$state.${module}: invalid descriptor`);
+      return;
     }
-    if (!state.NAME || state.NAME !== name) {
-      console.warn(`$state.${name}: missing or invalid 'NAME'`);
+    if (!state.MODULE || state.MODULE !== module) {
+      console.warn(`$state.${module}: missing or invalid 'MODULE'`);
     }
     if (!state.reducer || typeof state.reducer !== 'function') {
-      console.warn(`$state.${name}: missing or invalid 'reducer'`);
+      console.warn(`$state.${module}: missing or invalid 'reducer'`);
     }
     if (state.persister && typeof state.persister === 'function') {
-      console.info(`$state.${name}: found 'persister'`);
+      console.info(`$state.${module}: found 'persister'`);
     }
     if (state.initializer && typeof state.initializer === 'function') {
-      console.info(`$state.${name}: found 'initializer'`);
+      console.info(`$state.${module}: found 'initializer'`);
     }
+
+    // console.info(
+    //   `$state.${module}: found`,
+    //   Object.keys(state)
+    //     .filter((name) => SKIP.indexOf(name) === -1)
+    //     .map((name) => name),
+    // );
   });
 }
