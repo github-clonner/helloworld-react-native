@@ -92,7 +92,7 @@ Assuming target application with following properties:
 
     ```sh
     cd ./MyApp
-    ./scripts/postinit.sh 'MyApp' 'My App' 'com.myapp.client'
+    ./postinit.sh 'MyApp' 'My App' 'com.myapp.client'
     ```
 
 1.  Make sure to replace placeholders (look for `@@`) with appropriate values
