@@ -48,8 +48,8 @@ rm ./App.js || true
 
 find ./ios -iname '*tvos*' -exec rm -fr {} \; || true
 
-rm ./scripts/dev*.sh
-rm ./scripts/postinit.sh
+rm ./dev-*.sh
+rm ./postinit.sh
 
 chmod u+x ./scripts/*.sh
 
