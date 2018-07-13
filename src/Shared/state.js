@@ -40,11 +40,6 @@ export function reducer(
   action,
 ) {
   switch (action.type) {
-    case AUTH_LOGOUT:
-      return {
-        ...state,
-        initialized: false,
-      };
     case SHARED_READY:
       return {
         ...state,
@@ -54,6 +49,11 @@ export function reducer(
       return {
         ...state,
         initialized: true,
+      };
+    case AUTH_LOGOUT:
+      return {
+        ...state,
+        initialized: false,
       };
     default:
       return state;

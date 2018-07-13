@@ -108,7 +108,7 @@ export function setupStore() {
 }
 
 /**
- * Check state definition in development mode
+ * Check and validate state definition in development mode
  */
 
 if (process.env.NODE_ENV === 'development') {

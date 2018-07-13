@@ -41,8 +41,8 @@ class App extends Component<{}> {
 
   render() {
     return (
-      <View style={{ flex: 1, backgroundColor: COLOR.background }}>
-        <SafeAreaView style={{ flex: 1 }}>
+      <View style={{ flex: 1, backgroundColor: COLOR.primary }}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: COLOR.background }}>
           {(!this.props.ready || (this.props.authenticated && !this.props.initialized)) && <LandingView />}
 
           {this.props.ready && !this.props.authenticated && <AuthNavigator />}

@@ -3,7 +3,7 @@ import { API_ENDPOINT } from '../common/config';
 import * as FetchHelper from '../common/fetch.helper';
 import * as StateHelper from '../common/state.helper';
 
-import { AuthService } from '../Shared/Auth.service';
+import { AuthService } from '../Auth/Auth.service';
 
 import { AUTH_LOGOUT } from '../Auth/state';
 

@@ -1,9 +1,11 @@
 import * as Logger from '../common/logger';
 import * as StateHelper from '../common/state.helper';
 import * as FetchHelper from '../common/fetch.helper';
+
 import * as Activity from '../Shared/Activity.state';
-import { AuthService } from '../Shared/Auth.service';
 import { $ready, $initialize } from '../Shared/state';
+
+import { AuthService } from './Auth.service';
 
 export const MODULE = 'Auth';
 
