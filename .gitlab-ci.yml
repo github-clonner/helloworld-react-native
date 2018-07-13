@@ -8,8 +8,6 @@ cache:
   key: ${CI_COMMIT_REF_SLUG}
   paths:
     - ./node_modules/
-    - ./android/.gradle/
-    - ./ios/Pods/
 
 lint:critical:
   stage: test
@@ -55,6 +53,11 @@ build:android:debug:
   artifacts:
     paths:
       - ./build/app-debug.apk
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}-android-ios
+    paths:
+      - ./node_modules/
+      - ./android/.gradle/
 
 appetize:android:debug:
   stage: deliver
@@ -114,6 +117,11 @@ build:ios:debug:
   artifacts:
     paths:
       - ./build/app-debug.zip
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}-ios
+    paths:
+      - ./node_modules/
+      - ./ios/Pods/
 
 appetize:ios:debug:
   stage: deliver
