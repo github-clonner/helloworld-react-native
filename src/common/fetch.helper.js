@@ -10,12 +10,6 @@ const Logger = createLogger('FetchHelper');
  * Query String and FormData
  */
 
-// export function toQueryString(data) {
-//   return Object.keys(data)
-//     .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
-//     .join('&');
-// }
-
 export function encode(result, name, value, mode = 'querystring') {
   if (typeof value === 'object' && value) {
     if (value instanceof File) {
@@ -34,7 +28,7 @@ export function encode(result, name, value, mode = 'querystring') {
       Object.keys(value).forEach((key) => encode(result, `${name}[${encodeURIComponent(key)}]`, value[key], mode));
     }
   } else {
-    result[name] = String(value);
+    result[name] = encodeURIComponent(String(value));
   }
 }
 
@@ -42,7 +36,7 @@ export function toQueryString(data) {
   const result = {};
   Object.keys(data).forEach((key) => encode(result, encodeURIComponent(key), data[key], 'querystring'));
   const outcome = Object.keys(result)
-    .map((key) => `${key}=${encodeURIComponent(result[key])}`)
+    .map((key) => `${key}=${result[key]}`)
     .join('&');
   return outcome;
 }
@@ -51,8 +45,23 @@ export function toFormData(data) {
   const result = {};
   Object.keys(data).forEach((key) => encode(result, encodeURIComponent(key), data[key], 'formdata'));
   const outcome = new FormData();
-  Object.keys(result).map((key) => outcome.append(key, result[key]));
+  Object.keys(result).forEach((key) => outcome.append(key, result[key]));
   return outcome;
+}
+
+export function URL(url, routeParams, queryParams) {
+  routeParams = routeParams || {};
+  queryParams = queryParams || {};
+
+  Object.entries(routeParams).forEach(([param, value]) => {
+    url = url.replace(new RegExp(`:${param}`), encodeURIComponent(value));
+  });
+
+  const queryString = toQueryString(queryParams);
+
+  url += queryString ? `?${queryString}` : '';
+
+  return url;
 }
 
 /**
