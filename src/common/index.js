@@ -1,5 +1,7 @@
 import './polyfill';
 
+import './events';
+
 import * as Logger from './logger';
 
 import * as CONFIG from './config';

@@ -77,7 +77,7 @@ export const AuthServiceImplementation = class AuthService {
         password,
       }),
     })
-      .then(FetchHelper.processResponse, FetchHelper.processError)
+      .then(FetchHelper.ResponseHandler, FetchHelper.ErrorHandler)
       .then(async ({ token, ...result }) => {
         await this._saveSession(token);
         await this._saveCredentials(username, password);
@@ -106,7 +106,7 @@ export const AuthServiceImplementation = class AuthService {
         user,
       }),
     })
-      .then(FetchHelper.processResponse, FetchHelper.processError)
+      .then(FetchHelper.ResponseHandler, FetchHelper.ErrorHandler)
       .then(({ token, ...result }) => {
         this._saveSession(token);
         this._saveCredentials(user.email, user.password);
@@ -123,7 +123,7 @@ export const AuthServiceImplementation = class AuthService {
       body: JSON.stringify({
         email,
       }),
-    }).then(FetchHelper.processResponse, FetchHelper.processError);
+    }).then(FetchHelper.ResponseHandler, FetchHelper.ErrorHandler);
   }
 };
 

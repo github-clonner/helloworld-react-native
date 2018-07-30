@@ -91,7 +91,7 @@ export function $fetchDataPromise() {
         Authorization: `Bearer ${AuthService.token}`,
       },
     })
-      .then(FetchHelper.processResponse, FetchHelper.processError)
+      .then(FetchHelper.ResponseHandler, FetchHelper.ErrorHandler)
       .then((result) => dispatch(fetchDataSuccess({ data: result })))
       .catch((error) => dispatch(fetchDataFailure(error)))
       .finally(() => dispatch(Activity.$done(MODULE, $fetchDataPromise.name)));
@@ -111,11 +111,12 @@ export function $fetchData() {
           Authorization: `Bearer ${AuthService.token}`,
         },
       });
-      const result = await FetchHelper.processResponse(response);
+      const result = await FetchHelper.ResponseHandler(response);
 
       return dispatch(fetchDataSuccess({ data: result }));
     } catch (error) {
-      await FetchHelper.processError(error).catch((error) => dispatch(fetchDataFailure(error)));
+      await FetchHelper.ErrorValueHandler(error);
+      dispatch(fetchDataFailure(error));
     } finally {
       dispatch(Activity.$done(MODULE, $fetchData.name));
     }

@@ -49,19 +49,42 @@ export function toFormData(data) {
   return outcome;
 }
 
-export function URL(url, routeParams, queryParams) {
-  routeParams = routeParams || {};
-  queryParams = queryParams || {};
+export function Request(method, url, options = {}) {
+  let {
+    route, query, headers, body, ...more
+  } = options;
 
-  Object.entries(routeParams).forEach(([param, value]) => {
+  route = route || {};
+  query = query || {};
+  headers = headers || {};
+
+  Object.entries(route).forEach(([param, value]) => {
     url = url.replace(new RegExp(`:${param}`), encodeURIComponent(value));
   });
 
-  const queryString = toQueryString(queryParams);
+  const queryString = toQueryString(query);
 
   url += queryString ? `?${queryString}` : '';
 
-  return url;
+  headers.Accept = 'application/json';
+
+  if (body && typeof body === 'object') {
+    if (body instanceof FormData) {
+      headers['Content-Type'] = 'multipart/form-data';
+    } else {
+      headers['Content-Type'] = 'application/json';
+      body = JSON.stringify(body);
+    }
+  }
+
+  const request = new global.Request(url, {
+    method,
+    headers,
+    body,
+    ...more,
+  });
+
+  return request;
 }
 
 /**
@@ -75,7 +98,7 @@ export const events = new EventEmitter();
  * Converts JSON to Object and throws error for non-success statuses
  */
 
-export function processResponse(
+export function ResponseHandler(
   response,
   successModifier = (payload, response) => payload,
   failureModifier = (error, response) => error,
@@ -113,7 +136,7 @@ export function processResponse(
 
         if (response.status === 400) {
           code = code || 'Invalid';
-          message = message || 'Invalid Request';
+          message = message || 'Invalid request';
         } else if (response.status === 401) {
           code = code || 'Unauthenticated';
           message = message || 'Unauthenticated';
@@ -122,13 +145,16 @@ export function processResponse(
           message = message || 'Unauthorized';
         } else if (response.status === 404) {
           code = code || 'NotFound';
-          message = message || 'Not Found';
+          message = message || 'Not found';
+        } else if (response.status >= 500) {
+          code = code || 'Server';
+          message = message || 'Server error';
         } else {
           code = code || 'Unknown';
           message = message || 'Unknown error';
         }
 
-        error = new FetchError(code, message, extra);
+        error = FetchError.from(error, { code, message, ...extra });
 
         error = failureModifier(error, response);
 
@@ -148,14 +174,14 @@ export function processResponse(
     });
 }
 
-export function processError(_error, failureModifier = (error, response) => error) {
+export function ErrorValueHandler(_error, failureModifier = (error, response) => error) {
   let code = _error.code;
   let message = _error.message || _error.error;
 
   code = code || 'Unknown';
   message = message || 'Unknown error';
 
-  let error = new FetchError(code, message, _error);
+  let error = FetchError.from(_error, { code, message });
 
   const response = {};
 
@@ -163,7 +189,11 @@ export function processError(_error, failureModifier = (error, response) => erro
 
   events.emit('failure', error, response);
 
-  return Promise.reject(error);
+  return error;
+}
+
+export function ErrorHandler(_error, failureModifier) {
+  return Promise.reject(ErrorValueHandler(_error, failureModifier));
 }
 
 if (process.env.NODE_ENV === 'development') {

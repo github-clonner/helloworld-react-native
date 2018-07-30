@@ -1,8 +1,11 @@
 export class BaseError extends Error {
-  static from(err, { code, message, ...extra } = {}) {
+  static from(err, {
+    code, message, extra, ...more
+  } = {}) {
     const error = new this(code || err.code, message || err.message, {
-      ...err.extra,
-      ...extra,
+      ...(err.extra || {}),
+      ...(extra || {}),
+      ...more,
     });
     error.stack = err.stack || error.stack;
     return error;
