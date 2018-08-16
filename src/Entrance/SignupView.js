@@ -12,10 +12,11 @@ import { COLOR } from '../common/styles';
 import { LogoHeader } from './LogoHeader';
 
 import * as Activity from '../Shared/Activity.state';
-import { $login } from './state';
+import { $signup, $login } from '../Auth/state';
 
 const withStore = connect((state) => ({
-  processing: state.Activity.processingByTopic['Auth.$login'] || false,
+  processing:
+    state.Activity.processingByTopic['Auth.$signup'] || state.Activity.processingByTopic['Auth.$login'] || false,
 }));
 
 const propTypes = {
@@ -25,22 +26,31 @@ const propTypes = {
 
 const Wrapper = (C) => withStore(C);
 
-class LoginView extends Component {
+class SignupView extends Component {
   state = {
-    username: process.env.NODE_ENV === '_development' ? 'test@example.com' : '',
-    password: process.env.NODE_ENV === '_development' ? 'test' : '',
+    name: '',
+    email: '',
+    password: '',
   };
 
   hasValidInput() {
-    return !!this.state.username && !!this.state.password;
+    return !!this.state.name && !!this.state.email && !!this.state.password;
   }
 
-  login() {
+  signup() {
     if (!this.hasValidInput()) {
       return null;
     }
+
     return this.props
-      .dispatch($login(this.state.username, this.state.password))
+      .dispatch(
+        $signup({
+          name: this.state.name,
+          email: this.state.email,
+          password: this.state.password,
+        }),
+      )
+      .then(() => this.props.dispatch($login(this.state.email, this.state.password)))
       .catch((error) => this.props.dispatch(Activity.$toast('failure', error.message)));
   }
 
@@ -61,13 +71,29 @@ class LoginView extends Component {
                 <Input
                   style={{ color: COLOR.textInverse }}
                   placeholderTextColor={COLOR.textSecondaryInverse}
+                  placeholder="Name"
+                  value={this.state.name}
+                  returnKeyType="next"
+                  enablesReturnKeyAutomatically
+                  onChangeText={(name) => this.setState({ name })}
+                  onSubmitEditing={() => this.$name.wrappedInstance.focus()}
+                />
+              </Item>
+
+              <View style={{ margin: 4 }} />
+
+              <Item regular>
+                <Input
+                  ref={(ref) => (this.$name = ref)}
+                  style={{ color: COLOR.textInverse }}
+                  placeholderTextColor={COLOR.textSecondaryInverse}
                   placeholder="Email"
                   keyboardType="email-address"
-                  value={this.state.username}
+                  value={this.state.email}
                   autoCapitalize="none"
                   returnKeyType="next"
                   enablesReturnKeyAutomatically
-                  onChangeText={(username) => this.setState({ username })}
+                  onChangeText={(email) => this.setState({ email })}
                   onSubmitEditing={() => this.$password.wrappedInstance.focus()}
                 />
               </Item>
@@ -87,7 +113,7 @@ class LoginView extends Component {
                   enablesReturnKeyAutomatically
                   blurOnSubmit
                   onChangeText={(password) => this.setState({ password })}
-                  onSubmitEditing={() => this.login()}
+                  onSubmitEditing={() => this.signup()}
                 />
               </Item>
 
@@ -97,23 +123,17 @@ class LoginView extends Component {
                 style={{ backgroundColor: COLOR.accent }}
                 full
                 disabled={!this.hasValidInput() || this.props.processing}
-                onPress={() => this.login()}
+                onPress={() => this.signup()}
               >
-                <Text>Log in</Text>
+                <Text>Sign up</Text>
                 {this.props.processing && <Spinner size={22} inverse />}
               </Button>
             </Form>
           </KeyboardAvoidingView>
 
           <View style={{ flexDirection: 'row' }}>
-            <Button
-              transparent
-              light
-              full
-              onPress={() => this.props.navigation.navigate('/signup')}
-              style={{ flex: 1 }}
-            >
-              <Text>Sign up</Text>
+            <Button transparent light full onPress={() => this.props.navigation.navigate('/login')} style={{ flex: 1 }}>
+              <Text>Log in</Text>
             </Button>
 
             <Button
@@ -134,15 +154,15 @@ class LoginView extends Component {
   }
 }
 
-const WrappedLoginView = Wrapper(LoginView);
+const WrappedSignupView = Wrapper(SignupView);
 
-WrappedLoginView.propTypes = {
+WrappedSignupView.propTypes = {
   navigation: PropTypes.navigation.isRequired,
 };
 
-LoginView.propTypes = {
-  ...WrappedLoginView.propTypes,
+SignupView.propTypes = {
+  ...WrappedSignupView.propTypes,
   ...propTypes,
 };
 
-export default WrappedLoginView;
+export default WrappedSignupView;

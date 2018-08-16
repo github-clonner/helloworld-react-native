@@ -9,8 +9,8 @@ import * as Logger from './common/logger';
 
 import { COLOR } from './common/styles';
 
-import LandingView from './Auth/LandingView';
-import AuthNavigator from './Auth';
+import LandingView from './Entrance/LandingView';
+import EntranceNavigator from './Entrance';
 import SessionNavigator from './Session';
 
 const withStore = connect((state) => ({
@@ -45,7 +45,7 @@ class App extends Component<{}> {
         <SafeAreaView style={{ flex: 1, backgroundColor: COLOR.background }}>
           {(!this.props.ready || (this.props.authenticated && !this.props.initialized)) && <LandingView />}
 
-          {this.props.ready && !this.props.authenticated && <AuthNavigator />}
+          {this.props.ready && !this.props.authenticated && <EntranceNavigator />}
 
           {this.props.ready && this.props.authenticated && this.props.initialized && <SessionNavigator />}
         </SafeAreaView>

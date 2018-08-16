@@ -12,7 +12,7 @@ import { COLOR } from '../common/styles';
 import { LogoHeader } from './LogoHeader';
 
 import * as Activity from '../Shared/Activity.state';
-import { $initiateAccountRecovery } from './state';
+import { $initiateAccountRecovery } from '../Auth/state';
 
 const withStore = connect((state) => ({
   processing: state.Activity.processingByTopic['Auth.$initiateAccountRecovery'] || false,
