@@ -44,9 +44,7 @@ class NavigationMenu extends Component {
                 <Thumbnail circle small source={{ uri: user.picture }} />
               </Left>
               <Body>
-                <Text>
-                  {user.name}
-                </Text>
+                <Text>{user.name}</Text>
                 <Text note style={{ fontSize: 15, color: COLOR.textSecondary }}>
                   {user.email}
                 </Text>
@@ -57,9 +55,7 @@ class NavigationMenu extends Component {
                 <Icon name="home" style={styles.itemIcon} />
               </Left>
               <Body>
-                <Text>
-Home
-                </Text>
+                <Text>Home</Text>
               </Body>
             </ListItem>
             <ListItem icon selected={path === '/about'} onPress={() => this.props.navigation.navigate('/about')}>
@@ -67,9 +63,7 @@ Home
                 <Icon name="information-circle" style={styles.itemIcon} />
               </Left>
               <Body>
-                <Text>
-About
-                </Text>
+                <Text>About</Text>
               </Body>
             </ListItem>
             <ListItem
@@ -84,9 +78,7 @@ About
                 <Icon name="log-out" style={styles.itemIcon} />
               </Left>
               <Body>
-                <Text>
-Logout
-                </Text>
+                <Text>Logout</Text>
               </Body>
             </ListItem>
           </List>

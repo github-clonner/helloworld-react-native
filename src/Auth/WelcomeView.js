@@ -28,9 +28,7 @@ class WelcomeView extends Component {
     return (
       <Container>
         <Content scrollEnabled={false} contentContainerStyle={{ flex: 1 }}>
-          <Text>
-WIP
-          </Text>
+          <Text>WIP</Text>
         </Content>
       </Container>
     );

@@ -45,18 +45,14 @@ class HomeView extends Component {
             </Button>
           </Left>
           <Body>
-            <Title>
-Home
-            </Title>
+            <Title>Home</Title>
           </Body>
           <Right>
             <Spinner size={22} inverse hidesWhenStopped animating={processing} />
           </Right>
         </Header>
         <Content padder>
-          <Text>
-            {JSON.stringify(data, null, 2)}
-          </Text>
+          <Text>{JSON.stringify(data, null, 2)}</Text>
         </Content>
       </Container>
     );

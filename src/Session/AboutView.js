@@ -31,9 +31,7 @@ class AboutView extends Component {
             </Button>
           </Left>
           <Body>
-            <Title>
-About
-            </Title>
+            <Title>About</Title>
           </Body>
           <Right />
         </Header>

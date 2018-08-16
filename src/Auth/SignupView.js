@@ -125,9 +125,7 @@ class SignupView extends Component {
                 disabled={!this.hasValidInput() || this.props.processing}
                 onPress={() => this.signup()}
               >
-                <Text>
-Sign up
-                </Text>
+                <Text>Sign up</Text>
                 {this.props.processing && <Spinner size={22} inverse />}
               </Button>
             </Form>
@@ -135,9 +133,7 @@ Sign up
 
           <View style={{ flexDirection: 'row' }}>
             <Button transparent light full onPress={() => this.props.navigation.navigate('/login')} style={{ flex: 1 }}>
-              <Text>
-Log in
-              </Text>
+              <Text>Log in</Text>
             </Button>
 
             <Button
@@ -147,9 +143,7 @@ Log in
               onPress={() => this.props.navigation.navigate('/recovery')}
               style={{ flex: 1 }}
             >
-              <Text>
-Recover
-              </Text>
+              <Text>Recover</Text>
             </Button>
           </View>
 

@@ -67,9 +67,7 @@ class ProfileView extends Component {
               }}
             >
               <Thumbnail large resizeMode="cover" source={{ uri: user.picture }} />
-              <Text style={{ marginTop: 10, color: COLOR.inverse }}>
-                {user.name}
-              </Text>
+              <Text style={{ marginTop: 10, color: COLOR.inverse }}>{user.name}</Text>
             </View>
           </Body>
           <Right style={{ flex: 0, alignSelf: 'flex-start' }}>
@@ -99,12 +97,8 @@ class ProfileView extends Component {
             >
               <CardItem>
                 <Body>
-                  <Label style={{ fontSize: 16 }}>
-Email
-                  </Label>
-                  <Text style={{ fontSize: 16 }}>
-                    {user.email}
-                  </Text>
+                  <Label style={{ fontSize: 16 }}>Email</Label>
+                  <Text style={{ fontSize: 16 }}>{user.email}</Text>
                 </Body>
                 {/* {user.emailVerified ? (
                 <Icon name="ios-checkmark-circle-outline" style={{ color: COLOR.success }} />
