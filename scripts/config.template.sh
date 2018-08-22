@@ -4,6 +4,6 @@ APP_NAME=HelloWorld
 APPETIZE_ANDROID_ID=@@APPETIZE_ANDROID_ID@@
 APPETIZE_IOS_ID=@@APPETIZE_IOS_ID@@
 
-DELIVERY_URL=ftp://ftp.astalavistababy.agency/delivery/${APP_NAME,,}
+DELIVERY_URL=ftp://ftp.emiketic.com/delivery/${APP_NAME,,}
 
 PROJECT_DIR=$(pwd)

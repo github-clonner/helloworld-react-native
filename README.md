@@ -1,4 +1,4 @@
-# ALVB React Native Starter
+# React Native Starter
 
 A boilerplate and reference implementation for mobile applications built with React, Redux, and React Native.
 
@@ -11,7 +11,7 @@ A boilerplate and reference implementation for mobile applications built with Re
 
 - [API Specifications/Documentation](https://starterspecapi.docs.apiary.io/)
 - [Documentation](./docs)
-- [Guidelines](https://github.com/astalavistababy/alvb-docs/)
+- [Guidelines](https://github.com/emiketic/emiketic-docs/)
 
 ## Technology
 
@@ -85,7 +85,7 @@ Assuming target application with following properties:
 1.  Initialize your application `react-native init`
 
     ```sh
-    react-native init MyApp --skip-jest --template 'https://github.com/astalavistababy/alvb-starter-react-native'
+    react-native init MyApp --skip-jest --template 'https://github.com/emiketic/emiketic-starter-react-native'
     ```
 
 1.  Run post-init routine
