@@ -112,7 +112,7 @@ export function setupStore() {
  */
 
 if (process.env.NODE_ENV === 'development') {
-  const SKIP = ['MODULE', 'reducer', 'persister', 'initializer'];
+  // const SKIP = ['MODULE', 'reducer', 'persister', 'initializer'];
 
   Object.entries($state).forEach(([module, state]) => {
     if (!state) {
