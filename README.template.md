@@ -4,8 +4,8 @@ A boilerplate and reference implementation for mobile applications built with Re
 
 ## Preview
 
-- [Android](https://appetize.io/app/@@APPETIZE_ANDROID_ID@@?device=nexus5&scale=75&orientation=portrait&osVersion=7.1)
-- [iOS](https://appetize.io/app/@@APPETIZE_IOS_ID@@?device=iphone6s&scale=75&orientation=portrait&osVersion=11.1)
+- [Android](https://appetize.io/app/@{APPETIZE_ANDROID_ID}?device=nexus5&scale=75&orientation=portrait&osVersion=7.1)
+- [iOS](https://appetize.io/app/@{APPETIZE_IOS_ID}?device=iphone6s&scale=75&orientation=portrait&osVersion=11.1)
 
 ## References
 

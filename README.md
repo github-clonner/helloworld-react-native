@@ -95,4 +95,4 @@ Assuming target application with following properties:
     ./postinit.sh 'MyApp' 'My App' 'com.myapp.client'
     ```
 
-1.  Make sure to replace placeholders (look for `@@`) with appropriate values
+1.  Make sure to replace placeholders (look for `@{`) with appropriate values
