@@ -19,5 +19,5 @@ if [ -z "$TARGET" ] || [ ! -f "$TARGET" ] || [ -z "$PLATFORM" ] || [ -z "$APPETI
   exit 1
 fi
 
-curl "https://${APPETIZE_TOKEN}@api.appetize.io/v1/apps/${APPETIZE_ID}" -F "file=@${TARGET}" -F "platform=${PLATFORM}" -F "note=${CI_COMMIT_SHA}"
+curl --fail "https://${APPETIZE_TOKEN}@api.appetize.io/v1/apps/${APPETIZE_ID}" -F "file=@${TARGET}" -F "platform=${PLATFORM}" -F "note=${CI_COMMIT_SHA}"
 

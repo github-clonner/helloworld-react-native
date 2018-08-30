@@ -9,4 +9,4 @@ if [ -z "$TARGET" ] || [ ! -f "$TARGET" ] || [ -z "$DELIVERY_USERNAME" ] || [ -z
   exit 1
 fi
 
-curl $DELIVERY_URL/$CI_COMMIT_REF_SLUG/ -T $TARGET -u $DELIVERY_USERNAME:$DELIVERY_PASSWORD --ftp-create-dirs
+curl --fail $DELIVERY_URL/$CI_COMMIT_REF_SLUG/ -T $TARGET -u $DELIVERY_USERNAME:$DELIVERY_PASSWORD --ftp-create-dirs
