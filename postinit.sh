@@ -53,6 +53,14 @@ rm $0
 
 chmod u+x ./scripts/*.sh
 
+# git
+
+git init
+
+git add .
+
+git add -f $(find . -name .gitkeep)
+
 # install dependencies
 
 yarn
