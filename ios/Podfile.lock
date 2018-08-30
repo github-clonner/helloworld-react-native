@@ -45,7 +45,7 @@ PODS:
     - React/Core
     - React/fishhook
     - React/RCTBlob
-  - RNKeychain (2.0.0):
+  - RNKeychain (3.0.0):
     - React
   - yoga (0.55.4.React)
 
