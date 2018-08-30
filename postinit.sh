@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -xeo pipefail
 
-source $(dirname $0)/config.sh
+source $(dirname $0)/scripts/config.sh
 
 if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ] ; then
   echo "usage: $(basename $0) <APP_NAME> <APP_DISPLAY_NAME> <APP_PACKAGE_ID>" >&2
@@ -49,7 +49,7 @@ rm ./App.js || true
 find ./ios -iname '*tvos*' -exec rm -fr {} \; || true
 
 rm ./dev-*.sh
-rm ./postinit.sh
+rm $0
 
 chmod u+x ./scripts/*.sh
 
