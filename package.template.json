@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "android": "react-native run-android",
+    "android": "react-native run-android --appId com.helloworld.package",
     "ios": "react-native run-ios",
     "android-release": "react-native run-android --variant=release",
     "ios-release": "react-native run-ios --configuration Release",
