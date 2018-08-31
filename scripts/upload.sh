@@ -9,4 +9,4 @@ if [ -z "$TARGET" ] || [ ! -f "$TARGET" ] || [ -z "$FTP_USERNAME" ] || [ -z "$FT
   exit 1
 fi
 
-curl --fail $FTP_URL/$CI_COMMIT_REF_SLUG/ -T $TARGET -u $FTP_USERNAME:$FTP_PASSWORD --ftp-create-dirs
+curl --fail "ftp://${FTP_DOMAIN}${FTP_PATH}/${CI_COMMIT_REF_SLUG}/ -T ${TARGET}" -u "${FTP_USERNAME}:${FTP_PASSWORD}" --ftp-create-dirs

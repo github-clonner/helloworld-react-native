@@ -1,9 +1,10 @@
 
+PROJECT_DIR=$(pwd)
+
 APP_NAME=HelloWorld
+
+FTP_DOMAIN=ftp.emiketic.com
+FTP_PATH=/delivery/${APP_NAME,,}
 
 APPETIZE_ANDROID_ID=@{APPETIZE_ANDROID_ID}
 APPETIZE_IOS_ID=@{APPETIZE_IOS_ID}
-
-FTP_URL=ftp://ftp.emiketic.com/delivery/${APP_NAME,,}
-
-PROJECT_DIR=$(pwd)
