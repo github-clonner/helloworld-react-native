@@ -73,7 +73,7 @@ appetize:android:debug:
   script:
     - ./scripts/appetize.sh ./build/app-debug.apk android
 
-deliver:android:debug:
+upload:android:debug:
   stage: deliver
   dependencies:
     - build:android:debug
@@ -85,7 +85,7 @@ deliver:android:debug:
     - docker
   image: spotify/alpine
   script:
-    - ./scripts/deliver.sh ./build/app-debug.apk
+    - ./scripts/upload.sh ./build/app-debug.apk
 
 # android:release:build:
 #   stage: build
@@ -99,7 +99,7 @@ deliver:android:debug:
 #     - yarn
 #   script:
 #     - ./scripts/build-android-release.sh
-#     - ./scripts/deliver.sh ./build/app-release.apk
+#     - ./scripts/upload.sh ./build/app-release.apk
 #   artifacts:
 #     paths:
 #       - ./build/app-release.apk
@@ -137,7 +137,7 @@ appetize:ios:debug:
   script:
     - ./scripts/appetize.sh ./build/app-debug.zip ios
 
-deliver:ios:debug:
+upload:ios:debug:
   stage: deliver
   dependencies:
     - build:ios:debug
@@ -149,7 +149,7 @@ deliver:ios:debug:
     - docker
   image: spotify/alpine
   script:
-    - ./scripts/deliver.sh ./build/app-debug.zip
+    - ./scripts/upload.sh ./build/app-debug.zip
 
 # build:ios:release:
 #   stage: build
@@ -163,7 +163,7 @@ deliver:ios:debug:
 #     - yarn
 #   script:
 #     - ./scripts/build-ios-release.sh
-#     - ./scripts/deliver.sh ./build/app-release.zip
+#     - ./scripts/upload.sh ./build/app-release.zip
 #   artifacts:
 #     paths:
 #       - ./build/app-release.zip

@@ -4,6 +4,6 @@ APP_NAME=HelloWorld
 APPETIZE_ANDROID_ID=@{APPETIZE_ANDROID_ID}
 APPETIZE_IOS_ID=@{APPETIZE_IOS_ID}
 
-DELIVERY_URL=ftp://ftp.emiketic.com/delivery/${APP_NAME,,}
+FTP_URL=ftp://ftp.emiketic.com/delivery/${APP_NAME,,}
 
 PROJECT_DIR=$(pwd)
