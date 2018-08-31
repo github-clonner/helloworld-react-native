@@ -2,7 +2,7 @@
 stages:
   - test
   - build
-  - deliver
+  - deploy
 
 cache:
   key: ${CI_COMMIT_REF_SLUG}
@@ -60,7 +60,7 @@ build:android:debug:
       - ./android/.gradle/
 
 appetize:android:debug:
-  stage: deliver
+  stage: deploy
   dependencies:
     - build:android:debug
   when: always
@@ -74,7 +74,7 @@ appetize:android:debug:
     - ./scripts/appetize.sh ./build/app-debug.apk android
 
 upload:android:debug:
-  stage: deliver
+  stage: deploy
   dependencies:
     - build:android:debug
   when: always
@@ -124,7 +124,7 @@ build:ios:debug:
       - ./ios/Pods/
 
 appetize:ios:debug:
-  stage: deliver
+  stage: deploy
   dependencies:
     - build:ios:debug
   when: always
@@ -138,7 +138,7 @@ appetize:ios:debug:
     - ./scripts/appetize.sh ./build/app-debug.zip ios
 
 upload:ios:debug:
-  stage: deliver
+  stage: deploy
   dependencies:
     - build:ios:debug
   when: always
