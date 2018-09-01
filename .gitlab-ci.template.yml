@@ -69,7 +69,7 @@ appetize:android:debug:
   #   - develop
   tags:
     - docker
-  image: spotify/alpine
+  image: emiketic/essentials
   script:
     - ./scripts/appetize.sh ./build/app-debug.apk android
 
@@ -83,7 +83,7 @@ upload:android:debug:
   #   - develop
   tags:
     - docker
-  image: spotify/alpine
+  image: emiketic/essentials
   script:
     - ./scripts/upload.sh ./build/app-debug.apk
 
@@ -133,7 +133,7 @@ appetize:ios:debug:
   #   - develop
   tags:
     - docker
-  image: spotify/alpine
+  image: emiketic/essentials
   script:
     - ./scripts/appetize.sh ./build/app-debug.zip ios
 
@@ -147,7 +147,7 @@ upload:ios:debug:
   #   - develop
   tags:
     - docker
-  image: spotify/alpine
+  image: emiketic/essentials
   script:
     - ./scripts/upload.sh ./build/app-debug.zip
 
