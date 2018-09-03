@@ -6,4 +6,4 @@ find ./node_modules/native-base/Fonts/*.ttf  \
   -not -name 'Roboto*.ttf' \
   -delete
 
-rm ./node_modules/emiketic-starter-lib/.babelrc
+rm ./node_modules/emiketic-starter-lib/.babelrc || true
