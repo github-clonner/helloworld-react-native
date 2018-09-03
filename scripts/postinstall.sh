@@ -4,4 +4,6 @@
 find ./node_modules/native-base/Fonts/*.ttf  \
   -not -name 'Ionicons.ttf' \
   -not -name 'Roboto*.ttf' \
-  -exec rm {} \;
+  -delete
+
+rm ./node_modules/emiketic-starter-lib/.babelrc
