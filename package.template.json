@@ -17,8 +17,7 @@
     "postinstall": "./scripts/postinstall.sh"
   },
   "dependencies": {
-    "debug": "~3.1.0",
-    "events": "~3.0.0",
+    "emiketic-starter-lib": "https://github.com/emiketic/emiketic-starter-lib",
     "lodash.debounce": "~4.0.8",
     "native-base": "~2.8.0",
     "promise.prototype.finally": "~3.1.0",
