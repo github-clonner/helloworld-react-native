@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -xeo pipefail
+set -eo pipefail
 
 if [ $# -lt 1 ] ; then
 	set +x
@@ -36,12 +36,11 @@ source $(dirname $0)/generate-image-assets.include.sh
 
 ## generate assets
 
-# if [ "$FORMAT" != 'SVG' ]; then
+target_dir="${PWD}/assets"
 
-# inkscape -z -e "$PWD/assets/$output.png" -w  "$(echo $width*1 | bc)" -h "$(echo $height*1 | bc)" "$input"
 
-# else
+function image_name () {
+  echo "${target_dir}/${output}.png";
+}
 
-mogrify -write "$PWD/assets/$output.png" -format png -background none -density "$(echo $density | bc)" -resize "$(echo $width*1 | bc)x$(echo $height*1 | bc)" "$input"
-
-# fi
+scale=1 generate_image

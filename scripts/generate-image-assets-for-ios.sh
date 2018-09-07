@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -xeo pipefail
+set -eo pipefail
 
 if [ $# -lt 1 ] ; then
 	echo "usage: $0 <input> [<size@1x>] [<output>]"
@@ -19,16 +19,16 @@ source $(dirname $0)/generate-image-assets.include.sh
 
 APP_NAME=$(find $PWD/ios -name '*.xcodeproj' -exec basename {} .xcodeproj \;)
 
-TARGET_DIR="${PWD}/ios/${APP_NAME}/Images.xcassets/${output}.imageset"
+target_dir="${PWD}/ios/${APP_NAME}/Images.xcassets/${output}.imageset"
 
-mkdir -p $TARGET_DIR
+mkdir -p $target_dir
 
-cat > "${TARGET_DIR}/Contents.json" <<EOL
+cat > "${target_dir}/Contents.json" <<EOL
 {
   "images": [
     {
       "idiom": "universal",
-      "filename": "$output.png",
+      "filename": "$output@1.png",
       "scale": "1x"
     },
     {
@@ -49,22 +49,12 @@ cat > "${TARGET_DIR}/Contents.json" <<EOL
 }
 EOL
 
-# if [ "$FORMAT" != 'SVG' ]; then
+function image_name () {
+  echo "${target_dir}/${output}@${scale}x.png";
+}
 
-#   function generate_image () {
-#     inkscape -z -e "${TARGET_DIR}/${filename}.png" -w "$(echo $width*$scale | bc)" -h "$(echo $height*$scale | bc)" "$input"
-#   }
+scale=1 generate_image
 
-# else
+scale=2 generate_image
 
-  function generate_image () {
-    mogrify -write "${TARGET_DIR}/${filename}.png" -format png -background none -density "$(echo $DENSITY*$scale*$height/$HEIGHT | bc)" -resize "$(echo $width*$scale | bc)x$(echo $height*$scale | bc)" "$input"
-  }
-
-# fi
-
-scale=1 filename="${output}" generate_image
-
-scale=2 filename="${output}@2x" generate_image
-
-scale=3 filename="${output}@3x" generate_image
+scale=3 generate_image

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -xeo pipefail
+set -eo pipefail
 
 ./scripts/generate-icon-assets-for-android.sh assets/icon.svg
 ./scripts/generate-icon-assets-for-ios.sh assets/icon.svg

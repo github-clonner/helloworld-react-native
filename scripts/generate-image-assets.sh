@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -xeo pipefail
+set -eo pipefail
 
 if [ $# -lt 1 ] ; then
 	set +x
