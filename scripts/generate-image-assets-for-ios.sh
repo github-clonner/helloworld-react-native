@@ -49,7 +49,7 @@ cat > "${target_dir}/Contents.json" <<EOL
 }
 EOL
 
-function image_name () {
+function image_path () {
   echo "${target_dir}/${output}@${scale}x.png";
 }
 

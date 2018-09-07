@@ -48,7 +48,7 @@ class RecoveryView extends Component {
     return (
       <Container>
         <Header noShadow style={{ height: 0 }} />
-        <Content scrollEnabled={false} contentContainerStyle={{ flex: 1, backgroundColor: COLOR.primary }}>
+        <Content scrollEnabled={false} contentContainerStyle={{ flex: 1 }}>
           <LogoHeader style={{ flex: 1, minHeight: 'auto' }} />
 
           <KeyboardAvoidingView>
@@ -59,8 +59,6 @@ class RecoveryView extends Component {
             >
               <Item regular>
                 <Input
-                  style={{ color: COLOR.textInverse }}
-                  placeholderTextColor={COLOR.textSecondaryInverse}
                   placeholder="Email"
                   keyboardType="email-address"
                   value={this.state.email}
@@ -75,9 +73,9 @@ class RecoveryView extends Component {
               <View style={{ margin: 4 }} />
 
               <Button
-                style={{ backgroundColor: COLOR.accent }}
                 full
-                disabled={!this.hasValidInput() || this.props.processing}
+                primary
+                active={!this.hasValidInput() || this.props.processing}
                 onPress={() => this.initiateAccountRecovery()}
               >
                 <Text>Recover my Account</Text>
@@ -87,17 +85,11 @@ class RecoveryView extends Component {
           </KeyboardAvoidingView>
 
           <View style={{ flexDirection: 'row' }}>
-            <Button transparent light full onPress={() => this.props.navigation.navigate('/login')} style={{ flex: 1 }}>
+            <Button transparent full onPress={() => this.props.navigation.navigate('/login')} style={{ flex: 1 }}>
               <Text>Log in</Text>
             </Button>
 
-            <Button
-              transparent
-              light
-              full
-              onPress={() => this.props.navigation.navigate('/signup')}
-              style={{ flex: 1 }}
-            >
+            <Button transparent full onPress={() => this.props.navigation.navigate('/signup')} style={{ flex: 1 }}>
               <Text>Sign up</Text>
             </Button>
           </View>

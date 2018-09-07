@@ -26,7 +26,7 @@ target_dir="${PWD}/ios/${APP_NAME}/Images.xcassets/AppIcon.appiconset"
 
 mkdir -p $target_dir
 
-function image_name () {
+function image_path () {
   if [ -n "$prefix" ]; then
     echo "${target_dir}/${prefix}-${width}x${height}@${scale}x.png";
   else

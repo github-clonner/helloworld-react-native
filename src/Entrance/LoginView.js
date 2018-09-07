@@ -48,7 +48,7 @@ class LoginView extends Component {
     return (
       <Container>
         <Header noShadow style={{ height: 0 }} />
-        <Content scrollEnabled={false} contentContainerStyle={{ flex: 1, backgroundColor: COLOR.primary }}>
+        <Content scrollEnabled={false} contentContainerStyle={{ flex: 1 }}>
           <LogoHeader style={{ flex: 1, minHeight: 'auto' }} />
 
           <KeyboardAvoidingView>
@@ -59,8 +59,6 @@ class LoginView extends Component {
             >
               <Item regular>
                 <Input
-                  style={{ color: COLOR.textInverse }}
-                  placeholderTextColor={COLOR.textSecondaryInverse}
                   placeholder="Email"
                   keyboardType="email-address"
                   value={this.state.username}
@@ -77,8 +75,6 @@ class LoginView extends Component {
               <Item regular>
                 <Input
                   ref={(ref) => (this.$password = ref)}
-                  style={{ color: COLOR.textInverse }}
-                  placeholderTextColor={COLOR.textSecondaryInverse}
                   placeholder="Password"
                   secureTextEntry
                   autoCapitalize="none"
@@ -93,12 +89,7 @@ class LoginView extends Component {
 
               <View style={{ margin: 4 }} />
 
-              <Button
-                style={{ backgroundColor: COLOR.accent }}
-                full
-                disabled={!this.hasValidInput() || this.props.processing}
-                onPress={() => this.login()}
-              >
+              <Button full primary active={!this.hasValidInput() || this.props.processing} onPress={() => this.login()}>
                 <Text>Log in</Text>
                 {this.props.processing && <Spinner size={22} inverse />}
               </Button>
@@ -106,23 +97,11 @@ class LoginView extends Component {
           </KeyboardAvoidingView>
 
           <View style={{ flexDirection: 'row' }}>
-            <Button
-              transparent
-              light
-              full
-              onPress={() => this.props.navigation.navigate('/signup')}
-              style={{ flex: 1 }}
-            >
+            <Button transparent full onPress={() => this.props.navigation.navigate('/signup')} style={{ flex: 1 }}>
               <Text>Sign up</Text>
             </Button>
 
-            <Button
-              transparent
-              light
-              full
-              onPress={() => this.props.navigation.navigate('/recovery')}
-              style={{ flex: 1 }}
-            >
+            <Button transparent full onPress={() => this.props.navigation.navigate('/recovery')} style={{ flex: 1 }}>
               <Text>Recover</Text>
             </Button>
           </View>

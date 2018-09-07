@@ -16,9 +16,11 @@ source $(dirname $0)/generate-image-assets.include.sh
 
 ## generate assets
 
-target_dir="${PWD}/android/app/src/main/res/mipmap"
+target_dir="${PWD}/android/app/src/main/res/drawable"
 
-function image_name () {
+mkdir -p ${target_dir}-{mdpi,hdpi,xhdpi,xxhdpi,xxxhdpi}
+
+function image_path () {
   echo "${target_dir}-${resolution}/${output}.png";
 }
 

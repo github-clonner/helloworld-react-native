@@ -53,15 +53,15 @@ function preapre_image () {
     density=$(echo $density/4 | bc)
   fi
 
-  echo "$FORMAT ${WIDTH}x${HEIGHT}:${DENSITY} => PNG ${width}x${height}:${density}@${scale} |> $(image_name)"
+  echo "$FORMAT ${WIDTH}x${HEIGHT}:${DENSITY} => PNG ${width}x${height}:${density}@${scale} |> $(image_path)"
 
 }
 
-function image_name () {
+function image_path () {
   echo "$PWD/assets/output.png";
 }
 
 function generate_image () {
   preapre_image
-  mogrify -write $(image_name) -format png -background none -density "$(echo $density*$scale | bc)" -resize "$(echo $width*$scale | bc)x$(echo $height*$scale | bc)" "$input"
+  mogrify -write $(image_path) -format png -background none -density "$(echo $density*$scale | bc)" -resize "$(echo $width*$scale | bc)x$(echo $height*$scale | bc)" "$input"
 }

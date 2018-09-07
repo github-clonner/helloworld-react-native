@@ -58,7 +58,7 @@ class SignupView extends Component {
     return (
       <Container>
         <Header noShadow style={{ height: 0 }} />
-        <Content scrollEnabled={false} contentContainerStyle={{ flex: 1, backgroundColor: COLOR.primary }}>
+        <Content scrollEnabled={false} contentContainerStyle={{ flex: 1 }}>
           <LogoHeader style={{ flex: 1, minHeight: 'auto' }} />
 
           <KeyboardAvoidingView>
@@ -69,8 +69,6 @@ class SignupView extends Component {
             >
               <Item regular>
                 <Input
-                  style={{ color: COLOR.textInverse }}
-                  placeholderTextColor={COLOR.textSecondaryInverse}
                   placeholder="Name"
                   value={this.state.name}
                   returnKeyType="next"
@@ -85,8 +83,6 @@ class SignupView extends Component {
               <Item regular>
                 <Input
                   ref={(ref) => (this.$name = ref)}
-                  style={{ color: COLOR.textInverse }}
-                  placeholderTextColor={COLOR.textSecondaryInverse}
                   placeholder="Email"
                   keyboardType="email-address"
                   value={this.state.email}
@@ -103,8 +99,6 @@ class SignupView extends Component {
               <Item regular>
                 <Input
                   ref={(ref) => (this.$password = ref)}
-                  style={{ color: COLOR.textInverse }}
-                  placeholderTextColor={COLOR.textSecondaryInverse}
                   placeholder="Password"
                   secureTextEntry
                   autoCapitalize="none"
@@ -120,9 +114,9 @@ class SignupView extends Component {
               <View style={{ margin: 4 }} />
 
               <Button
-                style={{ backgroundColor: COLOR.accent }}
                 full
-                disabled={!this.hasValidInput() || this.props.processing}
+                primary
+                active={!this.hasValidInput() || this.props.processing}
                 onPress={() => this.signup()}
               >
                 <Text>Sign up</Text>
@@ -132,17 +126,11 @@ class SignupView extends Component {
           </KeyboardAvoidingView>
 
           <View style={{ flexDirection: 'row' }}>
-            <Button transparent light full onPress={() => this.props.navigation.navigate('/login')} style={{ flex: 1 }}>
+            <Button transparent full onPress={() => this.props.navigation.navigate('/login')} style={{ flex: 1 }}>
               <Text>Log in</Text>
             </Button>
 
-            <Button
-              transparent
-              light
-              full
-              onPress={() => this.props.navigation.navigate('/recovery')}
-              style={{ flex: 1 }}
-            >
+            <Button transparent full onPress={() => this.props.navigation.navigate('/recovery')} style={{ flex: 1 }}>
               <Text>Recover</Text>
             </Button>
           </View>

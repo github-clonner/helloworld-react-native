@@ -16,12 +16,13 @@ const LogoHeader = ({ style }) => (
 
     <View style={[STYLE.fit, { alignItems: 'center', justifyContent: 'center' }]}>
       <Image
-        source={logoImage}
+        source={{ uri: 'logo' }}
         resizeMode="contain"
         style={{
           flex: 1,
           margin: 24,
-          maxWidth: 140,
+          width: 140,
+          height: 140,
         }}
       />
     </View>

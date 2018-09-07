@@ -12,11 +12,11 @@ import { LogoHeader } from './LogoHeader';
 const LandingView = () => (
   <Container>
     <Header noShadow style={{ height: 0 }} />
-    <Content scrollEnabled={false} contentContainerStyle={{ flex: 1, backgroundColor: COLOR.primary }}>
+    <Content scrollEnabled={false} contentContainerStyle={{ flex: 1 }}>
       <LogoHeader style={{ flex: 1 }} />
 
       <View style={{ flex: 1, alignContent: 'center', justifyContent: 'flex-start' }}>
-        <Spinner color={COLOR.accent} size="large" style={{ margin: 16 }} />
+        <Spinner size="large" style={{ margin: 16 }} />
       </View>
     </Content>
   </Container>
