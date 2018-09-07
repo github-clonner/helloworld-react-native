@@ -11,7 +11,7 @@ exports[`renders correctly 1`] = `
   <View
     style={
       Object {
-        "backgroundColor": "#607D8B",
+        "backgroundColor": "#F0F1F6",
         "flex": 1,
       }
     }
@@ -19,7 +19,6 @@ exports[`renders correctly 1`] = `
     <RCTSafeAreaView
       style={
         Object {
-          "backgroundColor": "#F0F1F6",
           "flex": 1,
         }
       }
@@ -74,7 +73,6 @@ exports[`renders correctly 1`] = `
                 "padding": undefined,
               },
               Object {
-                "backgroundColor": "#607D8B",
                 "flex": 1,
               },
             ]
@@ -146,14 +144,15 @@ exports[`renders correctly 1`] = `
                   resizeMode="contain"
                   source={
                     Object {
-                      "testUri": "../../../assets/logo.png",
+                      "uri": "logo",
                     }
                   }
                   style={
                     Object {
                       "flex": 1,
+                      "height": 140,
                       "margin": 24,
-                      "maxWidth": 140,
+                      "width": 140,
                     }
                   }
                 />
@@ -170,7 +169,7 @@ exports[`renders correctly 1`] = `
             >
               <ActivityIndicator
                 animating={true}
-                color="#FFC107"
+                color="#607D8B"
                 hidesWhenStopped={true}
                 size="large"
                 style={
