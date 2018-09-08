@@ -1,7 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-  Container, Header, Left, Body, Title, Right, Content, Spinner, Text, Icon, Button,
+  Container,
+  Header,
+  Left,
+  Body,
+  Title,
+  Right,
+  Content,
+  Spinner,
+  Text,
+  Icon,
+  Button,
+  Card,
+  CardItem,
+  CheckBox,
+  View,
 } from 'native-base';
 
 import * as PropTypes from '../common/proptypes';
@@ -45,14 +59,23 @@ class HomeView extends Component {
             </Button>
           </Left>
           <Body>
-            <Title>Home</Title>
+            <Title>Todos</Title>
           </Body>
           <Right>
             <Spinner size={22} inverse hidesWhenStopped animating={processing} />
           </Right>
         </Header>
         <Content padder>
-          <Text>{JSON.stringify(data, null, 2)}</Text>
+          {/* <Text>{JSON.stringify(data, null, 2)}</Text> */}
+          <Card>
+            {data
+              && data.todo.map((item) => (
+                <CardItem key={item.id} button bordered onPress={() => alert('Not yet implemented!')}>
+                  <CheckBox checked={item.done} color={COLOR.primary} style={{ marginLeft: 0, marginRight: 16 }} />
+                  <Text style={{ textDecorationLine: item.done ? 'line-through' : 'none' }}>{item.label}</Text>
+                </CardItem>
+              ))}
+          </Card>
         </Content>
       </Container>
     );
