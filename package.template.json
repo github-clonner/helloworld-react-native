@@ -17,6 +17,8 @@
     "postinstall": "./scripts/postinstall.sh"
   },
   "dependencies": {
+    "@babel/core": "~7.0.0",
+    "babel-core": "7.0.0-bridge.0",
     "emiketic-starter-lib": "https://github.com/emiketic/emiketic-starter-lib",
     "lodash.debounce": "~4.0.8",
     "native-base": "~2.8.0",
@@ -42,7 +44,7 @@
     "eslint-plugin-import": "~2.14.0",
     "eslint-plugin-jsx-a11y": "~6.1.1",
     "eslint-plugin-react": "~7.11.1",
-    "jest": "~23.5.0",
+    "jest": "23.5.0",
     "jest-react-native": "~18.0.0",
     "prettier": "~1.14.2",
     "react-test-renderer": "16.4.1"
@@ -51,7 +53,10 @@
     "preset": "react-native",
     "transformIgnorePatterns": [
       "node_modules/?!(react-native|native-base)"
-    ]
+    ],
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
+    }
   },
   "rnpm": {
     "assets": [

@@ -41,7 +41,7 @@ export const COLOR = {
  * React Native Customization
  */
 
-TextInput.defaultProps.selectionColor = COLOR.accent;
+TextInput.defaultProps.selectionColor = COLOR.primary;
 
 /**
  * NativeBase Theme
