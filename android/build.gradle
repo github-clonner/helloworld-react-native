@@ -26,17 +26,20 @@ allprojects {
 }
 
 ext {
+    buildToolsVersion = "26.0.3"
+    minSdkVersion = 16
     compileSdkVersion = 26
-    buildToolsVersion = '26.0.2'
+    targetSdkVersion = 26
+    supportLibVersion = "26.1.0"
 }
 
-subprojects { subproject ->
-    afterEvaluate{
-        if((subproject.plugins.hasPlugin('android') || subproject.plugins.hasPlugin('android-library'))) {
-            android {
-                compileSdkVersion rootProject.ext.compileSdkVersion
-                buildToolsVersion rootProject.ext.buildToolsVersion
-            }
-        }
-    }
-}
+// subprojects { subproject ->
+//     afterEvaluate{
+//         if((subproject.plugins.hasPlugin('android') || subproject.plugins.hasPlugin('android-library'))) {
+//             android {
+//                 compileSdkVersion rootProject.ext.compileSdkVersion
+//                 buildToolsVersion rootProject.ext.buildToolsVersion
+//             }
+//         }
+//     }
+// }

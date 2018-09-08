@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
 
 import NavigationMenu from './NavigationMenu';

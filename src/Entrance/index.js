@@ -1,11 +1,11 @@
-import { createSwitchNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 
 import WelcomeView from './WelcomeView';
 import LoginView from './LoginView';
 import SignupView from './SignupView';
 import RecoveryView from './RecoveryView';
 
-export default createSwitchNavigator(
+export default createStackNavigator(
   {
     '/welcome': { screen: WelcomeView },
     '/login': { screen: LoginView },
@@ -14,6 +14,6 @@ export default createSwitchNavigator(
   },
   {
     initialRouteName: '/login',
-    backBehavior: 'initialRoute',
+    headerMode: 'none',
   },
 );
