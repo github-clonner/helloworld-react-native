@@ -1,7 +1,7 @@
 import { StyleSheet, TextInput } from 'react-native';
 
 // import NativeBaseTheme from '../../native-base-theme/variables/platform';
-import NativeBaseTheme from 'native-base/src/theme/variables/platform';
+import NativeBaseTheme from 'native-base/src/theme/variables/material';
 
 // import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 
