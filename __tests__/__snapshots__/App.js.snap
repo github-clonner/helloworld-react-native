@@ -41,14 +41,14 @@ exports[`renders correctly 1`] = `
               Array [
                 Object {
                   "backgroundColor": "#607D8B",
-                  "borderBottomColor": "#a7a6ab",
+                  "borderBottomColor": "#3F51B5",
                   "borderBottomWidth": 0.5,
                   "elevation": 0,
                   "flexDirection": "row",
-                  "height": 64,
+                  "height": NaN,
                   "justifyContent": "center",
                   "left": 0,
-                  "paddingLeft": 6,
+                  "paddingLeft": 10,
                   "paddingRight": 10,
                   "paddingTop": 18,
                   "right": 0,
