@@ -6,24 +6,25 @@ import { STYLE } from '../common/styles';
 
 import * as PropTypes from '../common/proptypes';
 
-import logoImage from '../../assets/logo.png';
-
-const LogoHeader = ({ style }) => (
+const LogoHeader = ({ style, logoStyle }) => (
   <View style={style}>
     {/* <View style={[STYLE.fit, { justifyContent: 'flex-end' }]}>
-      // <Image source={headerBackgroundImage} resizeMode="cover" />
+      // <Image source={HeaderBackgroundImage} resizeMode="cover" />
     </View> */}
 
     <View style={[STYLE.fit, { alignItems: 'center', justifyContent: 'center' }]}>
       <Image
         source={{ uri: 'logo' }}
         resizeMode="contain"
-        style={{
-          flex: 1,
-          margin: 24,
-          width: 140,
-          height: 140,
-        }}
+        style={[
+          {
+            flex: 1,
+            margin: 24,
+            width: 140,
+            height: 140,
+          },
+          logoStyle,
+        ]}
       />
     </View>
   </View>
@@ -31,10 +32,12 @@ const LogoHeader = ({ style }) => (
 
 LogoHeader.propTypes = {
   style: PropTypes.style,
+  logoStyle: PropTypes.style,
 };
 
 LogoHeader.defaultProps = {
   style: {},
+  logoStyle: {},
 };
 
 export { LogoHeader };

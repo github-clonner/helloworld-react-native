@@ -148,12 +148,18 @@ exports[`renders correctly 1`] = `
                     }
                   }
                   style={
-                    Object {
-                      "flex": 1,
-                      "height": 140,
-                      "margin": 24,
-                      "width": 140,
-                    }
+                    Array [
+                      Object {
+                        "flex": 1,
+                        "height": 140,
+                        "margin": 24,
+                        "width": 140,
+                      },
+                      Object {
+                        "margin": 0,
+                        "marginBottom": 24,
+                      },
+                    ]
                   }
                 />
               </View>
@@ -161,28 +167,45 @@ exports[`renders correctly 1`] = `
             <View
               style={
                 Object {
-                  "alignContent": "center",
-                  "flex": 1,
-                  "justifyContent": "flex-start",
+                  "height": "100%",
+                  "position": "absolute",
+                  "width": "100%",
                 }
               }
             >
-              <ActivityIndicator
-                animating={true}
-                color="#607D8B"
-                hidesWhenStopped={true}
-                size="large"
+              <View
                 style={
-                  Array [
-                    Object {
-                      "height": 80,
-                    },
-                    Object {
-                      "margin": 16,
-                    },
-                  ]
+                  Object {
+                    "flex": 1,
+                  }
                 }
               />
+              <View
+                style={
+                  Object {
+                    "alignContent": "center",
+                    "flex": 1,
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <ActivityIndicator
+                  animating={true}
+                  color="#607D8B"
+                  hidesWhenStopped={true}
+                  size="large"
+                  style={
+                    Array [
+                      Object {
+                        "height": 80,
+                      },
+                      Object {
+                        "margin": 16,
+                      },
+                    ]
+                  }
+                />
+              </View>
             </View>
           </View>
         </RCTScrollView>

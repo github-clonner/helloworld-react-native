@@ -34,6 +34,7 @@
     "redux-thunk": "~2.3.0"
   },
   "devDependencies": {
+    "@babel/core": "~7.0.0",
     "babel-eslint": "~9.0.0",
     "babel-jest": "23.6.0",
     "babel-preset-react-native": "^5",
@@ -49,9 +50,16 @@
   },
   "jest": {
     "preset": "react-native",
-    "transformIgnorePatterns": ["node_modules/?!(react-native|native-base)"]
+    "transformIgnorePatterns": [
+      "node_modules/?!(react-native|native-base)"
+    ],
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
+    }
   },
   "rnpm": {
-    "assets": ["assets/fonts"]
+    "assets": [
+      "assets/fonts"
+    ]
   }
 }
