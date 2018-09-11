@@ -17,15 +17,13 @@
     "postinstall": "./scripts/postinstall.sh"
   },
   "dependencies": {
-    "@babel/core": "~7.0.0",
-    "babel-core": "7.0.0-bridge.0",
     "emiketic-starter-lib": "https://github.com/emiketic/emiketic-starter-lib",
     "lodash.debounce": "~4.0.8",
     "native-base": "~2.8.0",
     "promise.prototype.finally": "~3.1.0",
     "prop-types": "~15.6.2",
     "react": "16.4.1",
-    "react-native": "0.56.0",
+    "react-native": "0.56.1",
     "react-native-keychain": "~3.0.0",
     "react-native-splash-screen": "~3.1.1",
     "react-navigation": "~2.13.0",
@@ -37,30 +35,23 @@
   },
   "devDependencies": {
     "babel-eslint": "~9.0.0",
-    "babel-jest": "23.4.2",
+    "babel-jest": "23.6.0",
     "babel-preset-react-native": "^5",
     "eslint": "~5.5.0",
     "eslint-config-airbnb": "~17.1.0",
     "eslint-plugin-import": "~2.14.0",
     "eslint-plugin-jsx-a11y": "~6.1.1",
     "eslint-plugin-react": "~7.11.1",
-    "jest": "23.5.0",
+    "jest": "23.6.0",
     "jest-react-native": "~18.0.0",
     "prettier": "~1.14.2",
     "react-test-renderer": "16.4.1"
   },
   "jest": {
     "preset": "react-native",
-    "transformIgnorePatterns": [
-      "node_modules/?!(react-native|native-base)"
-    ],
-    "transform": {
-      "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
-    }
+    "transformIgnorePatterns": ["node_modules/?!(react-native|native-base)"]
   },
   "rnpm": {
-    "assets": [
-      "assets/fonts"
-    ]
+    "assets": ["assets/fonts"]
   }
 }
