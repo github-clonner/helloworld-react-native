@@ -67,11 +67,11 @@ class HomeView extends Component {
           {/* <Text>{JSON.stringify(data, null, 2)}</Text> */}
           {data && (
             <Card>
-              data.todo.map((item) => (
-              <CardItem key={item.id} button bordered onPress={() => alert('Not yet implemented!')}>
-                <CheckBox checked={item.done} color={COLOR.primary} style={{ marginLeft: 0, marginRight: 16 }} />
-                <Text style={{ textDecorationLine: item.done ? 'line-through' : 'none' }}>{item.label}</Text>
-              </CardItem>
+              {data.todo.map((item) => (
+                <CardItem key={item.id} button bordered onPress={() => alert('Not yet implemented!')}>
+                  <CheckBox checked={item.done} color={COLOR.primary} style={{ marginLeft: 0, marginRight: 16 }} />
+                  <Text style={{ textDecorationLine: item.done ? 'line-through' : 'none' }}>{item.label}</Text>
+                </CardItem>
               ))}
             </Card>
           )}
