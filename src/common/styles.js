@@ -44,7 +44,7 @@ export const COLOR = {
 TextInput.defaultProps.selectionColor = COLOR.primary;
 
 /**
- * NativeBase Theme
+ * NativeBase Customization
  *
  * Refer to following links for variables names:
  *   * https://docs.nativebase.io/docs/ThemeVariables.html

@@ -52,16 +52,16 @@ class HomeView extends Component {
 
     return (
       <Container>
-        <Header>
+        <Header _style={{ alignContent: 'flex-start', alignItems: 'flex-start', justifyContent: 'flex-start' }}>
           <Left>
             <Button transparent onPress={() => this.props.navigation.openDrawer()}>
-              <Icon name="menu" />
+              {processing ? <Spinner size={22} inverse /> : <Icon name="menu" />}
             </Button>
           </Left>
           <Body>
             <Title>Todos</Title>
           </Body>
-          <Right>{processing && <Spinner size={22} inverse />}</Right>
+          <Right />
         </Header>
         <Content padder>
           {/* <Text>{JSON.stringify(data, null, 2)}</Text> */}

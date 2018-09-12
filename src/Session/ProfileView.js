@@ -20,7 +20,7 @@ import {
 
 import * as PropTypes from '../common/proptypes';
 
-import { COLOR } from '../common/styles';
+import { COLOR, STYLE } from '../common/styles';
 
 // import * as Activity from '../Shared/Activity.state';
 
@@ -51,17 +51,10 @@ class ProfileView extends Component {
 
     return (
       <Container>
-        <Header style={{ height: 200 }}>
-          <Left style={{ flex: 0, alignSelf: 'flex-start' }}>
-            <Button transparent onPress={() => this.props.navigation.openDrawer()}>
-              <Icon name="menu" />
-            </Button>
-          </Left>
-          <Body>
+        <Header span style={{ height: 200, paddingTop: 6 }}>
+          <View style={[STYLE.fit, STYLE.center]}>
             <View
               style={{
-                alignSelf: 'stretch',
-                justifyContent: 'center',
                 alignItems: 'center',
                 padding: 8,
               }}
@@ -69,10 +62,14 @@ class ProfileView extends Component {
               <Thumbnail large resizeMode="cover" source={{ uri: user.picture }} />
               <Text style={{ marginTop: 10, color: COLOR.inverse }}>{user.name}</Text>
             </View>
-          </Body>
-          <Right style={{ flex: 0, alignSelf: 'flex-start' }}>
-            {processing && <Spinner size={22} inverse style={{ margin: 4, maxHeight: 36 }} />}
-          </Right>
+          </View>
+          <Left>
+            <Button transparent onPress={() => this.props.navigation.openDrawer()}>
+              {processing ? <Spinner size={22} inverse /> : <Icon name="menu" />}
+            </Button>
+          </Left>
+          <Body />
+          <Right />
         </Header>
 
         <Content>
