@@ -43,7 +43,7 @@ class HomeView extends Component {
   componentDidMount() {
     this.props
       .dispatch($fetchData())
-      .then(() => this.props.dispatch(Activity.$toast('success', 'Home data loaded')))
+      .then(() => this.props.dispatch(Activity.$toast('success', 'Todos loaded')))
       .catch((error) => this.props.dispatch(Activity.$toast('failure', error.message)));
   }
 
@@ -61,21 +61,20 @@ class HomeView extends Component {
           <Body>
             <Title>Todos</Title>
           </Body>
-          <Right>
-            <Spinner size={22} inverse hidesWhenStopped animating={processing} />
-          </Right>
+          <Right>{processing && <Spinner size={22} inverse />}</Right>
         </Header>
         <Content padder>
           {/* <Text>{JSON.stringify(data, null, 2)}</Text> */}
-          <Card>
-            {data
-              && data.todo.map((item) => (
-                <CardItem key={item.id} button bordered onPress={() => alert('Not yet implemented!')}>
-                  <CheckBox checked={item.done} color={COLOR.primary} style={{ marginLeft: 0, marginRight: 16 }} />
-                  <Text style={{ textDecorationLine: item.done ? 'line-through' : 'none' }}>{item.label}</Text>
-                </CardItem>
+          {data && (
+            <Card>
+              data.todo.map((item) => (
+              <CardItem key={item.id} button bordered onPress={() => alert('Not yet implemented!')}>
+                <CheckBox checked={item.done} color={COLOR.primary} style={{ marginLeft: 0, marginRight: 16 }} />
+                <Text style={{ textDecorationLine: item.done ? 'line-through' : 'none' }}>{item.label}</Text>
+              </CardItem>
               ))}
-          </Card>
+            </Card>
+          )}
         </Content>
       </Container>
     );

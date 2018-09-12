@@ -71,7 +71,7 @@ class ProfileView extends Component {
             </View>
           </Body>
           <Right style={{ flex: 0, alignSelf: 'flex-start' }}>
-            <Spinner size={22} inverse hidesWhenStopped animating={processing} style={{ margin: 4, maxHeight: 36 }} />
+            {processing && <Spinner size={22} inverse style={{ margin: 4, maxHeight: 36 }} />}
           </Right>
         </Header>
 
