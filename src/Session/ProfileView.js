@@ -65,7 +65,7 @@ class ProfileView extends Component {
           </View>
           <Left>
             <Button transparent onPress={() => this.props.navigation.openDrawer()}>
-              {processing ? <Spinner size={22} inverse /> : <Icon name="menu" />}
+              {processing ? <Spinner size="small" inverse /> : <Icon name="menu" />}
             </Button>
           </Left>
           <Body />

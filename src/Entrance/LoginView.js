@@ -91,7 +91,7 @@ class LoginView extends Component {
 
               <Button full primary active={!this.hasValidInput() || this.props.processing} onPress={() => this.login()}>
                 <Text>Log in</Text>
-                {this.props.processing && <Spinner size={22} inverse />}
+                {this.props.processing && <Spinner size="small" inverse />}
               </Button>
             </Form>
           </KeyboardAvoidingView>

@@ -120,7 +120,7 @@ class SignupView extends Component {
                 onPress={() => this.signup()}
               >
                 <Text>Sign up</Text>
-                {this.props.processing && <Spinner size={22} inverse />}
+                {this.props.processing && <Spinner size="small" inverse />}
               </Button>
             </Form>
           </KeyboardAvoidingView>

@@ -55,7 +55,7 @@ class HomeView extends Component {
         <Header _style={{ alignContent: 'flex-start', alignItems: 'flex-start', justifyContent: 'flex-start' }}>
           <Left>
             <Button transparent onPress={() => this.props.navigation.openDrawer()}>
-              {processing ? <Spinner size={22} inverse /> : <Icon name="menu" />}
+              {processing ? <Spinner size="small" inverse /> : <Icon name="menu" />}
             </Button>
           </Left>
           <Body>
