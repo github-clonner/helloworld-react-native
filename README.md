@@ -86,7 +86,7 @@ Assuming target application with following properties:
 1.  Initialize your application `react-native init`
 
     ```sh
-    react-native init MyApp --skip-jest --template 'https://github.com/emiketic/emiketic-starter-react-native'
+    react-native init MyApp --skip-jest --version 0.56.1 --template 'https://github.com/emiketic/emiketic-starter-react-native'
     ```
 
 1.  Run post-init routine
