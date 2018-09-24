@@ -28,7 +28,7 @@ cat > "${target_dir}/Contents.json" <<EOL
   "images": [
     {
       "idiom": "universal",
-      "filename": "$output@1.png",
+      "filename": "$output@1x.png",
       "scale": "1x"
     },
     {
