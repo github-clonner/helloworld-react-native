@@ -1,6 +1,6 @@
-# EMIKETIC React Native Starter
+# Hello World
 
-A boilerplate and reference implementation for mobile applications built with React, Redux, and React Native.
+...
 
 ## Preview
 
@@ -40,7 +40,6 @@ yarn start
 yarn android
 
 # run on iOS device/simulator
-(cd ios ; pod install)
 yarn ios
 
 # run tests
