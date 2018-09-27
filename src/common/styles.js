@@ -8,6 +8,16 @@ import NativeBaseTheme from 'native-base/src/theme/variables/material';
 // import CustomIconsIcoMoonConfig from '../assets/HelloWorldIcons.json';
 
 /**
+ * Fonts
+ * inspect using https://opentype.js.org/font-inspector.html
+ * make sure file name matches full name
+ */
+
+// const FONT_REGULAR = 'CustomFont-Regular';
+// const FONT_LIGHT = 'CustomFont-Light';
+// const FONT_BOLD = 'CustomFont-Bold';
+
+/**
  * Colors
  */
 
@@ -41,7 +51,17 @@ export const COLOR = {
  * React Native Customization
  */
 
-TextInput.defaultProps.selectionColor = COLOR.primary;
+// const Text_render = Text.prototype.render;
+// const Text_style = { fontFamily: FONT_REGULAR };
+// Text.prototype.render = function (...args) {
+//   const origin = Text_render.call(this, ...args);
+//   return cloneElement(origin, {
+//     style: [Text_style, origin.props.style],
+//   });
+// };
+
+// TextInput.defaultProps.fontFamily = FONT_REGULAR;
+TextInput.defaultProps.selectionColor = COLOR.accent;
 
 /**
  * NativeBase Customization
@@ -54,15 +74,25 @@ TextInput.defaultProps.selectionColor = COLOR.primary;
 Object.assign(NativeBaseTheme, {
   brandPrimary: COLOR.primary,
 
+  // fontFamily: FONT_REGULAR,
+  // btnFontFamily: FONT_REGULAR,
+  // titleFontfamily: FONT_REGULAR,
+
   textColor: COLOR.text,
   inverseTextColor: COLOR.textInverse,
 
+  // Toolbar
+
   toolbarDefaultBg: COLOR.primary,
+
+  iosStatusbar: 'light-content',
+
+  // Spinner
 
   defaultSpinnerColor: COLOR.primary,
   inverseSpinnerColor: COLOR.inverse,
 
-  iosStatusbar: 'light-content',
+  // ...
 
   listItemSelected: COLOR.primaryDark,
 });
@@ -107,6 +137,18 @@ export const STYLE = StyleSheet.create({
   textInverse: {
     color: COLOR.textInverse,
   },
+
   // Shared styles
-  // ...
+
+  // textRegular: {
+  //   fontFamily: FONT_REGULAR,
+  // },
+
+  // textLight: {
+  //   fontFamily: FONT_LIGHT,
+  // },
+
+  // textBold: {
+  //   fontFamily: FONT_BOLD,
+  // },
 });

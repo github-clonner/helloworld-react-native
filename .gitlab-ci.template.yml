@@ -1,5 +1,6 @@
 
 stages:
+  - prepare
   - test
   - build
   - deploy
@@ -8,6 +9,14 @@ cache:
   key: ${CI_COMMIT_REF_SLUG}
   paths:
     - ./node_modules/
+
+install:
+  stage: prepare
+  tags:
+    - docker
+  image: node:8
+  script:
+    - yarn
 
 lint:critical:
   stage: test
