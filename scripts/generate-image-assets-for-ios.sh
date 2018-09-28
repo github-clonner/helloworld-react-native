@@ -23,6 +23,16 @@ target_dir="${PWD}/ios/${APP_NAME}/Images.xcassets/${output}.imageset"
 
 mkdir -p $target_dir
 
+function image_path () {
+  echo "${target_dir}/${output}@${scale}x.png";
+}
+
+scale=1 generate_image
+
+scale=2 generate_image
+
+scale=3 generate_image
+
 cat > "${target_dir}/Contents.json" <<EOL
 {
   "images": [
@@ -48,13 +58,3 @@ cat > "${target_dir}/Contents.json" <<EOL
   }
 }
 EOL
-
-function image_path () {
-  echo "${target_dir}/${output}@${scale}x.png";
-}
-
-scale=1 generate_image
-
-scale=2 generate_image
-
-scale=3 generate_image
