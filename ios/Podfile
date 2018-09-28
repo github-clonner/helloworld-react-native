@@ -29,6 +29,10 @@ target 'HelloWorld' do
 
 
   # Add new pods below this line
+  pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
+
+  pod 'RNKeychain', :path => '../node_modules/react-native-keychain'
+
 
   target 'HelloWorldTests' do
     inherit! :search_paths
