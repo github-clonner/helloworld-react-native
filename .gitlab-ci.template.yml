@@ -5,6 +5,8 @@ stages:
   - build
   - deploy
 
+image: node:8
+
 cache:
   key: ${CI_COMMIT_REF_SLUG}
   paths:
@@ -14,7 +16,6 @@ install:
   stage: prepare
   tags:
     - docker
-  image: node:8
   script:
     - yarn
 
@@ -22,7 +23,6 @@ lint:critical:
   stage: test
   tags:
     - docker
-  image: node:8
   before_script:
     - yarn
   script:
@@ -32,7 +32,6 @@ lint:
   stage: test
   tags:
     - docker
-  image: node:8
   before_script:
     - yarn
   script:
@@ -43,7 +42,6 @@ test:
   stage: test
   tags:
     - docker
-  image: node:8
   before_script:
     - yarn
   script:

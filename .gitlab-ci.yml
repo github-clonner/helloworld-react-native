@@ -14,7 +14,6 @@ install:
   stage: prepare
   tags:
     - docker
-  image: node:8
   script:
     - yarn
 
@@ -22,7 +21,6 @@ lint:critical:
   stage: test
   tags:
     - docker
-  image: node:8
   before_script:
     - ./dev-start.sh
   script:
@@ -32,7 +30,6 @@ lint:
   stage: test
   tags:
     - docker
-  image: node:8
   before_script:
     - ./dev-start.sh
   script:
@@ -43,7 +40,6 @@ test:
   stage: test
   tags:
     - docker
-  image: node:8
   before_script:
     - ./dev-start.sh
   script:
