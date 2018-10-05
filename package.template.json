@@ -17,7 +17,7 @@
     "postinstall": "./scripts/postinstall.sh"
   },
   "dependencies": {
-    "emiketic-starter-lib": "https://github.com/emiketic/emiketic-starter-lib",
+    "emiketic-starter-lib": "https://github.com/emiketic/emiketic-starter-lib#0.1.0",
     "native-base": "~2.8.1",
     "promise.prototype.finally": "~3.1.0",
     "prop-types": "~15.6.2",
