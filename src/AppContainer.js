@@ -8,7 +8,7 @@ import { THEME } from './common/styles';
 
 import App from './App';
 
-import { setupStore } from './common/state';
+import { setupStore } from './store';
 
 const store = setupStore();
 

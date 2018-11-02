@@ -1,4 +1,4 @@
-import './common';
+import './common/init';
 
 import AppContainer from './AppContainer';
 

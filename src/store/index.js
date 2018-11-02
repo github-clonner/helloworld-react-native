@@ -7,7 +7,7 @@ import persistState, { mergePersistedState } from 'redux-localstorage';
 import persistAdapter from 'redux-localstorage/lib/adapters/AsyncStorage';
 import { AsyncStorage } from 'react-native';
 
-import $state from './state.definition';
+import $state from './state';
 
 /**
  * define root reducer
