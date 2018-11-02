@@ -85,8 +85,7 @@ export function $fetchDataPromise() {
     dispatch(Activity.$processing(MODULE, $fetchDataPromise.name));
     dispatch(fetchDataRequest());
 
-    // return fetch('https://httpbin.org/ip')
-    return fetch(`${API_ENDPOINT}/todo`, {
+    return fetch(`${API_ENDPOINT}/task/index`, {
       headers: {
         Authorization: `Bearer ${AuthService.token}`,
       },
@@ -105,8 +104,7 @@ export function $fetchData() {
     dispatch(fetchDataRequest());
 
     try {
-      // const response = await fetch('https://httpbin.org/ip');
-      const response = await fetch(`${API_ENDPOINT}/todo`, {
+      const response = await fetch(`${API_ENDPOINT}/task/index`, {
         headers: {
           Authorization: `Bearer ${AuthService.token}`,
         },

@@ -43,7 +43,7 @@ class HomeView extends Component {
   componentDidMount() {
     this.props
       .dispatch($fetchData())
-      .then(() => this.props.dispatch(Activity.$toast('success', 'Todos loaded')))
+      .then(() => this.props.dispatch(Activity.$toast('success', 'Tasks loaded')))
       .catch((error) => this.props.dispatch(Activity.$toast('failure', error.message)));
   }
 
@@ -59,7 +59,7 @@ class HomeView extends Component {
             </Button>
           </Left>
           <Body>
-            <Title>Todos</Title>
+            <Title>Tasks</Title>
           </Body>
           <Right />
         </Header>
@@ -67,7 +67,7 @@ class HomeView extends Component {
           {/* <Text>{JSON.stringify(data, null, 2)}</Text> */}
           {data && (
             <Card>
-              {data.todo.map((item) => (
+              {data.task.map((item) => (
                 <CardItem key={item.id} button bordered onPress={() => alert('Not yet implemented!')}>
                   <CheckBox checked={item.done} color={COLOR.primary} style={{ marginLeft: 0, marginRight: 16 }} />
                   <Text style={{ textDecorationLine: item.done ? 'line-through' : 'none' }}>{item.label}</Text>
