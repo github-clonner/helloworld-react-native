@@ -27,8 +27,8 @@ const Wrapper = (C) => withStore(C);
 
 class LoginView extends Component {
   state = {
-    username: process.env.NODE_ENV === '_development' ? 'test@example.com' : '',
-    password: process.env.NODE_ENV === '_development' ? 'test' : '',
+    username: '',
+    password: '',
   };
 
   hasValidInput() {

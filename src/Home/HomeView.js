@@ -24,17 +24,17 @@ import { COLOR } from '../common/styles';
 
 import * as Activity from '../Shared/Activity.state';
 
-import { $fetchData } from './state';
+import { $fetchTaskIndex } from './state';
 
 const withStore = connect((state) => ({
-  processing: state.Activity.processingByTopic['Home.$fetchData'] || false,
-  data: state.Home.data,
+  processing: state.Activity.processingByTopic['Home.$fetchTaskIndex'] || false,
+  tasks: state.Home.tasks,
 }));
 
 const propTypes = {
   dispatch: PropTypes.dispatch.isRequired,
   processing: PropTypes.bool.isRequired,
-  data: PropTypes.object.isRequired,
+  tasks: PropTypes.object.isRequired,
 };
 
 const Wrapper = (C) => withStore(C);
@@ -42,13 +42,13 @@ const Wrapper = (C) => withStore(C);
 class HomeView extends Component {
   componentDidMount() {
     this.props
-      .dispatch($fetchData())
+      .dispatch($fetchTaskIndex())
       .then(() => this.props.dispatch(Activity.$toast('success', 'Tasks loaded')))
       .catch((error) => this.props.dispatch(Activity.$toast('failure', error.message)));
   }
 
   render() {
-    const { processing, data } = this.props;
+    const { processing, tasks } = this.props;
 
     return (
       <Container>
@@ -64,10 +64,10 @@ class HomeView extends Component {
           <Right />
         </Header>
         <Content padder>
-          {/* <Text>{JSON.stringify(data, null, 2)}</Text> */}
-          {data && (
+          {/* <Text>{JSON.stringify(tasks, null, 2)}</Text> */}
+          {tasks && (
             <Card>
-              {data.task.map((item) => (
+              {tasks.map((item) => (
                 <CardItem key={item.id} button bordered onPress={() => alert('Not yet implemented!')}>
                   <CheckBox checked={item.done} color={COLOR.primary} style={{ marginLeft: 0, marginRight: 16 }} />
                   <Text style={{ textDecorationLine: item.done ? 'line-through' : 'none' }}>{item.label}</Text>
