@@ -12,10 +12,10 @@ import { COLOR } from '../common/styles';
 import { LogoHeader } from './LogoHeader';
 
 import * as Activity from '../Shared/Activity.state';
-import { $initiateAccountRecovery } from '../Auth/state';
+import { $initiatePasswordReset } from '../Auth/state';
 
 const withStore = connect((state) => ({
-  processing: state.Activity.processingByTopic['Auth.$initiateAccountRecovery'] || false,
+  processing: state.Activity.processingByTopic['Auth.$initiatePasswordReset'] || false,
 }));
 
 const propTypes = {
@@ -25,7 +25,7 @@ const propTypes = {
 
 const Wrapper = (C) => withStore(C);
 
-class RecoveryView extends Component {
+class PasswordResetView extends Component {
   state = {
     email: '',
   };
@@ -34,13 +34,13 @@ class RecoveryView extends Component {
     return !!this.state.email;
   }
 
-  initiateAccountRecovery() {
+  initiatePasswordReset() {
     if (!this.hasValidInput()) {
       return null;
     }
 
     return this.props
-      .dispatch($initiateAccountRecovery(this.state.email))
+      .dispatch($initiatePasswordReset(this.state.email))
       .catch((error) => this.props.dispatch(Activity.$toast('failure', error.message)));
   }
 
@@ -66,7 +66,7 @@ class RecoveryView extends Component {
                   returnKeyType="send"
                   enablesReturnKeyAutomatically
                   onChangeText={(email) => this.setState({ email })}
-                  onSubmitEditing={() => this.initiateAccountRecovery()}
+                  onSubmitEditing={() => this.initiatePasswordReset()}
                 />
               </Item>
 
@@ -76,7 +76,7 @@ class RecoveryView extends Component {
                 full
                 primary
                 active={!this.hasValidInput() || this.props.processing}
-                onPress={() => this.initiateAccountRecovery()}
+                onPress={() => this.initiatePasswordReset()}
               >
                 <Text>Recover my Account</Text>
                 {this.props.processing && <Spinner size="small" inverse />}
@@ -101,15 +101,15 @@ class RecoveryView extends Component {
   }
 }
 
-const WrappedRecoveryView = Wrapper(RecoveryView);
+const WrappedPasswordResetView = Wrapper(PasswordResetView);
 
-WrappedRecoveryView.propTypes = {
+WrappedPasswordResetView.propTypes = {
   navigation: PropTypes.navigation.isRequired,
 };
 
-RecoveryView.propTypes = {
-  ...WrappedRecoveryView.propTypes,
+PasswordResetView.propTypes = {
+  ...WrappedPasswordResetView.propTypes,
   ...propTypes,
 };
 
-export default WrappedRecoveryView;
+export default WrappedPasswordResetView;

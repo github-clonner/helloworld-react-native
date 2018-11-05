@@ -101,7 +101,7 @@ class LoginView extends Component {
               <Text>Sign up</Text>
             </Button>
 
-            <Button transparent full onPress={() => this.props.navigation.navigate('/recovery')} style={{ flex: 1 }}>
+            <Button transparent full onPress={() => this.props.navigation.navigate('/password-reset')} style={{ flex: 1 }}>
               <Text>Recover</Text>
             </Button>
           </View>
