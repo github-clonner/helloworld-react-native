@@ -10,4 +10,4 @@ rm ./node_modules/native-base/Fonts/*.ttf || true
 
 # fix Babel issue
 
-rm ./node_modules/emiketic-starter-lib/.babelrc || true
+rm ./node_modules/starter-lib/.babelrc || true

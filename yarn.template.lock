@@ -37,18 +37,18 @@
     semver "^5.4.1"
     source-map "^0.5.0"
 
-"@babel/core@~7.1.2":
-  version "7.1.2"
-  resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.1.2.tgz#f8d2a9ceb6832887329a7b60f9d035791400ba4e"
-  integrity sha512-IFeSSnjXdhDaoysIlev//UzHZbdEmm7D0EIH2qtse9xK7mXEZQpYjs2P00XlP1qYsYvid79p+Zgg6tz1mp6iVw==
+"@babel/core@~7.1.5":
+  version "7.1.5"
+  resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.1.5.tgz#abb32d7aa247a91756469e788998db6a72b93090"
+  integrity sha512-vOyH020C56tQvte++i+rX2yokZcRfbv/kKcw+/BCRw/cK6dvsr47aCzm8oC1XHwMSEWbqrZKzZRLzLnq6SFMsg==
   dependencies:
     "@babel/code-frame" "^7.0.0"
-    "@babel/generator" "^7.1.2"
-    "@babel/helpers" "^7.1.2"
-    "@babel/parser" "^7.1.2"
+    "@babel/generator" "^7.1.5"
+    "@babel/helpers" "^7.1.5"
+    "@babel/parser" "^7.1.5"
     "@babel/template" "^7.1.2"
-    "@babel/traverse" "^7.1.0"
-    "@babel/types" "^7.1.2"
+    "@babel/traverse" "^7.1.5"
+    "@babel/types" "^7.1.5"
     convert-source-map "^1.1.0"
     debug "^3.1.0"
     json5 "^0.5.0"
@@ -68,12 +68,23 @@
     source-map "^0.5.0"
     trim-right "^1.0.1"
 
-"@babel/generator@^7.0.0", "@babel/generator@^7.1.2":
+"@babel/generator@^7.0.0":
   version "7.1.2"
   resolved "https://registry.yarnpkg.com/@babel/generator/-/generator-7.1.2.tgz#fde75c072575ce7abbd97322e8fef5bae67e4630"
   integrity sha512-70A9HWLS/1RHk3Ck8tNHKxOoKQuSKocYgwDN85Pyl/RBduss6AKxUR7RIZ/lzduQMSYfWEM4DDBu6A+XGbkFig==
   dependencies:
     "@babel/types" "^7.1.2"
+    jsesc "^2.5.1"
+    lodash "^4.17.10"
+    source-map "^0.5.0"
+    trim-right "^1.0.1"
+
+"@babel/generator@^7.1.5":
+  version "7.1.5"
+  resolved "https://registry.yarnpkg.com/@babel/generator/-/generator-7.1.5.tgz#615f064d13d95f8f9157c7261f68eddf32ec15b3"
+  integrity sha512-IO31r62xfMI+wBJVmgx0JR9ZOHty8HkoYpQAjRWUGG9vykBTlGHdArZ8zoFtpUu2gs17K7qTl/TtPpiSi6t+MA==
+  dependencies:
+    "@babel/types" "^7.1.5"
     jsesc "^2.5.1"
     lodash "^4.17.10"
     source-map "^0.5.0"
@@ -276,14 +287,14 @@
     "@babel/traverse" "7.0.0-beta.47"
     "@babel/types" "7.0.0-beta.47"
 
-"@babel/helpers@^7.1.2":
-  version "7.1.2"
-  resolved "https://registry.yarnpkg.com/@babel/helpers/-/helpers-7.1.2.tgz#ab752e8c35ef7d39987df4e8586c63b8846234b5"
-  integrity sha512-Myc3pUE8eswD73aWcartxB16K6CGmHDv9KxOmD2CeOs/FaEAQodr3VYGmlvOmog60vNQ2w8QbatuahepZwrHiA==
+"@babel/helpers@^7.1.5":
+  version "7.1.5"
+  resolved "https://registry.yarnpkg.com/@babel/helpers/-/helpers-7.1.5.tgz#68bfc1895d685f2b8f1995e788dbfe1f6ccb1996"
+  integrity sha512-2jkcdL02ywNBry1YNFAH/fViq4fXG0vdckHqeJk+75fpQ2OH+Az6076tX/M0835zA45E0Cqa6pV5Kiv9YOqjEg==
   dependencies:
     "@babel/template" "^7.1.2"
-    "@babel/traverse" "^7.1.0"
-    "@babel/types" "^7.1.2"
+    "@babel/traverse" "^7.1.5"
+    "@babel/types" "^7.1.5"
 
 "@babel/highlight@7.0.0-beta.47":
   version "7.0.0-beta.47"
@@ -307,6 +318,11 @@
   version "7.1.2"
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.1.2.tgz#85c5c47af6d244fab77bce6b9bd830e38c978409"
   integrity sha512-x5HFsW+E/nQalGMw7hu+fvPqnBeBaIr0lWJ2SG0PPL2j+Pm9lYvCrsZJGIgauPIENx0v10INIyFjmSNUD/gSqQ==
+
+"@babel/parser@^7.1.5":
+  version "7.1.5"
+  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.1.5.tgz#20b7d5e7e1811ba996f8a868962ea7dd2bfcd2fc"
+  integrity sha512-WXKf5K5HT6X0kKiCOezJZFljsfxKV1FpU8Tf1A7ZpGvyd/Q4hlrJm2EwoH2onaUq3O4tLDp+4gk0hHPsMyxmOg==
 
 "@babel/plugin-external-helpers@7.0.0-beta.47":
   version "7.0.0-beta.47"
@@ -630,7 +646,7 @@
     invariant "^2.2.0"
     lodash "^4.17.5"
 
-"@babel/traverse@^7.0.0", "@babel/traverse@^7.1.0":
+"@babel/traverse@^7.0.0":
   version "7.1.0"
   resolved "https://registry.yarnpkg.com/@babel/traverse/-/traverse-7.1.0.tgz#503ec6669387efd182c3888c4eec07bcc45d91b2"
   integrity sha512-bwgln0FsMoxm3pLOgrrnGaXk18sSM9JNf1/nHC/FksmNGFbYnPWY4GYCfLxyP1KRmfsxqkRpfoa6xr6VuuSxdw==
@@ -641,6 +657,21 @@
     "@babel/helper-split-export-declaration" "^7.0.0"
     "@babel/parser" "^7.1.0"
     "@babel/types" "^7.0.0"
+    debug "^3.1.0"
+    globals "^11.1.0"
+    lodash "^4.17.10"
+
+"@babel/traverse@^7.1.5":
+  version "7.1.5"
+  resolved "https://registry.yarnpkg.com/@babel/traverse/-/traverse-7.1.5.tgz#5aafca2039aa058c104cf2bfeb9fc4a857ccbca9"
+  integrity sha512-eU6XokWypl0MVJo+MTSPUtlfPePkrqsF26O+l1qFGlCKWwmiYAYy2Sy44Qw8m2u/LbPCsxYt90rghmqhYMGpPA==
+  dependencies:
+    "@babel/code-frame" "^7.0.0"
+    "@babel/generator" "^7.1.5"
+    "@babel/helper-function-name" "^7.1.0"
+    "@babel/helper-split-export-declaration" "^7.0.0"
+    "@babel/parser" "^7.1.5"
+    "@babel/types" "^7.1.5"
     debug "^3.1.0"
     globals "^11.1.0"
     lodash "^4.17.10"
@@ -658,6 +689,15 @@
   version "7.1.2"
   resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.1.2.tgz#183e7952cf6691628afdc2e2b90d03240bac80c0"
   integrity sha512-pb1I05sZEKiSlMUV9UReaqsCPUpgbHHHu2n1piRm7JkuBkm6QxcaIzKu6FMnMtCbih/cEYTR+RGYYC96Yk9HAg==
+  dependencies:
+    esutils "^2.0.2"
+    lodash "^4.17.10"
+    to-fast-properties "^2.0.0"
+
+"@babel/types@^7.1.5":
+  version "7.1.5"
+  resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.1.5.tgz#12fe64e91a431234b7017b4227a78cc0eec4e081"
+  integrity sha512-sJeqa/d9eM/bax8Ivg+fXF7FpN3E/ZmTrWbkk6r+g7biVYfALMnLin4dKijsaqEhpd2xvOGfQTkQkD31YCVV4A==
   dependencies:
     esutils "^2.0.2"
     lodash "^4.17.10"
@@ -2143,17 +2183,24 @@ debug@2.6.9, debug@^2.1.2, debug@^2.2.0, debug@^2.3.3, debug@^2.6.8, debug@^2.6.
   dependencies:
     ms "2.0.0"
 
-debug@4.0.1, debug@^4.0.1:
+debug@^3.1.0:
+  version "3.2.5"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-3.2.5.tgz#c2418fbfd7a29f4d4f70ff4cea604d4b64c46407"
+  integrity sha512-D61LaDQPQkxJ5AUM2mbSJRbPkNs/TmdmOeLAi1hgDkpDfIfetSrjmWhccwtuResSwMbACjx/xXQofvM9CE/aeg==
+  dependencies:
+    ms "^2.1.1"
+
+debug@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/debug/-/debug-4.0.1.tgz#f9bb36d439b8d1f0dd52d8fb6b46e4ebb8c1cd5b"
   integrity sha512-K23FHJ/Mt404FSlp6gSZCevIbTMLX0j3fmHhUEhQ3Wq0FMODW3+cUSoLdy1Gx4polAf4t/lphhmHH35BB8cLYw==
   dependencies:
     ms "^2.1.1"
 
-debug@^3.1.0:
-  version "3.2.5"
-  resolved "https://registry.yarnpkg.com/debug/-/debug-3.2.5.tgz#c2418fbfd7a29f4d4f70ff4cea604d4b64c46407"
-  integrity sha512-D61LaDQPQkxJ5AUM2mbSJRbPkNs/TmdmOeLAi1hgDkpDfIfetSrjmWhccwtuResSwMbACjx/xXQofvM9CE/aeg==
+debug@~4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-4.1.0.tgz#373687bffa678b38b1cd91f861b63850035ddc87"
+  integrity sha512-heNPJUJIqC+xB6ayLAMHaIrmN9HKa7aQO8MGqKpvCA+uJYVcvR6l5kgdrhRuwPFHU7P5/A1w0BjByPHwpfTDKg==
   dependencies:
     ms "^2.1.1"
 
@@ -2317,15 +2364,6 @@ ee-first@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
   integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
-
-"emiketic-starter-lib@https://github.com/emiketic/emiketic-starter-lib#0.1.0":
-  version "0.1.0"
-  resolved "https://github.com/emiketic/emiketic-starter-lib#cf582bfcd2626121e21aa2e2a0106cb1e651963c"
-  dependencies:
-    debug "4.0.1"
-    events "3.0.0"
-    formdata-polyfill "3.0.12"
-    whatwg-fetch "3.0.0"
 
 emoji-regex@^6.5.1:
   version "6.5.1"
@@ -2613,7 +2651,7 @@ eventemitter3@^3.0.0:
   resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-3.1.0.tgz#090b4d6cdbd645ed10bf750d4b5407942d7ba163"
   integrity sha512-ivIvhpq/Y0uSjcHDcOIccjmYjGLcP09MFGE7ysAwkAvkXfpZlC985pH2/ui64DKazbTW/4kN3yqozUxlXzI6cA==
 
-events@3.0.0:
+events@~3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/events/-/events-3.0.0.tgz#9a0a0dfaf62893d92b875b8f2698ca4114973e88"
   integrity sha512-Dc381HFWJzEOhQ+d8pkNon++bk9h6cdAoAj4iE6Q4y6xgTzySWXlKn05/TVNpjnfRqi/X0EpJEJohPjNI3zpVA==
@@ -2958,7 +2996,7 @@ form-data@~2.3.2:
     combined-stream "1.0.6"
     mime-types "^2.1.12"
 
-formdata-polyfill@3.0.12:
+formdata-polyfill@~3.0.12:
   version "3.0.12"
   resolved "https://registry.yarnpkg.com/formdata-polyfill/-/formdata-polyfill-3.0.12.tgz#43f8d9bad5408a57c4f801784526e8230b6e9f7a"
   integrity sha512-y5V1Y4e2VSJ29+CAHozJwN9BqvsigYicZp/MqeYP00X/UMah3cLb2ix7/58fLcaAjwr8HfztD7Ih/IQCW1BGfw==
@@ -5336,10 +5374,10 @@ preserve@^0.2.0:
   resolved "https://registry.yarnpkg.com/preserve/-/preserve-0.2.0.tgz#815ed1f6ebc65926f865b310c0713bcb3315ce4b"
   integrity sha1-gV7R9uvGWSb4ZbMQwHE7yzMVzks=
 
-prettier@~1.14.3:
-  version "1.14.3"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.14.3.tgz#90238dd4c0684b7edce5f83b0fb7328e48bd0895"
-  integrity sha512-qZDVnCrnpsRJJq5nSsiHCE3BYMED2OtsI+cmzIzF1QIfqm5ALf8tEJcO27zV1gKNKRPdhjO0dNWnrzssDQ1tFg==
+prettier@~1.15.1:
+  version "1.15.1"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.15.1.tgz#06c67106afb1b40e74b002353b2079cc7e0e67bf"
+  integrity sha512-4rgV2hyc/5Pk0XHH4VjJWHRgVjgRbpMfLQjREAhHBtyW1UvTFkjJEsueGYNYYZd9mn97K+1qv0EBwm11zoaSgA==
 
 pretty-format@^23.6.0:
   version "23.6.0"
@@ -6435,6 +6473,15 @@ stacktrace-parser@^0.1.3:
   resolved "https://registry.yarnpkg.com/stacktrace-parser/-/stacktrace-parser-0.1.4.tgz#01397922e5f62ecf30845522c95c4fe1d25e7d4e"
   integrity sha1-ATl5IuX2Ls8whFUiyVxP4dJefU4=
 
+"starter-lib@git+https://github.com/emiketic/emiketic-starter-lib.git#0.3.0":
+  version "0.3.0"
+  resolved "git+https://github.com/emiketic/emiketic-starter-lib.git#a573cf1c638387d83a6b15013cafc160c0f0d117"
+  dependencies:
+    debug "~4.1.0"
+    events "~3.0.0"
+    formdata-polyfill "~3.0.12"
+    whatwg-fetch "~3.0.0"
+
 static-extend@^0.1.1:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/static-extend/-/static-extend-0.1.2.tgz#60809c39cbff55337226fd5e0b520f341f1fb5c6"
@@ -6919,7 +6966,7 @@ whatwg-encoding@^1.0.1, whatwg-encoding@^1.0.3:
   dependencies:
     iconv-lite "0.4.24"
 
-whatwg-fetch@3.0.0, whatwg-fetch@>=0.10.0:
+whatwg-fetch@>=0.10.0, whatwg-fetch@~3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-3.0.0.tgz#fc804e458cc460009b1a2b966bc8817d2578aefb"
   integrity sha512-9GSJUgz1D4MfyKU7KRqwOjXCXTqWdFNvEr7eUBYchQiVc744mqK/MzXPNR2WsPkmkOa4ywfg8C2n8h+13Bey1Q==
