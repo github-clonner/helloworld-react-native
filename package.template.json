@@ -25,26 +25,26 @@
     "react-native-keychain": "~3.0.0",
     "react-native-splash-screen": "~3.1.1",
     "react-navigation": "~2.18.2",
-    "react-redux": "~5.1.0",
+    "react-redux": "~5.1.1",
     "redux": "~4.0.1",
     "redux-localstorage": "~1.0.0-rc5",
     "redux-logger": "~3.0.6",
     "redux-thunk": "~2.3.0",
-    "starter-lib": "git+https://github.com/emiketic/emiketic-starter-lib.git#0.3.0"
+    "starter-lib": "git+https://github.com/emiketic/emiketic-starter-lib.git#0.3.1"
   },
   "devDependencies": {
     "@babel/core": "~7.1.5",
     "babel-eslint": "~10.0.1",
     "babel-jest": "23.6.0",
     "babel-preset-react-native": "^5",
-    "eslint": "~5.8.0",
+    "eslint": "~5.9.0",
     "eslint-config-airbnb": "~17.1.0",
     "eslint-plugin-import": "~2.14.0",
     "eslint-plugin-jsx-a11y": "~6.1.2",
     "eslint-plugin-react": "~7.11.1",
     "jest": "23.6.0",
     "jest-react-native": "~18.0.0",
-    "prettier": "~1.15.1",
+    "prettier": "~1.15.2",
     "react-test-renderer": "16.4.1"
   },
   "jest": {
