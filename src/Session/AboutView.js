@@ -19,8 +19,9 @@ const propTypes = {
 
 const Wrapper = (C) => withStore(C);
 
-// eslint-disable-next-line react/prefer-stateless-function
 class AboutView extends Component {
+  state = {};
+
   render() {
     return (
       <Container>

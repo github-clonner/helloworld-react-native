@@ -17,20 +17,24 @@ export const AuthServiceImplementation = class AuthService {
 
   password = '';
 
-  token = null;
+  access_token = null;
 
-  async _loadSession() {
-    this.token = (await AsyncStorage.getItem('auth.token')) || null;
+  getAccessToken() {
+    return this.access_token;
   }
 
-  async _saveSession(token) {
-    this.token = token || null;
-    await AsyncStorage.setItem('auth.token', this.token);
+  async _loadSession() {
+    this.access_token = (await AsyncStorage.getItem('auth.access_token')) || null;
+  }
+
+  async _saveSession(access_token) {
+    this.access_token = access_token || null;
+    await AsyncStorage.setItem('auth.access_token', this.access_token);
   }
 
   async _clearSession() {
-    this.token = null;
-    await AsyncStorage.removeItem('auth.token');
+    this.access_token = null;
+    await AsyncStorage.removeItem('auth.access_token');
   }
 
   async _loadCredentials() {
@@ -63,7 +67,7 @@ export const AuthServiceImplementation = class AuthService {
   }
 
   isAuthenticated() {
-    return !!this.token;
+    return !!this.access_token;
   }
 
   login(username, password) {
@@ -78,8 +82,8 @@ export const AuthServiceImplementation = class AuthService {
       }),
     })
       .then(FetchHelper.ResponseHandler, FetchHelper.ErrorHandler)
-      .then(async ({ token, ...result }) => {
-        await this._saveSession(token);
+      .then(async ({ access_token, ...result }) => {
+        await this._saveSession(access_token);
         await this._saveCredentials(username, password);
         await this.events.emitAsync('login');
         return result;
@@ -102,9 +106,7 @@ export const AuthServiceImplementation = class AuthService {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        user,
-      }),
+      body: JSON.stringify(payload),
     })
       .then(FetchHelper.ResponseHandler, FetchHelper.ErrorHandler)
       .then(({ token, ...result }) => {

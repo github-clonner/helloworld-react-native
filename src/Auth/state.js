@@ -10,6 +10,15 @@ import { AuthService } from './Auth.service';
 export const MODULE = 'Auth';
 
 /**
+ * Initial State
+ */
+
+const INITIAL_STATE = {
+  authenticated: false,
+  user: null,
+};
+
+/**
  * Log in
  */
 
@@ -21,7 +30,7 @@ function loginRequest() {
   };
 }
 
-const AUTH_LOGIN_SUCCESS = 'AUTH_LOGIN_SUCCESS';
+export const AUTH_LOGIN_SUCCESS = 'AUTH_LOGIN_SUCCESS';
 
 function loginSuccess({ user, ...rest }) {
   return (dispatch) => {
@@ -66,7 +75,7 @@ export function $login(username, password) {
  * Logout
  */
 
-const AUTH_LOGOUT = 'AUTH_LOGOUT';
+export const AUTH_LOGOUT = 'AUTH_LOGOUT';
 
 export function $logout() {
   return (dispatch) => {
@@ -123,6 +132,7 @@ export function $signup(payload) {
 
     return AuthService.signup(payload)
       .then((result) => dispatch(signupSuccess(result)))
+      .then((result) => dispatch($initialize()).then(() => result))
       .catch((error) => dispatch(signupFailure(error)))
       .finally(() => dispatch(Activity.$done(MODULE, $signup.name)));
   };
@@ -180,22 +190,10 @@ export function $initiatePasswordReset(email) {
 }
 
 /**
- * Exports
- */
-
-export { AUTH_LOGIN_SUCCESS, AUTH_LOGOUT };
-
-/**
  * Reducer
  */
 
-export function reducer(
-  state = {
-    authenticated: false,
-    user: null,
-  },
-  action,
-) {
+export function reducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case AUTH_LOGIN_REQUEST:
       return {
@@ -203,6 +201,12 @@ export function reducer(
         user: null,
       };
     case AUTH_LOGIN_SUCCESS:
+      return {
+        ...state,
+        authenticated: true,
+        user: action.user,
+      };
+    case AUTH_SIGNUP_SUCCESS:
       return {
         ...state,
         authenticated: true,
@@ -239,7 +243,7 @@ export async function initializer({ dispatch, getState }) {
   await AuthService.initialize();
 
   if (AuthService.isAuthenticated()) {
-    dispatch($initialize()).catch((error) => dispatch(Activity.$toast('failure', error.message)));
+    await dispatch($initialize()).catch((error) => dispatch(Activity.$toast('failure', error.message)));
   } else if (AuthService.hasCredentials()) {
     dispatch($login(AuthService.username, AuthService.password)).catch((error) => {
       dispatch(Activity.$toast('failure', error.message));

@@ -4,6 +4,19 @@ import { AUTH_LOGOUT } from '../Auth/state';
 
 export const MODULE = 'Shared';
 
+/**
+ * Initial State
+ */
+
+const INITIAL_STATE = {
+  ready: false,
+  initialized: false,
+};
+
+/**
+ * Ready app
+ */
+
 const SHARED_READY = 'SHARED_READY';
 
 export function $ready() {
@@ -14,17 +27,20 @@ export function $ready() {
   };
 }
 
+/**
+ * Initialize app
+ */
+
 const SHARED_INITIALIZED = 'SHARED_INITIALIZED';
 
 export function $initialize() {
   Logger.debug('$initialize');
 
   return async (dispatch) => {
-    // await Promise.all([
-    //   dispatch($loadSomething()),
-    // ]);
-
-    await new Promise((resolve) => setTimeout(resolve, 3000));
+    await Promise.all([
+      new Promise((resolve) => setTimeout(resolve, 2000)),
+      // dispatch($loadSomething()),
+    ]);
 
     dispatch({
       type: SHARED_INITIALIZED,
@@ -32,13 +48,11 @@ export function $initialize() {
   };
 }
 
-export function reducer(
-  state = {
-    ready: false,
-    initialized: false,
-  },
-  action,
-) {
+/**
+ * Reducer
+ */
+
+export function reducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case SHARED_READY:
       return {
@@ -58,8 +72,4 @@ export function reducer(
     default:
       return state;
   }
-}
-
-export async function initializer() {
-  // ...
 }

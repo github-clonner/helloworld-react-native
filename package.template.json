@@ -11,9 +11,9 @@
     "test": "jest",
     "lint": "eslint --ext .js ./",
     "lint:critical": "eslint --no-eslintrc --config .eslintrc.critical.json ./",
-    "format": "npm run format:all ; npm run format:js",
+    "format": "npm run format:all && npm run format:js",
     "format:all": "prettier ./**/*.{md,json,js,css,scss} --write",
-    "format:js": "eslint --ext .js --fix ./ ; exit 0",
+    "format:js": "eslint -o /dev/null --ext .js --fix ./ || true",
     "postinstall": "./scripts/postinstall.sh"
   },
   "dependencies": {
@@ -24,16 +24,16 @@
     "react-native": "0.56.1",
     "react-native-keychain": "~3.0.0",
     "react-native-splash-screen": "~3.1.1",
-    "react-navigation": "~2.18.2",
+    "react-navigation": "~3.0.2",
     "react-redux": "~5.1.1",
     "redux": "~4.0.1",
     "redux-localstorage": "~1.0.0-rc5",
     "redux-logger": "~3.0.6",
     "redux-thunk": "~2.3.0",
-    "starter-lib": "git+https://github.com/emiketic/emiketic-starter-lib.git#0.3.1"
+    "starter-lib": "git+https://github.com/emiketic/emiketic-starter-lib.git#0.3.5"
   },
   "devDependencies": {
-    "@babel/core": "~7.1.5",
+    "@babel/core": "~7.1.6",
     "babel-eslint": "~10.0.1",
     "babel-jest": "23.6.0",
     "babel-preset-react-native": "^5",

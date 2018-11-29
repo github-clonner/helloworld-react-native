@@ -30,8 +30,9 @@ const propTypes = {
 
 const Wrapper = (C) => withStore(C);
 
-/* eslint-disable react/prefer-stateless-function */
 class NavigationMenu extends Component {
+  state = {};
+
   render() {
     const user = this.props.user || {};
     const path = this.props.navigation.state.routes[this.props.navigation.state.index].routeName;
