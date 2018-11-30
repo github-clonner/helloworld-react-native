@@ -61,7 +61,7 @@ export const COLOR = {
 // };
 
 // TextInput.defaultProps.fontFamily = FONT_REGULAR;
-TextInput.defaultProps.selectionColor = COLOR.accent;
+TextInput.defaultProps.selectionColor = COLOR.primary;
 
 /**
  * NativeBase Customization
