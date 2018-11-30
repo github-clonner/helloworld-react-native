@@ -28,7 +28,7 @@ import { $fetchTaskIndex } from './state';
 
 const withStore = connect((state) => ({
   processing: state.Activity.processingByTopic['Home.$fetchTaskIndex'] || false,
-  tasks: state.Home.tasks,
+  tasks: state.Home.index,
 }));
 
 const propTypes = {
@@ -70,7 +70,7 @@ class HomeView extends Component {
               {tasks.map((item) => (
                 <CardItem key={item.id} button bordered onPress={() => alert('Not yet implemented!')}>
                   <CheckBox checked={item.done} color={COLOR.primary} style={{ marginLeft: 0, marginRight: 16 }} />
-                  <Text style={{ textDecorationLine: item.done ? 'line-through' : 'none' }}>{item.label}</Text>
+                  <Text style={{ textDecorationLine: item.done ? 'line-through' : 'none' }}>{item.title}</Text>
                 </CardItem>
               ))}
             </Card>

@@ -16,7 +16,7 @@ export const MODULE = 'Home';
  */
 
 const INITIAL_STATE = {
-  tasks: null,
+  index: null,
 };
 
 /**
@@ -49,7 +49,7 @@ export function $fetchTaskIndexPromise() {
       },
     })
       .then(FetchHelper.ResponseHandler, FetchHelper.ErrorHandler)
-      .then((result) => dispatch(fetchIndex.success({ tasks: result })))
+      .then((result) => dispatch(fetchIndex.success({ index: result.data })))
       .catch((error) => dispatch(fetchIndex.failure(error)))
       .finally(() => dispatch(Activity.$done(MODULE, $fetchTaskIndexPromise.name)));
   };
@@ -69,7 +69,7 @@ export function $fetchTaskIndex() {
       });
       const result = await FetchHelper.ResponseHandler(response);
 
-      return dispatch(fetchIndex.success({ tasks: result }));
+      return dispatch(fetchIndex.success({ index: result.data }));
     } catch (error) {
       await FetchHelper.ErrorValueHandler(error);
       dispatch(fetchIndex.failure(error));
@@ -91,17 +91,17 @@ export function reducer(state = INITIAL_STATE, action) {
     case fetchIndex.REQUEST:
       return {
         ...state,
-        tasks: null,
+        index: null,
       };
     case fetchIndex.SUCCESS:
       return {
         ...state,
-        tasks: action.tasks,
+        index: action.index,
       };
     case fetchIndex.FAILURE:
       return {
         ...state,
-        tasks: null,
+        index: null,
       };
     default:
       return state;
@@ -112,8 +112,8 @@ export function reducer(state = INITIAL_STATE, action) {
  * Persister
  */
 
-export function persister({ tasks }) {
+export function persister({ index }) {
   return {
-    tasks,
+    index,
   };
 }
