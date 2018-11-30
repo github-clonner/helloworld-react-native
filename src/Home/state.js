@@ -49,7 +49,7 @@ export function $fetchTaskIndexPromise() {
       },
     })
       .then(FetchHelper.ResponseHandler, FetchHelper.ErrorHandler)
-      .then((result) => dispatch(fetchIndex.success({ index: result.data })))
+      .then((result) => dispatch(fetchIndex.success(result)))
       .catch((error) => dispatch(fetchIndex.failure(error)))
       .finally(() => dispatch(Activity.$done(MODULE, $fetchTaskIndexPromise.name)));
   };
@@ -69,7 +69,7 @@ export function $fetchTaskIndex() {
       });
       const result = await FetchHelper.ResponseHandler(response);
 
-      return dispatch(fetchIndex.success({ index: result.data }));
+      return dispatch(fetchIndex.success(result));
     } catch (error) {
       await FetchHelper.ErrorValueHandler(error);
       dispatch(fetchIndex.failure(error));
@@ -96,7 +96,7 @@ export function reducer(state = INITIAL_STATE, action) {
     case fetchIndex.SUCCESS:
       return {
         ...state,
-        index: action.index,
+        index: action.data,
       };
     case fetchIndex.FAILURE:
       return {

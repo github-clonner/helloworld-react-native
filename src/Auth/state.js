@@ -21,52 +21,17 @@ const INITIAL_STATE = {
 /**
  * Log in
  */
-
-const AUTH_LOGIN_REQUEST = 'AUTH_LOGIN_REQUEST';
-
-function loginRequest() {
-  return {
-    type: AUTH_LOGIN_REQUEST,
-  };
-}
-
-export const AUTH_LOGIN_SUCCESS = 'AUTH_LOGIN_SUCCESS';
-
-function loginSuccess({ user, ...rest }) {
-  return (dispatch) => {
-    dispatch({
-      type: AUTH_LOGIN_SUCCESS,
-      user,
-      ...rest,
-    });
-
-    return { user };
-  };
-}
-
-const AUTH_LOGIN_FAILURE = 'AUTH_LOGIN_FAILURE';
-
-function loginFailure(error) {
-  return (dispatch) => {
-    dispatch({
-      type: AUTH_LOGIN_FAILURE,
-    });
-
-    dispatch(Activity.$message(error.message));
-
-    throw error;
-  };
-}
+const login = StateHelper.createAsyncOperation(MODULE, 'login');
 
 export function $login(username, password) {
   return (dispatch) => {
     dispatch(Activity.$processing(MODULE, $login.name, { message: 'Logging in ...' }));
-    dispatch(loginRequest());
+    dispatch(login.request());
 
     return AuthService.login(username, password)
-      .then((result) => dispatch(loginSuccess(result)))
+      .then((result) => dispatch(login.success(result)))
       .then((result) => dispatch($initialize()).then(() => result))
-      .catch((error) => dispatch(loginFailure(error)))
+      .catch((error) => dispatch(login.failure(error)))
       .finally(() => dispatch(Activity.$done(MODULE, $login.name)));
   };
 }
@@ -75,66 +40,31 @@ export function $login(username, password) {
  * Logout
  */
 
-export const AUTH_LOGOUT = 'AUTH_LOGOUT';
+const logout = StateHelper.createAction(MODULE, 'logout');
 
 export function $logout() {
   return (dispatch) => {
-    return AuthService.logout().then(() => dispatch({
-      type: AUTH_LOGOUT,
-    }));
+    return AuthService.logout().then(() => dispatch(logout.perform()));
   };
 }
+
+export const AUTH_LOGOUT = logout.ACTION;
 
 /**
  * Sign up
  */
 
-const AUTH_SIGNUP_REQUEST = 'AUTH_SIGNUP_REQUEST';
-
-function signupRequest() {
-  return {
-    type: AUTH_SIGNUP_REQUEST,
-  };
-}
-
-const AUTH_SIGNUP_SUCCESS = 'AUTH_SIGNUP_SUCCESS';
-
-function signupSuccess({ user, ...rest }) {
-  return (dispatch) => {
-    dispatch({
-      type: AUTH_SIGNUP_SUCCESS,
-      user,
-      ...rest,
-    });
-
-    return { user };
-  };
-}
-
-const AUTH_SIGNUP_FAILURE = 'AUTH_SIGNUP_FAILURE';
-
-function signupFailure(error) {
-  return (dispatch) => {
-    dispatch({
-      type: AUTH_SIGNUP_FAILURE,
-    });
-
-    dispatch(Activity.$message(error.message));
-
-    throw error;
-  };
-}
+const signup = StateHelper.createAsyncOperation(MODULE, 'signup');
 
 export function $signup(payload) {
-  return (dispatch) => {
-    dispatch(Activity.$processing(MODULE, $signup.name, { message: 'Singing up ...' }));
-    dispatch(signupRequest());
+  return async (dispatch) => {
+    dispatch(Activity.$processing());
+    dispatch(signup.request());
 
     return AuthService.signup(payload)
-      .then((result) => dispatch(signupSuccess(result)))
-      .then((result) => dispatch($initialize()).then(() => result))
-      .catch((error) => dispatch(signupFailure(error)))
-      .finally(() => dispatch(Activity.$done(MODULE, $signup.name)));
+      .then((result) => dispatch(signup.success(result)))
+      .catch((error) => dispatch(signup.failure(error)))
+      .finally(() => dispatch(Activity.$done()));
   };
 }
 
@@ -142,49 +72,16 @@ export function $signup(payload) {
  * Password Reset
  */
 
-const AUTH_INITIATE_PASSWORD_RESET_REQUEST = 'AUTH_INITIATE_PASSWORD_RESET_REQUEST';
-
-function initiatePasswordResetRequest() {
-  return {
-    type: AUTH_INITIATE_PASSWORD_RESET_REQUEST,
-  };
-}
-
-const AUTH_INITIATE_PASSWORD_RESET_SUCCESS = 'AUTH_INITIATE_PASSWORD_RESET_SUCCESS';
-
-function initiatePasswordResetSuccess({ ...rest }) {
-  return (dispatch) => {
-    dispatch({
-      type: AUTH_INITIATE_PASSWORD_RESET_SUCCESS,
-      ...rest,
-    });
-
-    return { ...rest };
-  };
-}
-
-const AUTH_INITIATE_PASSWORD_RESET_FAILURE = 'AUTH_INITIATE_PASSWORD_RESET_FAILURE';
-
-function initiatePasswordResetFailure(error) {
-  return (dispatch) => {
-    dispatch({
-      type: AUTH_INITIATE_PASSWORD_RESET_FAILURE,
-    });
-
-    dispatch(Activity.$message(error.message));
-
-    throw error;
-  };
-}
+const initiatePasswordReset = StateHelper.createAsyncOperation(MODULE, 'initiatePasswordReset');
 
 export function $initiatePasswordReset(email) {
   return (dispatch) => {
-    dispatch(Activity.$processing(MODULE, $initiatePasswordReset.name, { message: 'Singing up ...' }));
-    dispatch(initiatePasswordResetRequest());
+    dispatch(Activity.$processing(MODULE, $initiatePasswordReset.name, { message: 'Password Reset ...' }));
+    dispatch(initiatePasswordReset.request());
 
     return AuthService.initiatePasswordReset(email)
-      .then((result) => dispatch(initiatePasswordResetSuccess(result)))
-      .catch((error) => dispatch(initiatePasswordResetFailure(error)))
+      .then((result) => dispatch(initiatePasswordReset.success(result)))
+      .catch((error) => dispatch(initiatePasswordReset.failure(error)))
       .finally(() => dispatch(Activity.$done(MODULE, $initiatePasswordReset.name)));
   };
 }
@@ -195,24 +92,24 @@ export function $initiatePasswordReset(email) {
 
 export function reducer(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case AUTH_LOGIN_REQUEST:
+    case login.REQUEST:
       return {
         ...state,
         user: null,
       };
-    case AUTH_LOGIN_SUCCESS:
+    case login.SUCCESS:
       return {
         ...state,
         authenticated: true,
         user: action.user,
       };
-    case AUTH_SIGNUP_SUCCESS:
+    case signup.SUCCESS:
       return {
         ...state,
         authenticated: true,
         user: action.user,
       };
-    case AUTH_LOGOUT:
+    case logout.ACTION:
       return {
         ...state,
         authenticated: false,
@@ -233,10 +130,7 @@ export function persister({ authenticated, user }) {
 export async function initializer({ dispatch, getState }) {
   FetchHelper.events.on('failure', (error, response) => {
     if (AuthService.isAuthenticated() && response.status === 401) {
-      dispatch($login(AuthService.username, AuthService.password)).catch((error) => {
-        dispatch(Activity.$toast('failure', error.message));
-        dispatch($logout());
-      });
+      dispatch($logout());
     }
   });
 
@@ -244,15 +138,8 @@ export async function initializer({ dispatch, getState }) {
 
   if (AuthService.isAuthenticated()) {
     await dispatch($initialize()).catch((error) => dispatch(Activity.$toast('failure', error.message)));
-  } else if (AuthService.hasCredentials()) {
-    dispatch($login(AuthService.username, AuthService.password)).catch((error) => {
-      dispatch(Activity.$toast('failure', error.message));
-      dispatch($logout());
-    });
   } else if (getState().Auth.authenticated) {
-    dispatch({
-      type: AUTH_LOGOUT,
-    });
+    dispatch(logout.perform());
   }
 
   dispatch($ready());
