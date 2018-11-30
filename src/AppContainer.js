@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Provider as StateProvider } from 'react-redux';
 
-import { createAppContainer } from 'react-navigation';
+// import { createAppContainer } from 'react-navigation';
 
 import { Root as NativeBaseRoot, StyleProvider, getTheme } from 'native-base';
 
@@ -14,7 +14,7 @@ import { setupStore } from './store';
 
 const store = setupStore();
 
-const AppContainer = createAppContainer(() => (
+const AppContainer = () => (
   <StateProvider store={store}>
     <NativeBaseRoot>
       <StyleProvider style={getTheme(THEME)}>
@@ -22,6 +22,6 @@ const AppContainer = createAppContainer(() => (
       </StyleProvider>
     </NativeBaseRoot>
   </StateProvider>
-));
+);
 
 export default AppContainer;
