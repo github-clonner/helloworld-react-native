@@ -40,7 +40,7 @@ export function $login(username, password) {
  * Logout
  */
 
-const logout = StateHelper.createAction(MODULE, 'logout');
+const logout = StateHelper.createSimpleOperation(MODULE, 'logout');
 
 export function $logout() {
   return (dispatch) => {

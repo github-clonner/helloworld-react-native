@@ -1,11 +1,9 @@
-import { StyleSheet, TextInput } from 'react-native';
+import { StyleSheet, Platform, TextInput } from 'react-native';
 
 // import NativeBaseTheme from '../../native-base-theme/variables/platform';
 import NativeBaseTheme from 'native-base/src/theme/variables/material';
 
-// import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
-
-// import CustomIconsIcoMoonConfig from '../assets/CustomIcons.json';
+// import { CustomIcon } from '../components/CustomIcon';
 
 /**
  * Fonts
@@ -105,8 +103,6 @@ export const THEME = {
 /**
  * Custom Icons
  */
-
-// export const CustomIcon = createIconSetFromIcoMoon(CustomIconsIcoMoonConfig);
 
 // CustomIcon.defaultProps.size = Platform.OS === 'ios' ? 35 : 30;
 // CustomIcon.defaultProps.color = COLOR.primary;
