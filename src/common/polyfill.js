@@ -1,7 +1,5 @@
 // @IMPORTANT prefer Babel transform when possible
 
-import promiseFinallyImplementation from 'promise.prototype.finally/implementation';
-
 /**
  * process.nextTick
  */
@@ -20,7 +18,7 @@ if (typeof Promise.prototype.finally !== 'function' || Promise.prototype.finally
   Object.defineProperty(Promise.prototype, 'finally', {
     configurable: true,
     writable: true,
-    value: promiseFinallyImplementation,
+    value: require('promise.prototype.finally/implementation'),
   });
 }
 
@@ -28,6 +26,7 @@ if (typeof Promise.prototype.finally !== 'function' || Promise.prototype.finally
  * Intl
  */
 
-if (!process.nextTick) {
-  process.nextTick = setImmediate;
+if (!global.Intl) {
+  require('intl');
+  require('intl/locale-data/jsonp/fr.js');
 }
