@@ -8,10 +8,10 @@ export const MODULE = 'Shared';
  * Initial State
  */
 
-const INITIAL_STATE = {
+const INITIAL_STATE = () => ({
   ready: false,
   initialized: false,
-};
+});
 
 /**
  * Ready app
@@ -52,7 +52,7 @@ export function $initialize() {
  * Reducer
  */
 
-export function reducer(state = INITIAL_STATE, action) {
+export function reducer(state = INITIAL_STATE(), action) {
   switch (action.type) {
     case SHARED_READY:
       return {

@@ -13,10 +13,10 @@ export const MODULE = 'Auth';
  * Initial State
  */
 
-const INITIAL_STATE = {
+const INITIAL_STATE = () => ({
   authenticated: false,
   user: null,
-};
+});
 
 /**
  * Log in
@@ -90,7 +90,7 @@ export function $initiatePasswordReset(email) {
  * Reducer
  */
 
-export function reducer(state = INITIAL_STATE, action) {
+export function reducer(state = INITIAL_STATE(), action) {
   switch (action.type) {
     case login.REQUEST:
       return {

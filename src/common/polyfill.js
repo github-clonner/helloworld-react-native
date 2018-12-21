@@ -3,8 +3,16 @@
 import promiseFinallyImplementation from 'promise.prototype.finally/implementation';
 
 /**
- * Polyfill Promise.prototype.finally
- * The onSettled this is necessary for React Native to wrong implementation
+ * process.nextTick
+ */
+
+if (!process.nextTick) {
+  process.nextTick = setImmediate;
+}
+
+/**
+ * Promise.prototype.finally
+ * this is necessary for React Native to fix incorrect implementation
  */
 
 if (typeof Promise.prototype.finally !== 'function' || Promise.prototype.finally.toString().includes('onSettled')) {
@@ -17,7 +25,7 @@ if (typeof Promise.prototype.finally !== 'function' || Promise.prototype.finally
 }
 
 /**
- * Polyfill process.nextTick
+ * Intl
  */
 
 if (!process.nextTick) {

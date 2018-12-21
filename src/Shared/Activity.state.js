@@ -8,13 +8,13 @@ export const MODULE = 'Activity';
  * Initial State
  */
 
-const INITIAL_STATE = {
+const INITIAL_STATE = () => ({
   processingByTopic: {
     default: false,
   },
   processing: false,
   message: null,
-};
+});
 
 /**
  * Reset
@@ -216,10 +216,10 @@ export function $confirm(title, content, options = {}) {
  * Reducer
  */
 
-export function reducer(state = INITIAL_STATE, action) {
+export function reducer(state = INITIAL_STATE(), action) {
   switch (action.type) {
     case ACTIVITY_RESET:
-      return INITIAL_STATE;
+      return INITIAL_STATE();
     case ACTIVITY_PROCESSING: {
       const processingByTopic = {
         ...state.processingByTopic,

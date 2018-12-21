@@ -15,9 +15,9 @@ export const MODULE = 'Home';
  * Initial State
  */
 
-const INITIAL_STATE = {
+const INITIAL_STATE = () => ({
   index: null,
-};
+});
 
 /**
  * Reset
@@ -83,11 +83,11 @@ export function $fetchTaskIndex() {
  * Reducer
  */
 
-export function reducer(state = INITIAL_STATE, action) {
+export function reducer(state = INITIAL_STATE(), action) {
   switch (action.type) {
     case HOME_RESET:
     case AUTH_LOGOUT:
-      return INITIAL_STATE;
+      return INITIAL_STATE();
     case fetchIndex.REQUEST:
       return {
         ...state,
