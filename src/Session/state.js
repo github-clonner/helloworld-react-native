@@ -1,3 +1,7 @@
+/**
+ * Module Name
+ */
+
 export const MODULE = 'Session';
 
 /**

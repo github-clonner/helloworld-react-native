@@ -5,9 +5,11 @@ import * as StateHelper from '../common/state.helper';
 
 import { AuthService } from '../Auth/Auth.service';
 
-import { AUTH_LOGOUT } from '../Auth/state';
-
 import * as Activity from '../Shared/Activity.state';
+
+/**
+ * Module Name
+ */
 
 export const MODULE = 'Home';
 
@@ -23,13 +25,9 @@ const INITIAL_STATE = {
  * Reset
  */
 
-const HOME_RESET = 'HOME_RESET';
+const reset = StateHelper.createSimpleOperation(MODULE, 'reset');
 
-export function $reset() {
-  return {
-    type: HOME_RESET,
-  };
-}
+export const $reset = reset.action;
 
 /**
  * Fetch Index
@@ -85,8 +83,7 @@ export function $fetchTaskIndex() {
 
 export function reducer(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case HOME_RESET:
-    case AUTH_LOGOUT:
+    case reset.TYPE:
       return INITIAL_STATE;
     case fetchIndex.REQUEST:
       return {

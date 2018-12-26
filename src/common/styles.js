@@ -3,7 +3,7 @@ import { StyleSheet, Platform, TextInput } from 'react-native';
 // import NativeBaseTheme from '../../native-base-theme/variables/platform';
 import NativeBaseTheme from 'native-base/src/theme/variables/material';
 
-// import { CustomIcon } from '../components/CustomIcon';
+// import { CustomIcon } from '../Shared/components/CustomIcon';
 
 /**
  * Fonts

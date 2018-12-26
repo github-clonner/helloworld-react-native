@@ -1,11 +1,12 @@
-import * as Logger from '../common/logger';
 import * as StateHelper from '../common/state.helper';
-import * as FetchHelper from '../common/fetch.helper';
 
 import * as Activity from '../Shared/Activity.state';
-import { $ready, $initialize } from '../Shared/state';
 
 import { AuthService } from './Auth.service';
+
+/**
+ * Module Name
+ */
 
 export const MODULE = 'Auth';
 
@@ -17,6 +18,14 @@ const INITIAL_STATE = {
   authenticated: false,
   user: null,
 };
+
+/**
+ * Reset
+ */
+
+const reset = StateHelper.createSimpleOperation(MODULE, 'reset');
+
+export const $reset = reset.action;
 
 /**
  * Login
@@ -31,7 +40,6 @@ export function $login(username, password) {
 
     return AuthService.login(username, password)
       .then((result) => dispatch(login.success(result)))
-      .then((result) => dispatch($initialize()).then(() => result))
       .catch((error) => dispatch(login.failure(error)))
       .finally(() => dispatch(Activity.$done(MODULE, $login.name)));
   };
@@ -45,11 +53,9 @@ const logout = StateHelper.createSimpleOperation(MODULE, 'logout');
 
 export function $logout() {
   return (dispatch) => {
-    return AuthService.logout().then(() => dispatch(logout.perform()));
+    return AuthService.logout().then(() => dispatch(logout.action()));
   };
 }
-
-export const AUTH_LOGOUT = logout.ACTION;
 
 /**
  * Signup
@@ -110,7 +116,7 @@ export function reducer(state = INITIAL_STATE, action) {
         authenticated: true,
         user: action.user,
       };
-    case logout.ACTION:
+    case logout.TYPE:
       return {
         ...state,
         authenticated: false,
@@ -126,22 +132,4 @@ export function persister({ authenticated, user }) {
     authenticated,
     user,
   };
-}
-
-export async function initializer({ dispatch, getState }) {
-  FetchHelper.events.on('failure', (error, response) => {
-    if (AuthService.isAuthenticated() && response.status === 401) {
-      dispatch($logout());
-    }
-  });
-
-  await AuthService.initialize();
-
-  if (AuthService.isAuthenticated()) {
-    await dispatch($initialize()).catch((error) => dispatch(Activity.$toast('failure', error.message)));
-  } else if (getState().Auth.authenticated) {
-    dispatch(logout.perform());
-  }
-
-  dispatch($ready());
 }

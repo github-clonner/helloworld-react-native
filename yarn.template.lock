@@ -6355,9 +6355,9 @@ stacktrace-parser@^0.1.3:
   resolved "https://registry.yarnpkg.com/stacktrace-parser/-/stacktrace-parser-0.1.4.tgz#01397922e5f62ecf30845522c95c4fe1d25e7d4e"
   integrity sha1-ATl5IuX2Ls8whFUiyVxP4dJefU4=
 
-"starter-lib@git+https://github.com/emiketic/emiketic-starter-lib.git#0.3.10":
-  version "0.3.10"
-  resolved "git+https://github.com/emiketic/emiketic-starter-lib.git#db6940e38440f33f818bf63d1246aaf061262ec6"
+"starter-lib@git+https://github.com/emiketic/emiketic-starter-lib.git#0.3.11":
+  version "0.3.11"
+  resolved "git+https://github.com/emiketic/emiketic-starter-lib.git#e83359656dcf574f7107f50369c010825fdbf799"
   dependencies:
     debug "~4.1.1"
     events "~3.0.0"

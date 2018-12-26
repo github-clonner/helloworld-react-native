@@ -1,6 +1,17 @@
 import * as Logger from '../common/logger';
 
-import { AUTH_LOGOUT } from '../Auth/state';
+import * as FetchHelper from '../common/fetch.helper';
+import * as StateHelper from '../common/state.helper';
+
+import { AuthService } from '../Auth/Auth.service';
+
+import * as Auth from '../Auth/state';
+
+import * as Activity from './Activity.state';
+
+/**
+ * Module Name
+ */
 
 export const MODULE = 'Shared';
 
@@ -17,21 +28,19 @@ const INITIAL_STATE = {
  * Ready app
  */
 
-const SHARED_READY = 'SHARED_READY';
+const ready = StateHelper.createSimpleOperation(MODULE, 'ready');
 
 export function $ready() {
   Logger.debug('$ready');
 
-  return {
-    type: SHARED_READY,
-  };
+  return ready.action();
 }
 
 /**
  * Initialize app
  */
 
-const SHARED_INITIALIZED = 'SHARED_INITIALIZED';
+const initialize = StateHelper.createSimpleOperation(MODULE, 'initialize');
 
 export function $initialize() {
   Logger.debug('$initialize');
@@ -42,9 +51,21 @@ export function $initialize() {
       // dispatch($loadSomething()),
     ]);
 
-    dispatch({
-      type: SHARED_INITIALIZED,
-    });
+    return dispatch(initialize.action());
+  };
+}
+
+/**
+ * Uninitialize app
+ */
+
+const uninitialize = StateHelper.createSimpleOperation(MODULE, 'uninitialize');
+
+export function $uninitialize() {
+  Logger.debug('$uninitialize');
+
+  return async (dispatch) => {
+    dispatch(uninitialize.action());
   };
 }
 
@@ -54,17 +75,17 @@ export function $initialize() {
 
 export function reducer(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case SHARED_READY:
+    case ready.TYPE:
       return {
         ...state,
         ready: true,
       };
-    case SHARED_INITIALIZED:
+    case initialize.TYPE:
       return {
         ...state,
         initialized: true,
       };
-    case AUTH_LOGOUT:
+    case uninitialize.TYPE:
       return {
         ...state,
         initialized: false,
@@ -72,4 +93,30 @@ export function reducer(state = INITIAL_STATE, action) {
     default:
       return state;
   }
+}
+
+export async function initializer({ dispatch, getState }) {
+  FetchHelper.events.on('failure', (error, response) => {
+    if (AuthService.isAuthenticated() && response.status === 401) {
+      dispatch(Auth.$logout());
+    }
+  });
+
+  await AuthService.initialize();
+
+  if (AuthService.isAuthenticated()) {
+    await dispatch($initialize()).catch((error) => dispatch(Activity.$toast('failure', error.message)));
+  } else if (getState().Auth.authenticated) {
+    dispatch(Auth.$reset());
+  }
+
+  AuthService.events.on('login', async () => {
+    await dispatch($initialize()).catch((error) => dispatch(Activity.$toast('failure', error.message)));
+  });
+
+  AuthService.events.on('logout', async () => {
+    dispatch($uninitialize());
+  });
+
+  dispatch($ready());
 }
