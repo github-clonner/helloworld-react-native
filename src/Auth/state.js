@@ -13,14 +13,15 @@ export const MODULE = 'Auth';
  * Initial State
  */
 
-const INITIAL_STATE = () => ({
+const INITIAL_STATE = {
   authenticated: false,
   user: null,
-});
+};
 
 /**
- * Log in
+ * Login
  */
+
 const login = StateHelper.createAsyncOperation(MODULE, 'login');
 
 export function $login(username, password) {
@@ -51,7 +52,7 @@ export function $logout() {
 export const AUTH_LOGOUT = logout.ACTION;
 
 /**
- * Sign up
+ * Signup
  */
 
 const signup = StateHelper.createAsyncOperation(MODULE, 'signup');
@@ -90,7 +91,7 @@ export function $initiatePasswordReset(email) {
  * Reducer
  */
 
-export function reducer(state = INITIAL_STATE(), action) {
+export function reducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case login.REQUEST:
       return {
