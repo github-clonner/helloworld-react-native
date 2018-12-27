@@ -95,6 +95,10 @@ export function reducer(state = INITIAL_STATE, action) {
   }
 }
 
+/**
+ * App initializer
+ */
+
 export async function initializer({ dispatch, getState }) {
   FetchHelper.events.on('failure', (error, response) => {
     if (AuthService.isAuthenticated() && response.status === 401) {
@@ -104,19 +108,21 @@ export async function initializer({ dispatch, getState }) {
 
   await AuthService.initialize();
 
-  if (AuthService.isAuthenticated()) {
-    await dispatch($initialize()).catch((error) => dispatch(Activity.$toast('failure', error.message)));
-  } else if (getState().Auth.authenticated) {
+  if (!AuthService.isAuthenticated() && getState().Auth.authenticated) {
     dispatch(Auth.$reset());
   }
 
-  AuthService.events.on('login', async () => {
-    await dispatch($initialize()).catch((error) => dispatch(Activity.$toast('failure', error.message)));
+  dispatch($ready());
+
+  if (AuthService.isAuthenticated()) {
+    dispatch($initialize()).catch((error) => dispatch(Activity.$toast('failure', error.message)));
+  }
+
+  AuthService.events.on('login', () => {
+    dispatch($initialize()).catch((error) => dispatch(Activity.$toast('failure', error.message)));
   });
 
-  AuthService.events.on('logout', async () => {
+  AuthService.events.on('logout', () => {
     dispatch($uninitialize());
   });
-
-  dispatch($ready());
 }

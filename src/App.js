@@ -15,15 +15,15 @@ import SessionNavigator from './Session';
 
 const withStore = connect((state) => ({
   ready: state.Shared.ready,
-  authenticated: state.Auth.authenticated,
   initialized: state.Shared.initialized,
+  authenticated: state.Auth.authenticated,
 }));
 
 const propTypes = {
   dispatch: PropTypes.dispatch.isRequired,
   ready: PropTypes.bool.isRequired,
-  authenticated: PropTypes.bool.isRequired,
   initialized: PropTypes.bool.isRequired,
+  authenticated: PropTypes.bool.isRequired,
 };
 
 const Wrapper = (C) => withStore(C);
@@ -40,15 +40,15 @@ class App extends Component<{}> {
   }
 
   render() {
+    const { ready, initialized, authenticated } = this.props;
+
+    if (!ready || (authenticated && !initialized)) {
+      return <LandingView />;
+    }
+
     return (
       <View style={{ flex: 1, backgroundColor: COLOR.background }}>
-        <SafeAreaView style={{ flex: 1 }}>
-          {(!this.props.ready || (this.props.authenticated && !this.props.initialized)) && <LandingView />}
-
-          {this.props.ready && !this.props.authenticated && <EntranceNavigator />}
-
-          {this.props.ready && this.props.authenticated && this.props.initialized && <SessionNavigator />}
-        </SafeAreaView>
+        <SafeAreaView style={{ flex: 1 }}>{authenticated ? <SessionNavigator /> : <EntranceNavigator />}</SafeAreaView>
       </View>
     );
   }

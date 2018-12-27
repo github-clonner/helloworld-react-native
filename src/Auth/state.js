@@ -65,13 +65,13 @@ const signup = StateHelper.createAsyncOperation(MODULE, 'signup');
 
 export function $signup(payload) {
   return async (dispatch) => {
-    dispatch(Activity.$processing());
+    dispatch(Activity.$processing(MODULE, $signup.name, { message: 'Signing up ...' }));
     dispatch(signup.request());
 
     return AuthService.signup(payload)
       .then((result) => dispatch(signup.success(result)))
       .catch((error) => dispatch(signup.failure(error)))
-      .finally(() => dispatch(Activity.$done()));
+      .finally(() => dispatch(Activity.$done(MODULE, $signup.name)));
   };
 }
 
