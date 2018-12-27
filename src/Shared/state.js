@@ -33,7 +33,9 @@ const ready = StateHelper.createSimpleOperation(MODULE, 'ready');
 export function $ready() {
   Logger.debug('$ready');
 
-  return ready.action();
+  return async (dispatch) => {
+    dispatch(ready.action());
+  };
 }
 
 /**
