@@ -28,5 +28,6 @@ if (typeof Promise.prototype.finally !== 'function' || Promise.prototype.finally
 
 if (!global.Intl) {
   require('intl');
-  require('intl/locale-data/jsonp/fr.js');
+  require('intl/locale-data/jsonp/en');
+  require('intl/locale-data/jsonp/fr');
 }

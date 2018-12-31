@@ -105,11 +105,6 @@ export function reducer(state = INITIAL_STATE, action) {
         user: null,
       };
     case login.SUCCESS:
-      return {
-        ...state,
-        authenticated: true,
-        user: action.user,
-      };
     case signup.SUCCESS:
       return {
         ...state,
@@ -126,6 +121,10 @@ export function reducer(state = INITIAL_STATE, action) {
       return state;
   }
 }
+
+/**
+ * Persister
+ */
 
 export function persister({ authenticated, user }) {
   return {
