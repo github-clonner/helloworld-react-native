@@ -3,6 +3,8 @@ import { View, SafeAreaView } from 'react-native';
 import { connect } from 'react-redux';
 import SplashScreen from 'react-native-splash-screen';
 
+import { createAppContainer } from 'react-navigation';
+
 import * as PropTypes from './common/proptypes';
 
 import * as Logger from './common/logger';
@@ -12,6 +14,9 @@ import { COLOR } from './common/styles';
 import LandingView from './Entrance/LandingView';
 import EntranceNavigator from './Entrance';
 import SessionNavigator from './Session';
+
+const EntranceNavigatorContainer = createAppContainer(EntranceNavigator);
+const SessionNavigatorContainer = createAppContainer(SessionNavigator);
 
 const withStore = connect((state) => ({
   ready: state.Shared.ready,
@@ -48,7 +53,9 @@ class App extends Component<{}> {
 
     return (
       <View style={{ flex: 1, backgroundColor: COLOR.background }}>
-        <SafeAreaView style={{ flex: 1 }}>{authenticated ? <SessionNavigator /> : <EntranceNavigator />}</SafeAreaView>
+        <SafeAreaView style={{ flex: 1 }}>
+          {authenticated ? <SessionNavigatorContainer /> : <EntranceNavigatorContainer />}
+        </SafeAreaView>
       </View>
     );
   }

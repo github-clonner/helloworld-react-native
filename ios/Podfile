@@ -29,6 +29,8 @@ target 'HelloWorld' do
 
 
   # Add new pods below this line
+  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
+
   pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
 
   pod 'RNKeychain', :path => '../node_modules/react-native-keychain'

@@ -20,6 +20,8 @@ import NativeBaseTheme from 'native-base/src/theme/variables/material';
  */
 
 export const COLOR = {
+  debug: 'rgba(0,0,0,0.1)',
+
   background: '#F0F1F6',
 
   primary: '#607D8B',
@@ -41,8 +43,6 @@ export const COLOR = {
 
   white: '#FFFFFF',
   black: '#000000',
-
-  debug: 'rgba(0,0,0,0.1)',
 };
 
 /**

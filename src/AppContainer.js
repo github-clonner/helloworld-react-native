@@ -2,8 +2,6 @@ import React from 'react';
 
 import { Provider as StateProvider } from 'react-redux';
 
-// import { createAppContainer } from 'react-navigation';
-
 import { Root as NativeBaseRoot, StyleProvider, getTheme } from 'native-base';
 
 import { THEME } from './common/styles';
