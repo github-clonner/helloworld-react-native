@@ -31,7 +31,7 @@
     "redux-localstorage": "~1.0.0-rc5",
     "redux-logger": "~3.0.6",
     "redux-thunk": "~2.3.0",
-    "starter-lib": "git+https://github.com/emiketic/emiketic-starter-lib.git#0.5.2"
+    "starter-lib": "git+https://github.com/emiketic/emiketic-starter-lib.git#0.5.3"
   },
   "devDependencies": {
     "@babel/core": "~7.2.2",
@@ -50,16 +50,12 @@
   },
   "jest": {
     "preset": "react-native",
-    "transformIgnorePatterns": [
-      "node_modules/?!(react-native|native-base)"
-    ],
+    "transformIgnorePatterns": ["node_modules/?!(react-native|native-base)"],
     "transform": {
       "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
     }
   },
   "rnpm": {
-    "assets": [
-      "assets/fonts"
-    ]
+    "assets": ["assets/fonts"]
   }
 }

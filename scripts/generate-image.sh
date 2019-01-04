@@ -11,7 +11,7 @@ if [ $# -lt 1 ] ; then
       Generates native image assets.
         <input>    path for input file, could be:
                      - SVG file
-                     - PNG file with 4x size
+                     - PNG file
 
         <size@1x>  optionnal target size
                      - <width> => <width>x<width>
@@ -32,7 +32,7 @@ fi
 
 ## include common processing
 
-source $(dirname $0)/generate-image-assets.include.sh
+source $(dirname $0)/generate-assets.include.sh
 
 ## generate assets
 

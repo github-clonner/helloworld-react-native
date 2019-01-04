@@ -46,13 +46,6 @@ function preapre_image () {
 
   density=$(echo $DENSITY*$width/$WIDTH | bc)
 
-  # when input is not PNG, assume input is 4x
-  if [ "$FORMAT" = 'PNG' ] ; then
-    width=$(echo $width/4 | bc)
-    height=$(echo $height/4 | bc)
-    density=$(echo $density/4 | bc)
-  fi
-
   echo "$FORMAT ${WIDTH}x${HEIGHT}:${DENSITY} => PNG ${width}x${height}:${density}@${scale} |> $(image_path)"
 
 }

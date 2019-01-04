@@ -2,7 +2,7 @@
 
 ## Native Image Assets
 
-`./scripts/generate-all-image-assets.sh` generates native image assets.
+`./scripts/generate-assets.sh` generates native image assets.
 
 Customize it according to your needs then run it.
 

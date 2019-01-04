@@ -11,7 +11,7 @@ if [ $# -lt 1 ] ; then
       Generates native image assets.
         <input>    path for input file, could be:
                      - SVG file
-                     - PNG file with 4x size
+                     - PNG file
 
         <size@1x>  optionnal target size
                      - <width> => <width>x<width>
@@ -30,6 +30,6 @@ if [ ! -f $1 ] ; then
 	exit 1
 fi
 
-$(dirname $0)/generate-image-assets-for-android.sh $@
+$(dirname $0)/generate-native-image.android.sh $@
 
-$(dirname $0)/generate-image-assets-for-ios.sh $@
+$(dirname $0)/generate-native-image.ios.sh $@

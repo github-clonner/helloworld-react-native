@@ -12,7 +12,7 @@ fi
 
 ## include common processing
 
-source $(dirname $0)/generate-image-assets.include.sh
+source $(dirname $0)/generate-assets.include.sh
 
 ## generate assets
 
@@ -26,7 +26,7 @@ function image_path () {
 
 width=48
 height=48
-  
+
 scale=1 resolution=mdpi generate_image
 
 scale=1.5 resolution=hdpi generate_image

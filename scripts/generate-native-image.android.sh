@@ -12,7 +12,7 @@ fi
 
 ## include common processing
 
-source $(dirname $0)/generate-image-assets.include.sh
+source $(dirname $0)/generate-assets.include.sh
 
 ## generate assets
 
