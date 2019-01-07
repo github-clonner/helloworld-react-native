@@ -4,9 +4,9 @@ set -xeo pipefail
 cp package.json package.template.json
 cat <<EOS > package.json
 {
+  "private": true,
   "name": "emiketic-starter-react-native",
-  "version": "0.1.0",
-  "private": true
+  "version": "0.1.0"
 }
 EOS
 
