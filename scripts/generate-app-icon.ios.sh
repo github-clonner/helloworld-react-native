@@ -27,87 +27,137 @@ target_dir="${PWD}/ios/${APP_NAME}/Images.xcassets/AppIcon.appiconset"
 mkdir -p $target_dir
 
 function image_path () {
-  if [ -n "$prefix" ]; then
-    echo "${target_dir}/${prefix}-${width}x${height}@${scale}x.png";
-  else
-    echo "${target_dir}/iphone-${width}x${height}@${scale}x.png";
-  fi
+  echo "${target_dir}/${prefix}-${width}x${height}@${scale}x.png";
 }
 
-width=20 height=20 scale=2 generate_image
+# https://developer.apple.com/design/human-interface-guidelines/ios/icons-and-images/app-icon/#app-icon-sizes
 
-width=20 height=20 scale=3 generate_image
+width=60 height=60 scale=2 prefix=iphone generate_image # App Icon for iPhone
 
-width=29 height=29 scale=2 generate_image
+width=60 height=60 scale=3 prefix=iphone generate_image # App Icon for iPhone
 
-width=29 height=29 scale=3 generate_image
+width=83.5 height=83.5 scale=2 prefix=ipad generate_image # App Icon for iPad Pro
 
-width=40 height=40 scale=2 generate_image
+width=76 height=76 scale=2 prefix=ipad generate_image # App Icon for iPad, iPad mini
 
-width=40 height=40 scale=3 generate_image
+width=1024 height=1024 scale=1 prefix=ios-marketing generate_image # App Icon for App Store
 
-width=60 height=60 scale=2 generate_image
+width=20 height=20 scale=2 prefix=iphone generate_image # Notification for iPhone, iPad Pro, iPad, iPad mini
 
-width=60 height=60 scale=3 generate_image
+width=20 height=20 scale=3 prefix=iphone generate_image # Notification for iPhone
 
-width=1024 height=1024 scale=1 prefix="ios-marketing" generate_image
+width=29 height=29 scale=2 prefix=iphone generate_image # Settings for iPhone, iPad Pro, iPad, iPad mini
+
+width=29 height=29 scale=3 prefix=iphone generate_image # Settings for iPhone
+
+width=40 height=40 scale=2 prefix=iphone generate_image # Spotlight for iPhone, iPad Pro, iPad, iPad mini
+
+width=40 height=40 scale=3 prefix=iphone generate_image # Spotlight for iPhone
+
 
 cat > "${target_dir}/Contents.json" <<EOL
 {
   "images": [
     {
-      "idiom": "iphone",
       "size": "20x20",
-      "scale": "2x",
-      "filename": "iphone-20x20@2x.png"
+      "idiom": "iphone",
+      "filename": "iphone-20x20@2x.png",
+      "scale": "2x"
     },
     {
-      "idiom": "iphone",
       "size": "20x20",
-      "scale": "3x",
-      "filename": "iphone-20x20@3x.png"
+      "idiom": "iphone",
+      "filename": "iphone-20x20@3x.png",
+      "scale": "3x"
     },
     {
-      "idiom": "iphone",
       "size": "29x29",
-      "scale": "2x",
-      "filename": "iphone-29x29@2x.png"
+      "idiom": "iphone",
+      "filename": "iphone-29x29@2x.png",
+      "scale": "2x"
     },
     {
-      "idiom": "iphone",
       "size": "29x29",
-      "scale": "3x",
-      "filename": "iphone-29x29@3x.png"
+      "idiom": "iphone",
+      "filename": "iphone-29x29@3x.png",
+      "scale": "3x"
     },
     {
-      "idiom": "iphone",
       "size": "40x40",
-      "scale": "2x",
-      "filename": "iphone-40x40@2x.png"
+      "idiom": "iphone",
+      "filename": "iphone-40x40@2x.png",
+      "scale": "2x"
     },
     {
-      "idiom": "iphone",
       "size": "40x40",
-      "scale": "3x",
-      "filename": "iphone-40x40@3x.png"
-    },
-    {
       "idiom": "iphone",
-      "size": "60x60",
-      "scale": "2x",
-      "filename": "iphone-60x60@2x.png"
+      "filename": "iphone-40x40@3x.png",
+      "scale": "3x"
     },
     {
+      "size": "60x60",
       "idiom": "iphone",
-      "size": "60x60",
-      "scale": "3x",
-      "filename": "iphone-60x60@3x.png"
+      "filename": "iphone-60x60@2x.png",
+      "scale": "2x"
     },
     {
-      "idiom": "ios-marketing",
+      "size": "60x60",
+      "idiom": "iphone",
+      "filename": "iphone-60x60@3x.png",
+      "scale": "3x"
+    },
+    {
+      "idiom": "ipad",
+      "size": "20x20",
+      "scale": "1x"
+    },
+    {
+      "idiom": "ipad",
+      "size": "20x20",
+      "scale": "2x"
+    },
+    {
+      "idiom": "ipad",
+      "size": "29x29",
+      "scale": "1x"
+    },
+    {
+      "idiom": "ipad",
+      "size": "29x29",
+      "scale": "2x"
+    },
+    {
+      "idiom": "ipad",
+      "size": "40x40",
+      "scale": "1x"
+    },
+    {
+      "idiom": "ipad",
+      "size": "40x40",
+      "scale": "2x"
+    },
+    {
+      "idiom": "ipad",
+      "size": "76x76",
+      "scale": "1x"
+    },
+    {
+      "size": "76x76",
+      "idiom": "ipad",
+      "filename": "ipad-76x76@2x.png",
+      "scale": "2x"
+    },
+    {
+      "size": "83.5x83.5",
+      "idiom": "ipad",
+      "filename": "ipad-83.5x83.5@2x.png",
+      "scale": "2x"
+    },
+    {
       "size": "1024x1024",
-      "scale": "1x",
-      "filename": "ios-marketing-1024x1024@1x.png"
+      "idiom": "ios-marketing",
+      "filename": "ios-marketing-1024x1024@1x.png",
+      "scale": "1x"
     }
   ],
   "info": {

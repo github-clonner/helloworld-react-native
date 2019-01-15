@@ -16,7 +16,7 @@
     "lint": "eslint --ext .js ./",
     "lint:critical": "eslint --no-eslintrc --config .eslintrc.critical.json ./",
     "format": "npm run format:all && npm run format:js",
-    "format:all": "prettier ./**/*.{md,json,js,css,scss} --write",
+    "format:all": "prettier './**/*.{md,json,js,css,scss}' --write",
     "format:js": "eslint -o /dev/null --ext .js --fix ./ || true",
     "postinstall": "./scripts/postinstall.sh"
   },
