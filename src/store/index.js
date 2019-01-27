@@ -40,7 +40,21 @@ let reducer = combineReducers(
  * support loading persisted partial initial state
  */
 
-reducer = compose(mergePersistedState())(reducer);
+function merge(target, source) {
+  const result = { ...target };
+
+  for (const [key, value] of Object.entries(source)) {
+    if (value && Object.prototype.toString.call(value) === '[object Object]' && result[key]) {
+      result[key] = merge(result[key], value);
+    } else {
+      result[key] = value;
+    }
+  }
+
+  return result;
+}
+
+reducer = compose(mergePersistedState(merge))(reducer);
 
 /**
  * define persistence
