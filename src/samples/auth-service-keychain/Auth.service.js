@@ -1,3 +1,4 @@
+import * as Keychain from 'react-native-keychain';
 import { AsyncStorage } from 'react-native';
 
 import { EventEmitter } from '../common/events';
@@ -36,13 +37,29 @@ export const AuthServiceImplementation = class AuthService {
     await AsyncStorage.removeItem('auth.access_token');
   }
 
+  async _loadCredentials() {
+    const credentials = await Keychain.getGenericPassword();
+
+    if (credentials) {
+      this.username = credentials.username;
+      this.password = credentials.password;
+    }
+  }
+
+  async _saveCredentials(username, password) {
+    await Keychain.setGenericPassword(username, password);
+  }
+
   async _clearCredentials() {
     this.username = '';
     this.password = '';
+
+    await Keychain.resetGenericPassword();
   }
 
   async initialize() {
     await this._loadSession();
+    await this._loadCredentials();
   }
 
   hasCredentials() {
@@ -67,6 +84,7 @@ export const AuthServiceImplementation = class AuthService {
       .then(FetchHelper.ResponseHandler, FetchHelper.ErrorHandler)
       .then(async ({ access_token, ...result }) => {
         await this._saveSession(access_token);
+        await this._saveCredentials(username, password);
         await this.events.emitAsync('login');
         return result;
       });
@@ -93,6 +111,7 @@ export const AuthServiceImplementation = class AuthService {
       .then(FetchHelper.ResponseHandler, FetchHelper.ErrorHandler)
       .then(({ token, ...result }) => {
         this._saveSession(token);
+        this._saveCredentials(user.email, user.password);
         return result;
       });
   }
