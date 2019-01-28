@@ -46,6 +46,7 @@ test:
     - ./dev-start.sh
   script:
     - yarn test
+  allow_failure: true
 
 build:android:debug:
   stage: build
