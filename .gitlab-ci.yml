@@ -4,6 +4,8 @@ stages:
   - test
   - build
   - deploy
+  - unit_tests
+  - test_flight
 
 image: node:10
 
@@ -175,3 +177,34 @@ upload:ios:debug:
 #   artifacts:
 #     paths:
 #       - ./build/app-release.zip
+
+unit_tests:
+  dependencies: []
+  stage: unit_tests
+  artifacts:
+    paths:
+      - fastlane/screenshots
+      - fastlane/logs
+  when: manual
+  script:
+    - fastlane tests
+  tags:
+    - ios
+
+test_flight_build:
+  dependencies: []
+  stage: test_flight
+  artifacts:
+    paths:
+      - fastlane/screenshots
+      - fastlane/logs
+  when: manual
+  before_script:
+  - gem install bundler
+  - bundle install
+  script:
+    - fastlane beta
+  tags:
+    - ios
+  only:
+     - develop
