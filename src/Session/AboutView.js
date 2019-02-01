@@ -9,7 +9,7 @@ import * as PropTypes from '../common/proptypes';
 
 import { STYLE } from '../common/styles';
 
-import { RELEASE_VERSION, RELEASE_DATE } from '../common/config';
+import { RELEASE_VERSION } from '../common/config';
 
 const withStore = connect((state) => ({}));
 
@@ -39,12 +39,8 @@ class AboutView extends Component {
         <Content padder>
           <View>
             <Text>
-              Release Version:
+              Release:
               {RELEASE_VERSION}
-            </Text>
-            <Text>
-              Release Date:
-              {RELEASE_DATE}
             </Text>
           </View>
         </Content>
