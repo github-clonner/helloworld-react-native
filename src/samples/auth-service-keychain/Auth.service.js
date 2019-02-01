@@ -47,6 +47,8 @@ export const AuthServiceImplementation = class AuthService {
   }
 
   async _saveCredentials(username, password) {
+    this.username = username;
+    this.password = password;
     await Keychain.setGenericPassword(username, password);
   }
 
@@ -99,19 +101,21 @@ export const AuthServiceImplementation = class AuthService {
   signup(payload) {
     const { name, email, password } = payload;
 
-    const user = { name, email, password };
-
     return fetch(`${API_ENDPOINT}/auth/signup`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(payload),
+      body: JSON.stringify({
+        email,
+        password,
+        name,
+      }),
     })
       .then(FetchHelper.ResponseHandler, FetchHelper.ErrorHandler)
-      .then(({ token, ...result }) => {
-        this._saveSession(token);
-        this._saveCredentials(user.email, user.password);
+      .then(({ access_token, ...result }) => {
+        this._saveSession(access_token);
+        this._saveCredentials(email, password);
         return result;
       });
   }
