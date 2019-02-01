@@ -10,4 +10,3 @@ set -eo pipefail
 for icon in $(find assets/ -name 'ic_*.svg'); do
   ./scripts/generate-native-image.sh $icon 24
 done
-

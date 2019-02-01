@@ -34,9 +34,6 @@ mv ./package.template.json ./package.json
 rm yarn.lock
 mv yarn.template.lock yarn.lock
 
-rm ./scripts/config.sh
-mv ./scripts/config.template.sh ./scripts/config.sh
-
 rm ./.gitlab-ci.yml
 mv ./.gitlab-ci.template.yml ./.gitlab-ci.yml
 

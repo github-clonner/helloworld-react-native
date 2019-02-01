@@ -12,4 +12,4 @@ echo "export const RELEASE_CODENAME = '${VALUE}';" >> ./src/common/release.js
 VALUE=$(git show -s --format=%aI)
 echo "export const RELEASE_DATE = '${VALUE}';" >> ./src/common/release.js
 
-echo "console.ignoredYellowBox = ['Warning:'];" >> ./index.js
+echo "console.ignoredYellowBox = ['Warning:'];" >> ./src/common/release.js

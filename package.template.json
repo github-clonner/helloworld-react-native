@@ -21,7 +21,7 @@
     "postinstall": "./scripts/postinstall.sh"
   },
   "dependencies": {
-    "native-base": "~2.10.0",
+    "native-base": "~2.11.0",
     "promise.prototype.finally": "~3.1.0",
     "prop-types": "~15.6.2",
     "react": "16.4.1",
@@ -43,12 +43,12 @@
     "babel-preset-react-native": "^5",
     "eslint": "~5.12.1",
     "eslint-config-airbnb": "~17.1.0",
-    "eslint-plugin-import": "~2.15.0",
+    "eslint-plugin-import": "~2.16.0",
     "eslint-plugin-jsx-a11y": "~6.2.0",
     "eslint-plugin-react": "~7.12.4",
     "jest": "24.0.0",
     "jest-react-native": "~18.0.0",
-    "prettier": "~1.16.1",
+    "prettier": "~1.16.3",
     "react-test-renderer": "16.4.1"
   },
   "rnpm": {
