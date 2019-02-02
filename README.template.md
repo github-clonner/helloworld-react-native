@@ -1,7 +1,5 @@
 # Hello World
 
-...
-
 ## Preview
 
 - [Android](https://appetize.io/app/@{APPETIZE_ANDROID_ID}?device=nexus5&scale=75&orientation=portrait&osVersion=7.1)

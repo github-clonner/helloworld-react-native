@@ -9,7 +9,7 @@ cd ./android
 
 export FORCE_BUNDLING=true
 
-./gradlew assembleDebug
+./gradlew clean assembleDebug
 
 cd ..
 

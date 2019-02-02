@@ -7,7 +7,7 @@ $(dirname $0)/update-release.sh
 
 cd ./android
 
-./gradlew assembleRelease
+./gradlew clean assembleRelease
 
 cd ..
 
