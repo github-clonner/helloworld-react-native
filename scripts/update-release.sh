@@ -6,4 +6,4 @@ set -xeo pipefail
 VALUE=$(node -e 'console.log(require("./package.json").version)')
 echo "export const RELEASE_VERSION = '${VALUE}';" >> ./src/common/release.js
 
-echo "console.ignoredYellowBox = ['Warning:'];" >> ./src/common/release.js
+echo "console.disableYellowBox = true;" >> ./src/common/release.js
