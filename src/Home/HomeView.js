@@ -24,10 +24,10 @@ import { COLOR } from '../common/styles';
 
 import * as Activity from '../Shared/Activity.state';
 
-import { $fetchTaskIndex } from './state';
+import { $fetchIndex } from './state';
 
 const withStore = connect((state) => ({
-  processing: state.Activity.processingByTopic['Home.$fetchTaskIndex'] || false,
+  processing: state.Activity.processingByTopic['Home.$fetchIndex'] || false,
   tasks: state.Home.index,
 }));
 
@@ -42,7 +42,7 @@ const Wrapper = (C) => withStore(C);
 class HomeView extends Component {
   componentDidMount() {
     this.props
-      .dispatch($fetchTaskIndex())
+      .dispatch($fetchIndex())
       .then(() => this.props.dispatch(Activity.$toast('success', 'Tasks loaded')))
       .catch((error) => this.props.dispatch(Activity.$toast('failure', error.message)));
   }
