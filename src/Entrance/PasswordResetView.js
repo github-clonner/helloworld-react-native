@@ -11,11 +11,11 @@ import { COLOR } from '../common/styles';
 
 import { LogoHeader } from './LogoHeader';
 
-import * as Activity from '../Shared/Activity.state';
+import * as Activity from '../Shared/Activity.service';
 import { $initiatePasswordReset } from '../Auth/state';
 
 const withStore = connect((state) => ({
-  processing: state.Activity.processingByTopic['Auth.$initiatePasswordReset'] || false,
+  processing: state.Activity.processingByOperation['Auth.$initiatePasswordReset'] || false,
 }));
 
 const propTypes = {
@@ -39,9 +39,9 @@ class PasswordResetView extends Component {
       return null;
     }
 
-    return this.props
-      .dispatch($initiatePasswordReset(this.state.email))
-      .catch((error) => this.props.dispatch(Activity.$toast('failure', error.message)));
+    const { dispatch } = this.props;
+
+    return dispatch($initiatePasswordReset(this.state.email)).catch((error) => Activity.toast('failure', error.message));
   }
 
   render() {

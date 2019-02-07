@@ -11,7 +11,7 @@ import { COLOR } from '../common/styles';
 
 import styles from './styles';
 
-import * as Activity from '../Shared/Activity.state';
+import * as Activity from '../Shared/Activity.service';
 
 const withStore = connect((state) => ({}));
 

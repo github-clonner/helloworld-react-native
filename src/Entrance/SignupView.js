@@ -11,12 +11,14 @@ import { COLOR } from '../common/styles';
 
 import { LogoHeader } from './LogoHeader';
 
-import * as Activity from '../Shared/Activity.state';
+import * as Activity from '../Shared/Activity.service';
 import { $signup, $login } from '../Auth/state';
 
 const withStore = connect((state) => ({
   processing:
-    state.Activity.processingByTopic['Auth.$signup'] || state.Activity.processingByTopic['Auth.$login'] || false,
+    state.Activity.processingByOperation['Auth.$signup']
+    || state.Activity.processingByOperation['Auth.$login']
+    || false,
 }));
 
 const propTypes = {
@@ -42,16 +44,15 @@ class SignupView extends Component {
       return null;
     }
 
-    return this.props
-      .dispatch(
-        $signup({
-          name: this.state.name,
-          email: this.state.email,
-          password: this.state.password,
-        }),
-      )
-      .then(() => this.props.dispatch($login(this.state.email, this.state.password)))
-      .catch((error) => this.props.dispatch(Activity.$toast('failure', error.message)));
+    const { dispatch } = this.props;
+
+    return dispatch(
+      $signup({
+        name: this.state.name,
+        email: this.state.email,
+        password: this.state.password,
+      }),
+    ).catch((error) => Activity.toast('failure', error.message));
   }
 
   render() {

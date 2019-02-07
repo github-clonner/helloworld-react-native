@@ -10,7 +10,7 @@ import * as PropTypes from '../common/proptypes';
 import { $logout } from '../Auth/state';
 
 import { COLOR } from '../common/styles';
-import * as Activity from '../Shared/Activity.state';
+import * as Activity from '../Shared/Activity.service';
 
 const styles = StyleSheet.create({
   itemIcon: {
@@ -32,6 +32,14 @@ const Wrapper = (C) => withStore(C);
 
 class NavigationMenu extends Component {
   state = {};
+
+  logout() {
+    const { dispatch } = this.props;
+
+    dispatch($logout())
+      .then(() => Activity.status('success', 'Goodbye!'))
+      .catch((error) => Activity.toast('failure', error.message));
+  }
 
   render() {
     const user = this.props.user || {};
@@ -67,14 +75,7 @@ class NavigationMenu extends Component {
                 <Text>About</Text>
               </Body>
             </ListItem>
-            <ListItem
-              icon
-              onPress={() => this.props
-                .dispatch($logout())
-                .then(() => this.props.dispatch(Activity.$status('success', 'Goodbye!')))
-                .catch((error) => this.props.dispatch(Activity.$toast('failure', error.message)))
-              }
-            >
+            <ListItem icon onPress={() => this.logout()}>
               <Left>
                 <Icon name="log-out" style={styles.itemIcon} />
               </Left>
