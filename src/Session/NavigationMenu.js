@@ -37,7 +37,7 @@ class NavigationMenu extends Component {
     const { dispatch } = this.props;
 
     dispatch($logout())
-      .then(() => Activity.status('success', 'Goodbye!'))
+      .then(() => Activity.toast('success', 'Goodbye!'))
       .catch((error) => Activity.toast('failure', error.message));
   }
 
