@@ -69,13 +69,62 @@ class HomeView extends Component {
           {tasks && (
             <Card>
               {tasks.map((item) => (
-                <CardItem key={item.id} button bordered onPress={() => alert('Not yet implemented!')}>
+                <CardItem key={item.id} button bordered>
                   <CheckBox checked={item.done} color={COLOR.primary} style={{ marginLeft: 0, marginRight: 16 }} />
                   <Text style={{ textDecorationLine: item.done ? 'line-through' : 'none' }}>{item.title}</Text>
                 </CardItem>
               ))}
             </Card>
           )}
+
+          <View>
+            <Text>Alert examples</Text>
+            <Button
+              danger
+              onPress={() => {
+                Activity.alert(
+                  'Do you like Hello World?',
+                  'Please take a few seconds to rate our app in the store',
+                  {
+                    text: 'Ask me later',
+                    onPress: () => console.log('Ask me later pressed'),
+                  },
+                  {
+                    text: 'Never',
+                    onPress: () => console.log('Never Pressed'),
+                    style: 'cancel',
+                  },
+                  {
+                    text: 'OK',
+                    onPress: () => console.log('OK Pressed'),
+                  },
+                );
+              }}
+            >
+              <Text>Rate us</Text>
+            </Button>
+
+            <Button
+              danger
+              onPress={() => {
+                Activity.confirm(
+                  'Are you sure?',
+                  'Data will be permanantly deleted!',
+                  {
+                    text: 'Cancel',
+                    onPress: () => console.log('Cancel pressed'),
+                  },
+                  {
+                    text: 'Confirm',
+                    onPress: () => console.log('Confirm pressed'),
+                    style: 'destructive',
+                  }
+                );
+              }}
+            >
+              <Text>Delete</Text>
+            </Button>
+          </View>
         </Content>
       </Container>
     );

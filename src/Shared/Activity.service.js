@@ -1,3 +1,4 @@
+import { Alert } from 'react-native';
 import { Toast } from 'native-base';
 
 import * as Logger from '../common/logger';
@@ -30,13 +31,16 @@ const NOTIFICATION_TYPE = {
   default: '',
 };
 
-export function toast(type, title) {
-  type = NOTIFICATION_TYPE[type] || NOTIFICATION_TYPE.default;
 
+function mapNotificationType(type) {
+  return NOTIFICATION_TYPE[type] || NOTIFICATION_TYPE.default;
+}
+
+export function toast(type, title) {
   Logger.debug('toast', type, title);
 
   Toast.show({
-    type,
+    type: mapNotificationType(type),
     text: title,
     position: 'bottom',
     buttonText: 'Ok',
@@ -44,22 +48,33 @@ export function toast(type, title) {
 }
 
 export function status(type, message) {
-  type = NOTIFICATION_TYPE[type] || NOTIFICATION_TYPE.default;
-
   Logger.debug('toast', type, message);
 
   Toast.show({
-    type,
+    type: mapNotificationType(type),
     text: message,
     position: 'bottom',
     buttonText: 'Ok',
   });
 }
 
-export function alert(type, title, content) {
-  // @TODO
+export function alert(title, message, neutralButton, cancelButton, confirmButton) {
+  Logger.debug('alert', title, message);
+
+  Alert.alert(
+    title,
+    message,
+    [neutralButton, cancelButton, confirmButton],
+  );
 }
 
-export function confirm(title, content, options = {}) {
-  // @TODO
+export function confirm(title, message, cancelButton, confirmButton) {
+  Logger.debug('confirm', title, message);
+
+  Alert.alert(
+    title,
+    message,
+    [cancelButton, confirmButton],
+    { cancelable: false },
+  );
 }
