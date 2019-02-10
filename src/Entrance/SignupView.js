@@ -12,11 +12,11 @@ import { COLOR } from '../common/styles';
 import { LogoHeader } from './LogoHeader';
 
 import * as Activity from '../Shared/Activity.service';
-import { $signup, $login } from '../Auth/state';
+import { $signup } from '../Auth/state';
 
 const withStore = connect((state) => ({
   processing:
-    state.Activity.processingByOperation['Auth.signup'] || state.Activity.processingByOperation['Auth.login'] || false,
+    state.Activity.processingByOperation['Auth.signup'] || false,
 }));
 
 const propTypes = {
