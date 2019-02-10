@@ -24,8 +24,8 @@
     "native-base": "~2.11.0",
     "promise.prototype.finally": "~3.1.0",
     "prop-types": "~15.6.2",
-    "react": "16.4.1",
-    "react-native": "0.56.1",
+    "react": "16.6.3",
+    "react-native": "0.58.4",
     "react-native-gesture-handler": "~1.0.15",
     "react-native-splash-screen": "~3.2.0",
     "react-navigation": "~3.2.1",
@@ -48,8 +48,9 @@
     "eslint-plugin-react": "~7.12.4",
     "jest": "24.1.0",
     "jest-react-native": "~18.0.0",
+    "metro-react-native-babel-preset": "0.51.1",
     "prettier": "~1.16.4",
-    "react-test-renderer": "16.4.1"
+    "react-test-renderer": "16.6.3"
   },
   "rnpm": {
     "assets": [
