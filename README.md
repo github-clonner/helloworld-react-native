@@ -6,6 +6,9 @@ A boilerplate and reference implementation for mobile applications built with Re
 
 - [Android](https://appetize.io/app/3xvgukkq4gqjyjn1ztrzq6czwr?device=nexus5&scale=75&orientation=portrait&osVersion=7.1)
 - [iOS](https://appetize.io/app/nkn34mhpchnx172e67ptmjypdm?device=iphone6s&scale=75&orientation=portrait&osVersion=11.1)
+- Access credentials:
+  - email: `client@starter.emiketic.com`
+  - password: `password`
 
 ## References
 

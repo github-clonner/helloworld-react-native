@@ -16,9 +16,7 @@ import { $signup, $login } from '../Auth/state';
 
 const withStore = connect((state) => ({
   processing:
-    state.Activity.processingByOperation['Auth.$signup']
-    || state.Activity.processingByOperation['Auth.$login']
-    || false,
+    state.Activity.processingByOperation['Auth.signup'] || state.Activity.processingByOperation['Auth.login'] || false,
 }));
 
 const propTypes = {

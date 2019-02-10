@@ -30,14 +30,14 @@ const NOTIFICATION_TYPE = {
   default: '',
 };
 
-export function toast(type, title) {
+export function toast(type, content) {
   type = NOTIFICATION_TYPE[type] || NOTIFICATION_TYPE.default;
 
-  Logger.debug('toast', type, title);
+  Logger.debug('toast', type, content);
 
   Toast.show({
     type,
-    text: title,
+    text: content,
     position: 'bottom',
     buttonText: 'Ok',
   });

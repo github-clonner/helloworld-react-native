@@ -27,7 +27,7 @@ import * as Activity from '../Shared/Activity.service';
 import { $fetchIndex } from './state';
 
 const withStore = connect((state) => ({
-  processing: state.Activity.processingByOperation['Home.$fetchIndex'] || false,
+  processing: state.Activity.processingByOperation['Home.fetchIndex'] || false,
   tasks: state.Home.index,
 }));
 

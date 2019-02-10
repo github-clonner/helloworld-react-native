@@ -15,7 +15,7 @@ import * as Activity from '../Shared/Activity.service';
 import { $initiatePasswordReset } from '../Auth/state';
 
 const withStore = connect((state) => ({
-  processing: state.Activity.processingByOperation['Auth.$initiatePasswordReset'] || false,
+  processing: state.Activity.processingByOperation['Auth.initiatePasswordReset'] || false,
 }));
 
 const propTypes = {
