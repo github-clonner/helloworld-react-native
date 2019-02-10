@@ -1,4 +1,4 @@
-# React Native Starter
+# Starter Mobile (React Native)s
 
 A boilerplate and reference implementation for mobile applications built with React, Redux, and React Native.
 
