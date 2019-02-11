@@ -15,7 +15,8 @@ import {
   Card,
   CardItem,
   CheckBox,
-  View,
+  Item,
+  Input,
 } from 'native-base';
 
 import * as PropTypes from '../common/proptypes';
@@ -24,7 +25,7 @@ import { COLOR } from '../common/styles';
 
 import * as Activity from '../Shared/Activity.service';
 
-import { $fetchIndex } from './state';
+import { $fetchIndex, $createTask } from './state';
 
 const withStore = connect((state) => ({
   processing: state.Activity.processingByOperation['Home.fetchIndex'] || false,
@@ -34,12 +35,16 @@ const withStore = connect((state) => ({
 const propTypes = {
   dispatch: PropTypes.dispatch.isRequired,
   processing: PropTypes.bool.isRequired,
-  tasks: PropTypes.object.isRequired,
+  tasks: PropTypes.array,
 };
 
 const Wrapper = (C) => withStore(C);
 
 class HomeView extends Component {
+  state = {
+    task: '',
+  }
+
   componentDidMount() {
     const { dispatch } = this.props;
 
@@ -48,8 +53,63 @@ class HomeView extends Component {
       .catch((error) => Activity.toast('failure', error.message));
   }
 
-  render() {
+  handleAddTask = () => {
+    const { dispatch } = this.props;
+    const { task } = this.state;
+
+    dispatch($createTask(task))
+      .then(() => Activity.toast('success', 'Tasks added'))
+      .catch((error) => Activity.toast('failure', error.message));
+  }
+
+  renderTasks() {
     const { processing, tasks } = this.props;
+    if (processing) {
+      return null;
+    }
+
+    const isEmpty = tasks.length === 0;
+    if (isEmpty) {
+      return <Text>Empty</Text>;
+    }
+
+    return (
+      <Card>
+        {tasks.map((item) => (
+          <CardItem key={item.id} button bordered onPress={() => alert('Not yet implemented!')}>
+            <CheckBox
+              checked={item.done}
+              color={COLOR.primary}
+              style={{ marginLeft: 0, marginRight: 16 }}
+            />
+            <Text style={{ textDecorationLine: item.done ? 'line-through' : 'none' }}>
+              {item.title}
+            </Text>
+          </CardItem>
+        ))}
+      </Card>
+    );
+  }
+
+  renderInput() {
+    const { task } = this.state;
+
+    return (
+      <Item regular>
+        <Input
+          placeholder="Regular Textbox"
+          value={task}
+          onChangeText={(text) => this.setState({ task: text })}
+        />
+        <Button primary large onPress={this.handleAddTask}>
+          <Text>Add</Text>
+        </Button>
+      </Item>
+    );
+  }
+
+  render() {
+    const { processing } = this.props;
 
     return (
       <Container>
@@ -64,18 +124,10 @@ class HomeView extends Component {
           </Body>
           <Right />
         </Header>
+
         <Content padder>
-          {/* <Text>{JSON.stringify(tasks, null, 2)}</Text> */}
-          {tasks && (
-            <Card>
-              {tasks.map((item) => (
-                <CardItem key={item.id} button bordered onPress={() => alert('Not yet implemented!')}>
-                  <CheckBox checked={item.done} color={COLOR.primary} style={{ marginLeft: 0, marginRight: 16 }} />
-                  <Text style={{ textDecorationLine: item.done ? 'line-through' : 'none' }}>{item.title}</Text>
-                </CardItem>
-              ))}
-            </Card>
-          )}
+          {this.renderTasks()}
+          {this.renderInput()}
         </Content>
       </Container>
     );

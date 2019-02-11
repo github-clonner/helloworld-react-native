@@ -34,6 +34,7 @@ export const $reset = reset.action;
  */
 
 const fetchIndex = StateHelper.createAsyncOperation(MODULE, 'fetchIndex');
+const createTask = StateHelper.createAsyncOperation(MODULE, 'createTask');
 
 // Promise implementation
 export function $fetchIndexPromise() {
@@ -41,7 +42,7 @@ export function $fetchIndexPromise() {
     Activity.processing(MODULE, fetchIndex.name);
     dispatch(fetchIndex.request());
 
-    return fetch(`${API_ENDPOINT}/task`, {
+    return fetch(`${API_ENDPOINT}/client/my-tasks`, {
       headers: {
         Authorization: `Bearer ${AuthService.getAccessToken()}`,
       },
@@ -73,6 +74,30 @@ export function $fetchIndex() {
       dispatch(fetchIndex.failure(error));
     } finally {
       Activity.done(MODULE, fetchIndex.name);
+    }
+  };
+}
+
+export function $createTask(text) {
+  return async (dispatch) => {
+    Activity.processing(MODULE, createTask.name);
+    dispatch(createTask.request());
+
+    try {
+      const response = await fetch(`${API_ENDPOINT}/task/create`, {
+        headers: {
+          Authorization: `Bearer ${AuthService.getAccessToken()}`,
+        },
+        body: JSON.stringify(text),
+      });
+      const result = await FetchHelper.ResponseHandler(response);
+
+      return dispatch(createTask.success(result));
+    } catch (error) {
+      await FetchHelper.ErrorValueHandler(error);
+      dispatch(createTask.failure(error));
+    } finally {
+      Activity.done(MODULE, createTask.name);
     }
   };
 }
