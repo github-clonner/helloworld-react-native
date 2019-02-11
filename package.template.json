@@ -23,7 +23,7 @@
   "dependencies": {
     "native-base": "~2.11.0",
     "promise.prototype.finally": "~3.1.0",
-    "prop-types": "~15.6.2",
+    "prop-types": "~15.7.1",
     "react": "16.6.3",
     "react-native": "0.58.4",
     "react-native-gesture-handler": "~1.0.15",

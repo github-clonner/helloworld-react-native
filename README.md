@@ -1,5 +1,7 @@
 # Starter Mobile (React Native)s
 
+![](https://img.shields.io/david/emiketic/emiketic-starter-react-native.svg?style=for-the-badge)
+
 A boilerplate and reference implementation for mobile applications built with React, Redux, and React Native.
 
 ## Preview
