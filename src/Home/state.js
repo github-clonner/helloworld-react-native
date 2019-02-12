@@ -18,7 +18,7 @@ export const MODULE = 'Home';
  */
 
 const INITIAL_STATE = {
-  index: null,
+  tasks: null,
 };
 
 /**
@@ -33,14 +33,13 @@ export const $reset = reset.action;
  * Fetch Index
  */
 
-const fetchIndex = StateHelper.createAsyncOperation(MODULE, 'fetchIndex');
-const createTask = StateHelper.createAsyncOperation(MODULE, 'createTask');
+const fetchTasks = StateHelper.createAsyncOperation(MODULE, 'fetchTasks');
 
 // Promise implementation
-export function $fetchIndexPromise() {
+export function $fetchTasksPromise() {
   return (dispatch) => {
-    Activity.processing(MODULE, fetchIndex.name);
-    dispatch(fetchIndex.request());
+    Activity.processing(MODULE, fetchTasks.name);
+    dispatch(fetchTasks.request());
 
     return fetch(`${API_ENDPOINT}/client/my-tasks`, {
       headers: {
@@ -48,17 +47,17 @@ export function $fetchIndexPromise() {
       },
     })
       .then(FetchHelper.ResponseHandler, FetchHelper.ErrorHandler)
-      .then((result) => dispatch(fetchIndex.success(result)))
-      .catch((error) => dispatch(fetchIndex.failure(error)))
-      .finally(() => Activity.done(MODULE, fetchIndex.name));
+      .then((result) => dispatch(fetchTasks.success(result)))
+      .catch((error) => dispatch(fetchTasks.failure(error)))
+      .finally(() => Activity.done(MODULE, fetchTasks.name));
   };
 }
 
 // async/await implementation
-export function $fetchIndex() {
+export function $fetchTasks() {
   return async (dispatch) => {
-    Activity.processing(MODULE, fetchIndex.name);
-    dispatch(fetchIndex.request());
+    Activity.processing(MODULE, fetchTasks.name);
+    dispatch(fetchTasks.request());
 
     try {
       const response = await fetch(`${API_ENDPOINT}/task`, {
@@ -68,15 +67,21 @@ export function $fetchIndex() {
       });
       const result = await FetchHelper.ResponseHandler(response);
 
-      return dispatch(fetchIndex.success(result));
+      return dispatch(fetchTasks.success(result));
     } catch (error) {
       await FetchHelper.ErrorValueHandler(error);
-      dispatch(fetchIndex.failure(error));
+      dispatch(fetchTasks.failure(error));
     } finally {
-      Activity.done(MODULE, fetchIndex.name);
+      Activity.done(MODULE, fetchTasks.name);
     }
   };
 }
+
+/**
+ * Create task
+ */
+
+const createTask = StateHelper.createAsyncOperation(MODULE, 'createTask');
 
 export function $createTask(text) {
   return async (dispatch) => {
@@ -103,6 +108,36 @@ export function $createTask(text) {
 }
 
 /**
+ * Complete task
+ */
+
+const completeTask = StateHelper.createSimpleOperation(MODULE, 'completeTask');
+
+export function $completeTask(taskId) {
+  return completeTask.action({ id: taskId });
+}
+
+/**
+ * Uncomplete task
+ */
+
+const uncompleteTask = StateHelper.createSimpleOperation(MODULE, 'uncompleteTask');
+
+export function $uncompleteTask(taskId) {
+  return uncompleteTask.action({ id: taskId });
+}
+
+/**
+ * Edit task
+ */
+
+const editTask = StateHelper.createSimpleOperation(MODULE, 'editTask');
+
+export function $editTask(taskId, text) {
+  return editTask.action({ id: taskId, text });
+}
+
+/**
  * Reducer
  */
 
@@ -110,20 +145,53 @@ export function reducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case reset.TYPE:
       return INITIAL_STATE;
-    case fetchIndex.REQUEST:
+    case fetchTasks.REQUEST:
       return {
         ...state,
-        index: null,
+        tasks: null,
       };
-    case fetchIndex.SUCCESS:
+    case fetchTasks.SUCCESS:
       return {
         ...state,
-        index: action.data,
+        tasks: action.data,
       };
-    case fetchIndex.FAILURE:
+    case fetchTasks.FAILURE:
       return {
         ...state,
-        index: null,
+        tasks: null,
+      };
+    case createTask.SUCCESS:
+      return {
+        ...state,
+        tasks: state.tasks.concat(action.result),
+      };
+    case completeTask.TYPE:
+      return {
+        ...state,
+        tasks: state.tasks.map((task) => {
+          if (task.id === action.id) {
+            return {
+              ...task,
+              done: true,
+            };
+          }
+
+          return task;
+        }),
+      };
+    case uncompleteTask.TYPE:
+      return {
+        ...state,
+        tasks: state.tasks.map((task) => {
+          if (task.id === action.id) {
+            return {
+              ...task,
+              done: false,
+            };
+          }
+
+          return task;
+        }),
       };
     default:
       return state;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { FlatList, View, TouchableOpacity } from 'react-native';
 import {
   Container,
   Header,
@@ -17,6 +18,8 @@ import {
   CheckBox,
   Item,
   Input,
+  List,
+  ListItem,
 } from 'native-base';
 
 import * as PropTypes from '../common/proptypes';
@@ -25,11 +28,17 @@ import { COLOR } from '../common/styles';
 
 import * as Activity from '../Shared/Activity.service';
 
-import { $fetchIndex, $createTask } from './state';
+import {
+  $fetchTasks,
+  $createTask,
+  $completeTask,
+  $uncompleteTask,
+  $editTask,
+} from './state';
 
 const withStore = connect((state) => ({
-  processing: state.Activity.processingByOperation['Home.fetchIndex'] || false,
-  tasks: state.Home.index,
+  processing: state.Activity.processingByOperation['Home.fetchTasks'] || false,
+  tasks: state.Home.tasks,
 }));
 
 const propTypes = {
@@ -48,7 +57,7 @@ class HomeView extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
 
-    dispatch($fetchIndex())
+    dispatch($fetchTasks())
       .then(() => Activity.toast('success', 'Tasks loaded'))
       .catch((error) => Activity.toast('failure', error.message));
   }
@@ -62,32 +71,40 @@ class HomeView extends Component {
       .catch((error) => Activity.toast('failure', error.message));
   }
 
+  handleToggleComplete = (task) => {
+    const { dispatch } = this.props;
+
+    if (task.done) {
+      dispatch($uncompleteTask(task.id));
+    } else {
+      dispatch($completeTask(task.id));
+    }
+  }
+
   renderTasks() {
     const { processing, tasks } = this.props;
-    if (processing) {
-      return null;
-    }
-
-    const isEmpty = tasks.length === 0;
-    if (isEmpty) {
-      return <Text>Empty</Text>;
-    }
 
     return (
-      <Card>
-        {tasks.map((item) => (
-          <CardItem key={item.id} button bordered onPress={() => alert('Not yet implemented!')}>
-            <CheckBox
-              checked={item.done}
-              color={COLOR.primary}
-              style={{ marginLeft: 0, marginRight: 16 }}
-            />
-            <Text style={{ textDecorationLine: item.done ? 'line-through' : 'none' }}>
-              {item.title}
-            </Text>
-          </CardItem>
-        ))}
-      </Card>
+      <FlatList
+        data={tasks}
+        refreshing={!!processing}
+        ListEmptyComponent={<Text>Empty</Text>}
+        renderItem={({ item }) => (
+          <TouchableOpacity>
+            <View style={{ flex: 1, flexDirection: 'row' }}>
+              <CheckBox
+                checked={item.done}
+                color={COLOR.primary}
+                style={{ marginLeft: 0, marginRight: 16 }}
+                onPress={() => this.handleToggleComplete(item)}
+              />
+              <Text style={{ textDecorationLine: item.done ? 'line-through' : 'none' }}>
+                {item.title}
+              </Text>
+            </View>
+          </TouchableOpacity>
+        )}
+      />
     );
   }
 
@@ -97,7 +114,7 @@ class HomeView extends Component {
     return (
       <Item regular>
         <Input
-          placeholder="Regular Textbox"
+          placeholder="What needs to be done?"
           value={task}
           onChangeText={(text) => this.setState({ task: text })}
         />
@@ -126,8 +143,10 @@ class HomeView extends Component {
         </Header>
 
         <Content padder>
-          {this.renderTasks()}
           {this.renderInput()}
+          <View style={{ marginTop: 14 }}>
+            {this.renderTasks()}
+          </View>
         </Content>
       </Container>
     );
