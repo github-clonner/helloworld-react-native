@@ -35,13 +35,12 @@ export const $reset = reset.action;
 
 const fetchTasks = StateHelper.createAsyncOperation(MODULE, 'fetchTasks');
 
-// Promise implementation
-export function $fetchTasksPromise() {
+export function $fetchTasks() {
   return (dispatch) => {
     Activity.processing(MODULE, fetchTasks.name);
     dispatch(fetchTasks.request());
 
-    return fetch(`${API_ENDPOINT}/client/my-tasks`, {
+    return fetch(`${API_ENDPOINT}/task`, {
       headers: {
         Authorization: `Bearer ${AuthService.getAccessToken()}`,
       },
@@ -50,30 +49,6 @@ export function $fetchTasksPromise() {
       .then((result) => dispatch(fetchTasks.success(result)))
       .catch((error) => dispatch(fetchTasks.failure(error)))
       .finally(() => Activity.done(MODULE, fetchTasks.name));
-  };
-}
-
-// async/await implementation
-export function $fetchTasks() {
-  return async (dispatch) => {
-    Activity.processing(MODULE, fetchTasks.name);
-    dispatch(fetchTasks.request());
-
-    try {
-      const response = await fetch(`${API_ENDPOINT}/task`, {
-        headers: {
-          Authorization: `Bearer ${AuthService.getAccessToken()}`,
-        },
-      });
-      const result = await FetchHelper.ResponseHandler(response);
-
-      return dispatch(fetchTasks.success(result));
-    } catch (error) {
-      await FetchHelper.ErrorValueHandler(error);
-      dispatch(fetchTasks.failure(error));
-    } finally {
-      Activity.done(MODULE, fetchTasks.name);
-    }
   };
 }
 
@@ -88,22 +63,16 @@ export function $createTask(text) {
     Activity.processing(MODULE, createTask.name);
     dispatch(createTask.request());
 
-    try {
-      const response = await fetch(`${API_ENDPOINT}/task/create`, {
-        headers: {
-          Authorization: `Bearer ${AuthService.getAccessToken()}`,
-        },
-        body: JSON.stringify(text),
-      });
-      const result = await FetchHelper.ResponseHandler(response);
-
-      return dispatch(createTask.success(result));
-    } catch (error) {
-      await FetchHelper.ErrorValueHandler(error);
-      dispatch(createTask.failure(error));
-    } finally {
-      Activity.done(MODULE, createTask.name);
-    }
+    return fetch(`${API_ENDPOINT}/task/create`, {
+      headers: {
+        Authorization: `Bearer ${AuthService.getAccessToken()}`,
+      },
+      body: JSON.stringify(text),
+    })
+      .then(FetchHelper.ResponseHandler, FetchHelper.ErrorHandler)
+      .then((result) => dispatch(createTask.success(result)))
+      .catch((error) => dispatch(createTask.failure(error)))
+      .finally(() => Activity.done(MODULE, createTask.name));
   };
 }
 
