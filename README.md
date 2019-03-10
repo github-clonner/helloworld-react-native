@@ -1,4 +1,4 @@
-# Starter Mobile (React Native)s
+# Starter Mobile (React Native)
 
 ![](https://img.shields.io/david/emiketic/emiketic-starter-react-native.svg?style=for-the-badge)
 
