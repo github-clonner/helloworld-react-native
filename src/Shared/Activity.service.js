@@ -1,4 +1,5 @@
 import { Toast } from 'native-base';
+import { Alert } from 'react-native';
 
 import * as Logger from '../common/logger';
 
