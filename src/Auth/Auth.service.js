@@ -12,10 +12,6 @@ const Logger = createLogger('AuthService');
 export const AuthServiceImplementation = class AuthService {
   events = new EventEmitter();
 
-  username = '';
-
-  password = '';
-
   access_token = null;
 
   getAccessToken() {
@@ -37,17 +33,8 @@ export const AuthServiceImplementation = class AuthService {
     await AsyncStorage.removeItem('auth.access_token');
   }
 
-  async _clearCredentials() {
-    this.username = '';
-    this.password = '';
-  }
-
   async initialize() {
     await this._loadSession();
-  }
-
-  hasCredentials() {
-    return !!this.username && !!this.password;
   }
 
   isAuthenticated() {
@@ -76,7 +63,6 @@ export const AuthServiceImplementation = class AuthService {
   async logout() {
     await this.events.emitAsync('logout');
     await this._clearSession();
-    await this._clearCredentials();
   }
 
   signup(payload) {
