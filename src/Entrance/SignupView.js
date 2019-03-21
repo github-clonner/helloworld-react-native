@@ -32,6 +32,10 @@ class SignupView extends Component {
     password: '',
   };
 
+  $name = React.createRef();
+
+  $password = React.createRef();
+
   hasValidInput() {
     return !!this.state.name && !!this.state.email && !!this.state.password;
   }
@@ -72,7 +76,7 @@ class SignupView extends Component {
                   returnKeyType="next"
                   enablesReturnKeyAutomatically
                   onChangeText={(name) => this.setState({ name })}
-                  onSubmitEditing={() => this.$name.wrappedInstance.focus()}
+                  onSubmitEditing={() => this.$name.current.wrappedInstance.focus()}
                 />
               </Item>
 
@@ -80,7 +84,7 @@ class SignupView extends Component {
 
               <Item regular>
                 <Input
-                  ref={(ref) => (this.$name = ref)}
+                  ref={this.$name}
                   placeholder="Email"
                   keyboardType="email-address"
                   value={this.state.email}
@@ -88,7 +92,7 @@ class SignupView extends Component {
                   returnKeyType="next"
                   enablesReturnKeyAutomatically
                   onChangeText={(email) => this.setState({ email })}
-                  onSubmitEditing={() => this.$password.wrappedInstance.focus()}
+                  onSubmitEditing={() => this.$password.current.wrappedInstance.focus()}
                 />
               </Item>
 
@@ -96,7 +100,7 @@ class SignupView extends Component {
 
               <Item regular>
                 <Input
-                  ref={(ref) => (this.$password = ref)}
+                  ref={this.$password}
                   placeholder="Password"
                   secureTextEntry
                   autoCapitalize="none"

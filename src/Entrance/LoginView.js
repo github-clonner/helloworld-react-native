@@ -27,9 +27,11 @@ const Wrapper = (C) => withStore(C);
 
 class LoginView extends Component {
   state = {
-    username: '',
-    password: '',
+    username: 'client@starter.emiketic.com',
+    password: 'password',
   };
+
+  $password = React.createRef();
 
   hasValidInput() {
     return !!this.state.username && !!this.state.password;
@@ -67,7 +69,7 @@ class LoginView extends Component {
                   returnKeyType="next"
                   enablesReturnKeyAutomatically
                   onChangeText={(username) => this.setState({ username })}
-                  onSubmitEditing={() => this.$password.wrappedInstance.focus()}
+                  onSubmitEditing={() => this.$password.current.wrappedInstance.focus()}
                 />
               </Item>
 
@@ -75,7 +77,7 @@ class LoginView extends Component {
 
               <Item regular>
                 <Input
-                  ref={(ref) => (this.$password = ref)}
+                  ref={this.$password}
                   placeholder="Password"
                   secureTextEntry
                   autoCapitalize="none"
