@@ -10,7 +10,11 @@ import App from './App';
 
 import { setupStore } from './store';
 
+import bootstrap from './bootstrap';
+
 const store = setupStore();
+
+bootstrap();
 
 const AppContainer = () => (
   <StateProvider store={store}>

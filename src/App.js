@@ -19,15 +19,15 @@ const EntranceNavigatorContainer = createAppContainer(EntranceNavigator);
 const SessionNavigatorContainer = createAppContainer(SessionNavigator);
 
 const withStore = connect((state) => ({
-  ready: state.Shared.ready,
-  initialized: state.Shared.initialized,
+  appReady: state.Shared.appReady,
+  sessionReady: state.Shared.sessionReady,
   authenticated: state.Auth.authenticated,
 }));
 
 const propTypes = {
   dispatch: PropTypes.dispatch.isRequired,
-  ready: PropTypes.bool.isRequired,
-  initialized: PropTypes.bool.isRequired,
+  appReady: PropTypes.bool.isRequired,
+  sessionReady: PropTypes.bool.isRequired,
   authenticated: PropTypes.bool.isRequired,
 };
 
@@ -45,9 +45,9 @@ class App extends Component<{}> {
   }
 
   render() {
-    const { ready, initialized, authenticated } = this.props;
+    const { appReady, sessionReady, authenticated } = this.props;
 
-    if (!ready || (authenticated && !initialized)) {
+    if (!appReady || (authenticated && !sessionReady)) {
       return <LandingView />;
     }
 

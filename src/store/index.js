@@ -111,14 +111,6 @@ export function getStore() {
 export function setupStore() {
   $store = createStore(reducer, enhancer);
 
-  Object.values($state)
-    .reduce((prev, state) => {
-      return prev.then(() => (state.initializer ? state.initializer($store) : Promise.resolve(null)));
-    }, Promise.resolve(null))
-    .catch((error) => {
-      throw error;
-    });
-
   if (process.env.NODE_ENV === 'development') {
     global.$store = $store;
     global.$state = $state;
@@ -132,7 +124,7 @@ export function setupStore() {
  */
 
 if (process.env.NODE_ENV === 'development') {
-  // const SKIP = ['MODULE', 'reducer', 'persister', 'initializer'];
+  // const SKIP = ['MODULE', 'reducer', 'persister'];
 
   Object.entries($state).forEach(([module, state]) => {
     if (!state) {
@@ -147,9 +139,6 @@ if (process.env.NODE_ENV === 'development') {
     }
     if (state.persister && typeof state.persister === 'function') {
       console.info(`$state.${module}: found 'persister'`);
-    }
-    if (state.initializer && typeof state.initializer === 'function') {
-      console.info(`$state.${module}: found 'initializer'`);
     }
 
     // console.info(
