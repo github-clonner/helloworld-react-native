@@ -28,12 +28,12 @@ import { COLOR } from '../common/styles';
 import * as Activity from '../Shared/Activity.service';
 
 import {
-  $fetchIndex, $updateTask, $removeTask, $createTask,
+  $fetchTasks, $updateTask, $removeTask, $createTask,
 } from './state';
 
 const withStore = connect((state) => ({
-  processing: state.Activity.processingByOperation['Home.fetchIndex'] || false,
-  tasks: state.Home.index,
+  processing: state.Activity.processingByOperation['Home.fetchTasks'] || false,
+  tasks: state.Home.tasks,
 }));
 
 const propTypes = {
@@ -52,7 +52,7 @@ class HomeView extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
 
-    dispatch($fetchIndex())
+    dispatch($fetchTasks())
       .then(() => Activity.toast('success', 'Tasks loaded'))
       .catch((error) => Activity.toast('failure', error.message));
   }

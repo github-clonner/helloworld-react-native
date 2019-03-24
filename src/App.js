@@ -5,9 +5,9 @@ import SplashScreen from 'react-native-splash-screen';
 
 import { createAppContainer } from 'react-navigation';
 
-import * as PropTypes from './common/proptypes';
-
 import * as Logger from './common/logger';
+
+import * as PropTypes from './common/proptypes';
 
 import { COLOR } from './common/styles';
 

@@ -107,10 +107,19 @@ export function reducer(state = INITIAL_STATE, action) {
       };
     case login.SUCCESS:
     case signup.SUCCESS:
+      const initials = action.user.name
+        .split(/\W+/)
+        .map((w) => w[0] || '')
+        .join('')
+        .toUpperCase();
+
       return {
         ...state,
         authenticated: true,
-        user: action.user,
+        user: {
+          ...action.user,
+          initials,
+        },
       };
     case logout.TYPE:
       return {
