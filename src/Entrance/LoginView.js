@@ -27,8 +27,8 @@ const Wrapper = (C) => withStore(C);
 
 class LoginView extends Component {
   state = {
-    username: 'client@starter.emiketic.com',
-    password: 'password',
+    username: '',
+    password: '',
   };
 
   $password = React.createRef();
