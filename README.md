@@ -16,7 +16,7 @@ A boilerplate and reference implementation for mobile applications built with Re
 
 - [API Specifications/Documentation](https://starterspecapi.docs.apiary.io/)
 - [Documentation](./docs)
-- [Guidelines](https://github.com/emiketic/emiketic-docs/)
+- [Guidelines](https://github.com/emiketic/emiketic-starter-dev/tree/master/docs/guidelines)
 
 ## Technology
 
