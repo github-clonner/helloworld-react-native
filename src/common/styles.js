@@ -124,6 +124,23 @@ export const STYLE = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+
+  flex: {
+    flex: 1,
+  },
+
+  flexGrow: {
+    flexGrow: 1,
+  },
+
+  row: {
+    flexDirection: 'row',
+  },
+
+  padder: {
+    padding: 8,
+  },
+
   text: {
     color: COLOR.text,
   },

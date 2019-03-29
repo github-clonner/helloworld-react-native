@@ -14,7 +14,7 @@ import { RELEASE_VERSION } from '../common/config';
 const withStore = connect((state) => ({}));
 
 const propTypes = {
-  dispatch: PropTypes.dispatch.isRequired,
+  ...PropTypes.withState,
 };
 
 const Wrapper = (C) => withStore(C);
@@ -52,7 +52,7 @@ class AboutView extends Component {
 const WrappedAboutView = Wrapper(AboutView);
 
 WrappedAboutView.propTypes = {
-  navigation: PropTypes.navigation.isRequired,
+  ...PropTypes.withRouting,
 };
 
 AboutView.propTypes = {

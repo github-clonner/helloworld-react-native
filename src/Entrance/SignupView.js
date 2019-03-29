@@ -7,7 +7,7 @@ import {
 
 import * as PropTypes from '../common/proptypes';
 
-import { COLOR } from '../common/styles';
+import { STYLE } from '../common/styles';
 
 import { LogoHeader } from './LogoHeader';
 
@@ -19,7 +19,7 @@ const withStore = connect((state) => ({
 }));
 
 const propTypes = {
-  dispatch: PropTypes.dispatch.isRequired,
+  ...PropTypes.withState,
   processing: PropTypes.bool.isRequired,
 };
 
@@ -60,7 +60,7 @@ class SignupView extends Component {
     return (
       <Container>
         <Header noShadow style={{ height: 0 }} />
-        <Content scrollEnabled={false} contentContainerStyle={{ flex: 1 }}>
+        <Content scrollEnabled={false} contentContainerStyle={STYLE.flexGrow}>
           <LogoHeader style={{ flex: 1, minHeight: 'auto' }} />
 
           <KeyboardAvoidingView>
@@ -152,7 +152,7 @@ class SignupView extends Component {
 const WrappedSignupView = Wrapper(SignupView);
 
 WrappedSignupView.propTypes = {
-  navigation: PropTypes.navigation.isRequired,
+  ...PropTypes.withRouting,
 };
 
 SignupView.propTypes = {

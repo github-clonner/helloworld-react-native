@@ -7,7 +7,7 @@ import {
 
 import * as PropTypes from '../common/proptypes';
 
-import { COLOR } from '../common/styles';
+import { STYLE } from '../common/styles';
 
 import { LogoHeader } from './LogoHeader';
 
@@ -19,7 +19,7 @@ const withStore = connect((state) => ({
 }));
 
 const propTypes = {
-  dispatch: PropTypes.dispatch.isRequired,
+  ...PropTypes.withState,
   processing: PropTypes.bool.isRequired,
 };
 
@@ -51,7 +51,7 @@ class LoginView extends Component {
     return (
       <Container>
         <Header noShadow style={{ height: 0 }} />
-        <Content scrollEnabled={false} contentContainerStyle={{ flex: 1 }}>
+        <Content scrollEnabled={false} contentContainerStyle={STYLE.flexGrow}>
           <LogoHeader style={{ flex: 1, minHeight: 'auto' }} />
 
           <KeyboardAvoidingView>
@@ -63,13 +63,13 @@ class LoginView extends Component {
               <Item regular>
                 <Input
                   placeholder="Email"
-                  keyboardType="email-address"
                   value={this.state.username}
-                  autoCapitalize="none"
-                  returnKeyType="next"
-                  enablesReturnKeyAutomatically
                   onChangeText={(username) => this.setState({ username })}
+                  keyboardType="email-address"
+                  returnKeyType="next"
                   onSubmitEditing={() => this.$password.current.wrappedInstance.focus()}
+                  enablesReturnKeyAutomatically
+                  autoCapitalize="none"
                 />
               </Item>
 
@@ -79,20 +79,25 @@ class LoginView extends Component {
                 <Input
                   ref={this.$password}
                   placeholder="Password"
-                  secureTextEntry
-                  autoCapitalize="none"
                   value={this.state.password}
+                  onChangeText={(password) => this.setState({ password })}
                   returnKeyType="send"
+                  onSubmitEditing={() => this.login()}
+                  secureTextEntry
                   enablesReturnKeyAutomatically
                   blurOnSubmit
-                  onChangeText={(password) => this.setState({ password })}
-                  onSubmitEditing={() => this.login()}
+                  autoCapitalize="none"
                 />
               </Item>
 
               <View style={{ margin: 4 }} />
 
-              <Button full primary active={!this.hasValidInput() || this.props.processing} onPress={() => this.login()}>
+              <Button
+                block
+                primary
+                active={!this.hasValidInput() || this.props.processing}
+                onPress={() => this.login()}
+              >
                 <Text>Log in</Text>
                 {this.props.processing && <Spinner size="small" inverse />}
               </Button>
@@ -100,13 +105,13 @@ class LoginView extends Component {
           </KeyboardAvoidingView>
 
           <View style={{ flexDirection: 'row' }}>
-            <Button transparent full onPress={() => this.props.navigation.navigate('/signup')} style={{ flex: 1 }}>
+            <Button transparent block onPress={() => this.props.navigation.navigate('/signup')} style={{ flex: 1 }}>
               <Text>Sign up</Text>
             </Button>
 
             <Button
               transparent
-              full
+              block
               onPress={() => this.props.navigation.navigate('/password-reset')}
               style={{ flex: 1 }}
             >
@@ -124,7 +129,7 @@ class LoginView extends Component {
 const WrappedLoginView = Wrapper(LoginView);
 
 WrappedLoginView.propTypes = {
-  navigation: PropTypes.navigation.isRequired,
+  ...PropTypes.withRouting,
 };
 
 LoginView.propTypes = {

@@ -24,7 +24,7 @@ const withStore = connect((state) => ({
 }));
 
 const propTypes = {
-  dispatch: PropTypes.dispatch.isRequired,
+  ...PropTypes.withState,
   user: PropTypes.User.isRequired,
 };
 
@@ -93,7 +93,7 @@ class NavigationMenu extends Component {
 const WrappedNavigationMenu = Wrapper(NavigationMenu);
 
 WrappedNavigationMenu.propTypes = {
-  navigation: PropTypes.navigation.isRequired,
+  ...PropTypes.withRouting,
 };
 
 NavigationMenu.propTypes = {

@@ -7,7 +7,7 @@ import {
 
 import * as PropTypes from '../common/proptypes';
 
-import { COLOR } from '../common/styles';
+import { STYLE } from '../common/styles';
 
 import { LogoHeader } from './LogoHeader';
 
@@ -19,7 +19,7 @@ const withStore = connect((state) => ({
 }));
 
 const propTypes = {
-  dispatch: PropTypes.dispatch.isRequired,
+  ...PropTypes.withState,
   processing: PropTypes.bool.isRequired,
 };
 
@@ -48,7 +48,7 @@ class PasswordResetView extends Component {
     return (
       <Container>
         <Header noShadow style={{ height: 0 }} />
-        <Content scrollEnabled={false} contentContainerStyle={{ flex: 1 }}>
+        <Content scrollEnabled={false} contentContainerStyle={STYLE.flexGrow}>
           <LogoHeader style={{ flex: 1, minHeight: 'auto' }} />
 
           <KeyboardAvoidingView>
@@ -104,7 +104,7 @@ class PasswordResetView extends Component {
 const WrappedPasswordResetView = Wrapper(PasswordResetView);
 
 WrappedPasswordResetView.propTypes = {
-  navigation: PropTypes.navigation.isRequired,
+  ...PropTypes.withRouting,
 };
 
 PasswordResetView.propTypes = {

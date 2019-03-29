@@ -5,11 +5,11 @@ import SplashScreen from 'react-native-splash-screen';
 
 import { createAppContainer } from 'react-navigation';
 
-import * as Logger from './common/logger';
-
 import * as PropTypes from './common/proptypes';
 
-import { COLOR } from './common/styles';
+import * as Logger from './common/logger';
+
+import { STYLE, COLOR } from './common/styles';
 
 import LandingView from './Entrance/LandingView';
 import EntranceNavigator from './Entrance';
@@ -25,7 +25,7 @@ const withStore = connect((state) => ({
 }));
 
 const propTypes = {
-  dispatch: PropTypes.dispatch.isRequired,
+  ...PropTypes.withState,
   appReady: PropTypes.bool.isRequired,
   sessionReady: PropTypes.bool.isRequired,
   authenticated: PropTypes.bool.isRequired,
@@ -53,7 +53,7 @@ class App extends Component<{}> {
 
     return (
       <View style={{ flex: 1, backgroundColor: COLOR.background }}>
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView style={STYLE.flex}>
           {authenticated ? <SessionNavigatorContainer /> : <EntranceNavigatorContainer />}
         </SafeAreaView>
       </View>

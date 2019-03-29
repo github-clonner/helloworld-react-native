@@ -13,7 +13,6 @@ import {
   Text,
   Icon,
   Button,
-  Card,
   CardItem,
   CheckBox,
   Input,
@@ -23,7 +22,7 @@ import {
 import { FlatList } from 'react-native-gesture-handler';
 import * as PropTypes from '../common/proptypes';
 
-import { COLOR } from '../common/styles';
+import { COLOR, STYLE } from '../common/styles';
 
 import * as Activity from '../Shared/Activity.service';
 
@@ -37,7 +36,7 @@ const withStore = connect((state) => ({
 }));
 
 const propTypes = {
-  dispatch: PropTypes.dispatch.isRequired,
+  ...PropTypes.withState,
   processing: PropTypes.bool.isRequired,
   tasks: PropTypes.object.isRequired,
 };
@@ -111,7 +110,7 @@ class HomeView extends Component {
           )} */}
 
           <FlatList
-            contentContainerStyle={{ flexGrow: 1, padding: 8 }}
+            contentContainerStyle={[STYLE.flexGrow, STYLE.padder]}
             // ListEmptyComponent={<DataEmpty icon="history" message="Aucune course passée" />}
             data={tasks}
             keyExtractor={(item) => item.id}
@@ -149,7 +148,7 @@ class HomeView extends Component {
 const WrappedHomeView = Wrapper(HomeView);
 
 WrappedHomeView.propTypes = {
-  navigation: PropTypes.navigation.isRequired,
+  ...PropTypes.withRouting,
 };
 
 HomeView.propTypes = {
