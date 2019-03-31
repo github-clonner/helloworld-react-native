@@ -32,7 +32,7 @@
 yarn install
 
 # run bundler
-yarn start
+yarn dev
 
 # run on Android device/emulator
 yarn android

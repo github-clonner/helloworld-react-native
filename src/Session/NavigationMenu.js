@@ -10,7 +10,7 @@ import * as PropTypes from '../common/proptypes';
 import { $logout } from '../Auth/state';
 
 import { COLOR } from '../common/styles';
-import * as Activity from '../Shared/Activity.service';
+import * as Dialog from '../Shared/Dialog';
 
 const styles = StyleSheet.create({
   itemIcon: {
@@ -37,8 +37,8 @@ class NavigationMenu extends Component {
     const { dispatch } = this.props;
 
     dispatch($logout())
-      .then(() => Activity.toast('success', 'Goodbye!'))
-      .catch((error) => Activity.toast('failure', error.message));
+      .then(() => Dialog.toast(Dialog.SUCCESS, 'Goodbye!'))
+      .catch((error) => Dialog.toast(Dialog.FAILURE, error.message));
   }
 
   render() {

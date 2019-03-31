@@ -11,7 +11,7 @@ import { STYLE } from '../common/styles';
 
 import { LogoHeader } from './LogoHeader';
 
-import * as Activity from '../Shared/Activity.service';
+import * as Dialog from '../Shared/Dialog';
 import { $initiatePasswordReset } from '../Auth/state';
 
 const withStore = connect((state) => ({
@@ -41,7 +41,7 @@ class PasswordResetView extends Component {
 
     const { dispatch } = this.props;
 
-    return dispatch($initiatePasswordReset(this.state.email)).catch((error) => Activity.toast('failure', error.message));
+    return dispatch($initiatePasswordReset(this.state.email)).catch((error) => Dialog.toast(Dialog.FAILURE, error.message));
   }
 
   render() {

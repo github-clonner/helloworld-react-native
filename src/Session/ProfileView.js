@@ -22,7 +22,7 @@ import * as PropTypes from '../common/proptypes';
 
 import { COLOR, STYLE } from '../common/styles';
 
-import * as Activity from '../Shared/Activity.service';
+import * as Dialog from '../Shared/Dialog';
 
 // import { $fetchProfile } from '../Auth/state';
 
@@ -43,7 +43,7 @@ class ProfileView extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
 
-    // dispatch($fetchProfile()).catch((error) => Activity.toast('failure', error.message));
+    // dispatch($fetchProfile()).catch((error) => Dialog.toast(Dialog.FAILURE, error.message));
   }
 
   render() {

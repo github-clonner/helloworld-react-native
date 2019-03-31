@@ -1,4 +1,4 @@
-import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
+import { createAppContainer, createStackNavigator, createDrawerNavigator } from 'react-navigation';
 
 import NavigationMenu from './NavigationMenu';
 
@@ -34,4 +34,4 @@ const RootStack = createStackNavigator(
   },
 );
 
-export default RootStack;
+export default createAppContainer(RootStack);

@@ -11,7 +11,7 @@ import { STYLE } from '../common/styles';
 
 import { LogoHeader } from './LogoHeader';
 
-import * as Activity from '../Shared/Activity.service';
+import * as Dialog from '../Shared/Dialog';
 import { $signup } from '../Auth/state';
 
 const withStore = connect((state) => ({
@@ -53,7 +53,7 @@ class SignupView extends Component {
         email: this.state.email,
         password: this.state.password,
       }),
-    ).catch((error) => Activity.toast('failure', error.message));
+    ).catch((error) => Dialog.toast(Dialog.FAILURE, error.message));
   }
 
   render() {

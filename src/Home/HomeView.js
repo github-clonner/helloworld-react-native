@@ -24,7 +24,7 @@ import * as PropTypes from '../common/proptypes';
 
 import { COLOR, STYLE } from '../common/styles';
 
-import * as Activity from '../Shared/Activity.service';
+import * as Dialog from '../Shared/Dialog';
 
 import {
   $fetchTasks, $updateTask, $removeTask, $createTask,
@@ -52,8 +52,8 @@ class HomeView extends Component {
     const { dispatch } = this.props;
 
     dispatch($fetchTasks())
-      .then(() => Activity.toast('success', 'Tasks loaded'))
-      .catch((error) => Activity.toast('failure', error.message));
+      .then(() => Dialog.toast(Dialog.SUCCESS, 'Tasks loaded'))
+      .catch((error) => Dialog.toast(Dialog.FAILURE, error.message));
   }
 
   createTask() {
