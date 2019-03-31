@@ -1,26 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View } from 'react-native';
 import {
-  Container, Header, Left, Body, Title, Right, Content, Text, Icon, Button,
+  Container, Content, Header, Left, Body, Title, Right, Icon, Button, Text,
 } from 'native-base';
 
 import * as PropTypes from '../common/proptypes';
 
 import { STYLE } from '../common/styles';
 
-import { RELEASE_VERSION } from '../common/config';
-
-const withStore = connect((state) => ({}));
+const withStore = connect((state) => state);
 
 const propTypes = {
-  ...PropTypes.withRouting,
   ...PropTypes.withState,
 };
 
 const Wrapper = (C) => withStore(C);
 
-class AboutView extends Component {
+class DebugView extends Component {
   state = {};
 
   render() {
@@ -33,24 +29,19 @@ class AboutView extends Component {
             </Button>
           </Left>
           <Body>
-            <Title>About</Title>
+            <Title>DEBUG</Title>
           </Body>
           <Right />
         </Header>
 
-        <Content padder>
-          <View>
-            <Text>
-              Release:
-              {RELEASE_VERSION}
-            </Text>
-          </View>
+        <Content>
+          <Text style={{ fontFamily: 'monospace', fontSize: 10 }}>{JSON.stringify(this.props, null, 2)}</Text>
         </Content>
       </Container>
     );
   }
 }
 
-AboutView.propTypes = propTypes;
+DebugView.propTypes = propTypes;
 
-export default Wrapper(AboutView);
+export default Wrapper(DebugView);

@@ -7,10 +7,11 @@ import {
 
 import * as PropTypes from '../common/proptypes';
 
-import { $logout } from '../Auth/state';
+import * as Dialog from '../Shared/Dialog';
 
 import { COLOR } from '../common/styles';
-import * as Dialog from '../Shared/Dialog';
+
+import { $logout } from '../Auth/state';
 
 const styles = StyleSheet.create({
   itemIcon: {
@@ -50,7 +51,7 @@ class NavigationMenu extends Component {
           <List>
             <ListItem avatar selected={path === '/profile'} onPress={() => this.props.navigation.navigate('/profile')}>
               <Left>
-                <Thumbnail circle small source={{ uri: user.picture }} />
+                <Thumbnail circle small source={{ uri: user.picture_uri }} />
               </Left>
               <Body>
                 <Text>{user.name}</Text>

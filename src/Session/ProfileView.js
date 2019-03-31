@@ -60,7 +60,7 @@ class ProfileView extends Component {
                 padding: 8,
               }}
             >
-              <Thumbnail large resizeMode="cover" source={{ uri: user.picture }} />
+              <Thumbnail large resizeMode="cover" source={{ uri: user.picture_uri }} />
               <Text style={{ marginTop: 10, color: COLOR.inverse }}>{user.name}</Text>
             </View>
           </View>

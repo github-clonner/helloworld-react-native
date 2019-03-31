@@ -4,10 +4,10 @@ import HomeView from './HomeView';
 
 export default createStackNavigator(
   {
-    '/': { screen: HomeView },
+    '/home/main': { screen: HomeView },
   },
   {
-    initialRouteName: '/',
     headerMode: 'none',
+    initialRouteName: '/home/main',
   },
 );

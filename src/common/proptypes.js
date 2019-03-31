@@ -49,10 +49,10 @@ export const withState = {
  */
 
 export const User = PropTypes.shape({
-  email: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  picture: PropTypes.string.isRequired,
+  picture_uri: PropTypes.string.isRequired,
 });
 
 export const Task = PropTypes.shape({

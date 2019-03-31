@@ -2,12 +2,23 @@ import { createAppContainer, createStackNavigator, createDrawerNavigator } from 
 
 import NavigationMenu from './NavigationMenu';
 
+import DebugView from '../Shared/DebugView';
+import DraftView from '../Shared/DraftView';
+
 import HomeNavigator from '../Home';
 import ProfileView from './ProfileView';
 import AboutView from './AboutView';
 
+const extra = process.env.NODE_ENV === 'development'
+  ? {
+    '/debug': { screen: DebugView },
+    '/draft': { screen: DraftView },
+  }
+  : {};
+
 const MainStack = createDrawerNavigator(
   {
+    ...extra,
     '/home': { screen: HomeNavigator },
     '/profile': { screen: ProfileView },
     '/about': { screen: AboutView },
@@ -31,6 +42,7 @@ const RootStack = createStackNavigator(
     mode: 'modal',
     headerMode: 'none',
     initialRouteName: '/main',
+    transparentCard: true,
   },
 );
 
