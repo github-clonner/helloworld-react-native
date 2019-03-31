@@ -90,15 +90,6 @@ class NavigationMenu extends Component {
   }
 }
 
-const WrappedNavigationMenu = Wrapper(NavigationMenu);
+NavigationMenu.propTypes = propTypes;
 
-WrappedNavigationMenu.propTypes = {
-  ...PropTypes.withRouting,
-};
-
-NavigationMenu.propTypes = {
-  ...WrappedNavigationMenu.propTypes,
-  ...propTypes,
-};
-
-export default WrappedNavigationMenu;
+export default Wrapper(NavigationMenu);

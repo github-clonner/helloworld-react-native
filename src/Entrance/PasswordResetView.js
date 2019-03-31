@@ -101,15 +101,6 @@ class PasswordResetView extends Component {
   }
 }
 
-const WrappedPasswordResetView = Wrapper(PasswordResetView);
+PasswordResetView.propTypes = propTypes;
 
-WrappedPasswordResetView.propTypes = {
-  ...PropTypes.withRouting,
-};
-
-PasswordResetView.propTypes = {
-  ...WrappedPasswordResetView.propTypes,
-  ...propTypes,
-};
-
-export default WrappedPasswordResetView;
+export default Wrapper(PasswordResetView);

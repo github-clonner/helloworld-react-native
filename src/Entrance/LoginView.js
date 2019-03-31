@@ -127,15 +127,6 @@ class LoginView extends Component {
   }
 }
 
-const WrappedLoginView = Wrapper(LoginView);
+LoginView.propTypes = propTypes;
 
-WrappedLoginView.propTypes = {
-  ...PropTypes.withRouting,
-};
-
-LoginView.propTypes = {
-  ...WrappedLoginView.propTypes,
-  ...propTypes,
-};
-
-export default WrappedLoginView;
+export default Wrapper(LoginView);

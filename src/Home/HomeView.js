@@ -36,9 +36,10 @@ const withStore = connect((state) => ({
 }));
 
 const propTypes = {
+  ...PropTypes.withRouting,
   ...PropTypes.withState,
   processing: PropTypes.bool.isRequired,
-  tasks: PropTypes.object.isRequired,
+  tasks: PropTypes.arrayOf(PropTypes.Task.isRequired).isRequired,
 };
 
 const Wrapper = (C) => withStore(C);
@@ -145,15 +146,6 @@ class HomeView extends Component {
   }
 }
 
-const WrappedHomeView = Wrapper(HomeView);
+HomeView.propTypes = propTypes;
 
-WrappedHomeView.propTypes = {
-  ...PropTypes.withRouting,
-};
-
-HomeView.propTypes = {
-  ...WrappedHomeView.propTypes,
-  ...propTypes,
-};
-
-export default WrappedHomeView;
+export default Wrapper(HomeView);

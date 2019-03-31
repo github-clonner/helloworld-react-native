@@ -19,6 +19,7 @@ const withStore = connect((state) => ({
 }));
 
 const propTypes = {
+  ...PropTypes.withRouting,
   ...PropTypes.withState,
   processing: PropTypes.bool.isRequired,
 };
@@ -149,15 +150,6 @@ class SignupView extends Component {
   }
 }
 
-const WrappedSignupView = Wrapper(SignupView);
+SignupView.propTypes = propTypes;
 
-WrappedSignupView.propTypes = {
-  ...PropTypes.withRouting,
-};
-
-SignupView.propTypes = {
-  ...WrappedSignupView.propTypes,
-  ...propTypes,
-};
-
-export default WrappedSignupView;
+export default Wrapper(SignupView);

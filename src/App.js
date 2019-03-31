@@ -54,13 +54,6 @@ class App extends Component<{}> {
   }
 }
 
-const WrappedApp = Wrapper(App);
+App.propTypes = propTypes;
 
-WrappedApp.propTypes = {};
-
-App.propTypes = {
-  ...WrappedApp.propTypes,
-  ...propTypes,
-};
-
-export default WrappedApp;
+export default Wrapper(App);

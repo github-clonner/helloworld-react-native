@@ -14,6 +14,7 @@ import { RELEASE_VERSION } from '../common/config';
 const withStore = connect((state) => ({}));
 
 const propTypes = {
+  ...PropTypes.withRouting,
   ...PropTypes.withState,
 };
 
@@ -49,15 +50,6 @@ class AboutView extends Component {
   }
 }
 
-const WrappedAboutView = Wrapper(AboutView);
+AboutView.propTypes = propTypes;
 
-WrappedAboutView.propTypes = {
-  ...PropTypes.withRouting,
-};
-
-AboutView.propTypes = {
-  ...WrappedAboutView.propTypes,
-  ...propTypes,
-};
-
-export default WrappedAboutView;
+export default Wrapper(AboutView);

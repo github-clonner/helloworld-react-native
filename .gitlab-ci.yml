@@ -93,7 +93,7 @@ upload:android:debug:
     - docker
   image: emiketic/essentials
   script:
-    - ./scripts/upload.sh ./build/app-debug.apk
+    - ./scripts/deploy.sh ./build/app-debug.apk
 
 # android:release:build:
 #   stage: build
@@ -107,7 +107,7 @@ upload:android:debug:
 #     - yarn
 #   script:
 #     - ./scripts/build-android-release.sh
-#     - ./scripts/upload.sh ./build/app-release.apk
+#     - ./scripts/deploy.sh ./build/app-release.apk
 #   artifacts:
 #     paths:
 #       - ./build/app-release.apk
@@ -157,7 +157,7 @@ upload:ios:debug:
     - docker
   image: emiketic/essentials
   script:
-    - ./scripts/upload.sh ./build/app-debug.zip
+    - ./scripts/deploy.sh ./build/app-debug.zip
 
 # build:ios:release:
 #   stage: build
@@ -171,7 +171,7 @@ upload:ios:debug:
 #     - yarn
 #   script:
 #     - ./scripts/build-ios-release.sh
-#     - ./scripts/upload.sh ./build/app-release.zip
+#     - ./scripts/deploy.sh ./build/app-release.zip
 #   artifacts:
 #     paths:
 #       - ./build/app-release.zip
