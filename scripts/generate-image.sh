@@ -38,7 +38,6 @@ source $(dirname $0)/generate-assets.include.sh
 
 target_dir="${PWD}/assets"
 
-
 function image_path () {
   echo "${target_dir}/${output}.png";
 }
