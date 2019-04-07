@@ -8,16 +8,10 @@ import { THEME } from './common/styles';
 
 import App from './App';
 
-import { setupStore } from './store';
-
-import bootstrap from './bootstrap';
-
-const store = setupStore();
-
-bootstrap();
+import { getStore } from './store';
 
 const AppContainer = () => (
-  <StateProvider store={store}>
+  <StateProvider store={getStore()}>
     <NativeBaseRoot>
       <StyleProvider style={getTheme(THEME)}>
         <App />
