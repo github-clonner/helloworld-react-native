@@ -20,6 +20,7 @@ for f in $(find ./ -type f ! -path '*/node_modules/*' ! -path '*/.git/*') ; do
   sed -i'' "s/helloworld/$APP_CODE_NAME/" $f
   sed -i'' "s/Hello\ World/$APP_DISPLAY_NAME/" $f
   sed -i'' "s/Hello\ App\ Display\ Name/$APP_DISPLAY_NAME/" $f
+  sed -i'' "s/Starter/$APP_DISPLAY_NAME/" $f
   sed -i'' "s/com\.$APP_CODE_NAME\.package/$APP_PACKAGE_ID/" $f
 done
 
