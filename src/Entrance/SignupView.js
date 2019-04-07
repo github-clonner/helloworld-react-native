@@ -15,7 +15,7 @@ import * as Dialog from '../Shared/Dialog';
 import { $signup } from '../Auth/state';
 
 const withStore = connect((state) => ({
-  processing: state.Activity.processingByOperation['Auth.signup'] || false,
+  processing: state.Activity.processingByOperation[$signup.OPERATION] || false,
 }));
 
 const propTypes = {

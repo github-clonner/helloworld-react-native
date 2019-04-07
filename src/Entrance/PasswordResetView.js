@@ -15,7 +15,7 @@ import * as Dialog from '../Shared/Dialog';
 import { $initiatePasswordReset } from '../Auth/state';
 
 const withStore = connect((state) => ({
-  processing: state.Activity.processingByOperation['Auth.initiatePasswordReset'] || false,
+  processing: state.Activity.processingByOperation[$initiatePasswordReset.OPERATION] || false,
 }));
 
 const propTypes = {

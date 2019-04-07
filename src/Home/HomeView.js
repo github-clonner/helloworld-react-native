@@ -31,7 +31,7 @@ import {
 } from './state';
 
 const withStore = connect((state) => ({
-  processing: state.Activity.processingByOperation['Home.fetchTasks'] || false,
+  processing: state.Activity.processingByOperation[$fetchTasks.OPERATION] || false,
   tasks: state.Home.tasks,
 }));
 
