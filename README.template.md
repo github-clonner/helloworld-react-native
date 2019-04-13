@@ -9,7 +9,7 @@
 
 - [API Specifications/Documentation](https://starterspecapi.docs.apiary.io/)
 - [Documentation](./docs)
-- [Guidelines](https://github.com/emiketic/emiketic-starter-dev/tree/master/docs/guidelines)
+- [Guidelines](https://github.com/emiketic/helloworld-dev/tree/master/docs/guidelines)
 
 ## Technology
 

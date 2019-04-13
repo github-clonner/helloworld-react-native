@@ -6969,9 +6969,9 @@ stacktrace-parser@^0.1.3:
   resolved "https://registry.yarnpkg.com/stacktrace-parser/-/stacktrace-parser-0.1.4.tgz#01397922e5f62ecf30845522c95c4fe1d25e7d4e"
   integrity sha1-ATl5IuX2Ls8whFUiyVxP4dJefU4=
 
-"starter-lib@git+https://github.com/emiketic/emiketic-starter-lib.git#0.10.0":
+"helloworld-lib@git+https://github.com/emiketic/helloworld-lib.git#0.10.0":
   version "0.10.0"
-  resolved "git+https://github.com/emiketic/emiketic-starter-lib.git#659c86c596770ce13d8d13a55bb8ce2d7613d425"
+  resolved "git+https://github.com/emiketic/helloworld-lib.git#659c86c596770ce13d8d13a55bb8ce2d7613d425"
   dependencies:
     "@babel/polyfill" "~7.4.3"
     debug "~4.1.1"

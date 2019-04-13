@@ -1,6 +1,6 @@
-# Starter Mobile (React Native)
+# Hello WorldMobile (React Native)
 
-![](https://img.shields.io/david/emiketic/emiketic-starter-react-native.svg?style=for-the-badge)
+![](https://img.shields.io/david/emiketic/helloworld-react-native.svg?style=for-the-badge)
 
 A boilerplate and reference implementation for mobile applications built with React, Redux, and React Native.
 
@@ -9,14 +9,14 @@ A boilerplate and reference implementation for mobile applications built with Re
 - [Android](https://appetize.io/app/3xvgukkq4gqjyjn1ztrzq6czwr?device=nexus5&scale=75&orientation=portrait&osVersion=7.1)
 - [iOS](https://appetize.io/app/nkn34mhpchnx172e67ptmjypdm?device=iphone6s&scale=75&orientation=portrait&osVersion=11.1)
 - Access credentials:
-  - email: `client@starter.emiketic.com`
+  - email: `client@helloworld.emiketic.com`
   - password: `password`
 
 ## References
 
 - [API Specifications/Documentation](https://starterspecapi.docs.apiary.io/)
 - [Documentation](./docs)
-- [Guidelines](https://github.com/emiketic/emiketic-starter-dev/tree/master/docs/guidelines)
+- [Guidelines](https://github.com/emiketic/helloworld-dev/tree/master/docs/guidelines)
 
 ## Technology
 
@@ -91,7 +91,7 @@ Assuming target application with following properties:
 1.  Initialize your application `react-native init`
 
     ```sh
-    react-native init MyApp --version 0.58.4 --skip-jest --template 'https://github.com/emiketic/emiketic-starter-react-native'
+    react-native init MyApp --version 0.58.4 --skip-jest --template 'https://github.com/emiketic/helloworld-react-native'
     ```
 
 1.  Run post-init routine

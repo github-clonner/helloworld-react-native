@@ -1,1 +1,1 @@
-export * from 'starter-lib/src/react-native/polyfill';
+export * from 'helloworld-lib/src/react-native/polyfill';
