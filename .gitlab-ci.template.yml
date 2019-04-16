@@ -19,7 +19,7 @@ install:
   script:
     - yarn
 
-lint:critical:
+lint-critical:
   stage: test
   tags:
     - docker
