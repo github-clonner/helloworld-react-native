@@ -36,7 +36,7 @@ source $(dirname $0)/generate-assets.include.sh
 
 ## generate assets
 
-target_dir="${PWD}/assets"
+target_dir="${PWD}/src/assets"
 
 function image_path () {
   echo "${target_dir}/${output}.png";
