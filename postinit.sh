@@ -15,7 +15,7 @@ APP_PACKAGE_ID=$3
 
 # replace default values
 
-for f in $(find ./ -type f ! -path '*/node_modules/*' ! -path '*/.git/*') ; do
+for f in $(find ./ -type f ! -path '*/node_modules/*' ! -path '*/.git/*' -exec grep -Iq . {} \; -print) ; do
   sed -i'' "s/HelloWorld/$APP_NAME/" $f
   sed -i'' "s/helloworld/$APP_CODE_NAME/" $f
   sed -i'' "s/Hello\ World/$APP_DISPLAY_NAME/" $f
