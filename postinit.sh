@@ -21,6 +21,7 @@ for f in $(find ./ -type f ! -path '*/node_modules/*' ! -path '*/.git/*' -exec g
   sed -i'' "s/Hello\ World/$APP_DISPLAY_NAME/" $f
   sed -i'' "s/Hello\ App\ Display\ Name/$APP_DISPLAY_NAME/" $f
   sed -i'' "s/com\.$APP_CODE_NAME\.package/$APP_PACKAGE_ID/" $f
+  sed -i'' "s/$APP_CODE_NAME-lib/helloworld-lib/" $f
 done
 
 # template
