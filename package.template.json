@@ -19,7 +19,7 @@
     "postinstall": "./scripts/postinstall.sh"
   },
   "dependencies": {
-    "helloworld-lib": "file:lib/helloworld-lib.tgz",
+    "helloworld-lib": "https://github.com/emiketic/helloworld-lib#0.12.0",
     "native-base": "~2.12.1",
     "promise.prototype.finally": "~3.1.0",
     "prop-types": "~15.7.2",
