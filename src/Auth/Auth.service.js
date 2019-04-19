@@ -90,7 +90,7 @@ export const AuthServiceImplementation = class AuthService {
       });
   }
 
-  initiatePasswordReset(email) {
+  requestPasswordReset(email) {
     return fetch(`${API_ENDPOINT}/auth/password-reset/initiate`, {
       method: 'POST',
       headers: {

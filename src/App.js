@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, SafeAreaView } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { connect } from 'react-redux';
 import SplashScreen from 'react-native-splash-screen';
 
@@ -7,11 +7,18 @@ import * as PropTypes from './common/proptypes';
 
 import * as Logger from './common/logger';
 
-import { STYLE, COLOR } from './common/styles';
+import { COLOR } from './common/styles';
 
 import LandingView from './Entrance/LandingView';
 import Entrance from './Entrance';
 import Session from './Session';
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: COLOR.background,
+  },
+});
 
 const withStore = connect((state) => ({
   appReady: state.Shared.appReady,
@@ -46,11 +53,7 @@ class App extends Component<{}> {
       return <LandingView />;
     }
 
-    return (
-      <View style={{ flex: 1, backgroundColor: COLOR.background }}>
-        <SafeAreaView style={STYLE.flex}>{authenticated ? <Session /> : <Entrance />}</SafeAreaView>
-      </View>
-    );
+    return <View style={styles.container}>{authenticated ? <Session /> : <Entrance />}</View>;
   }
 }
 

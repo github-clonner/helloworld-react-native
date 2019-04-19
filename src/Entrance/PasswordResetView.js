@@ -12,10 +12,10 @@ import { STYLE } from '../common/styles';
 import { LogoHeader } from './LogoHeader';
 
 import * as Dialog from '../Shared/Dialog';
-import { $initiatePasswordReset } from '../Auth/state';
+import { $requestPasswordReset } from '../Auth/state';
 
 const withStore = connect((state) => ({
-  processing: state.Activity.processingByOperation[$initiatePasswordReset.OPERATION] || false,
+  processing: state.Activity.processingByOperation[$requestPasswordReset.OPERATION] || false,
 }));
 
 const propTypes = {
@@ -34,14 +34,14 @@ class PasswordResetView extends Component {
     return !!this.state.email;
   }
 
-  initiatePasswordReset() {
+  requestPasswordReset() {
     if (!this.hasValidInput()) {
       return null;
     }
 
     const { dispatch } = this.props;
 
-    return dispatch($initiatePasswordReset(this.state.email)).catch((error) => Dialog.toast(Dialog.FAILURE, error.message));
+    return dispatch($requestPasswordReset(this.state.email)).catch((error) => Dialog.toast(Dialog.FAILURE, error.message));
   }
 
   render() {
@@ -66,7 +66,7 @@ class PasswordResetView extends Component {
                   returnKeyType="send"
                   enablesReturnKeyAutomatically
                   onChangeText={(email) => this.setState({ email })}
-                  onSubmitEditing={() => this.initiatePasswordReset()}
+                  onSubmitEditing={() => this.requestPasswordReset()}
                 />
               </Item>
 
@@ -76,7 +76,7 @@ class PasswordResetView extends Component {
                 full
                 primary
                 active={!this.hasValidInput() || this.props.processing}
-                onPress={() => this.initiatePasswordReset()}
+                onPress={() => this.requestPasswordReset()}
               >
                 <Text>Recover my Account</Text>
                 {this.props.processing && <Spinner size="small" inverse />}

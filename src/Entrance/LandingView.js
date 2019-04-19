@@ -1,24 +1,37 @@
 import React from 'react';
+import { StyleSheet, View } from 'react-native';
 import {
   Container, Header, Content, Spinner,
 } from 'native-base';
-
-import { View } from 'react-native';
 
 import { STYLE } from '../common/styles';
 
 import { LogoHeader } from './LogoHeader';
 
+const styles = StyleSheet.create({
+  header: {
+    height: 0,
+  },
+  spinner: {
+    margin: 16,
+  },
+  logoStyle: {
+    margin: 0,
+    marginBottom: 24,
+  },
+});
+
 const LandingView = () => (
   <Container>
-    <Header noShadow style={{ height: 0 }} />
-    <Content scrollEnabled={false} contentContainerStyle={STYLE.flexGrow}>
-      <LogoHeader style={STYLE.flex} logoStyle={{ margin: 0, marginBottom: 24 }} />
+    <Header noShadow transparent style={styles.header} />
 
-      <View style={{ position: 'absolute', height: '100%', width: '100%' }}>
+    <Content scrollEnabled={false} contentContainerStyle={STYLE.flexGrow}>
+      <LogoHeader style={STYLE.flex} logoStyle={styles.logoStyle} />
+
+      <View style={STYLE.fit}>
         <View style={STYLE.flex} />
-        <View style={{ flex: 1, alignContent: 'center', justifyContent: 'center' }}>
-          <Spinner size="large" style={{ margin: 16 }} />
+        <View style={[STYLE.flex, STYLE.center]}>
+          <Spinner size="large" style={styles.spinner} />
         </View>
       </View>
     </Content>

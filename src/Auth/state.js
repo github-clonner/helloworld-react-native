@@ -75,15 +75,15 @@ export const $signup = StateHelper.createAsyncOperation(MODULE, 'signup', (paylo
  * Initiate password reset
  */
 
-export const $initiatePasswordReset = StateHelper.createAsyncOperation(MODULE, 'initiatePasswordReset', (email) => {
+export const $requestPasswordReset = StateHelper.createAsyncOperation(MODULE, 'requestPasswordReset', (email) => {
   return (dispatch) => {
-    Activity.processing(MODULE, $initiatePasswordReset.NAME);
-    dispatch($initiatePasswordReset.request());
+    Activity.processing(MODULE, $requestPasswordReset.NAME);
+    dispatch($requestPasswordReset.request());
 
-    return AuthService.initiatePasswordReset(email)
-      .then((result) => dispatch($initiatePasswordReset.success(result)))
-      .catch((error) => dispatch($initiatePasswordReset.failure(error)))
-      .finally(() => Activity.done(MODULE, $initiatePasswordReset.NAME));
+    return AuthService.requestPasswordReset(email)
+      .then((result) => dispatch($requestPasswordReset.success(result)))
+      .catch((error) => dispatch($requestPasswordReset.failure(error)))
+      .finally(() => Activity.done(MODULE, $requestPasswordReset.NAME));
   };
 });
 
