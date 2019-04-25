@@ -27,7 +27,7 @@
     "react-native": "0.58.6",
     "react-native-gesture-handler": "~1.1.0",
     "react-native-splash-screen": "~3.2.0",
-    "react-navigation": "~3.8.1",
+    "react-navigation": "~3.9.0",
     "react-redux": "^6.0.0",
     "redux": "~4.0.1",
     "redux-localstorage": "~1.0.0-rc5",

@@ -19,7 +19,7 @@
 
 ## Requirements
 
-- [Node.js v8+](https://nodejs.org/) + [Yarn](https://yarnpkg.com/)
+- [Node.js v10+](https://nodejs.org/) + [Yarn](https://yarnpkg.com/)
 - [React Native CLI](https://www.npmjs.com/package/react-native-cli) (`npm -g install react-native-cli`)
 - [CocoaPods](https://cocoapods.org/) (`gem install cocoapods`)
 - [xcpretty](https://github.com/supermarin/xcpretty) (`gem install xcpretty`)

@@ -26,7 +26,7 @@ A boilerplate and reference implementation for mobile applications built with Re
 
 ## Requirements
 
-- [Node.js v8+](https://nodejs.org/) + [Yarn](https://yarnpkg.com/)
+- [Node.js v10+](https://nodejs.org/) + [Yarn](https://yarnpkg.com/)
 - [React Native CLI](https://www.npmjs.com/package/react-native-cli) (`npm -g install react-native-cli`)
 - Xcode Command Line tools (`xcode-select --install`)
 - [CocoaPods](https://cocoapods.org/) (`gem install cocoapods`)
