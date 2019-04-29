@@ -117,7 +117,10 @@ Object.assign(NativeBaseTheme, {
 
 export const THEME = {
   ...NativeBaseTheme,
+
   // getters override...
+
+  statusBarColor: COLOR.primaryDark,
 };
 
 /**
