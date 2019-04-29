@@ -2,6 +2,8 @@ import * as Logger from '../common/logger';
 
 import * as StateHelper from '../common/state.helper';
 
+import * as Session from '../Session/state';
+
 /**
  * Module name
  */
@@ -12,10 +14,10 @@ export const MODULE = 'Shared';
  * Initial state
  */
 
-const INITIAL_STATE = {
+const defineInitialState = () => ({
   appReady: false,
   sessionReady: false,
-};
+});
 
 /**
  * Ready app
@@ -53,6 +55,10 @@ export const $prepareSession = StateHelper.createSimpleOperation(MODULE, 'prepar
 
 export const $clearSession = StateHelper.createSimpleOperation(MODULE, 'clearSession', () => {
   return async (dispatch) => {
+    dispatch(Session.$reset());
+
+    // dispatch($reset()),
+
     return dispatch($clearSession.action());
   };
 });
@@ -61,7 +67,7 @@ export const $clearSession = StateHelper.createSimpleOperation(MODULE, 'clearSes
  * Reducer
  */
 
-export function reducer(state = INITIAL_STATE, action) {
+export function reducer(state = defineInitialState(), action) {
   switch (action.type) {
     case $appReady.ACTION:
       return {

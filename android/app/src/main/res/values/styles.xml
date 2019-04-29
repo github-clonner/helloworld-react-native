@@ -3,13 +3,16 @@
     <!-- Splash screen theme -->
     <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_screen</item>
-        <item name="android:statusBarColor">@color/primary</item>
+        <item name="android:statusBarColor">@color/primary_dark</item>
     </style>
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@color/background</item>
-        <item name="android:statusBarColor">@color/primary</item>
+        <item name="android:statusBarColor">@color/primary_dark</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/primary</item>
     </style>
 
 </resources>

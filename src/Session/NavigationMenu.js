@@ -55,9 +55,6 @@ class NavigationMenu extends Component {
               </Left>
               <Body>
                 <Text>{user.name}</Text>
-                <Text note style={{ fontSize: 15, color: COLOR.textSecondary }}>
-                  {user.email}
-                </Text>
               </Body>
             </ListItem>
             <ListItem icon selected={path === '/home'} onPress={() => this.props.navigation.navigate('/home')}>

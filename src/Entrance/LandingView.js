@@ -25,12 +25,12 @@ const LandingView = () => (
   <Container>
     <Header noShadow transparent style={styles.header} />
 
-    <Content scrollEnabled={false} contentContainerStyle={STYLE.flexGrow}>
+    <Content scrollEnabled={false} contentContainerStyle={STYLE.flex_grow}>
       <LogoHeader style={STYLE.flex} logoStyle={styles.logoStyle} />
 
       <View style={STYLE.fit}>
         <View style={STYLE.flex} />
-        <View style={[STYLE.flex, STYLE.center]}>
+        <View style={[STYLE.flex, STYLE.flex_center]}>
           <Spinner size="large" style={styles.spinner} />
         </View>
       </View>

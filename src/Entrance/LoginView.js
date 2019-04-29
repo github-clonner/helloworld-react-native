@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, View, KeyboardAvoidingView } from 'react-native';
 import {
   Container, Header, Content, Button, Spinner, Input, Item, Text, Form,
 } from 'native-base';
@@ -25,6 +25,16 @@ const propTypes = {
 };
 
 const Wrapper = (C) => withStore(C);
+
+const styles = StyleSheet.create({
+  header: {
+    height: 0,
+  },
+  header_logo: {
+    flex: 1,
+    minHeight: 'auto',
+  },
+});
 
 class LoginView extends Component {
   state = {
@@ -51,16 +61,12 @@ class LoginView extends Component {
   render() {
     return (
       <Container>
-        <Header noShadow style={{ height: 0 }} />
-        <Content scrollEnabled={false} contentContainerStyle={STYLE.flexGrow}>
-          <LogoHeader style={{ flex: 1, minHeight: 'auto' }} />
+        <Header noShadow style={styles.header} />
+        <Content scrollEnabled={false} contentContainerStyle={STYLE.flex_grow}>
+          <LogoHeader style={styles.header_logo} />
 
           <KeyboardAvoidingView>
-            <Form
-              style={{
-                padding: 16,
-              }}
-            >
+            <Form style={STYLE.padding_16}>
               <Item regular>
                 <Input
                   placeholder="Email"
@@ -74,7 +80,7 @@ class LoginView extends Component {
                 />
               </Item>
 
-              <View style={{ margin: 4 }} />
+              <View style={STYLE.margin_4} />
 
               <Item regular>
                 <Input
@@ -91,7 +97,7 @@ class LoginView extends Component {
                 />
               </Item>
 
-              <View style={{ margin: 4 }} />
+              <View style={STYLE.margin_4} />
 
               <Button
                 block
@@ -105,8 +111,8 @@ class LoginView extends Component {
             </Form>
           </KeyboardAvoidingView>
 
-          <View style={{ flexDirection: 'row' }}>
-            <Button transparent block onPress={() => this.props.navigation.navigate('/signup')} style={{ flex: 1 }}>
+          <View style={STYLE.flex_row}>
+            <Button transparent block onPress={() => this.props.navigation.navigate('/signup')} style={STYLE.flex}>
               <Text>Sign up</Text>
             </Button>
 
@@ -114,13 +120,13 @@ class LoginView extends Component {
               transparent
               block
               onPress={() => this.props.navigation.navigate('/password-reset')}
-              style={{ flex: 1 }}
+              style={STYLE.flex}
             >
               <Text>Recover</Text>
             </Button>
           </View>
 
-          <View style={{ margin: 4 }} />
+          <View style={STYLE.margin_4} />
         </Content>
       </Container>
     );

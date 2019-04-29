@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import {
   Container,
   Header,
@@ -40,6 +40,28 @@ const propTypes = {
 
 const Wrapper = (C) => withStore(C);
 
+const styles = StyleSheet.create({
+  header: {
+    height: 200,
+    paddingTop: 6,
+  },
+  fontSize: {
+    fontSize: 16,
+  },
+  user_name: {
+    marginTop: 10,
+    color: COLOR.inverse,
+  },
+  card: {
+    marginLeft: 36,
+    marginRight: 36,
+    borderBottomWidth: 0,
+    borderTopWidth: 0,
+    borderRightWidth: 0,
+    borderLeftWidth: 0,
+  },
+});
+
 class ProfileView extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
@@ -52,8 +74,8 @@ class ProfileView extends Component {
 
     return (
       <Container>
-        <Header span style={{ height: 200, paddingTop: 6 }}>
-          <View style={[STYLE.fit, STYLE.center]}>
+        <Header span style={styles.header}>
+          <View style={[STYLE.fit, STYLE.flex_center]}>
             <View
               style={{
                 alignItems: 'center',
@@ -61,7 +83,7 @@ class ProfileView extends Component {
               }}
             >
               <Thumbnail large resizeMode="cover" source={{ uri: user.picture_uri }} />
-              <Text style={{ marginTop: 10, color: COLOR.inverse }}>{user.name}</Text>
+              <Text style={styles.user_name}>{user.name}</Text>
             </View>
           </View>
           <Left>
@@ -74,29 +96,12 @@ class ProfileView extends Component {
         </Header>
 
         <Content>
-          <View
-            style={{
-              flex: 1,
-              flexDirection: 'row',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <Card
-              transparent
-              style={{
-                marginLeft: 36,
-                marginRight: 36,
-                borderBottomWidth: 0,
-                borderTopWidth: 0,
-                borderRightWidth: 0,
-                borderLeftWidth: 0,
-              }}
-            >
+          <View style={[STYLE.flex, STYLE.flex_row, STYLE.flex_center]}>
+            <Card transparent style={styles.card}>
               <CardItem>
                 <Body>
-                  <Label style={{ fontSize: 16 }}>Email</Label>
-                  <Text style={{ fontSize: 16 }}>{user.email}</Text>
+                  <Label style={styles.fontSize}>Email</Label>
+                  <Text style={styles.fontSize}>{user.email}</Text>
                 </Body>
                 {/* {user.emailVerified ? (
                 <Icon name="ios-checkmark-circle-outline" style={{ color: COLOR.success }} />

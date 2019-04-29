@@ -17,10 +17,10 @@ export const MODULE = 'Auth';
  * Initial state
  */
 
-const INITIAL_STATE = {
+const defineInitialState = () => ({
   authenticated: false,
   user: null,
-};
+});
 
 /**
  * Reset
@@ -75,15 +75,15 @@ export const $signup = StateHelper.createAsyncOperation(MODULE, 'signup', (paylo
  * Initiate password reset
  */
 
-export const $requestPasswordReset = StateHelper.createAsyncOperation(MODULE, 'requestPasswordReset', (email) => {
+export const $initiatePasswordReset = StateHelper.createAsyncOperation(MODULE, 'initiatePasswordReset', (email) => {
   return (dispatch) => {
-    Activity.processing(MODULE, $requestPasswordReset.NAME);
-    dispatch($requestPasswordReset.request());
+    Activity.processing(MODULE, $initiatePasswordReset.NAME);
+    dispatch($initiatePasswordReset.request());
 
-    return AuthService.requestPasswordReset(email)
-      .then((result) => dispatch($requestPasswordReset.success(result)))
-      .catch((error) => dispatch($requestPasswordReset.failure(error)))
-      .finally(() => Activity.done(MODULE, $requestPasswordReset.NAME));
+    return AuthService.initiatePasswordReset(email)
+      .then((result) => dispatch($initiatePasswordReset.success(result)))
+      .catch((error) => dispatch($initiatePasswordReset.failure(error)))
+      .finally(() => Activity.done(MODULE, $initiatePasswordReset.NAME));
   };
 });
 
@@ -112,7 +112,7 @@ export const $fetchProfile = StateHelper.createAsyncOperation(MODULE, 'fetchProf
  * Reducer
  */
 
-export function reducer(state = INITIAL_STATE, action) {
+export function reducer(state = defineInitialState(), action) {
   switch (action.type) {
     case $login.REQUEST:
       return {

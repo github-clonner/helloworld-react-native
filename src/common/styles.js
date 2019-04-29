@@ -79,11 +79,31 @@ Object.assign(NativeBaseTheme, {
   textColor: COLOR.text,
   inverseTextColor: COLOR.textInverse,
 
+  containerBgColor: COLOR.background,
+  tabBgColor: COLOR.background,
+
+  // Icon
+
+  // iconFamily: 'MaterialIcons',
+
   // Toolbar
 
   toolbarDefaultBg: COLOR.primary,
 
   iosStatusbar: 'light-content',
+
+  // Footer
+
+  footerDefaultBg: COLOR.black,
+
+  // Tab
+
+  tabDefaultBg: COLOR.primary,
+  topTabBarTextColor: COLOR.text,
+
+  // List
+
+  listBorderColor: 'transparent',
 
   // Spinner
 
@@ -112,7 +132,8 @@ export const THEME = {
  */
 
 export const STYLE = StyleSheet.create({
-  // General-purpose styles
+  // Layout
+
   fit: {
     position: 'absolute',
     top: 0,
@@ -120,38 +141,85 @@ export const STYLE = StyleSheet.create({
     left: 0,
     right: 0,
   },
-  center: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
 
   flex: {
     flex: 1,
   },
 
-  flexGrow: {
+  flex_grow: {
     flexGrow: 1,
   },
 
-  row: {
+  flex_row: {
     flexDirection: 'row',
+  },
+
+  flex_center: {
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
   padder: {
     padding: 8,
   },
 
+  // Margin & Padding
+
+  margin_4: {
+    margin: 4,
+  },
+
+  margin_8: {
+    margin: 8,
+  },
+
+  margin_12: {
+    margin: 12,
+  },
+
+  margin_16: {
+    margin: 16,
+  },
+
+  padding_4: {
+    padding: 4,
+  },
+
+  padding_8: {
+    padding: 8,
+  },
+
+  padding_12: {
+    padding: 12,
+  },
+
+  padding_16: {
+    padding: 16,
+  },
+
+  // Color
+
+  background: {
+    backgroundColor: COLOR.background,
+  },
+
+  background_white: {
+    backgroundColor: COLOR.white,
+  },
+
+  // Text
+
   text: {
     color: COLOR.text,
   },
+
   textSecondary: {
     color: COLOR.textSecondary,
   },
+
   textInverse: {
     color: COLOR.textInverse,
   },
-
-  // Shared styles
 
   // textRegular: {
   //   fontFamily: FONT_REGULAR,
@@ -164,4 +232,6 @@ export const STYLE = StyleSheet.create({
   // textBold: {
   //   fontFamily: FONT_BOLD,
   // },
+
+  // ...
 });

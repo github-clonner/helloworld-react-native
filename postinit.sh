@@ -27,16 +27,22 @@ TEMPLATE_DISPLAY_NAME_2=${TEMPLATE_DISPLAY_NAME_2//%/}
 
 # replace default values
 
-find ./ -type f ! -path '*/node_modules/*' ! -path '*/.git/*' -exec grep -Iq . {} \; -print | while read f
+QUERY= "
+  s|$TEMPLATE_NAME|$APP_NAME|g
+  s|$TEMPLATE_CODE_NAME|$APP_CODE_NAME|g
+  s|$TEMPLATE_DISPLAY_NAME_1|$APP_DISPLAY_NAME|g
+  s|$TEMPLATE_DISPLAY_NAME_2|$APP_DISPLAY_NAME|g
+  s|com\.$APP_CODE_NAME\.package|$APP_PACKAGE_ID|g
+  s|$APP_CODE_NAME-lib|$TEMPLATE_CODE_NAME-lib|g
+"
+
+find ./ \
+  ! -path '*/node_modules/*' \
+  ! -path '*/.git/*' \
+  -type f -exec grep -Iq . {} \; \
+  -print | while read file
 do
-  sed -i'' "
-    s|$TEMPLATE_NAME|$APP_NAME|g
-    s|$TEMPLATE_CODE_NAME|$APP_CODE_NAME|g
-    s|$TEMPLATE_DISPLAY_NAME_1|$APP_DISPLAY_NAME|g
-    s|$TEMPLATE_DISPLAY_NAME_2|$APP_DISPLAY_NAME|g
-    s|com\.$APP_CODE_NAME\.package|$APP_PACKAGE_ID|g
-    s|$APP_CODE_NAME-lib|$TEMPLATE_CODE_NAME-lib|g
-  " $f
+  sed -i'' "$QUERY" "$file"
 done
 
 # template

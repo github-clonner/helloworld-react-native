@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import {
   Container,
   Header,
@@ -44,6 +44,16 @@ const propTypes = {
 
 const Wrapper = (C) => withStore(C);
 
+const styles = StyleSheet.create({
+  checkbox: {
+    marginLeft: 0,
+    marginRight: 16,
+  },
+  button: {
+    marginHorizontal: 12,
+  },
+});
+
 class HomeView extends Component {
   state = {
     text: '',
@@ -69,7 +79,7 @@ class HomeView extends Component {
     const { text } = this.state;
     return (
       <Container>
-        <Header _style={{ alignContent: 'flex-start', alignItems: 'flex-start', justifyContent: 'flex-start' }}>
+        <Header>
           <Left>
             <Button transparent onPress={() => this.props.navigation.openDrawer()}>
               {processing ? <Spinner size="small" inverse /> : <Icon name="menu" />}
@@ -95,7 +105,7 @@ class HomeView extends Component {
                     <CheckBox
                       checked={item.done}
                       color={COLOR.primary}
-                      style={{ marginLeft: 0, marginRight: 16 }}
+                      style={styles.checkbox}
                       onPress={() => dispatch($updateTask(item.id, { done: !item.done }))}
                     />
                     <Text style={{ textDecorationLine: item.done ? 'line-through' : 'none' }}>{item.title}</Text>
@@ -111,7 +121,7 @@ class HomeView extends Component {
           )} */}
 
           <FlatList
-            contentContainerStyle={[STYLE.flexGrow, STYLE.padder]}
+            contentContainerStyle={[STYLE.flex_grow, STYLE.padder]}
             // ListEmptyComponent={<DataEmpty icon="history" message="Aucune course passée" />}
             data={tasks}
             keyExtractor={(item) => item.id}
@@ -121,18 +131,18 @@ class HomeView extends Component {
                   <CheckBox
                     checked={item.done}
                     color={COLOR.primary}
-                    style={{ marginLeft: 0, marginRight: 16 }}
+                    style={styles.checkbox}
                     onPress={() => dispatch($updateTask(item.id, { done: !item.done }))}
                   />
                   <Text style={{ textDecorationLine: item.done ? 'line-through' : 'none' }}>{item.title}</Text>
                 </Left>
 
                 <Right>
-                  <View style={{ flexDirection: 'row' }}>
-                    <Button transparent style={{ marginHorizontal: 12 }}>
+                  <View style={STYLE.flex_row}>
+                    <Button transparent style={styles.button}>
                       <Icon name="create" />
                     </Button>
-                    <Button transparent style={{ marginHorizontal: 12 }} onPress={() => dispatch($removeTask(item.id))}>
+                    <Button transparent style={styles.button} onPress={() => dispatch($removeTask(item.id))}>
                       <Icon name="trash" />
                     </Button>
                   </View>

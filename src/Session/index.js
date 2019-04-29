@@ -5,7 +5,7 @@ import NavigationMenu from './NavigationMenu';
 import DebugView from '../Shared/DebugView';
 import DraftView from '../Shared/DraftView';
 
-import HomeNavigator from '../Home';
+import Home from '../Home';
 import ProfileView from './ProfileView';
 import AboutView from './AboutView';
 
@@ -19,7 +19,7 @@ const extra = process.env.NODE_ENV === 'development'
 const MainStack = createDrawerNavigator(
   {
     ...extra,
-    '/home': { screen: HomeNavigator },
+    '/home': { screen: Home },
     '/profile': { screen: ProfileView },
     '/about': { screen: AboutView },
   },

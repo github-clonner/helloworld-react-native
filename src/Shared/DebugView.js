@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { StyleSheet } from 'react-native';
 import {
   Container, Content, Header, Left, Body, Title, Right, Icon, Button, Text,
 } from 'native-base';
 
 import * as PropTypes from '../common/proptypes';
-
-import { STYLE } from '../common/styles';
 
 const withStore = connect((state) => state);
 
@@ -16,6 +15,12 @@ const propTypes = {
 
 const Wrapper = (C) => withStore(C);
 
+const styles = StyleSheet.create({
+  xxx: {
+    fontFamily: 'monospace',
+    fontSize: 10,
+  },
+});
 class DebugView extends Component {
   state = {};
 
@@ -35,7 +40,7 @@ class DebugView extends Component {
         </Header>
 
         <Content>
-          <Text style={{ fontFamily: 'monospace', fontSize: 10 }}>{JSON.stringify(this.props, null, 2)}</Text>
+          <Text style={styles.xxx}>{JSON.stringify(this.props, null, 2)}</Text>
         </Content>
       </Container>
     );
