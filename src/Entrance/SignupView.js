@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, View, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import {
   Container, Header, Content, Button, Spinner, Input, Item, Text, Form,
 } from 'native-base';
@@ -69,88 +69,82 @@ class SignupView extends Component {
   }
 
   render() {
+    const { navigation } = this.props;
     return (
       <Container>
         <Header noShadow style={styles.header} />
-        <Content scrollEnabled={false} contentContainerStyle={STYLE.flex_grow}>
+
+        <Content padder contentContainerStyle={STYLE.flex_grow}>
           <LogoHeader style={styles.header_logo} />
 
-          <KeyboardAvoidingView>
-            <Form style={STYLE.padding_16}>
-              <Item regular>
-                <Input
-                  placeholder="Name"
-                  value={this.state.name}
-                  returnKeyType="next"
-                  enablesReturnKeyAutomatically
-                  onChangeText={(name) => this.setState({ name })}
-                  onSubmitEditing={() => this.$name.current.wrappedInstance.focus()}
-                />
-              </Item>
+          <Form>
+            <Item regular>
+              <Input
+                placeholder="Name"
+                value={this.state.name}
+                returnKeyType="next"
+                enablesReturnKeyAutomatically
+                onChangeText={(name) => this.setState({ name })}
+                onSubmitEditing={() => this.$name.current.wrappedInstance.focus()}
+              />
+            </Item>
 
-              <View style={STYLE.margin_4} />
+            <View style={STYLE.spacer} />
 
-              <Item regular>
-                <Input
-                  ref={this.$name}
-                  placeholder="Email"
-                  keyboardType="email-address"
-                  value={this.state.email}
-                  autoCapitalize="none"
-                  returnKeyType="next"
-                  enablesReturnKeyAutomatically
-                  onChangeText={(email) => this.setState({ email })}
-                  onSubmitEditing={() => this.$password.current.wrappedInstance.focus()}
-                />
-              </Item>
+            <Item regular>
+              <Input
+                ref={this.$name}
+                placeholder="Email"
+                keyboardType="email-address"
+                value={this.state.email}
+                autoCapitalize="none"
+                returnKeyType="next"
+                enablesReturnKeyAutomatically
+                onChangeText={(email) => this.setState({ email })}
+                onSubmitEditing={() => this.$password.current.wrappedInstance.focus()}
+              />
+            </Item>
 
-              <View style={STYLE.margin_4} />
+            <View style={STYLE.spacer} />
 
-              <Item regular>
-                <Input
-                  ref={this.$password}
-                  placeholder="Password"
-                  secureTextEntry
-                  autoCapitalize="none"
-                  value={this.state.password}
-                  returnKeyType="send"
-                  enablesReturnKeyAutomatically
-                  blurOnSubmit
-                  onChangeText={(password) => this.setState({ password })}
-                  onSubmitEditing={() => this.signup()}
-                />
-              </Item>
+            <Item regular>
+              <Input
+                ref={this.$password}
+                placeholder="Password"
+                secureTextEntry
+                autoCapitalize="none"
+                value={this.state.password}
+                returnKeyType="send"
+                enablesReturnKeyAutomatically
+                blurOnSubmit
+                onChangeText={(password) => this.setState({ password })}
+                onSubmitEditing={() => this.signup()}
+              />
+            </Item>
 
-              <View style={STYLE.margin_4} />
+            <View style={STYLE.spacer} />
 
-              <Button
-                full
-                primary
-                active={!this.hasValidInput() || this.props.processing}
-                onPress={() => this.signup()}
-              >
-                <Text>Sign up</Text>
-                {this.props.processing && <Spinner size="small" inverse />}
-              </Button>
-            </Form>
-          </KeyboardAvoidingView>
+            <Button block primary active={!this.hasValidInput() || this.props.processing} onPress={() => this.signup()}>
+              <Text>Sign up</Text>
+              {this.props.processing && <Spinner size="small" inverse />}
+            </Button>
+          </Form>
+
+          <View style={STYLE.spacer} />
+
+          <View style={STYLE.spacer} />
 
           <View style={STYLE.flex_row}>
-            <Button transparent full onPress={() => this.props.navigation.navigate('/login')} style={STYLE.flex}>
+            <Button block transparent dark style={STYLE.flex} onPress={() => navigation.navigate('/login')}>
               <Text>Log in</Text>
             </Button>
 
-            <Button
-              transparent
-              full
-              onPress={() => this.props.navigation.navigate('/password-reset')}
-              style={STYLE.flex}
-            >
+            <View style={STYLE.spacer} />
+
+            <Button block transparent dark style={STYLE.flex} onPress={() => navigation.navigate('/password-reset')}>
               <Text>Recover</Text>
             </Button>
           </View>
-
-          <View style={STYLE.margin_4} />
         </Content>
       </Container>
     );

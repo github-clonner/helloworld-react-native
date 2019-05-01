@@ -135,6 +135,10 @@ export const THEME = {
  */
 
 export const STYLE = StyleSheet.create({
+  debug: {
+    backgroundColor: COLOR.debug,
+  },
+
   // Layout
 
   fit: {
@@ -163,7 +167,11 @@ export const STYLE = StyleSheet.create({
   },
 
   padder: {
-    padding: 8,
+    padding: 12,
+  },
+
+  spacer: {
+    margin: 6,
   },
 
   // Margin & Padding
@@ -208,6 +216,10 @@ export const STYLE = StyleSheet.create({
 
   background_white: {
     backgroundColor: COLOR.white,
+  },
+
+  background_translucent_dark: {
+    backgroundColor: 'rgba(0,0,0,0.1)',
   },
 
   // Text

@@ -1,3 +1,5 @@
+import * as StateHelper from '../common/state.helper';
+
 /**
  * Module name
  */

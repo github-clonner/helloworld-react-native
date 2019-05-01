@@ -22,14 +22,14 @@ const styles = StyleSheet.create({
 
 const withStore = connect((state) => ({
   appReady: state.Shared.appReady,
-  sessionReady: state.Shared.sessionReady,
+  appInSession: state.Shared.appInSession,
   authenticated: state.Auth.authenticated,
 }));
 
 const propTypes = {
   ...PropTypes.withState,
   appReady: PropTypes.bool.isRequired,
-  sessionReady: PropTypes.bool.isRequired,
+  appInSession: PropTypes.bool.isRequired,
   authenticated: PropTypes.bool.isRequired,
 };
 
@@ -47,9 +47,9 @@ class App extends Component<{}> {
   }
 
   render() {
-    const { appReady, sessionReady, authenticated } = this.props;
+    const { appReady, appInSession, authenticated } = this.props;
 
-    if (!appReady || (authenticated && !sessionReady)) {
+    if (!appReady || (authenticated && !appInSession)) {
       return <LandingView />;
     }
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, View, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import {
   Container, Header, Content, Button, Spinner, Input, Item, Text, Form,
 } from 'native-base';
@@ -59,49 +59,52 @@ class PasswordResetView extends Component {
     return (
       <Container>
         <Header noShadow style={styles.header} />
-        <Content scrollEnabled={false} contentContainerStyle={STYLE.flex_grow}>
+
+        <Content padder contentContainerStyle={STYLE.flex_grow}>
           <LogoHeader style={styles.header_logo} />
 
-          <KeyboardAvoidingView>
-            <Form style={STYLE.padding_16}>
-              <Item regular>
-                <Input
-                  placeholder="Email"
-                  keyboardType="email-address"
-                  value={this.state.email}
-                  autoCapitalize="none"
-                  returnKeyType="send"
-                  enablesReturnKeyAutomatically
-                  onChangeText={(email) => this.setState({ email })}
-                  onSubmitEditing={() => this.initiatePasswordReset()}
-                />
-              </Item>
+          <Form>
+            <Item regular>
+              <Input
+                placeholder="Email"
+                keyboardType="email-address"
+                value={this.state.email}
+                autoCapitalize="none"
+                returnKeyType="send"
+                enablesReturnKeyAutomatically
+                onChangeText={(email) => this.setState({ email })}
+                onSubmitEditing={() => this.initiatePasswordReset()}
+              />
+            </Item>
 
-              <View style={STYLE.margin_4} />
+            <View style={STYLE.spacer} />
 
-              <Button
-                full
-                primary
-                active={!this.hasValidInput() || this.props.processing}
-                onPress={() => this.initiatePasswordReset()}
-              >
-                <Text>Recover my Account</Text>
-                {this.props.processing && <Spinner size="small" inverse />}
-              </Button>
-            </Form>
-          </KeyboardAvoidingView>
+            <Button
+              block
+              primary
+              active={!this.hasValidInput() || this.props.processing}
+              onPress={() => this.initiatePasswordReset()}
+            >
+              <Text>Recover my Account</Text>
+              {this.props.processing && <Spinner size="small" inverse />}
+            </Button>
+          </Form>
+
+          <View style={STYLE.spacer} />
+
+          <View style={STYLE.spacer} />
 
           <View style={STYLE.flex_row}>
-            <Button transparent full onPress={() => this.props.navigation.navigate('/login')} style={STYLE.flex}>
+            <Button block transparent dark style={STYLE.flex} onPress={() => this.props.navigation.navigate('/login')}>
               <Text>Log in</Text>
             </Button>
 
-            <Button transparent full onPress={() => this.props.navigation.navigate('/signup')} style={STYLE.flex}>
+            <View style={STYLE.spacer} />
+
+            <Button block transparent dark style={STYLE.flex} onPress={() => this.props.navigation.navigate('/signup')}>
               <Text>Sign up</Text>
             </Button>
           </View>
-
-          <View style={STYLE.margin_4} />
         </Content>
       </Container>
     );

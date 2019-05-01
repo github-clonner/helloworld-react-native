@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, View, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import {
   Container, Header, Content, Button, Spinner, Input, Item, Text, Form,
 } from 'native-base';
@@ -13,6 +13,8 @@ import { LogoHeader } from './LogoHeader';
 
 import * as Dialog from '../Shared/Dialog';
 
+import commonStyles from './styles';
+
 import { $login } from '../Auth/state';
 
 const withStore = connect((state) => ({
@@ -20,21 +22,14 @@ const withStore = connect((state) => ({
 }));
 
 const propTypes = {
+  ...PropTypes.withRouting,
   ...PropTypes.withState,
   processing: PropTypes.bool.isRequired,
 };
 
 const Wrapper = (C) => withStore(C);
 
-const styles = StyleSheet.create({
-  header: {
-    height: 0,
-  },
-  header_logo: {
-    flex: 1,
-    minHeight: 'auto',
-  },
-});
+const styles = StyleSheet.create({});
 
 class LoginView extends Component {
   state = {
@@ -59,74 +54,68 @@ class LoginView extends Component {
   }
 
   render() {
+    const { navigation } = this.props;
     return (
       <Container>
-        <Header noShadow style={styles.header} />
-        <Content scrollEnabled={false} contentContainerStyle={STYLE.flex_grow}>
-          <LogoHeader style={styles.header_logo} />
+        <Header noShadow style={commonStyles.header} />
 
-          <KeyboardAvoidingView>
-            <Form style={STYLE.padding_16}>
-              <Item regular>
-                <Input
-                  placeholder="Email"
-                  value={this.state.username}
-                  onChangeText={(username) => this.setState({ username })}
-                  keyboardType="email-address"
-                  returnKeyType="next"
-                  onSubmitEditing={() => this.$password.current.wrappedInstance.focus()}
-                  enablesReturnKeyAutomatically
-                  autoCapitalize="none"
-                />
-              </Item>
+        <Content padder contentContainerStyle={STYLE.flex_grow}>
+          <LogoHeader style={commonStyles.logo} />
 
-              <View style={STYLE.margin_4} />
+          <Form>
+            <Item regular>
+              <Input
+                placeholder="Email"
+                value={this.state.username}
+                onChangeText={(username) => this.setState({ username })}
+                keyboardType="email-address"
+                returnKeyType="next"
+                onSubmitEditing={() => this.$password.current.wrappedInstance.focus()}
+                enablesReturnKeyAutomatically
+                autoCapitalize="none"
+              />
+            </Item>
 
-              <Item regular>
-                <Input
-                  ref={this.$password}
-                  placeholder="Password"
-                  value={this.state.password}
-                  onChangeText={(password) => this.setState({ password })}
-                  returnKeyType="send"
-                  onSubmitEditing={() => this.login()}
-                  secureTextEntry
-                  enablesReturnKeyAutomatically
-                  blurOnSubmit
-                  autoCapitalize="none"
-                />
-              </Item>
+            <View style={STYLE.spacer} />
 
-              <View style={STYLE.margin_4} />
+            <Item regular>
+              <Input
+                ref={this.$password}
+                placeholder="Password"
+                value={this.state.password}
+                onChangeText={(password) => this.setState({ password })}
+                returnKeyType="send"
+                onSubmitEditing={() => this.login()}
+                secureTextEntry
+                enablesReturnKeyAutomatically
+                blurOnSubmit
+                autoCapitalize="none"
+              />
+            </Item>
 
-              <Button
-                block
-                primary
-                active={!this.hasValidInput() || this.props.processing}
-                onPress={() => this.login()}
-              >
-                <Text>Log in</Text>
-                {this.props.processing && <Spinner size="small" inverse />}
-              </Button>
-            </Form>
-          </KeyboardAvoidingView>
+            <View style={STYLE.spacer} />
+
+            <Button block primary active={!this.hasValidInput() || this.props.processing} onPress={() => this.login()}>
+              <Text>Log in</Text>
+              {this.props.processing && <Spinner size="small" inverse />}
+            </Button>
+          </Form>
+
+          <View style={STYLE.spacer} />
+
+          <View style={STYLE.spacer} />
 
           <View style={STYLE.flex_row}>
-            <Button transparent block onPress={() => this.props.navigation.navigate('/signup')} style={STYLE.flex}>
+            <Button block transparent dark style={STYLE.flex} onPress={() => navigation.navigate('/signup')}>
               <Text>Sign up</Text>
             </Button>
 
-            <Button
-              transparent
-              block
-              onPress={() => this.props.navigation.navigate('/password-reset')}
-              style={STYLE.flex}
-            >
+            <View style={STYLE.spacer} />
+
+            <Button block transparent dark style={STYLE.flex} onPress={() => navigation.navigate('/password-reset')}>
               <Text>Recover</Text>
             </Button>
           </View>
-
-          <View style={STYLE.margin_4} />
         </Content>
       </Container>
     );

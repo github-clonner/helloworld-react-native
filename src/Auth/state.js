@@ -114,6 +114,8 @@ export const $fetchProfile = StateHelper.createAsyncOperation(MODULE, 'fetchProf
 
 export function reducer(state = defineInitialState(), action) {
   switch (action.type) {
+    case $reset.ACTION:
+      return defineInitialState();
     case $login.REQUEST:
       return {
         ...state,

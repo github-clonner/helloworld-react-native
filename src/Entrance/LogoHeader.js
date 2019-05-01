@@ -1,31 +1,28 @@
 import React from 'react';
 
-import { View, Image } from 'react-native';
+import { View, Image, StyleSheet } from 'react-native';
 
 import { STYLE } from '../common/styles';
 
 import * as PropTypes from '../common/proptypes';
 
+const styles = StyleSheet.create({
+  content: {
+    ...STYLE.fit,
+    ...STYLE.flex_center,
+    overflow: 'hidden',
+  },
+  logo: {
+    margin: 24,
+    width: 140,
+    height: 140,
+  },
+});
+
 const LogoHeader = ({ style, logoStyle }) => (
   <View style={style}>
-    {/* <View style={[STYLE.fit, { justifyContent: 'flex-end' }]}>
-      // <Image source={HeaderBackgroundImage} resizeMode="cover" />
-    </View> */}
-
-    <View style={[STYLE.fit, { alignItems: 'center', justifyContent: 'center' }]}>
-      <Image
-        source={{ uri: 'logo' }}
-        _resizeMode="contain"
-        style={[
-          {
-            // flex: 1,
-            margin: 24,
-            width: 140,
-            height: 140,
-          },
-          logoStyle,
-        ]}
-      />
+    <View style={styles.content}>
+      <Image source={{ uri: 'logo' }} _resizeMode="contain" style={[styles.logo, logoStyle]} />
     </View>
   </View>
 );
