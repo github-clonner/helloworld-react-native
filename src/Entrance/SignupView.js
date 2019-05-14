@@ -124,7 +124,12 @@ class SignupView extends Component {
 
             <View style={STYLE.spacer} />
 
-            <Button block primary active={!this.hasValidInput() || this.props.processing} onPress={() => this.signup()}>
+            <Button
+              block
+              primary
+              disabled={!this.hasValidInput() || this.props.processing}
+              onPress={() => this.signup()}
+            >
               <Text>Sign up</Text>
               {this.props.processing && <Spinner size="small" inverse />}
             </Button>

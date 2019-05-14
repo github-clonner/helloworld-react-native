@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import SplashScreen from 'react-native-splash-screen';
 
@@ -12,6 +12,8 @@ import { COLOR } from './common/styles';
 import LandingView from './Entrance/LandingView';
 import Entrance from './Entrance';
 import Session from './Session';
+
+import { $keyboardVisible } from './Shared/state';
 
 const styles = StyleSheet.create({
   container: {
@@ -40,6 +42,9 @@ class App extends Component<{}> {
     if (SplashScreen) {
       SplashScreen.hide();
     }
+
+    Keyboard.addListener('keyboardDidShow', () => this.props.dispatch($keyboardVisible(true)));
+    Keyboard.addListener('keyboardDidHide', () => this.props.dispatch($keyboardVisible(false)));
   }
 
   componentDidCatch(error, info) {

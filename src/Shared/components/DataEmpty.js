@@ -12,14 +12,14 @@ const styles = StyleSheet.create({
   },
   icon_content: {
     fontSize: 72,
-    color: COLOR.gray_dark,
+    color: COLOR.text_muted,
   },
   message_container: {
     padding: 32,
   },
   message_content: {
     fontSize: 18,
-    color: COLOR.gray_dark,
+    color: COLOR.text_muted,
   },
 });
 

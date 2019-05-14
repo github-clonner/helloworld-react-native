@@ -95,7 +95,12 @@ class LoginView extends Component {
 
             <View style={STYLE.spacer} />
 
-            <Button block primary active={!this.hasValidInput() || this.props.processing} onPress={() => this.login()}>
+            <Button
+              block
+              primary
+              disabled={!this.hasValidInput() || this.props.processing}
+              onPress={() => this.login()}
+            >
               <Text>Log in</Text>
               {this.props.processing && <Spinner size="small" inverse />}
             </Button>

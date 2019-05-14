@@ -17,6 +17,7 @@ export const MODULE = 'Shared';
 const defineInitialState = () => ({
   appReady: false,
   appInSession: false,
+  keyboardVisible: false,
 });
 
 /**
@@ -66,6 +67,16 @@ export const $closeSession = StateHelper.createSimpleOperation(MODULE, 'closeSes
 });
 
 /**
+ * Set keyboard visibility
+ */
+
+export const $keyboardVisible = StateHelper.createSimpleOperation(MODULE, 'keyboardVisible', (keyboardVisible) => {
+  return async (dispatch) => {
+    return dispatch($keyboardVisible.action({ keyboardVisible }));
+  };
+});
+
+/**
  * Reducer
  */
 
@@ -85,6 +96,11 @@ export function reducer(state = defineInitialState(), action) {
       return {
         ...state,
         appInSession: false,
+      };
+    case $keyboardVisible.ACTION:
+      return {
+        ...state,
+        keyboardVisible: action.keyboardVisible,
       };
     default:
       return state;

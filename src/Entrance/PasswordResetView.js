@@ -82,7 +82,7 @@ class PasswordResetView extends Component {
             <Button
               block
               primary
-              active={!this.hasValidInput() || this.props.processing}
+              disabled={!this.hasValidInput() || this.props.processing}
               onPress={() => this.initiatePasswordReset()}
             >
               <Text>Recover my Account</Text>
