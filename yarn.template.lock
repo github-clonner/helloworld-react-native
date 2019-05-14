@@ -3514,9 +3514,9 @@ has@^1.0.1, has@^1.0.3:
   dependencies:
     function-bind "^1.1.1"
 
-"helloworld-lib@file:./lib/helloworld-lib.tgz":
-  version "0.15.0"
-  resolved "file:./lib/helloworld-lib.tgz#12d35a647344601ddcd3d8f2b7f1598fe9e50450"
+"helloworld-lib@file:lib/helloworld-lib.tgz":
+  version "0.16.0"
+  resolved "file:lib/helloworld-lib.tgz#261f52609d4777206a7761fd83d6773554f932b5"
   dependencies:
     core-js "~3.0.1"
     debug "~4.1.1"
