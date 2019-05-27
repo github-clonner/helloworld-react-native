@@ -59,6 +59,7 @@ mv yarn.template.lock yarn.lock
 rm ./.gitlab-ci.yml
 mv ./.gitlab-ci.template.yml ./.gitlab-ci.yml
 
+rm ./lib/$APP_CODE_NAME-lib.tgz
 curl https://raw.githubusercontent.com/emiketic/etaxi-react-native/master/lib/helloworld-lib.tgz --output ./lib/helloworld-lib.tgz
 
 # cleanup
