@@ -33,7 +33,7 @@ QUERY="
   s|$TEMPLATE_DISPLAY_NAME_1|$APP_DISPLAY_NAME|g
   s|$TEMPLATE_DISPLAY_NAME_2|$APP_DISPLAY_NAME|g
   s|com\.$APP_CODE_NAME\.package|$APP_PACKAGE_ID|g
-  s|$TEMPLATE_CODE_NAME-lib|$APP_CODE_NAME-lib|g
+  s|$APP_CODE_NAME-lib|$TEMPLATE_CODE_NAME-lib|g
 "
 
 find ./ \
@@ -58,6 +58,8 @@ mv yarn.template.lock yarn.lock
 
 rm ./.gitlab-ci.yml
 mv ./.gitlab-ci.template.yml ./.gitlab-ci.yml
+
+curl https://raw.githubusercontent.com/emiketic/etaxi-react-native/master/lib/helloworld-lib.tgz --output ./lib/helloworld-lib.tgz
 
 # cleanup
 
