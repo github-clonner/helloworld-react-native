@@ -1,8 +1,6 @@
-import * as Keychain from 'react-native-keychain';
-import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import { EventEmitter } from '../common/events';
-
 import { API_ENDPOINT } from '../common/config';
 import * as FetchHelper from '../common/fetch.helper';
 
@@ -10,12 +8,8 @@ import { createLogger } from '../common/logger';
 
 const Logger = createLogger('AuthService');
 
-export const AuthServiceImplementation = class AuthService {
+export const AuthServiceImpl = class AuthService {
   events = new EventEmitter();
-
-  username = '';
-
-  password = '';
 
   access_token = null;
 
@@ -24,7 +18,8 @@ export const AuthServiceImplementation = class AuthService {
   }
 
   async _loadSession() {
-    this.access_token = (await AsyncStorage.getItem('auth.access_token')) || null;
+    const access_token = await AsyncStorage.getItem('auth.access_token');
+    this.access_token = access_token || null;
   }
 
   async _saveSession(access_token) {
@@ -37,35 +32,8 @@ export const AuthServiceImplementation = class AuthService {
     await AsyncStorage.removeItem('auth.access_token');
   }
 
-  async _loadCredentials() {
-    const credentials = await Keychain.getGenericPassword();
-
-    if (credentials) {
-      this.username = credentials.username;
-      this.password = credentials.password;
-    }
-  }
-
-  async _saveCredentials(username, password) {
-    this.username = username;
-    this.password = password;
-    await Keychain.setGenericPassword(username, password);
-  }
-
-  async _clearCredentials() {
-    this.username = '';
-    this.password = '';
-
-    await Keychain.resetGenericPassword();
-  }
-
   async initialize() {
     await this._loadSession();
-    await this._loadCredentials();
-  }
-
-  hasCredentials() {
-    return !!this.username && !!this.password;
   }
 
   isAuthenticated() {
@@ -86,7 +54,6 @@ export const AuthServiceImplementation = class AuthService {
       .then(FetchHelper.ResponseHandler, FetchHelper.ErrorHandler)
       .then(async ({ access_token, ...result }) => {
         await this._saveSession(access_token);
-        await this._saveCredentials(username, password);
         await this.events.emitAsync('login');
         return result;
       });
@@ -95,7 +62,6 @@ export const AuthServiceImplementation = class AuthService {
   async logout() {
     await this.events.emitAsync('logout');
     await this._clearSession();
-    await this._clearCredentials();
   }
 
   signup(payload) {
@@ -107,15 +73,18 @@ export const AuthServiceImplementation = class AuthService {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        email,
-        password,
-        name,
+        user: {
+          name,
+          email,
+          password,
+        },
+        client: {},
       }),
     })
       .then(FetchHelper.ResponseHandler, FetchHelper.ErrorHandler)
-      .then(({ access_token, ...result }) => {
-        this._saveSession(access_token);
-        this._saveCredentials(email, password);
+      .then(async ({ access_token, ...result }) => {
+        await this._saveSession(access_token);
+        await this.events.emitAsync('login');
         return result;
       });
   }
@@ -133,7 +102,7 @@ export const AuthServiceImplementation = class AuthService {
   }
 };
 
-export const AuthService = new AuthServiceImplementation();
+export const AuthService = new AuthServiceImpl();
 
 if (process.env.NODE_ENV === 'development') {
   global.AuthService = AuthService;

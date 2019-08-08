@@ -11,7 +11,7 @@ import { STYLE } from '../common/styles';
 
 import { LogoHeader } from './LogoHeader';
 
-import * as Dialog from '../Shared/Dialog';
+import * as Interaction from '../Shared/Interaction';
 
 import { $signup } from '../Auth/state';
 
@@ -65,7 +65,7 @@ class SignupView extends Component {
         email: this.state.email,
         password: this.state.password,
       }),
-    ).catch((error) => Dialog.toast(Dialog.FAILURE, error.message));
+    ).catch((error) => Interaction.toast(Interaction.FAILURE, error.message));
   }
 
   render() {

@@ -11,7 +11,7 @@ import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import persistState, { mergePersistedState } from 'redux-localstorage';
 import persistAdapter from 'redux-localstorage/lib/adapters/AsyncStorage';
-import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import $state from './state';
 
@@ -81,13 +81,13 @@ export function setupStore() {
   function merge(target, source) {
     const result = { ...target };
 
-    for (const [key, value] of Object.entries(source)) {
+    Object.entries(source).forEach(([key, value]) => {
       if (value && Object.prototype.toString.call(value) === '[object Object]' && result[key]) {
         result[key] = merge(result[key], value);
       } else {
         result[key] = value;
       }
-    }
+    });
 
     return result;
   }

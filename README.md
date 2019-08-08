@@ -40,26 +40,22 @@ A boilerplate and reference implementation for mobile applications built with Re
 yarn install
 
 # run bundler
-yarn dev
+yarn run serve
 
 # run on Android device/emulator
-yarn android
+yarn run android
 
 # run on iOS device/simulator
-(cd ios ; pod install)
-yarn ios
+yarn run ios
 
 # run tests
-yarn test
-
-# lint code for critical issues
-yarn lint:critical
+yarn run test
 
 # lint code
-yarn lint
+yarn run lint
 
 # format code
-yarn format
+yarn run format
 ```
 
 ## Debugging
@@ -91,7 +87,7 @@ Assuming target application with following properties:
 1.  Initialize your application `react-native init`
 
     ```sh
-    react-native init MyApp --version 0.58.4 --skip-jest --template 'https://github.com/emiketic/helloworld-react-native'
+    react-native init MyApp --version 0.58.4 --skip-jest --template 'https://github.com/naderio/helloworld-react-native'
     ```
 
 1.  Run post-init routine

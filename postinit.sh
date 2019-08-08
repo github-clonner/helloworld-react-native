@@ -4,36 +4,36 @@ set -xeo pipefail
 source $(dirname $0)/scripts/config.sh
 
 if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ] ; then
-  echo "usage: $(basename $0) <APP_NAME> <APP_DISPLAY_NAME> <APP_PACKAGE_ID>" >&2
+  echo "usage: $(basename $0) <APP_NAME_CODE> <APP_NAME_DISPLAY> <APP_PACKAGE_ID>" >&2
   exit 1
 fi
 
-APP_NAME=$1
-APP_CODE_NAME=${APP_NAME,,}
-APP_DISPLAY_NAME=$2
+APP_NAME_CODE=$1
+APP_NAME_CODE_ALT=${APP_NAME_CODE,,}
+APP_NAME_DISPLAY=$2
 APP_PACKAGE_ID=$3
 
-TEMPLATE_NAME='H%elloWorld'
-TEMPLATE_NAME=${TEMPLATE_NAME//%/}
+TEMPLATE_NAME_CODE='H%elloWorld'
+TEMPLATE_NAME_CODE=${TEMPLATE_NAME_CODE//%/}
 
-TEMPLATE_CODE_NAME='h%elloworld'
-TEMPLATE_CODE_NAME=${TEMPLATE_CODE_NAME//%/}
+TEMPLATE_NAME_CODE_ALT='h%elloworld'
+TEMPLATE_NAME_CODE_ALT=${TEMPLATE_NAME_CODE_ALT//%/}
 
-TEMPLATE_DISPLAY_NAME_1='H%ello World'
-TEMPLATE_DISPLAY_NAME_1=${TEMPLATE_DISPLAY_NAME_1//%/}
+TEMPLATE_NAME_DISPLAY_1='H%ello World'
+TEMPLATE_NAME_DISPLAY_1=${TEMPLATE_NAME_DISPLAY_1//%/}
 
-TEMPLATE_DISPLAY_NAME_2='H%ello App Display Name'
-TEMPLATE_DISPLAY_NAME_2=${TEMPLATE_DISPLAY_NAME_2//%/}
+TEMPLATE_NAME_DISPLAY_2='H%ello App Display Name'
+TEMPLATE_NAME_DISPLAY_2=${TEMPLATE_NAME_DISPLAY_2//%/}
 
 # replace default values
 
 QUERY="
-  s|$TEMPLATE_NAME|$APP_NAME|g
-  s|$TEMPLATE_CODE_NAME|$APP_CODE_NAME|g
-  s|$TEMPLATE_DISPLAY_NAME_1|$APP_DISPLAY_NAME|g
-  s|$TEMPLATE_DISPLAY_NAME_2|$APP_DISPLAY_NAME|g
-  s|com\.$APP_CODE_NAME\.package|$APP_PACKAGE_ID|g
-  s|$APP_CODE_NAME-lib|$TEMPLATE_CODE_NAME-lib|g
+  s|$TEMPLATE_NAME_CODE|$APP_NAME_CODE|g
+  s|$TEMPLATE_NAME_CODE_ALT|$APP_NAME_CODE_ALT|g
+  s|$TEMPLATE_NAME_DISPLAY_1|$APP_NAME_DISPLAY|g
+  s|$TEMPLATE_NAME_DISPLAY_2|$APP_NAME_DISPLAY|g
+  s|com\.$APP_NAME_CODE_ALT\.package|$APP_PACKAGE_ID|g
+  s|$APP_NAME_CODE_ALT-lib|$TEMPLATE_NAME_CODE_ALT-lib|g
 "
 
 find ./ \
@@ -59,8 +59,8 @@ mv yarn.template.lock yarn.lock
 rm ./.gitlab-ci.yml
 mv ./.gitlab-ci.template.yml ./.gitlab-ci.yml
 
-rm ./lib/$APP_CODE_NAME-lib.tgz
-curl https://raw.githubusercontent.com/emiketic/$TEMPLATE_CODE_NAME-react-native/master/lib/$TEMPLATE_CODE_NAME-lib.tgz --output ./lib/$TEMPLATE_CODE_NAME-lib.tgz
+rm ./lib/$APP_NAME_CODE_ALT-lib.tgz
+curl https://raw.githubusercontent.com/naderio/$TEMPLATE_NAME_CODE_ALT-react-native/master/lib/$TEMPLATE_NAME_CODE_ALT-lib.tgz --output ./lib/$TEMPLATE_NAME_CODE_ALT-lib.tgz
 
 # cleanup
 
@@ -85,4 +85,4 @@ git add -f $(find . -name .gitkeep)
 
 # install dependencies
 
-yarn
+yarn install

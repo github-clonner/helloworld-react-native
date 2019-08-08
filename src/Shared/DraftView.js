@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+
 import React, { Component } from 'react';
 
 import {
@@ -6,7 +8,7 @@ import {
 
 import { STYLE } from '../common/styles';
 
-import * as Dialog from './Dialog';
+import * as Interaction from './Interaction';
 
 class DraftView extends Component {
   state = {};
@@ -26,26 +28,31 @@ class DraftView extends Component {
           <Right />
         </Header>
         <Content padder>
-          <Button block dark onPress={() => Dialog.toast(Dialog.SUCCESS, 'Toast')}>
+          <Button block dark onPress={() => Interaction.toast(Interaction.SUCCESS, 'Toast')}>
             <Text>toast</Text>
           </Button>
-          <Button block dark onPress={() => Dialog.status(Dialog.SUCCESS, 'Status')}>
+          <Button block dark onPress={() => Interaction.status(Interaction.SUCCESS, 'Status')}>
             <Text>status</Text>
           </Button>
-          <Button block dark onPress={() => Dialog.alert('Title', 'Alert').then((r) => Dialog.toast(Dialog.INFO, r))}>
+          <Button
+            block
+            dark
+            onPress={() => Interaction.alert('Title', 'Alert').then((r) => Interaction.toast(Interaction.INFO, r))}
+          >
             <Text>alert</Text>
           </Button>
           <Button
             block
             dark
-            onPress={() => Dialog.confirm('Title', 'Confirmation').then((r) => Dialog.toast(Dialog.INFO, r))}
+            onPress={() => Interaction.confirm('Title', 'Confirmation').then((r) => Interaction.toast(Interaction.INFO, r))
+            }
           >
             <Text>confirm</Text>
           </Button>
           <Button
             block
             dark
-            onPress={() => Dialog.confirmWithNeutral('Title', 'confirmWithNeutral').then((r) => Dialog.toast(Dialog.INFO, r))
+            onPress={() => Interaction.confirmWithNeutral('Title', 'confirmWithNeutral').then((r) => Interaction.toast(Interaction.INFO, r))
             }
           >
             <Text>confirmWithNeutral</Text>

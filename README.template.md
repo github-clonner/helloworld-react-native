@@ -21,6 +21,7 @@
 
 - [Node.js v10+](https://nodejs.org/) + [Yarn](https://yarnpkg.com/)
 - [React Native CLI](https://www.npmjs.com/package/react-native-cli) (`npm -g install react-native-cli`)
+- Xcode Command Line tools (`xcode-select --install`)
 - [CocoaPods](https://cocoapods.org/) (`gem install cocoapods`)
 - [xcpretty](https://github.com/supermarin/xcpretty) (`gem install xcpretty`)
 - [Bash v4](http://tldp.org/LDP/abs/html/bashver4.html) (default on GNU/Linux, `brew install bash` on macOS)
@@ -32,25 +33,22 @@
 yarn install
 
 # run bundler
-yarn dev
+yarn run serve
 
 # run on Android device/emulator
-yarn android
+yarn run android
 
 # run on iOS device/simulator
-yarn ios
+yarn run ios
 
 # run tests
-yarn test
-
-# lint code for critical issues
-yarn lint:critical
+yarn run test
 
 # lint code
-yarn lint
+yarn run lint
 
 # format code
-yarn format
+yarn run format
 ```
 
 ## Debugging

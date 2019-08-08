@@ -55,11 +55,11 @@ export const User = PropTypes.shape({
   picture_uri: PropTypes.string.isRequired,
 });
 
-export const Task = PropTypes.shape({
+export const Post = PropTypes.shape({
   id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  done: PropTypes.bool.isRequired,
   slug: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
   created_at: PropTypes.string.isRequired,
   updated_at: PropTypes.string.isRequired,
 });

@@ -43,8 +43,13 @@ class App extends Component<{}> {
       SplashScreen.hide();
     }
 
-    Keyboard.addListener('keyboardDidShow', () => this.props.dispatch($keyboardVisible(true)));
-    Keyboard.addListener('keyboardDidHide', () => this.props.dispatch($keyboardVisible(false)));
+    this.keyboardDidShowHandler = Keyboard.addListener('keyboardDidShow', () => this.props.dispatch($keyboardVisible(true)));
+    this.keyboardDidHideHandler = Keyboard.addListener('keyboardDidHide', () => this.props.dispatch($keyboardVisible(false)));
+  }
+
+  componentWillUnmount() {
+    this.keyboardDidShowHandler.remove();
+    this.keyboardDidHideHandler.remove();
   }
 
   componentDidCatch(error, info) {

@@ -5,7 +5,7 @@ import * as StateHelper from '../common/state.helper';
 
 import * as Activity from '../Shared/Activity';
 
-import { AuthService } from './Auth.service';
+import { AuthService } from './AuthService';
 
 /**
  * Module name
@@ -123,7 +123,7 @@ export function reducer(state = defineInitialState(), action) {
       };
     case $login.SUCCESS:
     case $signup.SUCCESS:
-    case $fetchProfile.SUCCESS:
+    case $fetchProfile.SUCCESS: {
       const initials = action.user.name
         .split(/\W+/)
         .map((w) => w[0] || '')
@@ -138,6 +138,7 @@ export function reducer(state = defineInitialState(), action) {
           initials,
         },
       };
+    }
     case $logout.ACTION:
       return {
         ...state,

@@ -7,7 +7,7 @@ import {
 
 import * as PropTypes from '../common/proptypes';
 
-import * as Dialog from '../Shared/Dialog';
+import * as Interaction from '../Shared/Interaction';
 
 import { COLOR } from '../common/styles';
 
@@ -38,8 +38,8 @@ class NavigationMenu extends Component {
     const { dispatch } = this.props;
 
     dispatch($logout())
-      .then(() => Dialog.toast(Dialog.SUCCESS, 'Goodbye!'))
-      .catch((error) => Dialog.toast(Dialog.FAILURE, error.message));
+      .then(() => Interaction.toast(Interaction.SUCCESS, 'Goodbye!'))
+      .catch((error) => Interaction.toast(Interaction.FAILURE, error.message));
   }
 
   render() {

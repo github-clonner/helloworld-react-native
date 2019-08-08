@@ -3,7 +3,7 @@ import { API_ENDPOINT } from '../common/config';
 import * as FetchHelper from '../common/fetch.helper';
 import * as StateHelper from '../common/state.helper';
 
-import { AuthService } from '../Auth/Auth.service';
+import { AuthService } from '../Auth/AuthService';
 
 import * as Activity from '../Shared/Activity';
 
@@ -18,7 +18,7 @@ export const MODULE = 'Home';
  */
 
 const defineInitialState = () => ({
-  tasks: null,
+  posts: null,
 });
 
 /**
@@ -28,61 +28,61 @@ const defineInitialState = () => ({
 export const $reset = StateHelper.createSimpleOperation(MODULE, 'reset', () => $reset.action());
 
 /**
- * Fetch tasks
+ * Fetch posts
  */
 
 // Promise implementation
-const $fetchTasksPromise = StateHelper.createAsyncOperation(MODULE, 'fetchTasks', () => {
+const $fetchPostsPromise = StateHelper.createAsyncOperation(MODULE, 'fetchPosts', () => {
   return (dispatch) => {
-    Activity.processing(MODULE, $fetchTasksPromise.NAME);
-    dispatch($fetchTasksPromise.request());
+    Activity.processing(MODULE, $fetchPostsPromise.NAME);
+    dispatch($fetchPostsPromise.request());
 
-    return fetch(`${API_ENDPOINT}/client/task`, {
+    return fetch(`${API_ENDPOINT}/client/post`, {
       headers: {
         Authorization: `Bearer ${AuthService.getAccessToken()}`,
       },
     })
       .then(FetchHelper.ResponseHandler, FetchHelper.ErrorHandler)
-      .then((result) => dispatch($fetchTasksPromise.success(result)))
-      .catch((error) => dispatch($fetchTasksPromise.failure(error)))
-      .finally(() => Activity.done(MODULE, $fetchTasksPromise.NAME));
+      .then((result) => dispatch($fetchPostsPromise.success(result)))
+      .catch((error) => dispatch($fetchPostsPromise.failure(error)))
+      .finally(() => Activity.done(MODULE, $fetchPostsPromise.NAME));
   };
 });
 
 // async/await implementation
-export const $fetchTasks = StateHelper.createAsyncOperation(MODULE, 'fetchTasks', () => {
+export const $fetchPosts = StateHelper.createAsyncOperation(MODULE, 'fetchPosts', () => {
   return async (dispatch) => {
-    Activity.processing(MODULE, $fetchTasks.NAME);
-    dispatch($fetchTasks.request());
+    Activity.processing(MODULE, $fetchPosts.NAME);
+    dispatch($fetchPosts.request());
 
     try {
-      const response = await fetch(`${API_ENDPOINT}/client/task`, {
+      const response = await fetch(`${API_ENDPOINT}/client/post`, {
         headers: {
           Authorization: `Bearer ${AuthService.getAccessToken()}`,
         },
       });
       const result = await FetchHelper.ResponseHandler(response);
 
-      return dispatch($fetchTasks.success(result));
-    } catch (error) {
-      await FetchHelper.ErrorValueHandler(error);
-      dispatch($fetchTasks.failure(error));
+      return dispatch($fetchPosts.success(result));
+    } catch (_error) {
+      const error = FetchHelper.ErrorValueHandler(_error);
+      return dispatch($fetchPosts.failure(error));
     } finally {
-      Activity.done(MODULE, $fetchTasks.NAME);
+      Activity.done(MODULE, $fetchPosts.NAME);
     }
   };
 });
 
 /**
- * Create task
+ * Create post
  */
 
-export const $createTask = StateHelper.createAsyncOperation(MODULE, 'createTask', (data) => {
+export const $createPost = StateHelper.createAsyncOperation(MODULE, 'createPost', (data) => {
   return (dispatch) => {
-    Activity.processing(MODULE, $createTask.NAME);
-    dispatch($createTask.request());
+    Activity.processing(MODULE, $createPost.NAME);
+    dispatch($createPost.request());
 
-    return fetch(`${API_ENDPOINT}/client/task/create`, {
+    return fetch(`${API_ENDPOINT}/client/post/create`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${AuthService.getAccessToken()}`,
@@ -93,22 +93,22 @@ export const $createTask = StateHelper.createAsyncOperation(MODULE, 'createTask'
       }),
     })
       .then(FetchHelper.ResponseHandler, FetchHelper.ErrorHandler)
-      .then((result) => dispatch($createTask.success(result)))
-      .catch((error) => dispatch($createTask.failure(error)))
-      .finally(() => Activity.done(MODULE, $createTask.NAME));
+      .then((result) => dispatch($createPost.success(result)))
+      .catch((error) => dispatch($createPost.failure(error)))
+      .finally(() => Activity.done(MODULE, $createPost.NAME));
   };
 });
 
 /**
- * Update task
+ * Update post
  */
 
-export const $updateTask = StateHelper.createAsyncOperation(MODULE, 'updateTask', (taskId, data) => {
+export const $updatePost = StateHelper.createAsyncOperation(MODULE, 'updatePost', (postId, data) => {
   return (dispatch) => {
-    Activity.processing(MODULE, $updateTask.NAME);
-    dispatch($updateTask.request());
+    Activity.processing(MODULE, $updatePost.NAME);
+    dispatch($updatePost.request());
 
-    return fetch(`${API_ENDPOINT}/client/task/${taskId}/edit`, {
+    return fetch(`${API_ENDPOINT}/client/post/${postId}/edit`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${AuthService.getAccessToken()}`,
@@ -119,31 +119,31 @@ export const $updateTask = StateHelper.createAsyncOperation(MODULE, 'updateTask'
       }),
     })
       .then(FetchHelper.ResponseHandler, FetchHelper.ErrorHandler)
-      .then((result) => dispatch($updateTask.success(result)))
-      .catch((error) => dispatch($updateTask.failure(error)))
-      .finally(() => Activity.done(MODULE, $updateTask.NAME));
+      .then((result) => dispatch($updatePost.success(result)))
+      .catch((error) => dispatch($updatePost.failure(error)))
+      .finally(() => Activity.done(MODULE, $updatePost.NAME));
   };
 });
 
 /**
- * Remove task
+ * Remove post
  */
 
-export const $removeTask = StateHelper.createAsyncOperation(MODULE, 'removeTask', (taskId) => {
+export const $removePost = StateHelper.createAsyncOperation(MODULE, 'removePost', (postId) => {
   return (dispatch) => {
-    Activity.processing(MODULE, $removeTask.NAME);
-    dispatch($removeTask.request());
+    Activity.processing(MODULE, $removePost.NAME);
+    dispatch($removePost.request());
 
-    return fetch(`${API_ENDPOINT}/client/task/${taskId}/delete`, {
+    return fetch(`${API_ENDPOINT}/client/post/${postId}/delete`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${AuthService.getAccessToken()}`,
       },
     })
       .then(FetchHelper.ResponseHandler, FetchHelper.ErrorHandler)
-      .then(() => dispatch($fetchTasks()))
-      .catch((error) => dispatch($removeTask.failure(error)))
-      .finally(() => Activity.done(MODULE, $removeTask.NAME));
+      .then(() => dispatch($fetchPosts()))
+      .catch((error) => dispatch($removePost.failure(error)))
+      .finally(() => Activity.done(MODULE, $removePost.NAME));
   };
 });
 
@@ -155,30 +155,30 @@ export function reducer(state = defineInitialState(), action) {
   switch (action.type) {
     case $reset.ACTION:
       return defineInitialState();
-    case $fetchTasks.REQUEST:
+    case $fetchPosts.REQUEST:
       return {
         ...state,
-        tasks: null,
+        posts: null,
       };
-    case $fetchTasks.SUCCESS:
+    case $fetchPosts.SUCCESS:
       return {
         ...state,
-        tasks: action.data,
+        posts: action.data,
       };
-    case $createTask.SUCCESS:
+    case $createPost.SUCCESS:
       return {
         ...state,
-        tasks: [...state.tasks, action.data],
+        posts: [...state.posts, action.data],
       };
-    case $updateTask.SUCCESS:
+    case $updatePost.SUCCESS:
       return {
         ...state,
-        tasks: state.tasks.map((item) => (action.data.id === item.id ? action.data : item)),
+        posts: state.posts.map((item) => (action.data.id === item.id ? action.data : item)),
       };
-    case $fetchTasks.FAILURE:
+    case $fetchPosts.FAILURE:
       return {
         ...state,
-        tasks: null,
+        posts: null,
       };
     default:
       return state;
@@ -189,8 +189,8 @@ export function reducer(state = defineInitialState(), action) {
  * Persister
  */
 
-export function persister({ tasks }) {
+export function persister({ posts }) {
   return {
-    tasks,
+    posts,
   };
 }

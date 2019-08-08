@@ -11,7 +11,7 @@ import { STYLE } from '../common/styles';
 
 import { LogoHeader } from './LogoHeader';
 
-import * as Dialog from '../Shared/Dialog';
+import * as Interaction from '../Shared/Interaction';
 
 import commonStyles from './styles';
 
@@ -45,12 +45,12 @@ class LoginView extends Component {
 
   login() {
     if (!this.hasValidInput()) {
-      return null;
+      return;
     }
 
     const { dispatch } = this.props;
 
-    dispatch($login(this.state.username, this.state.password)).catch((error) => Dialog.toast(Dialog.FAILURE, error.message));
+    dispatch($login(this.state.username, this.state.password)).catch((error) => Interaction.toast(Interaction.FAILURE, error.message));
   }
 
   render() {
