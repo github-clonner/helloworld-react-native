@@ -11,7 +11,7 @@ import { STYLE } from '../common/styles';
 
 import { LogoHeader } from './LogoHeader';
 
-import * as Dialog from '../Shared/Dialog';
+import * as Interaction from '../Shared/Interaction';
 
 import { $initiatePasswordReset } from '../Auth/state';
 
@@ -52,7 +52,7 @@ class PasswordResetView extends Component {
 
     const { dispatch } = this.props;
 
-    return dispatch($initiatePasswordReset(this.state.email)).catch((error) => Dialog.toast(Dialog.FAILURE, error.message));
+    return dispatch($initiatePasswordReset(this.state.email)).catch((error) => Interaction.toast(Interaction.FAILURE, error.message));
   }
 
   render() {

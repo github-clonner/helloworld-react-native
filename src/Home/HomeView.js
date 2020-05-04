@@ -24,22 +24,22 @@ import * as PropTypes from '../common/proptypes';
 
 import { COLOR, STYLE } from '../common/styles';
 
-import * as Dialog from '../Shared/Dialog';
+import * as Interaction from '../Shared/Interaction';
 
 import {
-  $fetchTasks, $updateTask, $removeTask, $createTask,
+  $fetchPosts, $updatePost, $removePost, $createPost,
 } from './state';
 
 const withStore = connect((state) => ({
-  processing: state.Activity.processingByOperation[$fetchTasks.OPERATION] || false,
-  tasks: state.Home.tasks,
+  processing: state.Activity.processingByOperation[$fetchPosts.OPERATION] || false,
+  posts: state.Home.posts,
 }));
 
 const propTypes = {
   ...PropTypes.withRouting,
   ...PropTypes.withState,
   processing: PropTypes.bool.isRequired,
-  tasks: PropTypes.arrayOf(PropTypes.Task.isRequired).isRequired,
+  posts: PropTypes.arrayOf(PropTypes.Post.isRequired).isRequired,
 };
 
 const Wrapper = (C) => withStore(C);
@@ -62,20 +62,18 @@ class HomeView extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
 
-    dispatch($fetchTasks())
-      .then(() => Dialog.toast(Dialog.SUCCESS, 'Tasks loaded'))
-      .catch((error) => Dialog.toast(Dialog.FAILURE, error.message));
+    dispatch($fetchPosts()).catch((error) => Interaction.toast(Interaction.FAILURE, error.message));
   }
 
-  createTask() {
+  createPost() {
     const { dispatch } = this.props;
     const { text } = this.state;
-    dispatch($createTask({ title: text }));
+    dispatch($createPost({ title: text }));
     this.setState({ text: '' });
   }
 
   render() {
-    const { processing, tasks, dispatch } = this.props;
+    const { processing, posts, dispatch } = this.props;
     const { text } = this.state;
     return (
       <Container>
@@ -86,34 +84,34 @@ class HomeView extends Component {
             </Button>
           </Left>
           <Body>
-            <Title>Tasks</Title>
+            <Title>Posts</Title>
           </Body>
           <Right />
         </Header>
         <Content padder>
           <Item>
-            <Input placeholder="Add task" value={text} onChangeText={(value) => this.setState({ text: value })} />
-            <Button disabled={processing} onPress={() => this.createTask()}>
+            <Input placeholder="Add post" value={text} onChangeText={(value) => this.setState({ text: value })} />
+            <Button disabled={processing} onPress={() => this.createPost()}>
               <Text>save</Text>
             </Button>
           </Item>
-          {/* {tasks && (
+          {/* {posts && (
             <Card>
-              {tasks.map((item) => (
+              {posts.map((item) => (
                 <CardItem key={item.id} button bordered>
                   <Left>
                     <CheckBox
                       checked={item.done}
                       color={COLOR.primary}
                       style={styles.checkbox}
-                      onPress={() => dispatch($updateTask(item.id, { done: !item.done }))}
+                      onPress={() => dispatch($updatePost(item.id, { done: !item.done }))}
                     />
                     <Text style={{ textDecorationLine: item.done ? 'line-through' : 'none' }}>{item.title}</Text>
                   </Left>
 
                   <Right>
                     <Button transparent large><Icon name="create" /></Button>
-                    <Button transparent large onPress={() => dispatch($removeTask(item.id))}><Icon name="trash" /></Button>
+                    <Button transparent large onPress={() => dispatch($removePost(item.id))}><Icon name="trash" /></Button>
                   </Right>
                 </CardItem>
               ))}
@@ -123,7 +121,7 @@ class HomeView extends Component {
           <FlatList
             contentContainerStyle={[STYLE.flex_grow, STYLE.padder]}
             // ListEmptyComponent={<DataEmpty icon="history" message="Aucune course passée" />}
-            data={tasks}
+            data={posts}
             keyExtractor={(item) => item.id}
             renderItem={({ item }) => (
               <CardItem key={item.id} button bordered>
@@ -132,7 +130,7 @@ class HomeView extends Component {
                     checked={item.done}
                     color={COLOR.primary}
                     style={styles.checkbox}
-                    onPress={() => dispatch($updateTask(item.id, { done: !item.done }))}
+                    onPress={() => dispatch($updatePost(item.id, { done: !item.done }))}
                   />
                   <Text style={{ textDecorationLine: item.done ? 'line-through' : 'none' }}>{item.title}</Text>
                 </Left>
@@ -142,7 +140,7 @@ class HomeView extends Component {
                     <Button transparent style={styles.button}>
                       <Icon name="create" />
                     </Button>
-                    <Button transparent style={styles.button} onPress={() => dispatch($removeTask(item.id))}>
+                    <Button transparent style={styles.button} onPress={() => dispatch($removePost(item.id))}>
                       <Icon name="trash" />
                     </Button>
                   </View>

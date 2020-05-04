@@ -6,7 +6,7 @@ import { createLogger } from '../common/logger';
 
 const Logger = createLogger('PushNotificationService');
 
-export const PushNotificationServiceImplementation = class PushNotificationService {
+export const PushNotificationServiceImpl = class PushNotificationService {
   events = new EventEmitter();
 
   userId = null;
@@ -62,7 +62,7 @@ export const PushNotificationServiceImplementation = class PushNotificationServi
   }
 };
 
-export const PushNotificationService = new PushNotificationServiceImplementation();
+export const PushNotificationService = new PushNotificationServiceImpl();
 
 if (process.env.NODE_ENV === 'development') {
   global.PushNotificationService = PushNotificationService;

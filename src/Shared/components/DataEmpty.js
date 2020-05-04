@@ -2,6 +2,8 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Text, Icon } from 'native-base';
 
+import * as PropTypes from '../../common/proptypes';
+
 import { COLOR, STYLE } from '../../common/styles';
 
 const styles = StyleSheet.create({
@@ -40,5 +42,15 @@ const DataEmpty = ({ icon, message, children }) => (
     {children}
   </View>
 );
+
+DataEmpty.propTypes = {
+  icon: PropTypes.string.isRequired,
+  message: PropTypes.string.isRequired,
+  children: PropTypes.node,
+};
+
+DataEmpty.defaultProps = {
+  children: null,
+};
 
 export { DataEmpty };

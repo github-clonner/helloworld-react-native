@@ -6,13 +6,13 @@ import { getStore } from './store';
 
 import * as FetchHelper from './common/fetch.helper';
 
-import { AuthService } from './Auth/Auth.service';
+import { AuthService } from './Auth/AuthService';
 
 import * as Auth from './Auth/state';
 
 import * as Shared from './Shared/state';
 
-import * as Dialog from './Shared/Dialog';
+import * as Interaction from './Shared/Interaction';
 
 export default async function bootstrap() {
   const { dispatch, getState } = getStore();
@@ -28,11 +28,11 @@ export default async function bootstrap() {
   }
 
   AuthService.events.on('login', () => {
-    dispatch(Shared.$startSession()).catch((error) => Dialog.toast(Dialog.FAILURE, error.message));
+    dispatch(Shared.$startSession()).catch((error) => Interaction.toast(Interaction.FAILURE, error.message));
   });
 
   AuthService.events.on('logout', () => {
-    dispatch(Shared.$closeSession()).catch((error) => Dialog.toast(Dialog.FAILURE, error.message));
+    dispatch(Shared.$closeSession()).catch((error) => Interaction.toast(Interaction.FAILURE, error.message));
   });
 
   FetchHelper.events.on('failure', (error, response) => {
@@ -44,6 +44,6 @@ export default async function bootstrap() {
   await dispatch(Shared.$appReady());
 
   if (AuthService.isAuthenticated()) {
-    await dispatch(Shared.$startSession()).catch((error) => Dialog.toast(Dialog.FAILURE, error.message));
+    await dispatch(Shared.$startSession()).catch((error) => Interaction.toast(Interaction.FAILURE, error.message));
   }
 }

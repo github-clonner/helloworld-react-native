@@ -17,9 +17,9 @@ source $(dirname $0)/generate-assets.include.sh
 
 ## generate assets
 
-APP_NAME=$(find $PWD/ios -name '*.xcodeproj' -maxdepth 1 -exec basename {} .xcodeproj \;)
+APP_NAME_CODE=$(find $PWD/ios -name '*.xcodeproj' -maxdepth 1 -exec basename {} .xcodeproj \;)
 
-target_dir="${PWD}/ios/${APP_NAME}/Images.xcassets/${output}.imageset"
+target_dir="${PWD}/ios/${APP_NAME_CODE}/Images.xcassets/${output}.imageset"
 
 mkdir -p $target_dir
 

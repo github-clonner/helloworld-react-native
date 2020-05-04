@@ -1,4 +1,4 @@
 
 PROJECT_DIR=$(pwd)
 
-APP_NAME=HelloWorld
+APP_NAME_CODE=HelloWorld

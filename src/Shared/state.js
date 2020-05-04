@@ -2,7 +2,7 @@ import * as Logger from '../common/logger';
 
 import * as StateHelper from '../common/state.helper';
 
-import $state from '../store/state.js';
+import $state from '../store/state';
 
 /**
  * Module name

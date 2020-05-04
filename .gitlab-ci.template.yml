@@ -17,35 +17,25 @@ install:
   tags:
     - docker
   script:
-    - yarn
-
-lint-critical:
-  stage: test
-  tags:
-    - docker
-  before_script:
-    - yarn
-  script:
-    - yarn lint:critical
+    - yarn install
 
 lint:
   stage: test
   tags:
     - docker
   before_script:
-    - yarn
+    - yarn install
   script:
-    - yarn lint
-  allow_failure: true
+    - yarn run lint
 
 test:
   stage: test
   tags:
     - docker
   before_script:
-    - yarn
+    - yarn install
   script:
-    - yarn test
+    - yarn run test
   allow_failure: true
 
 build:android:debug:
@@ -55,7 +45,7 @@ build:android:debug:
     - node
     - react-native
   before_script:
-    - yarn
+    - yarn install
   script:
     - ./scripts/build-android-debug.sh
   artifacts:
@@ -67,44 +57,32 @@ build:android:debug:
       - ./node_modules/
       - ./android/.gradle/
 
-appetize:android:debug:
+deploy:android:debug:
   stage: deploy
   dependencies:
     - build:android:debug
-  when: always
   cache: {}
   # only:
   #   - develop
   tags:
     - docker
   image: emiketic/essentials
-  script:
-    - ./scripts/appetize.sh ./build/app-debug.apk android
-
-upload:android:debug:
-  stage: deploy
-  dependencies:
-    - build:android:debug
-  when: always
-  cache: {}
-  # only:
-  #   - develop
-  tags:
-    - docker
-  image: emiketic/essentials
+  variables:
+    APPETIZE_PLATFORM: android
+    APPETIZE_ID: $APPETIZE_ANDROID_ID
   script:
     - ./scripts/deploy.sh ./build/app-debug.apk
 
 # android:release:build:
 #   stage: build
+#   only:
+#     - master
 #   tags:
 #     - android
 #     - node
 #     - react-native
-#   only:
-#     - master
 #   before_script:
-#     - yarn
+#     - yarn install
 #   script:
 #     - ./scripts/build-android-release.sh
 #     - ./scripts/deploy.sh ./build/app-release.apk
@@ -119,7 +97,7 @@ build:ios:debug:
     - node
     - react-native
   before_script:
-    - yarn
+    - yarn install
   script:
     - ./scripts/build-ios-debug.sh
   artifacts:
@@ -131,44 +109,31 @@ build:ios:debug:
       - ./node_modules/
       - ./ios/Pods/
 
-appetize:ios:debug:
+deploy:ios:debug:
   stage: deploy
   dependencies:
     - build:ios:debug
-  when: always
   cache: {}
   # only:
   #   - develop
   tags:
     - docker
   image: emiketic/essentials
-  script:
-    - ./scripts/appetize.sh ./build/app-debug.zip ios
-
-upload:ios:debug:
-  stage: deploy
-  dependencies:
-    - build:ios:debug
-  when: always
-  cache: {}
-  # only:
-  #   - develop
-  tags:
-    - docker
-  image: emiketic/essentials
+  variables:
+    APPETIZE_PLATFORM: ios
+    APPETIZE_ID: $APPETIZE_IOS_ID
   script:
     - ./scripts/deploy.sh ./build/app-debug.zip
-
 # build:ios:release:
 #   stage: build
+#   only:
+#     - master
 #   tags:
 #     - ios
 #     - node
 #     - react-native
-#   only:
-#     - master
 #   before_script:
-#     - yarn
+#     - yarn install
 #   script:
 #     - ./scripts/build-ios-release.sh
 #     - ./scripts/deploy.sh ./build/app-release.zip

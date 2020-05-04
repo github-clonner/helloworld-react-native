@@ -20,9 +20,9 @@ height=48
 
 ## generate assets
 
-APP_NAME=$(find $PWD/ios -name '*.xcodeproj' -maxdepth 1 -exec basename {} .xcodeproj \;)
+APP_NAME_CODE=$(find $PWD/ios -name '*.xcodeproj' -maxdepth 1 -exec basename {} .xcodeproj \;)
 
-target_dir="${PWD}/ios/${APP_NAME}/Images.xcassets/AppIcon.appiconset"
+target_dir="${PWD}/ios/${APP_NAME_CODE}/Images.xcassets/AppIcon.appiconset"
 
 mkdir -p $target_dir
 

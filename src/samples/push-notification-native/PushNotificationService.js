@@ -7,7 +7,7 @@ import { createLogger } from '../common/logger';
 
 const Logger = createLogger('PushNotificationService');
 
-export const PushNotificationServiceImplementation = class PushNotificationService {
+export const PushNotificationServiceImpl = class PushNotificationService {
   events = new EventEmitter();
 
   token = null;
@@ -52,7 +52,6 @@ export const PushNotificationServiceImplementation = class PushNotificationServi
     this.events.emit('received', notification, nativeNotification);
 
     if (nativeNotification.userInteraction) {
-      console.log('onopen');
       this.events.emit('opened', notification, nativeNotification);
     }
 
@@ -77,7 +76,7 @@ export const PushNotificationServiceImplementation = class PushNotificationServi
   }
 };
 
-export const PushNotificationService = new PushNotificationServiceImplementation();
+export const PushNotificationService = new PushNotificationServiceImpl();
 
 if (process.env.NODE_ENV === 'development') {
   global.PushNotificationService = PushNotificationService;
